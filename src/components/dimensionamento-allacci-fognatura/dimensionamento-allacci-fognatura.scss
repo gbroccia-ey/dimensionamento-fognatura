@@ -1,0 +1,27 @@
+dimensionamento-allacci-fognatura {
+
+    .smallText{
+        font-size:12px;
+    }
+
+    .redTrashIcon {
+        position: absolute;
+        right: 11px;
+        top: 7px;
+        background-color: red;
+    }
+
+    ion-col > .centerText > input
+    {
+        text-align: center;
+    }
+    
+    .subset-header-big{
+        height:145px;
+    }
+      
+    .textTable{
+        text-align:center;
+    }
+
+}

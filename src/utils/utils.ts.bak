@@ -1,0 +1,176 @@
+declare var WL;
+import * as moment from 'moment';
+
+export class Utils {
+    
+
+    static getDeviceEnvironment(): string {
+
+        var env: string =  WL.Client.getEnvironment();
+        var device: string = "unsupported";
+        
+        switch(env.toLowerCase()) {
+            case "android":
+                device =  "Android";
+                break;
+            case "ipad":
+                device = "IOS";
+                break;
+            case "iphone":
+                device = "IOS";
+                break;
+            case "preview":
+                device = "preview";
+                break;
+            default:
+                device = "Android";
+        }
+
+        return device;
+
+    }
+
+    static checkConnection(successCallback: () => any, failCallback: () => any) {
+        successCallback();
+    
+    }
+
+    //input: AAAAMMDD
+    static formatDate(dateString: string) {
+        if(dateString=="Invalid date") return "01-01-2000";
+        if(dateString==undefined) return "01-01-2000";
+        if(dateString.indexOf('-')==2) return dateString;
+        return dateString.substring(0,4) + "-" + dateString.substring(4,6) + "-" + dateString.substring(6,8);
+    }
+
+    static deserialize<T>(target: T, obj: T){
+        const objectKeys = Object.keys(obj) as Array<keyof T>;
+        for(let key of objectKeys) {
+            target[key] = obj[key];  
+        }
+        return target;
+    }
+
+    static getSAPDate(sapStr: string) {
+        if(sapStr){
+            try{
+                var tmpDate = moment(sapStr).format("DD-MM-YYYY");
+                if(tmpDate.indexOf('Invalid')>-1) return sapStr;
+                return tmpDate;
+            }catch(err) {
+                console.log(err);
+                return sapStr;
+            }
+        }
+            
+        return undefined;
+    }
+
+    static toSAPDate(dateStr) {
+
+        if(dateStr=='Invalid') return '';
+        if(dateStr=='d .li.Inva') return '';
+        if(dateStr){
+            if(isNaN(dateStr) == false ) return dateStr;
+            var d = dateStr.substring(3,5) + "-" + dateStr.substring(0,2) + "-" + dateStr.substring(6,10);
+            try{
+                
+                let result = moment(d).format("YYYYMMDD");
+                if(result.includes("Invalid")){
+                    
+                    try{
+                        d = dateStr.replace(/-/g, "");
+                        return d.substr(0, 8);
+                    }catch(err){
+                        return "";
+                    }
+                }
+                return result;
+            }catch(err){ 
+                console.log(err);
+                return undefined;
+            }
+            
+        }
+        return undefined;
+        
+    }
+
+    static getSAPTime(sapStr: string) {
+        if(sapStr){
+            try{
+                if(sapStr.indexOf(':')>0)  return sapStr;
+                return sapStr.substring(0,2) + ":" + sapStr.substring(2,4);
+            }catch(err) {
+                console.log(err);
+                return undefined;
+            }
+            
+        }
+        return undefined;
+        
+    }
+
+    static toSAPTime(timeStr) {
+        if(timeStr){
+            try{
+                 if(isNaN(timeStr) == false ) return timeStr;
+                return timeStr.substring(0,2) + timeStr.substring(3,5) + "00";
+            }catch(err) {
+                console.log(err);
+                return undefined;
+            }
+            
+        }
+        return undefined;
+        
+    }
+
+    static getFloatFromString(str: string) {
+        str = str.replace(",",".");
+        let regex = /[+-]?\d+(\.\d+)?/g;
+        let floats = str.match(regex).map(function(v) { return parseFloat(v); });
+        return floats;
+    }
+
+    static cutInitialFloat(str: string) {
+        str = str.replace(".", "");
+        return str.replace(/^[\d-]*\s*/, "");
+    }
+
+    static isQueueRunning(timestamp: any){
+        let now = moment();
+        let msDiff = now.diff(timestamp) / 1000;
+        if(msDiff > 20) {
+            return false;
+        }
+        else{
+            return true;
+        }
+        
+    }
+
+
+    static dateCompare(sourceDate: string, targetDate: string): boolean {
+
+        let sDate = moment(sourceDate, "DD/MM/YYYY");
+        let tDate = moment(targetDate, "DD/MM/YYYY");
+        let difference:number = sDate.diff(tDate, "days");
+        return difference >= -1 && difference <= 1;
+    }
+
+    static round(num: number) : number{
+        return Math.round(num * 100) / 100;
+    }
+
+    static stringToBoolean(str: string): boolean{
+        switch(str.toLowerCase().trim()){
+            case "true": case "yes": case "1": return true;
+            case "false": case "no": case "0": case null: return false;
+            default: return Boolean(str);
+        }
+    }
+
+   
+
+}

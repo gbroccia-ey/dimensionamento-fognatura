@@ -7,7 +7,8 @@
     "experimentalDecorators": true,
     "lib": [
       "dom",
-      "es2015"
+      "es2015",
+      "es2017"
     ],
     "module": "es2015",
     "moduleResolution": "node",
@@ -16,8 +17,11 @@
     "noImplicitAny": false
   },
   "include": [
-    "src/app/*.ts",
-    "src/pages/**/*.ts"
+    "app/*.ts",
+    "pages/**/*.ts",
+    "components/**/*.ts",
+    "models/*.ts",
+    "src/**/*.ts"
   ],
   "exclude": [
     "node_modules"
