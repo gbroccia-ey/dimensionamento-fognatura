@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "config": {
-    "ionic_app_entry_point": "app/main.ts"
+    "ionic_app_entry_point": "src/app/main.ts"
   },
   "dependencies": {
     "@angular/common": "5.2.9",

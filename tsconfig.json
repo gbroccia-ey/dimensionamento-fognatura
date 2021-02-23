@@ -16,8 +16,8 @@
     "noImplicitAny": false
   },
   "include": [
-    "app/*.ts",
-    "pages/**/*.ts"
+    "src/app/*.ts",
+    "src/pages/**/*.ts"
   ],
   "exclude": [
     "node_modules"
