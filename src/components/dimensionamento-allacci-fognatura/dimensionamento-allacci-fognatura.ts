@@ -1,6 +1,8 @@
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { DimensionamentoAllacciFognatura, UnitaSingola, UnitaDeroga, ContatoreAntincendio } from '../../models/dimensionamento-allacci';
+import { DimensionamentoAllacciFognatura, UnitaSingola, UnitaDeroga, ContatoreAntincendio, ParametriAcqueNere, ParametriAcqueBianche, ParametriVincoli } from '../../models/dimensionamento-allacci';
 import { Ads } from '../../models/ads';
+import { MathJs } from "mathjs";
+
 
 // import { AdsService } from '../../services/ads-service';
 
@@ -444,6 +446,16 @@ allacciNuoviArray = [
 {'nome':'ghisa DN300  UNI EN 545','diametro':316.8,'perdit':326,'pression':4.6,'scabrezza':0.15}
   ]
 
+tableParams = {
+  sumUnitaScarico: 10.0,                  // Somma Unità di scarico
+  freqCoef: 0.5,                          // Coefficiente di frequenza (contemporaneità) per appartamenti / locande / uffici
+  dividers: [1.0,5.0,30.0,250.0,100.0],   // Divisori per calcolo delle Unità Immobiliari equivalenti a partire da varie tipologie di utenze
+  affluxCoef:[1.0,0.6,0.5,0.1],           // Coefficienti di afflusso	
+  maxRainIntensity: 100.0,                // Intensità massima di pioggia [mm/h]
+  uiEqFisseAcqueBianche: 2.0,             // UIeq fisse in presenza di ACQUE BIANCHE
+}
+
+
 constructor() {
   this.saveAction = new EventEmitter<string>();
   console.log('Hello DimensionamentoAllacciFognaturaComponent Component');
@@ -476,15 +488,60 @@ ngOnInit() {
       var AllacciamentoEsistente = {};
      
       this.ads.DimensionamentoAllacciFognatura = new DimensionamentoAllacciFognatura(
-        this.rete_stradale[0], 0, 0, 0,new UnitaSingola(0,""), new UnitaDeroga(0,""), arrayContatore,0,0,0,AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{});    
+        // old parameters
+        this.rete_stradale[0], 0, 0, 0,new UnitaSingola(0,""), new UnitaDeroga(0,""), arrayContatore,0,0,0,AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{},
+        // old parameters
+        new ParametriAcqueNere(0,0,0,0,0,0,0),new ParametriAcqueBianche(0,0,0,0,0,0,0,0), new ParametriVincoli(0,0,1.0,0,0,0),
+        );    
     }
   }
 
+  updateAcqueNere(){
+    if (this.ads.DimensionamentoAllacciFognatura){
+      let sum = this.ads.DimensionamentoAllacciFognatura.AcqueNere.sumEq(this.tableParams.dividers);
+      this.ads.DimensionamentoAllacciFognatura.AcqueNere.portata = this.tableParams.freqCoef*Math.sqrt(sum*this.tableParams.sumUnitaScarico);
+      this.ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq = sum;
+      this.updateVincoli();
+    }
+  } 
+
+  updateAcqueBianche(){
+    if (this.ads.DimensionamentoAllacciFognatura){
+      let ab = this.ads.DimensionamentoAllacciFognatura.AcqueBianche;
+      ab.portataImpermeabili = ((ab.supImpermeabili*this.tableParams.affluxCoef[0])*this.tableParams.maxRainIntensity)/3600.0;
+      ab.portataSemipermeabili = ((ab.supSemipermeabili*this.tableParams.affluxCoef[1])*this.tableParams.maxRainIntensity)/3600.0;
+      ab.portata = 0.0 + ab.portataImpermeabili + ab.portataSemipermeabili + ab.portateLimitate*1.0;
+      
+      ab.uiEqFisse = (ab.portata > 0)? this.tableParams.uiEqFisseAcqueBianche:0;
+      ab.sommaUIeq = ab.uiEqFisse;
+      this.ads.DimensionamentoAllacciFognatura.AcqueBianche = ab;
+
+      this.updateVincoli();
+    }
+  } 
+
+  updateVincoli(){
+    if (this.ads.DimensionamentoAllacciFognatura){
+      let vincoli = this.ads.DimensionamentoAllacciFognatura.Vincoli;
+      vincoli.portataMista = this.ads.DimensionamentoAllacciFognatura.AcqueBianche.portata + this.ads.DimensionamentoAllacciFognatura.AcqueNere.portata;
+      vincoli.totaleUIeq = this.ads.DimensionamentoAllacciFognatura.AcqueBianche.sommaUIeq + this.ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq;
+      vincoli.pendenza = (vincoli.lunghezza*1.0 > 0)? (1.0*vincoli.dislivello)/vincoli.lunghezza : 1.0;
+    }
+  } 
+
+  
+  //--------------------------------------------------------------------------------
+  //          OLD METHODS
+  //--------------------------------------------------------------------------------
+  
   updateAntincendio(index, isLS){
+    console.log("updateAntincendio");
+    return;
     /*if(this.lockUpdateAntincendio){
       this.lockUpdateAntincendio = !this.lockUpdateAntincendio;
       return;
     }*/
+    setTimeout(()=>{
     this.lockUpdateAntincendio = true;
     if(isLS)
       this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].portataMH = Number(this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].portataLS) * 3.6;
@@ -509,9 +566,13 @@ ngOnInit() {
     else if(Number(this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].portataMH) < 63.01) this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].tipoContatore = "DN 80 (W80)";
     else if(Number(this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].portataMH) < 100.01) this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].tipoContatore = "DN 100 (W100)";
     else if(Number(this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].portataMH) < 250.01) this.ads.DimensionamentoAllacciFognatura.ContatoriAntincendio[index].tipoContatore = "DN 150 (W150)";
+    });
   }
 
   updatePortataCalcoloA(value){
+    console.log("updatePortataCalcoloA");
+    return;
+    
     if(!value) this.ads.DimensionamentoAllacciFognatura.PortataCalcoloA = 0;
     else if(value == 0) this.ads.DimensionamentoAllacciFognatura.PortataCalcoloA = 0;
     else if(value == 1) this.ads.DimensionamentoAllacciFognatura.PortataCalcoloA = 1.73;
@@ -592,17 +653,20 @@ ngOnInit() {
   }
 
   setColorVelocita(item){
+    //console.log("setColorVelocita")
     var soglia = 2;
     if(!item) return;
     if(item.diametro>60) soglia = 2.5;
-    item.colorVelocita  = (item.velocita>soglia)? 'red':'green';
+      item.colorVelocita  = (item.velocita>soglia)? 'red':'green';
+    
   }
 
   setColorPerdita(item, esistente?){
     var soglia = 0.15;
     if(!item) return;
-    item.colorPerdita  = (item.perdita>soglia)? 'red':'green';
-
+    setTimeout(()=>{
+      item.colorPerdita  = (item.perdita>soglia)? 'red':'green';
+    },100);
     if(item.perdita > soglia) item.VerificaCondotta = "Condotta non idonea";
     else if( esistente) item.VerificaCondotta = "Condotta idonea";
     else if(item.VerificaCondotta != "Condotta di progetto") item.VerificaCondotta = "";
@@ -610,6 +674,9 @@ ngOnInit() {
   }
 
   calcolaPerdita(){
+    console.log("calcolaPerdita");
+    return;
+    
       if(this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente) this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita = this.calcolaVelocita(this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.diametro);
       if(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1)    this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.velocita = this.calcolaVelocita(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.diametro);
       if(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2)    this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.velocita = this.calcolaVelocita(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.diametro);

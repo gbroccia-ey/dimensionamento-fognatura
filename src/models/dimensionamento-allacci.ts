@@ -47,6 +47,66 @@ export class MaterialeEE{
 }
 
 
+
+export class ParametriAcqueNere{
+    constructor(
+        public usoDomestico: number,
+        public alberghieri: number,
+        public ospedali: number,
+        public artigianali: number,
+        public commerciali: number,
+        public sommaUIeq: number,
+        public portata: number
+      ){ }
+
+    sum(){
+        return  this.usoDomestico+
+                this.alberghieri+
+                this.ospedali+
+                this.artigianali+
+                this.commerciali
+    }
+
+
+    sumEq(dividers){
+        if (dividers?.length == 5){
+            return  this.usoDomestico/dividers[0]+
+                this.alberghieri/dividers[1]+
+                this.ospedali/dividers[2]+
+                this.artigianali/dividers[3]+
+                this.commerciali/dividers[4] 
+        }
+    }
+}
+
+
+export class ParametriAcqueBianche{
+    constructor(
+        public uiEqFisse: number,
+        public supImpermeabili: number,
+        public portataImpermeabili: number,
+        public supSemipermeabili: number,
+        public portataSemipermeabili: number,
+        public portateLimitate: number,
+        public sommaUIeq: number,
+        public portata: number
+      ){ }
+}
+
+export class ParametriVincoli{
+    constructor(
+        public portataMista: number,
+        public totaleUIeq: number,
+        public lunghezza: number,
+        public dislivello: number,
+        public pendenza: number,
+        public diamIntMinimo: number
+      ){ }
+}
+
+
+
+
 export class DimensionamentoAllacciGas{
 
     constructor(
@@ -92,7 +152,18 @@ export class DimensionamentoAllacciAcqua{
         this.Risultato = {text:'',materiale:'',warning:''};
     }
 }
+
+
+export class DimensionamentoAllacciEE{
+
+    constructor(
+        public ReteEE: Array<MaterialeEE>
+    ) {
+    }
+}
+
 export class DimensionamentoAllacciFognatura{
+    
 
     constructor(
         public ReteStradale: string,
@@ -112,16 +183,13 @@ export class DimensionamentoAllacciFognatura{
         public AllacciamentoNuovo5,
         public AllacciamentoNuovo6,
         public AllacciamentoEsistente,
-        public Risultato
+        public Risultato,
+        public AcqueNere : ParametriAcqueNere,
+        public AcqueBianche : ParametriAcqueBianche,
+        public Vincoli: ParametriVincoli,
+    
+        // new, optional
     ){ 
         this.Risultato = {text:'',materiale:'',warning:''};
-    }
-}
-
-export class DimensionamentoAllacciEE{
-
-    constructor(
-        public ReteEE: Array<MaterialeEE>
-    ) {
     }
 }

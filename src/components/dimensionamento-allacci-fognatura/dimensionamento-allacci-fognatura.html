@@ -3,7 +3,378 @@
 <div >
 
         <ion-grid>
-            
+        <!-- ACQUE NERE -->
+          <div class="subset">
+                <ion-row class="subset-header">
+                    <ion-col col-9 > 
+                        <div class="label-header label-header-green" >
+                           <span>ACQUE NERE</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3 > 
+                        <div class="label-header label-header-green" >
+                           <span >UIeq</span>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                   <ion-col col-6 > 
+                        <div class="label-header label-header-lightgreen" >
+                           <ion-label>Uso domestico, uso servizi condominiali (numero UNITA' IMMOBILIARI)</ion-label>
+                        </div>
+                   </ion-col>    
+                   <ion-col col-3>
+                        <div class="">
+                       <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico"></ion-input>
+                        </div>
+                   </ion-col>
+                   <ion-col col-3>
+                        <div class="label-header label-header-lightgreen">
+                       <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico / tableParams.dividers[0]}}</ion-label>
+                        </div>
+                   </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-6 > 
+                            <div class="label-header label-header-lightgreen" >
+                            <ion-label>Alberghi, pensioni, residence alberghieri (NUMERO CAMERE/APPARTAMENTI)</ion-label>
+                            </div>
+                    </ion-col>    
+                    <ion-col col-3>
+                            <div class="">
+                            <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri"></ion-input>
+                            </div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <div class="label-header label-header-lightgreen">
+                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri / tableParams.dividers[1]}}</ion-label>
+                            </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col col-6 > 
+                            <div class="label-header label-header-lightgreen" >
+                            <ion-label>Ospedali, case di cura, altre comunità numerose (NUMERO POSTI LETTO)</ion-label>
+                            </div>
+                    </ion-col>    
+                    <ion-col col-3>
+                            <div class="">
+                            <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali"></ion-input>
+                            </div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <div class="label-header label-header-lightgreen">
+                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali / tableParams.dividers[2]}}</ion-label>
+                            </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                        <ion-col col-6 > 
+                                <div class="label-header label-header-lightgreen" >
+                                <ion-label>Attività artigianali, industriali, zootecniche (MQ SUPERFICIE UTILE COPERTA)</ion-label>
+                                </div>
+                        </ion-col>    
+                        <ion-col col-3>
+                                <div class="">
+                                <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali"></ion-input>
+                                </div>
+                        </ion-col>
+                        <ion-col col-3>
+                                <div class="label-header label-header-lightgreen">
+                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali / tableParams.dividers[3]}}</ion-label>
+                                </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-6 > 
+                                <div class="label-header label-header-lightgreen" >
+                                <ion-label>Attività commerciali, di intrattenimento, impianti sportivi e tutto quanto non compreso nelle voci precedenti (MQ SUPERFICIE UTILE COPERTA)</ion-label>
+                                </div>
+                        </ion-col>    
+                        <ion-col col-3>
+                                <div class="">
+                                <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali"></ion-input>
+                                </div>
+                        </ion-col>
+                        <ion-col col-3>
+                                <div class="label-header label-header-lightgreen">
+                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali / tableParams.dividers[4]}}</ion-label>
+                                </div>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row class="subset-header">
+                    <ion-col col-6 > 
+                        <div class="label-header label-header-green" >
+                        <span>Somma UIeq (ACQUE NERE)</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3 > 
+                        <div class="label-header label-header-green" >
+                           <span></span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3 > 
+                        <div class="label-header label-header-green" >
+                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq }}</span>
+                        </div>
+                    </ion-col>
+                </ion-row>
+                <ion-row class="subset-header">
+                    <ion-col col-6 > 
+                        <div class="label-header label-header-green" >
+                        <span>Portata relativa alle unità abitative [l/s] (ACQUE NERE)</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3 > 
+                        <div class="label-header label-header-green" >
+                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.portata }}</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-3 >
+                        <div class="label-header label-header-green" >
+                            <span></span>
+                        </div> 
+                    </ion-col>
+                
+                </ion-row>
+          </div>
+        
+        <!-- ACQUE BIANCHE -->
+        <div class="subset">
+            <ion-row class="subset-header">
+                <ion-col col-6 > 
+                    <div class="label-header label-header-blue" >
+                            <span>ACQUE BIANCHE</span>
+                    </div>
+                </ion-col>
+                <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span >Superficie (mq)</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span >Portata (l/s)</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span >UIeq</span>
+                        </div>
+                    </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-6 > 
+                    <div class="label-header label-header-lightblue" >
+                        <ion-label>Unità equivalenti "fisse" in presenza di portata bianca</ion-label>
+                    </div>
+                </ion-col>    
+                <ion-col col-2>
+                        <div class="label-header label-header-lightblue">
+                            <span></span>
+                        </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <span></span>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.uiEqFisse }}</ion-label>
+                    </div>
+                </ion-col>    
+            </ion-row>
+            <ion-row>
+                <ion-col col-6 > 
+                    <div class="label-header label-header-lightblue" >
+                        <ion-label>Superfici impermeabili (tetti, strade) [m2]</ion-label>
+                    </div>
+                </ion-col>    
+                <ion-col col-2>
+                    <div class="">
+                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supImpermeabili"></ion-input>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataImpermeabili}}</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <span></span>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-6 > 
+                    <div class="label-header label-header-lightblue" >
+                        <ion-label>Superfici semipermeabili drenati (parcheggi) [m2]</ion-label>
+                    </div>
+                </ion-col>    
+                <ion-col col-2>
+                    <div class="">
+                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supSemipermeabili"></ion-input>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataSemipermeabili }}</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <span></span>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-6 > 
+                    <div class="label-header label-header-lightblue" >
+                        <ion-label>Portate di acque bianche con limitazione (es. vasche laminazione, strozzature, etc) [l/s]</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <span></span>
+                    </div>
+                </ion-col>    
+                <ion-col col-2>
+                    <div class="">
+                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.portateLimitate"></ion-input>
+                    </div>
+                </ion-col>
+                <ion-col col-2>
+                    <div class="label-header label-header-lightblue">
+                        <span></span>
+                    </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="subset-header">
+                <ion-col col-6 > 
+                    <div class="label-header label-header-blue" >
+                            <span>Somma Uieq (ACQUE BIANCHE)</span>
+                    </div>
+                </ion-col>
+                <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span ></span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span ></span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.sommaUIeq }}</span>
+                        </div>
+                    </ion-col>
+            </ion-row>
+            <ion-row class="subset-header">
+                <ion-col col-6 > 
+                    <div class="label-header label-header-blue" >
+                            <span>Portata meteorica totale [l/s] (ACQUE BIANCHE)</span>
+                    </div>
+                </ion-col>
+                <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span></span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portata }}</span>
+                        </div>
+                    </ion-col>
+                    <ion-col col-2 > 
+                        <div class="label-header label-header-blue" >
+                                <span ></span>
+                        </div>
+                    </ion-col>
+            </ion-row>
+        </div>
+        <!-- VINCOLI -->
+        <div class="subset">
+            <ion-row class="subset-header">
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>Portata complessiva di calcolo [l/s]
+                                (FOGNATURA MISTA)</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="label-header label-header-orange" >
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.portataMista}}</span>
+                        </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="subset-header">
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>TOTALE Uieq (acque nere + acque bianche)</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="label-header label-header-orange" >
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.totaleUIeq}}</span>
+                        </div>
+                </ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>Lunghezza [m]</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="" >
+                                <ion-input type="number" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.lunghezza"></ion-input>
+                        </div>
+                </ion-col>
+            </ion-row>
+            <ion-row >
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>Dislivello [m]</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="" >
+                                <ion-input type="number" min="1" step="0.1" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.dislivello"></ion-input>
+                        </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="subset-header">
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>Pendenza (dislivello/lunghezza)</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="label-header label-header-orange" >
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.pendenza*100.0}}%</span>
+                        </div>
+                </ion-col>
+            </ion-row>
+            <ion-row class="subset-header">
+                <ion-col col-9 > 
+                        <div class="label-header label-header-orange" >
+                        <span>Diametro interno minimo necessario [mm]</span>
+                        </div>
+                </ion-col>
+                <ion-col col-3 > 
+                        <div class="label-header label-header-orange" >
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.diamIntMinimo}}</span>
+                        </div>
+                </ion-col>
+            </ion-row>
+        </div>
+
+
+          <!--      
           <ion-row>
               <ion-col col-5 > <div class="label-header" >
                   <ion-label>Tubazione Stradale</ion-label>
@@ -50,6 +421,7 @@
                   <ion-input type="number" [(ngModel)]="ads.DimensionamentoAllacciFognatura.NumeroPerdite" ></ion-input>
               </ion-col>
           </ion-row>
+        -->
       
       <div class="subset">
           <div style="color:red">ATTENZIONE
