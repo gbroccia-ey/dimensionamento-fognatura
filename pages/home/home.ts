@@ -11,8 +11,7 @@ export class HomePage {
   ads:Ads;
 
   constructor(public navCtrl: NavController) {
-    this.ads = new Ads();
-    
+
   }
 
   openDimensionamentoAllacci() {
