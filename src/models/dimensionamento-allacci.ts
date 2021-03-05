@@ -166,6 +166,7 @@ export class DimensionamentoAllacciFognatura{
     
 
     constructor(
+        // to be deleted - start
         public ReteStradale: string,
         public NumeroPerdite: number,
         public PressioneRete: number,
@@ -176,6 +177,7 @@ export class DimensionamentoAllacciFognatura{
         public PortataCalcoloA,
         public PortataCalcoloB,
         public PortataCalcoloTotale,
+        // to be deleted - end
         public AllacciamentoNuovo1,
         public AllacciamentoNuovo2,
         public AllacciamentoNuovo3,
@@ -187,8 +189,6 @@ export class DimensionamentoAllacciFognatura{
         public AcqueNere : ParametriAcqueNere,
         public AcqueBianche : ParametriAcqueBianche,
         public Vincoli: ParametriVincoli,
-    
-        // new, optional
     ){ 
         this.Risultato = {text:'',materiale:'',warning:''};
     }

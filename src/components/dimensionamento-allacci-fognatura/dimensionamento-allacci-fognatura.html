@@ -2,10 +2,10 @@
 
 <div >
 
-        <ion-grid>
+   <ion-grid>
         <!-- ACQUE NERE -->
           <div class="subset">
-                <ion-row class="subset-header">
+                <ion-row class="subset-header-medium">
                     <ion-col col-9 > 
                         <div class="label-header label-header-green" >
                            <span>ACQUE NERE</span>
@@ -20,7 +20,7 @@
                 <ion-row>
                    <ion-col col-6 > 
                         <div class="label-header label-header-lightgreen" >
-                           <ion-label>Uso domestico, uso servizi condominiali (numero UNITA' IMMOBILIARI)</ion-label>
+                           <ion-label text-wrap>Uso domestico, uso servizi condominiali (numero UNITA' IMMOBILIARI)</ion-label>
                         </div>
                    </ion-col>    
                    <ion-col col-3>
@@ -37,7 +37,7 @@
                 <ion-row>
                     <ion-col col-6 > 
                             <div class="label-header label-header-lightgreen" >
-                            <ion-label>Alberghi, pensioni, residence alberghieri (NUMERO CAMERE/APPARTAMENTI)</ion-label>
+                            <ion-label text-wrap>Alberghi, pensioni, residence alberghieri (NUMERO CAMERE/APPARTAMENTI)</ion-label>
                             </div>
                     </ion-col>    
                     <ion-col col-3>
@@ -54,7 +54,7 @@
                 <ion-row>
                     <ion-col col-6 > 
                             <div class="label-header label-header-lightgreen" >
-                            <ion-label>Ospedali, case di cura, altre comunità numerose (NUMERO POSTI LETTO)</ion-label>
+                            <ion-label text-wrap>Ospedali, case di cura, altre comunità numerose (NUMERO POSTI LETTO)</ion-label>
                             </div>
                     </ion-col>    
                     <ion-col col-3>
@@ -64,14 +64,14 @@
                     </ion-col>
                     <ion-col col-3>
                             <div class="label-header label-header-lightgreen">
-                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali / tableParams.dividers[2]}}</ion-label>
+                            <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali / tableParams.dividers[2]}}</ion-label>
                             </div>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                         <ion-col col-6 > 
                                 <div class="label-header label-header-lightgreen" >
-                                <ion-label>Attività artigianali, industriali, zootecniche (MQ SUPERFICIE UTILE COPERTA)</ion-label>
+                                <ion-label text-wrap>Attività artigianali, industriali, zootecniche (MQ SUPERFICIE UTILE COPERTA)</ion-label>
                                 </div>
                         </ion-col>    
                         <ion-col col-3>
@@ -88,7 +88,7 @@
                     <ion-row>
                         <ion-col col-6 > 
                                 <div class="label-header label-header-lightgreen" >
-                                <ion-label>Attività commerciali, di intrattenimento, impianti sportivi e tutto quanto non compreso nelle voci precedenti (MQ SUPERFICIE UTILE COPERTA)</ion-label>
+                                <ion-label text-wrap>Attività commerciali, di intrattenimento, impianti sportivi e tutto quanto non compreso nelle voci precedenti (MQ SUPERFICIE UTILE COPERTA)</ion-label>
                                 </div>
                         </ion-col>    
                         <ion-col col-3>
@@ -141,7 +141,7 @@
         
         <!-- ACQUE BIANCHE -->
         <div class="subset">
-            <ion-row class="subset-header">
+            <ion-row class="subset-header-medium">
                 <ion-col col-6 > 
                     <div class="label-header label-header-blue" >
                             <span>ACQUE BIANCHE</span>
@@ -166,7 +166,7 @@
             <ion-row>
                 <ion-col col-6 > 
                     <div class="label-header label-header-lightblue" >
-                        <ion-label>Unità equivalenti "fisse" in presenza di portata bianca</ion-label>
+                        <ion-label text-wrap>Unità equivalenti "fisse" in presenza di portata bianca</ion-label>
                     </div>
                 </ion-col>    
                 <ion-col col-2>
@@ -188,7 +188,7 @@
             <ion-row>
                 <ion-col col-6 > 
                     <div class="label-header label-header-lightblue" >
-                        <ion-label>Superfici impermeabili (tetti, strade) [m2]</ion-label>
+                        <ion-label text-wrap>Superfici impermeabili (tetti, strade) [m2]</ion-label>
                     </div>
                 </ion-col>    
                 <ion-col col-2>
@@ -210,7 +210,7 @@
             <ion-row>
                 <ion-col col-6 > 
                     <div class="label-header label-header-lightblue" >
-                        <ion-label>Superfici semipermeabili drenati (parcheggi) [m2]</ion-label>
+                        <ion-label text-wrap>Superfici semipermeabili drenati (parcheggi) [m2]</ion-label>
                     </div>
                 </ion-col>    
                 <ion-col col-2>
@@ -220,7 +220,7 @@
                 </ion-col>
                 <ion-col col-2>
                     <div class="label-header label-header-lightblue">
-                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataSemipermeabili }}</ion-label>
+                        <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataSemipermeabili }}</ion-label>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -232,7 +232,7 @@
             <ion-row>
                 <ion-col col-6 > 
                     <div class="label-header label-header-lightblue" >
-                        <ion-label>Portate di acque bianche con limitazione (es. vasche laminazione, strozzature, etc) [l/s]</ion-label>
+                        <ion-label text-wrap>Portate di acque bianche con limitazione (es. vasche laminazione, strozzature, etc) [l/s]</ion-label>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -325,7 +325,7 @@
             </ion-row>
             <ion-row >
                 <ion-col col-9 > 
-                        <div class="label-header label-header-orange" >
+                        <div class="label-header label-header-lightorange" >
                         <span>Lunghezza [m]</span>
                         </div>
                 </ion-col>
@@ -337,7 +337,7 @@
             </ion-row>
             <ion-row >
                 <ion-col col-9 > 
-                        <div class="label-header label-header-orange" >
+                        <div class="label-header label-header-lightorange" >
                         <span>Dislivello [m]</span>
                         </div>
                 </ion-col>
@@ -359,70 +359,293 @@
                         </div>
                 </ion-col>
             </ion-row>
-            <ion-row class="subset-header">
+            <ion-row class="subset-header-medium">
                 <ion-col col-9 > 
-                        <div class="label-header label-header-orange" >
+                        <div class="label-header label-header-darkorange" >
                         <span>Diametro interno minimo necessario [mm]</span>
                         </div>
                 </ion-col>
                 <ion-col col-3 > 
-                        <div class="label-header label-header-orange" >
+                        <div class="label-header label-header-darkorange" >
                                 <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.diamIntMinimo}}</span>
                         </div>
                 </ion-col>
             </ion-row>
         </div>
 
+                
+    </ion-grid>
+    <ion-grid>
+        <div class="subset">
+            <ion-row class="subset-header-medium">
+                <ion-col col-12 > 
+                        <div class="label-header" >
+                                VERIFICA ALLACCIAMENTO ESISTENTE / DIMENSIONAMENTO NUOVO ALLACCIO
+                        </div>
 
-          <!--      
-          <ion-row>
-              <ion-col col-5 > <div class="label-header" >
-                  <ion-label>Tubazione Stradale</ion-label>
-      
-              </div>
-                      </ion-col>
-              <ion-col col-7>
-                  <ion-select required [(ngModel)]="ads.DimensionamentoAllacciFognatura.ReteStradale" name="ReteStradale">
-                    <ion-option *ngFor="let stradale of rete_stradale" [value]="stradale">{{stradale}}</ion-option>
-                  </ion-select>
-              </ion-col>
-          </ion-row>
-          
-          <ion-row>
-              <ion-col col-5 > <div class="label-header" >
-                  <ion-label>Pressione di rete [bar]</ion-label>
+                </ion-col>
+            </ion-row>
+
+            <ion-row class="subset-header-medium2">
+                <ion-col class="subset-header-medium" col-4 > <div class="label-header label-header-green" >
+                        <ion-label text-wrap>Condotta allacciamento</ion-label>
+                     </div>
+                </ion-col>
+                <ion-col col-1 >
+                    <div class="label-header label-header-green" >
+                        <ion-label text-wrap>Diametro interno [mm]</ion-label>
+                    </div>     
+                </ion-col>
+                <ion-col col-1 > 
+                    <div class="label-header label-header-green" >
+                        <ion-label text-wrap>K (coeff. di scabrezza) [m1/3s-1]</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-2 > 
+                        <div class="label-header label-header-green" >
+                            <ion-label text-wrap>Portata smaltibile con riempimento 70% [l/s]</ion-label>
+                        </div>
+                </ion-col>
+                <ion-col col-1 > 
+                        <div class="label-header label-header-green" >
+                            <ion-label text-wrap>% di riempimento alla Portata complessiva</ion-label>
+                        </div>
+                </ion-col>
+                <ion-col col-1 > 
+                        <div class="label-header label-header-green" >
+                            <ion-label text-wrap>Velocità nel tubo alla Portata complessiva</ion-label>
+                        </div>
+                </ion-col>
+                <ion-col col-2 > 
+                        <div class="label-header label-header-green" >
+                            <ion-label text-wrap>Verifica condotta esistente e/o Dimensionamento condotta nuova</ion-label>
+                        </div>
+                </ion-col>
+        </ion-row>
+        <ion-row class="subset-header">
+                <ion-col col-4 > 
+                        <div class="label-header" >
+                            VERIFICA ALLACCIAMENTO ESISTENTE (scelta libera "materiale/DE/PN")
+                        </div>
+                </ion-col>
+                <ion-col col-8 >
+                </ion-col>
+        </ion-row>
+        <ion-row class="subset-header">
+       
+                <ion-col col-4 > 
+                        <ion-select required placeholder="Seleziona allacciamento esistente" interface="action-sheet" style="max-width: 100% !important;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente">
+                            <ion-option *ngFor="let item of allacciArray" [value]="item">{{item.nome}}</ion-option>
+                        </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                        <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.dinterno}}</ion-label>
+                        </div>
+                </ion-col>
+                <ion-col col-1>
+                   <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.kval}}</ion-label>
                    </div>
-              </ion-col>
-              <ion-col col-7>
-                   <div class="">
-                  <ion-input type="number" [(ngModel)]="ads.DimensionamentoAllacciFognatura.PressioneRete"></ion-input>
-                   </div>
-              </ion-col>
-          </ion-row>  
-      
-          <ion-row>
-            <ion-col col-5 > <div class="label-header" >
-                <ion-label>Lunghezza allacciamento</ion-label>
-                 </div>
-            </ion-col>
-            <ion-col col-7>
-                 <div class="">
-              <ion-input type="number" [(ngModel)]="ads.DimensionamentoAllacciFognatura.LunghezzaAllacciamento"></ion-input>
-                 </div>
-            </ion-col>
-        </ion-row>  
-      
-          <ion-row>
-              <ion-col col-5 > <div class="label-header" >
-                 Numero perdite di carico concentrate <br/> (curve, tee,..)
-                   </div>
-              </ion-col>
-              <ion-col col-7>
-                  <ion-input type="number" [(ngModel)]="ads.DimensionamentoAllacciFognatura.NumeroPerdite" ></ion-input>
-              </ion-col>
-          </ion-row>
-        -->
-      
+                </ion-col>
+                <ion-col col-2>
+                   <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                        <ion-label>{{calcolaPortata(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente,70.0)}}</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-1>
+                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.dinterno}}</ion-label>
+                    </div>
+                </ion-col>
+                <ion-col col-1>
+                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.dinterno}}</ion-label>
+                    </div>
+                </ion-col>
+                                    
+                <ion-col col-2>
+                        <ion-select  style="width:100%;padding: 0px;" *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.VerificaCondotta">
+                            <ion-option [value]=""></ion-option>
+                            <ion-option [value]="CondottaIdonea">Condotta idonea</ion-option>
+                            <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                        </ion-select>
+                </ion-col>
+        </ion-row>
+        <ion-row class="subset-header">
+               <ion-col col-4 > 
+                            <div class="label-header" >
+                                VERIFICA ALLACCIAMENTO NUOVO (scelta predefinita o libera "materiale/DE/PN")
+                            </div>
+                    </ion-col>
+                    <ion-col col-8 >
+                    </ion-col>
+                    <ion-col col-4 > 
+                            <div class="">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.nome}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.colorPerdita}"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.perdita}} {{calcolaPerdita()}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.pressione}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable"  [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select  style="width:100%;padding: 0px;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaIdonea">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                               </ion-select>
+                    </ion-col>
+    
+                    <ion-col col-4 > 
+                            <div class="">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.nome}}</div>
+    
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.colorPerdita}"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.perdita}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.pressione}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select  style="width:100%;padding: 0px;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaIdonea">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                            </ion-select>
+                    </ion-col>
+    
+                    <ion-col col-4 > 
+                            <div class="">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.nome}}</div>
+    
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.colorPerdita}"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.perdita}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.pressione}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select  style="width:100%;padding: 0px;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaIdonea">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                            </ion-select>
+                    </ion-col>
+    
+                    <ion-col col-4 > 
+                                    <div class="">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.nome}}</div>
+            
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.colorPerdita}"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.perdita}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.pressione}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select  style="width:100%;padding: 0px;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaIdonea">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                            </ion-select>
+                    </ion-col>
+    
+                    <ion-col col-4 > 
+                                    <div class="">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.nome}}</div>
+            
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.colorPerdita}"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.perdita}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable smallText"> {{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.pressione}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div class="textTable" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select   style="width:100%;padding: 0px;" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaIdonea">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                            </ion-select>
+                    </ion-col>
+                    <ion-col col-4 > 
+                            <ion-select style="width:100%;padding: 0px;" required [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6">
+                                    <ion-option *ngFor="let item of allacciNuoviArray" [value]="item">{{item.nome}}</ion-option>
+                            </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.diametro}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="textTable">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.scabrezza}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="textTable smallText" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.colorPerdita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.perdita}}</div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="textTable smallText">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.pressione}} </div>
+                    </ion-col>
+                    <ion-col col-1>
+                            <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="textTable" [ngStyle]="{'color': ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.colorVelocita}">{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita}}</div>
+                    </ion-col>
+                    <ion-col col-3>
+                            <ion-select  style="width:100%;padding: 0px;" *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.VerificaCondotta">
+                                    <ion-option [value]=""></ion-option>
+                                    <ion-option [value]="CondottaProgetto">Condotta di progetto</ion-option>
+                                    <ion-option [value]="CondottaNonIdonea">Condotta non idonea</ion-option>
+                            </ion-select>
+                    </ion-col>
+            </ion-row>
+        </div>
+
+        
+      <!--
+
       <div class="subset">
           <div style="color:red">ATTENZIONE
                   Selezionare solo una tra le due opzioni di tipo "A"
@@ -863,8 +1086,8 @@
                       </ion-col>
               </ion-row>
           </div>
-          
-        </ion-grid>
+        -->          
+    </ion-grid>
       
       <ion-row>
               <ion-col col-12>

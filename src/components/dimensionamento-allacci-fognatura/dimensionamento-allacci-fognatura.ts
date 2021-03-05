@@ -2,9 +2,50 @@ import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { DimensionamentoAllacciFognatura, UnitaSingola, UnitaDeroga, ContatoreAntincendio, ParametriAcqueNere, ParametriAcqueBianche, ParametriVincoli } from '../../models/dimensionamento-allacci';
 import { Ads } from '../../models/ads';
 import { MathJs } from "mathjs";
-
-
 // import { AdsService } from '../../services/ads-service';
+
+
+class DefluxScaleRow{
+  h_r:number;
+  Q_Qr:number;
+  P_r:number;
+  A_r2:number;
+  Rh_r:number;
+  V_Vr:number;
+  
+}
+
+
+class DefluxScale{
+    
+    static correctionFactor: number = 0.5;
+
+    constructor(){
+
+    }
+
+    static compute(h_r:number) : DefluxScaleRow{
+      let res = new DefluxScaleRow();
+      if (h_r > 0.0 && h_r <= 2.0){
+        res.P_r = 2.0*Math.acos(1.0-h_r);
+        res.A_r2 = 0.5*(res.P_r - Math.sin(res.P_r));   // =0,5*((2*ARCCOS(1-E202))-SEN(2*ARCCOS(1-E202)))
+        res.Rh_r = res.A_r2 / res.P_r;
+        res.V_Vr = Math.pow(res.Rh_r,(2.0/3.0))/Math.pow(DefluxScale.correctionFactor,(2.0/3.0));              // =+(H202^(2/3))/($L$502^(2/3))
+        res.Q_Qr = (res.V_Vr*res.A_r2)/Math.PI;
+      }
+      return res;
+    }
+    
+    static computeKval(allaccio:any) {
+      //   =4*RADQ(9,81*(32/(C3*0,001))^(1/6))*(LOG((3,71*C3*0,001)/(D3*0,001)))
+      let res = 4.0;
+      res *= Math.sqrt(9.81*Math.pow((32.0/(allaccio.dinterno*0.001)),1.0/6.0));
+      res *= Math.log10((3.71*allaccio.dinterno*0.001)/(allaccio.scabrezza*0.001));
+      return res;
+    }
+}
+
+
 
 /**
  * Generated class for the DimensionamentoAllacciFognaturaComponent component.
@@ -453,12 +494,238 @@ tableParams = {
   affluxCoef:[1.0,0.6,0.5,0.1],           // Coefficienti di afflusso	
   maxRainIntensity: 100.0,                // Intensità massima di pioggia [mm/h]
   uiEqFisseAcqueBianche: 2.0,             // UIeq fisse in presenza di ACQUE BIANCHE
+  def_h_r : 1.4,
 }
+
+allacciArray = [
+  {"nome":"PVC SN8 DN110",                      "desterno":110.0, "dinterno":103.6, "scabrezza":0.02,"kval":87.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN125",                      "desterno":125.0, "dinterno":117.6, "scabrezza":0.02,"kval":87.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN160",                      "desterno":160.0, "dinterno":150.6, "scabrezza":0.02,"kval":87.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN200",                      "desterno":200.0, "dinterno":188.2, "scabrezza":0.02,"kval":87.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN250",                      "desterno":250.0, "dinterno":235.4, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN315",                      "desterno":315.0, "dinterno":296.6, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN355",                      "desterno":355.0, "dinterno":334.2, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN400",                      "desterno":400.0, "dinterno":376.6, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN450",                      "desterno":450.0, "dinterno":423.6, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN500",                      "desterno":500.0, "dinterno":470.8, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN630",                      "desterno":630.0, "dinterno":593.2, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN710",                      "desterno":710.0, "dinterno":668.6, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC SN8 DN800",                      "desterno":800.0, "dinterno":753.4, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN200",          "desterno":200.0, "dinterno":187.6, "scabrezza":0.02,"kval":87.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN250",          "desterno":250.0, "dinterno":234.4, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN315",          "desterno":315.0, "dinterno":295.4, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN400",          "desterno":400.0, "dinterno":375,   "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN500",          "desterno":500.0, "dinterno":469,   "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN630",          "desterno":630.0, "dinterno":591.2, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN710",          "desterno":710.0, "dinterno":660,   "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN800",          "desterno":800.0, "dinterno":751.1, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN900",          "desterno":900.0, "dinterno":844, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90.0},
+  {"nome":"PVC STRUTTURATO SN8 DN1000",         "desterno":1000.0,"dinterno":944, "scabrezza":0.02,"kval":88.0,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN110",  "desterno":110,   "dinterno":103.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN125",  "desterno":125,   "dinterno":117.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN140",  "desterno":140,   "dinterno":131.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN160",  "desterno":160,   "dinterno":150.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN180",  "desterno":180,   "dinterno":168.8,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN200",  "desterno":200,   "dinterno":187.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN225",  "desterno":225,   "dinterno":211.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN250",  "desterno":250,   "dinterno":234.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN280",  "desterno":280,   "dinterno":262.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN315",  "desterno":315,   "dinterno":295.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN355",  "desterno":355,   "dinterno":332.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN400",  "desterno":400,   "dinterno":375.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN450",  "desterno":450,   "dinterno":422.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN500",  "desterno":500,   "dinterno":469.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN560",  "desterno":560,   "dinterno":525.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN630",  "desterno":630,   "dinterno":590.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN710",  "desterno":710,   "dinterno":666.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN800",  "desterno":800,   "dinterno":750.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN900",  "desterno":900,   "dinterno":844.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE x scarichi fognari PN3.2 DN1000", "desterno":1000,  "dinterno":938.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN50",                    "desterno":50,    "dinterno":44.0,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN63",                    "desterno":63,    "dinterno":55.4,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN75",                    "desterno":75,    "dinterno":66.0,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN90",                    "desterno":90,    "dinterno":79.2,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN110",                   "desterno":110,"dinterno":96.8,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN125",                   "desterno":125,"dinterno":110.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN140",                   "desterno":140,"dinterno":123.4,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN160",                   "desterno":160,"dinterno":141.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN180",                   "desterno":180,"dinterno":158.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN200",                   "desterno":200,"dinterno":176.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN225",                   "desterno":225,"dinterno":198.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN250",                   "desterno":250,"dinterno":220.4,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN280",                   "desterno":280,"dinterno":246.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN315",                   "desterno":315,"dinterno":277.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN355",                   "desterno":355,"dinterno":312.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN400",                   "desterno":400,"dinterno":352.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN450",                   "desterno":450,"dinterno":396.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN500",                   "desterno":500,"dinterno":440.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN560",                   "desterno":560,"dinterno":493.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN630",                   "desterno":630,"dinterno":555.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN710",                   "desterno":710,"dinterno":625.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN800",                   "desterno":800,"dinterno":705.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN900",                   "desterno":900,"dinterno":793.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN10 DN1000",                  "desterno":1000,"dinterno":881.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN20",                    "desterno":20,"dinterno":16.0,"scabrezza":0.02,"kval":82,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN25",                    "desterno":25,"dinterno":20.4,"scabrezza":0.02,"kval":83,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN32",                    "desterno":32,"dinterno":26.0,"scabrezza":0.02,"kval":83,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN40",                    "desterno":40,"dinterno":32.6,"scabrezza":0.02,"kval":84,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN50",                    "desterno":50,"dinterno":40.8,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN63",                    "desterno":63,"dinterno":51.4,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN75",                    "desterno":75,"dinterno":61.4,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN90",                    "desterno":90,"dinterno":73.6,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN110",                   "desterno":110,"dinterno":90.0,"scabrezza":0.02,"kval":86,"scabrezzaGS":0},
+  {"nome":"PE100 PN16 DN125",                   "desterno":125,"dinterno":102.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN140",                   "desterno":140,"dinterno":114.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN160",                   "desterno":160,"dinterno":130.8,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN180",                   "desterno":180,"dinterno":147.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN200",                   "desterno":200,"dinterno":163.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN225",                   "desterno":225,"dinterno":184.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN250",                   "desterno":250,"dinterno":204.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN280",                   "desterno":280,"dinterno":229.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN315",                   "desterno":315,"dinterno":257.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN355",                   "desterno":355,"dinterno":290.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN400",                   "desterno":400,"dinterno":327.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN450",                   "desterno":450,"dinterno":368.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN500",                   "desterno":500,"dinterno":409.2,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN560",                   "desterno":560,"dinterno":458.4,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN16 DN630",                   "desterno":630,"dinterno":515.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN20",                    "desterno":20,"dinterno":14.0,"scabrezza":0.02,"kval":81,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN25",                    "desterno":25,"dinterno":18.0,"scabrezza":0.02,"kval":82,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN32",                    "desterno":32,"dinterno":23.2,"scabrezza":0.02,"kval":83,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN40",                    "desterno":40,"dinterno":29.0,"scabrezza":0.02,"kval":84,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN50",                    "desterno":50,"dinterno":36.2,"scabrezza":0.02,"kval":84,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN63",                    "desterno":63,"dinterno":45.8,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN75",                    "desterno":75,"dinterno":54.4,"scabrezza":0.02,"kval":85,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN90",                    "desterno":90,"dinterno":65.4,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN110",                   "desterno":110,"dinterno":79.8,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN125",                   "desterno":125,"dinterno":90.8,"scabrezza":0.02,"kval":86,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN140",                   "desterno":140,"dinterno":101.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN160",                   "desterno":160,"dinterno":116.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN180",                   "desterno":180,"dinterno":130.8,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN200",                   "desterno":200,"dinterno":145.2,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN225",                   "desterno":225,"dinterno":163.4,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN250",                   "desterno":250,"dinterno":201.6,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN280",                   "desterno":280,"dinterno":203.4,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN315",                   "desterno":315,"dinterno":228.8,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN355",                   "desterno":355,"dinterno":258.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN400",                   "desterno":400,"dinterno":290.6,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE100 PN25 DN450",                   "desterno":450,"dinterno":327.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN125",             "desterno":125,"dinterno":105.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN160",             "desterno":160,"dinterno":137.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN200",             "desterno":200,"dinterno":172.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN250",             "desterno":250,"dinterno":218.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN315",             "desterno":315,"dinterno":272.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN400",             "desterno":400,"dinterno":347.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN500",             "desterno":500,"dinterno":433.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN630",             "desterno":630,"dinterno":535.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN800",             "desterno":800,"dinterno":678.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN1000",            "desterno":1000,"dinterno":852.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PE CORRUGATO SN8 DN1200",            "desterno":1200,"dinterno":1030.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN200", "desterno":200,"dinterno":172.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN250", "desterno":250,"dinterno":218.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN315", "desterno":315,"dinterno":272.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN400", "desterno":400,"dinterno":347.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN500", "desterno":500,"dinterno":433.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN630", "desterno":630,"dinterno":535.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN800", "desterno":800,"dinterno":678.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN1000","desterno":1000,"dinterno":852.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"POLIPROPILENE CORRUGATO SN16 DN1200","desterno":1200,"dinterno":1030.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"CLS DN300",                          "desterno":300,"dinterno":300.0,"scabrezza":0.4,"kval":64,"scabrezzaGS":90},
+  {"nome":"CLS DN400",                          "desterno":400,"dinterno":400.0,"scabrezza":0.4,"kval":64,"scabrezzaGS":90},
+  {"nome":"CLS DN500",                          "desterno":500,"dinterno":500.0,"scabrezza":0.4,"kval":65,"scabrezzaGS":90},
+  {"nome":"CLS DN600",                          "desterno":600,"dinterno":600.0,"scabrezza":0.4,"kval":65,"scabrezzaGS":90},
+  {"nome":"CLS DN800",                          "desterno":800,"dinterno":800.0,"scabrezza":0.4,"kval":66,"scabrezzaGS":90},
+  {"nome":"CLS DN1000",                         "desterno":1000,"dinterno":1000.0,"scabrezza":0.4,"kval":66,"scabrezzaGS":90},
+  {"nome":"CLS DN1200",                         "desterno":1200,"dinterno":1200.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN1400",                         "desterno":1400,"dinterno":1400.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN1600",                         "desterno":1600,"dinterno":1600.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN1800",                         "desterno":1800,"dinterno":1800.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN2000",                         "desterno":2000,"dinterno":2000.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN2200",                         "desterno":2200,"dinterno":2200.0,"scabrezza":0.4,"kval":67,"scabrezzaGS":90},
+  {"nome":"CLS DN2400",                         "desterno":2400,"dinterno":2400.0,"scabrezza":0.4,"kval":68,"scabrezzaGS":90},
+  {"nome":"GHISA DN40",                         "desterno":40,"dinterno":40.0,"scabrezza":0.15,"kval":66,"scabrezzaGS":90},
+  {"nome":"GHISA DN50",                         "desterno":50,"dinterno":50.0,"scabrezza":0.15,"kval":66,"scabrezzaGS":90},
+  {"nome":"GHISA DN75",                         "desterno":75,"dinterno":75.0,"scabrezza":0.15,"kval":68,"scabrezzaGS":90},
+  {"nome":"GHISA DN80",                         "desterno":80,"dinterno":80.0,"scabrezza":0.15,"kval":68,"scabrezzaGS":90},
+  {"nome":"GHISA DN100",                        "desterno":100,"dinterno":100.0,"scabrezza":0.15,"kval":69,"scabrezzaGS":90},
+  {"nome":"GHISA DN125",                        "desterno":125,"dinterno":125.0,"scabrezza":0.15,"kval":69,"scabrezzaGS":90},
+  {"nome":"GHISA DN150",                        "desterno":150,"dinterno":150.0,"scabrezza":0.15,"kval":70,"scabrezzaGS":90},
+  {"nome":"GHISA DN200",                        "desterno":200,"dinterno":200.0,"scabrezza":0.15,"kval":71,"scabrezzaGS":90},
+  {"nome":"GHISA DN250",                        "desterno":250,"dinterno":250.0,"scabrezza":0.15,"kval":71,"scabrezzaGS":90},
+  {"nome":"GHISA DN300",                        "desterno":300,"dinterno":300.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GHISA DN350",                        "desterno":350,"dinterno":350.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GHISA DN400",                        "desterno":400,"dinterno":400.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GHISA DN450",                        "desterno":450,"dinterno":450.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GHISA DN500",                        "desterno":500,"dinterno":500.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN600",                        "desterno":600,"dinterno":600.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN700",                        "desterno":700,"dinterno":700.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN800",                        "desterno":800,"dinterno":800.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN900",                        "desterno":900,"dinterno":900.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN1000",                       "desterno":1000,"dinterno":1000.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GHISA DN1100",                       "desterno":1100,"dinterno":1100.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN1200",                       "desterno":1200,"dinterno":1200.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN1400",                       "desterno":1400,"dinterno":1400.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN1500",                       "desterno":1500,"dinterno":1500.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN1600",                       "desterno":1600,"dinterno":1600.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN1800",                       "desterno":1800,"dinterno":1800.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GHISA DN2000",                       "desterno":2000,"dinterno":2000.0,"scabrezza":0.15,"kval":74,"scabrezzaGS":90},
+  {"nome":"GRES DN100",                         "desterno":100,"dinterno":100.0,"scabrezza":0.15,"kval":69,"scabrezzaGS":90},
+  {"nome":"GRES DN125",                         "desterno":125,"dinterno":125.0,"scabrezza":0.15,"kval":69,"scabrezzaGS":90},
+  {"nome":"GRES DN150",                         "desterno":150,"dinterno":150.0,"scabrezza":0.15,"kval":70,"scabrezzaGS":90},
+  {"nome":"GRES DN200",                         "desterno":200,"dinterno":200.0,"scabrezza":0.15,"kval":71,"scabrezzaGS":90},
+  {"nome":"GRES DN250",                         "desterno":250,"dinterno":250.0,"scabrezza":0.15,"kval":71,"scabrezzaGS":90},
+  {"nome":"GRES DN300",                         "desterno":300,"dinterno":300.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GRES DN350",                         "desterno":350,"dinterno":350.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GRES DN400",                         "desterno":400,"dinterno":400.0,"scabrezza":0.15,"kval":72,"scabrezzaGS":90},
+  {"nome":"GRES DN500",                         "desterno":500,"dinterno":500.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GRES DN600",                         "desterno":600,"dinterno":600.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GRES DN700",                         "desterno":700,"dinterno":700.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GRES DN800",                         "desterno":800,"dinterno":800.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"GRES DN1000",                        "desterno":1000,"dinterno":1000.0,"scabrezza":0.15,"kval":73,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN150",           "desterno":150,"dinterno":150.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN200",           "desterno":200,"dinterno":200.0,"scabrezza":0.02,"kval":87,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN250",           "desterno":250,"dinterno":250.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN300",           "desterno":300,"dinterno":300.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN350",           "desterno":350,"dinterno":350.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN400",           "desterno":400,"dinterno":400.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN500",           "desterno":500,"dinterno":500.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN600",           "desterno":600,"dinterno":600.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN650",           "desterno":650,"dinterno":650.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN700",           "desterno":700,"dinterno":700.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN750",           "desterno":750,"dinterno":750.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN800",           "desterno":800,"dinterno":800.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN850",           "desterno":850,"dinterno":850.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN900",           "desterno":900,"dinterno":900.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN950",           "desterno":950,"dinterno":950.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1000",          "desterno":1000.0,"dinterno":1000.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1100",          "desterno":1100.0,"dinterno":1100.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1200",          "desterno":1200.0,"dinterno":1200.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1300",          "desterno":1300.0,"dinterno":1300.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1400",          "desterno":1400.0,"dinterno":1400.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1500",          "desterno":1500.0,"dinterno":1500.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1600",          "desterno":1600.0,"dinterno":1600.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1700",          "desterno":1700.0,"dinterno":1700.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1800",          "desterno":1800.0,"dinterno":1800.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN1900",          "desterno":1900.0,"dinterno":1900.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2000",          "desterno":2000.0,"dinterno":2000.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2200",          "desterno":2200.0,"dinterno":2200.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2400",          "desterno":2400.0,"dinterno":2400.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2500",          "desterno":2500.0,"dinterno":2500.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2600",          "desterno":2600.0,"dinterno":2600.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2700",          "desterno":2700.0,"dinterno":2700.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN2800",          "desterno":2800.0,"dinterno":2800.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90},
+  {"nome":"PRFV (vetroresina) DN3000",          "desterno":3000.0,"dinterno":3000.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90}
+  ];
+
+
 
 
 constructor() {
   this.saveAction = new EventEmitter<string>();
   console.log('Hello DimensionamentoAllacciFognaturaComponent Component');
+  this.allacciArray.forEach((part,index,arr)=>{
+    arr[index].kval = DefluxScale.computeKval(arr[index]);
+  });
 }  
 
 ngOnInit() {
@@ -508,9 +775,9 @@ ngOnInit() {
   updateAcqueBianche(){
     if (this.ads.DimensionamentoAllacciFognatura){
       let ab = this.ads.DimensionamentoAllacciFognatura.AcqueBianche;
-      ab.portataImpermeabili = ((ab.supImpermeabili*this.tableParams.affluxCoef[0])*this.tableParams.maxRainIntensity)/3600.0;
-      ab.portataSemipermeabili = ((ab.supSemipermeabili*this.tableParams.affluxCoef[1])*this.tableParams.maxRainIntensity)/3600.0;
-      ab.portata = 0.0 + ab.portataImpermeabili + ab.portataSemipermeabili + ab.portateLimitate*1.0;
+      ab.portataImpermeabili = ((Number(ab.supImpermeabili)*this.tableParams.affluxCoef[0])*this.tableParams.maxRainIntensity)/3600.0;
+      ab.portataSemipermeabili = ((Number(ab.supSemipermeabili)*this.tableParams.affluxCoef[1])*this.tableParams.maxRainIntensity)/3600.0;
+      ab.portata = ab.portataImpermeabili + ab.portataSemipermeabili + Number(ab.portateLimitate);
       
       ab.uiEqFisse = (ab.portata > 0)? this.tableParams.uiEqFisseAcqueBianche:0;
       ab.sommaUIeq = ab.uiEqFisse;
@@ -525,10 +792,47 @@ ngOnInit() {
       let vincoli = this.ads.DimensionamentoAllacciFognatura.Vincoli;
       vincoli.portataMista = this.ads.DimensionamentoAllacciFognatura.AcqueBianche.portata + this.ads.DimensionamentoAllacciFognatura.AcqueNere.portata;
       vincoli.totaleUIeq = this.ads.DimensionamentoAllacciFognatura.AcqueBianche.sommaUIeq + this.ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq;
-      vincoli.pendenza = (vincoli.lunghezza*1.0 > 0)? (1.0*vincoli.dislivello)/vincoli.lunghezza : 1.0;
+      vincoli.pendenza = (Number(vincoli.lunghezza) > 0)? Number(vincoli.dislivello)/vincoli.lunghezza : 1.0;
+      let deflux = DefluxScale.compute(this.tableParams.def_h_r);
+      vincoli.diamIntMinimo = Math.pow(((vincoli.portataMista/1000.0)/(90.0*deflux?.A_r2*(Math.pow(deflux.Rh_r,(2.0/3.0)))*Math.sqrt(vincoli.pendenza))),(3.0/8.0))*2000.0;  
+      // = ((($C$17/1000)/(90*(Tabelle!$G$341)*((Tabelle!$H$341)^(2/3))*RADQ(FOGNATURA!$C$21)))^(3/8))*2*1000
+      
+      /*
+      
+      */
+
     }
+
   } 
 
+  calcolaPortata(dim,percentage){
+    console.log("calcola Portata");
+    /*
+    3600*(CERCA.VERT((2*C9/100);$C$201:$K$401;2;FALSO)*$D$5*RADQ($C$2)*PI.GRECO()*((($C$5/1000)^2)/4)*(($C$5/4000)^(2/3)))
+     3600*(
+        CERCA.VERT((2*C9/100);$C$201:$K$401;2;FALSO)*
+        $D$5*
+        RADQ($C$2)*
+        PI.GRECO()*
+        ((($C$5/1000)^2) / 4)*
+        (($C$5/4000)^(2/3))
+      )/3.6
+    */
+    let deflux = DefluxScale.compute(2.0*percentage/100.0),
+        res = (deflux.Q_Qr);
+    res *= dim.kval;
+    res *= Math.sqrt(this.ads.DimensionamentoAllacciFognatura.Vincoli.pendenza);
+    res *= Math.PI;
+    res *= (Math.pow(dim.dinterno/1000.0,2) / 4.0);
+    res *= Math.pow(dim.dinterno/4000.0,(2.0/3.0));
+    res *= 1000.0;
+
+    return res;
+  }
+
+  calcolaRiempimento(dim){
+    
+  }
   
   //--------------------------------------------------------------------------------
   //          OLD METHODS
