@@ -455,7 +455,7 @@
                 <ion-col col-1>
                         <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" 
                                 class="label-header label-header-lightblue"
-                                [ngStyle]="{'color': 'green'}">
+                                [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita)}">
                              <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.portata | number: precision}}</span>
                          </div>
                 </ion-col>
@@ -518,7 +518,7 @@
                 </ion-col>
                 <ion-col col-1>
                         <div  class="label-header label-header-lightblue"
-                                [ngStyle]="{'color': 'green'}">
+                             [ngStyle]="{'color': setColorForMessage(item.velocita)}">
                              <span>{{item.portata | number: precision}}</span>
                          </div>
                 </ion-col>
@@ -574,7 +574,7 @@
                 <ion-col col-1>
                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
                         class="label-header label-header-lightblue"        
-                        [ngStyle]="{'color': 'green'}">
+                        [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita)}">
                         <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.portata | number: precision}}</span>
                     </div>
                 </ion-col>

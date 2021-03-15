@@ -814,13 +814,13 @@ Do While Precisione <> 0
       allacciamento.portata = this.calcolaPortataEVelocita(allacciamento,70.0).portata;
       
       if (this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista > 0){
+        let val = this.calcolaAlfaParams(allacciamento);
+        allacciamento.alfa = val.alfa ;
+        allacciamento.percRiempimento = (val.percentuale * 100.0).toFixed(0) + ' %';
+        allacciamento.velocita = val.velocita.toFixed(2) + ' m/s';
+        
         if (allacciamento.portata >= this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista){
-          
-          let val = this.calcolaAlfaParams(allacciamento);
-            
-          allacciamento.alfa = val.alfa ;
-          allacciamento.percRiempimento = (val.percentuale * 100.0).toFixed(0) + ' %';
-          allacciamento.velocita = val.velocita.toFixed(2) + ' m/s';
+        
           allacciamento.risultato = "CONDOTTA IDONEA"
           /*
           for (let k=5.0; k<= 100.0; k += 5.0){
