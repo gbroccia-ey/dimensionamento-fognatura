@@ -30,7 +30,7 @@
                    </ion-col>
                    <ion-col col-3>
                         <div class="label-header label-header-lightgreen">
-                       <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico / tableParams.dividers[0] | number: "1.1-3"}}</ion-label>
+                       <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico / tableParams.dividers[0] | number: precision}}</ion-label>
                         </div>
                    </ion-col>
                 </ion-row>
@@ -47,7 +47,7 @@
                     </ion-col>
                     <ion-col col-3>
                             <div class="label-header label-header-lightgreen">
-                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri / tableParams.dividers[1] | number: "1.1-3"}}</ion-label>
+                            <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri / tableParams.dividers[1] | number: precision}}</ion-label>
                             </div>
                     </ion-col>
                 </ion-row>
@@ -64,7 +64,7 @@
                     </ion-col>
                     <ion-col col-3>
                             <div class="label-header label-header-lightgreen">
-                            <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali / tableParams.dividers[2] | number: "1.1-3"}}</ion-label>
+                            <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali / tableParams.dividers[2] | number: precision}}</ion-label>
                             </div>
                     </ion-col>
                 </ion-row>
@@ -81,7 +81,7 @@
                         </ion-col>
                         <ion-col col-3>
                                 <div class="label-header label-header-lightgreen">
-                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali / tableParams.dividers[3] | number: "1.1-3"}}</ion-label>
+                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali / tableParams.dividers[3] | number: precision}}</ion-label>
                                 </div>
                         </ion-col>
                     </ion-row>
@@ -98,43 +98,34 @@
                         </ion-col>
                         <ion-col col-3>
                                 <div class="label-header label-header-lightgreen">
-                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali / tableParams.dividers[4] | number: "1.1-3"}}</ion-label>
+                                <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali / tableParams.dividers[4] | number: precision}}</ion-label>
                                 </div>
                         </ion-col>
                     </ion-row>
                     <ion-row class="subset-header">
-                    <ion-col col-6 > 
+                    <ion-col col-9 > 
                         <div class="label-header label-header-green" >
                         <span>Somma UIeq (ACQUE NERE)</span>
                         </div>
                     </ion-col>
                     <ion-col col-3 > 
                         <div class="label-header label-header-green" >
-                           <span></span>
-                        </div>
-                    </ion-col>
-                    <ion-col col-3 > 
-                        <div class="label-header label-header-green" >
-                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq | number: "1.1-3"}}</span>
+                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq | number: precision}}</span>
                         </div>
                     </ion-col>
                 </ion-row>
                 <ion-row class="subset-header">
-                    <ion-col col-6 > 
+                    <ion-col col-9 > 
                         <div class="label-header label-header-green" >
                         <span>Portata relativa alle unità abitative [l/s] (ACQUE NERE)</span>
                         </div>
                     </ion-col>
                     <ion-col col-3 > 
                         <div class="label-header label-header-green" >
-                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.portata | number: "1.1-3"}}</span>
+                        <span >{{ads.DimensionamentoAllacciFognatura.AcqueNere.portata | number: precision}}</span>
                         </div>
                     </ion-col>
-                    <ion-col col-3 >
-                        <div class="label-header label-header-green" >
-                            <span></span>
-                        </div> 
-                    </ion-col>
+                    
                 
                 </ion-row>
           </div>
@@ -181,7 +172,7 @@
                 </ion-col>
                 <ion-col col-2>
                     <div class="label-header label-header-lightblue">
-                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.uiEqFisse | number: "1.1-3"}}</ion-label>
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.uiEqFisse | number: precision}}</ion-label>
                     </div>
                 </ion-col>    
             </ion-row>
@@ -198,7 +189,7 @@
                 </ion-col>
                 <ion-col col-2>
                     <div class="label-header label-header-lightblue">
-                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataImpermeabili | number: "1.1-3"}}</ion-label>
+                        <ion-label>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataImpermeabili | number: precision}}</ion-label>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -220,7 +211,7 @@
                 </ion-col>
                 <ion-col col-2>
                     <div class="label-header label-header-lightblue">
-                        <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataSemipermeabili | number: "1.1-3"}}</ion-label>
+                        <ion-label text-wrap>{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portataSemipermeabili | number: precision}}</ion-label>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -269,7 +260,7 @@
                     </ion-col>
                     <ion-col col-2 > 
                         <div class="label-header label-header-blue" >
-                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.sommaUIeq | number: "1.1-3"}}</span>
+                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.sommaUIeq | number: precision}}</span>
                         </div>
                     </ion-col>
             </ion-row>
@@ -286,7 +277,7 @@
                     </ion-col>
                     <ion-col col-2 > 
                         <div class="label-header label-header-blue" >
-                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portata | number: "1.1-3"}}</span>
+                                <span >{{ads.DimensionamentoAllacciFognatura.AcqueBianche.portata | number: precision}}</span>
                         </div>
                     </ion-col>
                     <ion-col col-2 > 
@@ -307,7 +298,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="label-header label-header-orange" >
-                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.portataMista | number: "1.1-3"}}</span>
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.portataMista | number: precision}}</span>
                         </div>
                 </ion-col>
             </ion-row>
@@ -319,7 +310,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="label-header label-header-orange" >
-                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.totaleUIeq | number: "1.1-3"}}</span>
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.totaleUIeq | number: precision}}</span>
                         </div>
                 </ion-col>
             </ion-row>
@@ -355,7 +346,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="label-header label-header-orange" >
-                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.pendenza*100.0 | number: "1.1-3"}}%</span>
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.pendenza*100.0 | number: precision}}%</span>
                         </div>
                 </ion-col>
             </ion-row>
@@ -367,7 +358,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="label-header label-header-darkorange" >
-                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.diamIntMinimo | number: "1.1-3"}}</span>
+                                <span>{{ads.DimensionamentoAllacciFognatura.Vincoli.diamIntMinimo | number: precision}}</span>
                         </div>
                 </ion-col>
             </ion-row>
@@ -403,9 +394,14 @@
                         <ion-label text-wrap>K (coeff. di scabrezza) [m1/3s-1]</ion-label>
                     </div>
                 </ion-col>
-                <ion-col col-2 > 
+                <ion-col col-1 > 
                         <div class="label-header label-header-green" >
                             <ion-label text-wrap>Portata smaltibile con riempimento 70% [l/s]</ion-label>
+                        </div>
+                </ion-col>
+                <ion-col col-1 > 
+                        <div class="label-header label-header-green" >
+                            <ion-label text-wrap>alfa</ion-label>
                         </div>
                 </ion-col>
                 <ion-col col-1 > 
@@ -448,31 +444,38 @@
                 </ion-col>
                 <ion-col col-1>
                         <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
-                            <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.dinterno | number: "1.1-3"}}</span>
+                            <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.dinterno | number: precision}}</span>
                         </div>
                 </ion-col>
                 <ion-col col-1>
                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.kval | number: "1.1-3"}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.kval | number: precision}}</span>
                    </div>
                 </ion-col>
-                <ion-col col-2>
-                   <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.portata | number: "1.1-3"}}</span>
+                <ion-col col-1>
+                        <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" 
+                                class="label-header label-header-lightblue"
+                                [ngStyle]="{'color': 'green'}">
+                             <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.portata | number: precision}}</span>
+                         </div>
+                </ion-col>
+                <ion-col col-1>
+                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" class="label-header label-header-lightblue">
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.alfa | number: precision}}</span>
                     </div>
                 </ion-col>
                 <ion-col col-1>
                     <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" 
                         class="label-header label-header-lightblue"
                         [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.percRiempimento)}">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.percRiempimento}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.percRiempimento }}</span>
                     </div>
                 </ion-col>
                 <ion-col col-1>
                     <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" 
                         class="label-header label-header-lightblue"
                         [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita)}">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita }}</span>
                     </div>
                 </ion-col>
 
@@ -505,22 +508,28 @@
                 </ion-col>
                 <ion-col col-1>
                         <div class="label-header label-header-lightblue">
-                            <span>{{item.dinterno | number: "1.1-3"}}</span>
+                            <span>{{item.dinterno | number: precision}}</span>
                         </div>
                 </ion-col>
                 <ion-col col-1>
                    <div  class="label-header label-header-lightblue">
-                        <span>{{item.kval | number: "1.1-3"}}</span>
+                        <span>{{item.kval | number: precision}}</span>
                    </div>
                 </ion-col>
-                <ion-col col-2>
-                   <div  class="label-header label-header-lightblue">
-                        <span>{{item.portata | number: "1.1-3"}}</span>
-                    </div>
+                <ion-col col-1>
+                        <div  class="label-header label-header-lightblue"
+                                [ngStyle]="{'color': 'green'}">
+                             <span>{{item.portata | number: precision}}</span>
+                         </div>
+                </ion-col>
+                <ion-col col-1>
+                        <div  class="label-header label-header-lightblue">
+                             <span>{{item.alfa | number: precision}}</span>
+                         </div>
                 </ion-col>
                 <ion-col col-1>
                     <div class="label-header label-header-lightblue"
-                        [ngStyle]="{'color': setColorForMessage(item.percRiempimento)}">
+                    [ngStyle]="{'color': setColorForMessage(item.percRiempimento)}">
                         <span>{{item.percRiempimento}}</span>
                     </div>
                 </ion-col>
@@ -554,31 +563,39 @@
                 </ion-col>
                 <ion-col col-1>
                         <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="label-header label-header-lightblue">
-                            <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.dinterno | number: "1.1-3"}}</span>
+                            <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.dinterno | number: precision}}</span>
                         </div>
                 </ion-col>
                 <ion-col col-1>
                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="label-header label-header-lightblue">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.kval | number: "1.1-3"}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.kval | number: precision}}</span>
                    </div>
                 </ion-col>
-                <ion-col col-2>
-                   <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="label-header label-header-lightblue">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.portata | number: "1.1-3"}}</span>
+                <ion-col col-1>
+                   <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
+                        class="label-header label-header-lightblue"        
+                        [ngStyle]="{'color': 'green'}">
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.portata | number: precision}}</span>
                     </div>
                 </ion-col>
+                <ion-col col-1>
+                        <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" class="label-header label-header-lightblue">
+                             <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.alfa | number: precision}}</span>
+                         </div>
+                </ion-col>
+                     
                 <ion-col col-1>
                     <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
                         class="label-header label-header-lightblue"
                         [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.percRiempimento)}">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.percRiempimento}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.percRiempimento }}</span>
                     </div>
                 </ion-col>
                 <ion-col col-1>
                     <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
                         class="label-header label-header-lightblue"
                         [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita)}">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita }}</span>
                     </div>
                 </ion-col>
 
@@ -587,7 +604,7 @@
                         <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
                         class="label-header label-header-lightblue"
                         [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita)}">
-                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.risultato}}</span>
+                        <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.risultato }}</span>
                     </div>
                 </ion-col>
         </ion-row>

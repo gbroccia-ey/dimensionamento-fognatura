@@ -581,7 +581,7 @@ allacciArray = [
  /* 216 */ {"nome":"PRFV (vetroresina) DN3000",          "desterno":3000.0,"dinterno":3000.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90}
   ];
 
-
+precision:string = "1.1-3";
 
 
 constructor() {
@@ -724,20 +724,105 @@ ngOnInit() {
     return res;
   }
 
+  calcolaAlfaParams(dim){
+    /*
+(Q, D, k, i)
+    Q = (portata complessiva di calcolo / 1000 per m3/s)
+    D = portata smaltibile al 70%
+    k = coefficente scabrezza
+    i = pendenza
+
+
+
+    Q = Q / 1000 'in m3/s
+    D = D / 1000 'in metri
+    r = D / 2
+
+    EstremoSup = 6.28
+    EstremoInf = 0.1 'alfa Ë compreso tra 2pigreco e 0.1.
+    Precisione = 1   'inizializzazione della variabile Precisione
+
+Rem Si tratta di trovare lo "0" della equazione.
+Rem Si procede per tentativi: ipotizzando un valore di alfa si controlla se il risultato dell'equazione si avvicina a zero.
+
+Do While Precisione <> 0
+        alfa = (EstremoSup + EstremoInf) / 2
+        
+        Risultato = (Q / (((k * (((((alfa - Sin(alfa)) / 2) * (r ^ 2)) / (alfa * r)) ^ (2 / 3)) * (i ^ (1 / 2)) * (((alfa - Sin(alfa)) / 2) * (r ^ 2))  )))) - 1
+   
+                
+        Select Case Risultato
+            Case Is > 0
+                EstremoInf = alfa
+            Case Is < 0
+                EstremoSup = alfa
+        End Select
+        Precisione = Int(Risultato * 100000) 'ci si ferma se il risultato dell'equazione Ë inferiore a 0,000001.
+    */
+   console.log("calcola Alfa");
+   let Q = this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista / 1000.0;
+   let D = dim.dinterno,
+       r = D / 2000.0; 
+
+
+   let alfa,velocita;
+   
+   let Precisione = 1.0,
+        EstremoSup = Math.PI*2.0, 
+        EstremoInf = 0.1,  //alfa è compreso tra 2pigreco e 0.1.
+        maxIterations = 100,
+        iteration = 1;
+
+    while((Precisione > 0.000001) && (iteration < maxIterations)){
+      alfa = (EstremoSup + EstremoInf) / 2.0;
+    
+      // D28*(((((F28-SEN(F28))/2)*((C28/2000)^2))/(F28*(C28/2000)))^(2/3))*RADQ($C$21)
+      velocita = dim.kval * ( Math.pow((( (alfa - Math.sin(alfa)) / 2.0  * Math.pow(r,2.0)) / (alfa * r)), 2.0/3.0))
+      velocita *= Math.sqrt(this.ads.DimensionamentoAllacciFognatura.Vincoli.pendenza);
+
+      let result = (velocita * ((alfa - Math.sin(alfa)) / 2.0)  * Math.pow(r,2.0));
+          result = Q / result;
+          result -= 1.0;
+      if (result > 0.0){
+        EstremoInf = alfa;
+      }
+      else {
+        EstremoSup = alfa;  
+      }
+      Precisione = Math.abs(result);
+      console.log("Precisione="+Precisione+" step="+iteration);
+      iteration++;
+    }
+  let percentuale : number = (1.0 - Math.cos(alfa/2)) / 2.0;
+  
+    
+   let res = {
+     alfa: alfa,
+     velocita: velocita,
+     percentuale: percentuale
+   }  
+
+   return res;
+
+  }
+
   
 
   updateAllacciamento(allacciamento){
     if (allacciamento.nome){
       console.log("update Allacciamento")
       allacciamento.portata = this.calcolaPortataEVelocita(allacciamento,70.0).portata;
-
+      
       if (this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista > 0){
         if (allacciamento.portata >= this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista){
-          // Calcola percRiempimento e velocita per approssimazioni successive
-          let min : any = false,
-          max : any = false,
-          portataMista = this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista;
-
+          
+          let val = this.calcolaAlfaParams(allacciamento);
+            
+          allacciamento.alfa = val.alfa ;
+          allacciamento.percRiempimento = (val.percentuale * 100.0).toFixed(0) + ' %';
+          allacciamento.velocita = val.velocita.toFixed(2) + ' m/s';
+          allacciamento.risultato = "CONDOTTA IDONEA"
+          /*
           for (let k=5.0; k<= 100.0; k += 5.0){
             let val = this.calcolaPortataEVelocita(allacciamento,k);
             if (val.portata <= portataMista){
@@ -749,6 +834,7 @@ ngOnInit() {
               }
             }
           }
+
           if (min && max){
             allacciamento.percRiempimento = min.percentuale + ' - ' + max.percentuale + ' %';
             allacciamento.velocita = min.velocita.toFixed(2) + ' - ' + max.velocita.toFixed(2) + ' m/s';
@@ -764,6 +850,7 @@ ngOnInit() {
             allacciamento.velocita = "DN INSUFFICIENTE";
             allacciamento.risultato = "CONDOTTA NON IDONEA"
           }
+          */
         }
         else {
           allacciamento.percRiempimento = "DN INSUFFICIENTE";
