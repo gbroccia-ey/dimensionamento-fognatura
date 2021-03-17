@@ -455,7 +455,7 @@
                 <ion-col col-1>
                         <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente" 
                                 class="label-header label-header-lightblue"
-                                [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita)}">
+                                [ngStyle]="{'color': setColorForPortata(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.velocita)}">
                              <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.portata | number: precision}}</span>
                          </div>
                 </ion-col>
@@ -499,7 +499,7 @@
                         <span></span>
                 </ion-col>
         </ion-row>
-        <ion-row *ngFor="let item of allacciNuoviArray">
+        <ion-row *ngFor="let item of allacciEsempioArray">
        
                 <ion-col col-4 > 
                         <div class="label-header label-header-lightblue">
@@ -518,7 +518,7 @@
                 </ion-col>
                 <ion-col col-1>
                         <div  class="label-header label-header-lightblue"
-                             [ngStyle]="{'color': setColorForMessage(item.velocita)}">
+                             [ngStyle]="{'color': setColorForPortata(item.velocita)}">
                              <span>{{item.portata | number: precision}}</span>
                          </div>
                 </ion-col>
@@ -558,7 +558,7 @@
                                 style="max-width: 100% !important;" 
                                 [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6"
                                 (ionChange)="updateAllacciamento(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6)">
-                            <ion-option *ngFor="let item of allacciArray" [value]="item">{{item.nome}}</ion-option>
+                            <ion-option *ngFor="let item of allacciNuoviArray" [value]="item">{{item.nome}}</ion-option>
                         </ion-select>
                 </ion-col>
                 <ion-col col-1>
@@ -574,7 +574,7 @@
                 <ion-col col-1>
                    <div *ngIf="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6" 
                         class="label-header label-header-lightblue"        
-                        [ngStyle]="{'color': setColorForMessage(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita)}">
+                        [ngStyle]="{'color': setColorForPortata(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.velocita)}">
                         <span>{{ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.portata | number: precision}}</span>
                     </div>
                 </ion-col>
