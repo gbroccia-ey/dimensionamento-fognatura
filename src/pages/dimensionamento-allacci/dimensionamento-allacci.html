@@ -31,15 +31,13 @@
       <ion-row>
         <ion-col>
             <div class="label-header label-header-green" >
-            <span *ngIf="ads.CodiceOdl; else adsLabel">OdL</span>
-            <ng-template #adsLabel>AdS</ng-template>
+            <span>Avviso/OdL</span>
             </div>
         </ion-col>
         <ion-col col-9>
                     <div class="label-header label-header-green" >
-            <span *ngIf="ads.CodiceOdl; else adsValue">{{ads.CodiceOdl}}</span>
-            <ng-template #adsValue>{{ads.CodiceAds}}</ng-template>
-                    </div>
+            <span >{{ads.CodiceAds}}{{(ads.CodiceOdl) ? "/"+ads.CodiceOdl:""}}</span>
+                  </div>
         </ion-col>
        
       </ion-row>

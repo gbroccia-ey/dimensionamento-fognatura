@@ -166,18 +166,6 @@ export class DimensionamentoAllacciFognatura{
     
 
     constructor(
-        // to be deleted - start
-        public ReteStradale: string,
-        public NumeroPerdite: number,
-        public PressioneRete: number,
-        public LunghezzaAllacciamento: number,
-        public UnitaSingola: UnitaSingola,
-        public UnitaDeroga: UnitaDeroga,
-        public ContatoriAntincendio: Array<ContatoreAntincendio>,
-        public PortataCalcoloA,
-        public PortataCalcoloB,
-        public PortataCalcoloTotale,
-        // to be deleted - end
         public AllacciamentoNuovo1,
         public AllacciamentoNuovo2,
         public AllacciamentoNuovo3,

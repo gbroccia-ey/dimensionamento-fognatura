@@ -2,7 +2,7 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import {DimensionamentoAllacciPage} from '../pages/dimensionamento-allacci/dimensionamento-allacci';
-import {DimensionamentoAllacciFognaturaComponent} from '../components/dimensionamento-allacci-fognatura/dimensionamento-allacci-fognatura';
+import {DimensionamentoAllacciFognaturaComponent,RemoveCommaPipe} from '../components/dimensionamento-allacci-fognatura/dimensionamento-allacci-fognatura';
 import { MyApp } from './app.component';
 
 
@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
     MyApp,
     HomePage,
     DimensionamentoAllacciFognaturaComponent,
+    RemoveCommaPipe,
     DimensionamentoAllacciPage
   ],
   imports: [

@@ -11,10 +11,12 @@ export class HomePage {
   ads:Ads;
 
   constructor(public navCtrl: NavController) {
-
+    this.ads = new Ads()
   }
 
   openDimensionamentoAllacci() {
+    this.ads.CodiceAds = "TestCodeAds"
+    this.ads.CodiceOdl = "TestCodeOdl"
     this.navCtrl.push(DimensionamentoAllacciPage, this.ads);
   }
 

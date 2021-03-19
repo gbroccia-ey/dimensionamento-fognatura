@@ -1,8 +1,24 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter,Pipe,PipeTransform } from '@angular/core';
+
 import { DimensionamentoAllacciFognatura, UnitaSingola, UnitaDeroga, ContatoreAntincendio, ParametriAcqueNere, ParametriAcqueBianche, ParametriVincoli } from '../../models/dimensionamento-allacci';
 import { Ads } from '../../models/ads';
-import { MathJs } from "mathjs";
 // import { AdsService } from '../../services/ads-service';
+
+
+@Pipe({
+  name: 'removeComma'
+})
+export class RemoveCommaPipe implements PipeTransform {
+
+  transform(value: string): string {
+    if (value !== undefined && value !== null) {
+      return value.replace(/,/g, "");
+    } else {
+      return "";
+    }
+  }
+}
+
 
 
 class DefluxScaleRow{
@@ -18,9 +34,10 @@ class DefluxScaleRow{
 enum DIMFOGNA_MSG {
   IDONEA = "CONDOTTA IDONEA",
   ERRORE = "ERRORE",
-  DN_INSUFF = "DN_INSUFFICIENTE'",
+  DN_INSUFF = "KO",
   NON_IDONEA = "CONDOTTA NON IDONEA",
-  PORTATA_NULL = "ERRORE: PORTATA COMPLESSIVA NULLA"
+  PORTATA_NULL = "ERRORE: PORTATA COMPLESSIVA NULLA",
+  FUORI_LIMITE = "VELOCITA' FUORI LIMITE"
 }
 
 
@@ -76,287 +93,7 @@ export class DimensionamentoAllacciFognaturaComponent implements OnInit{
   saveAction: EventEmitter<string>;
 
 
-  rete_stradale = ['Acciaio DN 15',
-  'Acciaio DN 20',
-  'Acciaio DN 25',
-  'Acciaio DN 27',
-  'Acciaio DN 30',
-  'Acciaio DN 32',
-  'Acciaio DN 33',
-  'Acciaio DN 35',
-  'Acciaio DN 40',
-  'Acciaio DN 42',
-  'Acciaio DN 50',
-  'Acciaio DN 55',
-  'Acciaio DN 60',
-  'Acciaio DN 63',
-  'Acciaio DN 65',
-  'Acciaio DN 68',
-  'Acciaio DN 70',
-  'Acciaio DN 75',
-  'Acciaio DN 76',
-  'Acciaio DN 80',
-  'Acciaio DN 90',
-  'Acciaio DN 100',
-  'Acciaio DN 108',
-  'Acciaio DN 110',
-  'Acciaio DN 120',
-  'Acciaio DN 125',
-  'Acciaio DN 130',
-  'Acciaio DN 140',
-  'Acciaio DN 150',
-  'Acciaio DN 160',
-  'Acciaio DN 175',
-  'Acciaio DN 184',
-  'Acciaio DN 200',
-  'Acciaio DN 225',
-  'Acciaio DN 250',
-  'Acciaio DN 275',
-  'Acciaio DN 300',
-  'Acciaio DN 350',
-  'Acciaio DN 400',
-  'Acciaio DN 450',
-  'Acciaio DN 500',
-  'Acciaio DN 503',
-  'Acciaio DN 550',
-  'Acciaio DN 600',
-  'Acciaio DN 700',
-  'Acciaio DN 750',
-  'Acciaio DN 800',
-  'Acciaio DN 900',
-  'Acciaio DN 1000',
-  'Acciaio DN 1200',
-  'Acciaio DN 1400',
-  'Acciaio DN 1500',
-  'Bonna (cemento/acciaio) DN 200',
-  'Bonna (cemento/acciaio) DN 400',
-  'Bonna (cemento/acciaio) DN 700',
-  'Fibrocemento - cemento amianto DN     20',
-  'Fibrocemento - cemento amianto DN     25',
-  'Fibrocemento - cemento amianto DN     32',
-  'Fibrocemento - cemento amianto DN     40',
-  'Fibrocemento - cemento amianto DN     50',
-  'Fibrocemento - cemento amianto DN     60',
-  'Fibrocemento - cemento amianto DN     63',
-  'Fibrocemento - cemento amianto DN     65',
-  'Fibrocemento - cemento amianto DN     70',
-  'Fibrocemento - cemento amianto DN     75',
-  'Fibrocemento - cemento amianto DN     80',
-  'Fibrocemento - cemento amianto DN     90',
-  'Fibrocemento - cemento amianto DN   100',
-  'Fibrocemento - cemento amianto DN   110',
-  'Fibrocemento - cemento amianto DN   125',
-  'Fibrocemento - cemento amianto DN   140',
-  'Fibrocemento - cemento amianto DN   150',
-  'Fibrocemento - cemento amianto DN   160',
-  'Fibrocemento - cemento amianto DN   175',
-  'Fibrocemento - cemento amianto DN   200',
-  'Fibrocemento - cemento amianto DN   225',
-  'Fibrocemento - cemento amianto DN   250',
-  'Fibrocemento - cemento amianto DN   275',
-  'Fibrocemento - cemento amianto DN   300',
-  'Fibrocemento - cemento amianto DN   350',
-  'Fibrocemento - cemento amianto DN   375',
-  'Fibrocemento - cemento amianto DN   400',
-  'Fibrocemento - cemento amianto DN   450',
-  'Fibrocemento - cemento amianto DN   500',
-  'Fibrocemento - cemento amianto DN   600',
-  'Fibrocemento - cemento amianto DN   700',
-  'Fibrocemento - cemento amianto DN   800',
-  'Fibrocemento - cemento amianto DN   900',
-  'Fibrocemento - cemento amianto DN 1000',
-  'Calcestruzzo DN     60',
-  'Calcestruzzo DN   100',
-  'Calcestruzzo DN   150',
-  'Calcestruzzo DN   160',
-  'Calcestruzzo DN   175',
-  'Calcestruzzo DN   200',
-  'Calcestruzzo DN   220',
-  'Calcestruzzo DN   225',
-  'Calcestruzzo DN   300',
-  'Calcestruzzo DN   400',
-  'Calcestruzzo DN   500',
-  'Calcestruzzo DN 1000',
-  'Calcestruzzo DN 4000',
-  'Ghisa DN     11',
-  'Ghisa DN     20',
-  'Ghisa DN     25',
-  'Ghisa DN     32',
-  'Ghisa DN     40',
-  'Ghisa DN     50',
-  'Ghisa DN     60',
-  'Ghisa DN     63',
-  'Ghisa DN     65',
-  'Ghisa DN     70',
-  'Ghisa DN     75',
-  'Ghisa DN     76',
-  'Ghisa DN     80',
-  'Ghisa DN     90',
-  'Ghisa DN   100',
-  'Ghisa DN   108',
-  'Ghisa DN   110',
-  'Ghisa DN   115',
-  'Ghisa DN   125',
-  'Ghisa DN   135',
-  'Ghisa DN   140',
-  'Ghisa DN   150',
-  'Ghisa DN   160',
-  'Ghisa DN   170',
-  'Ghisa DN   175',
-  'Ghisa DN   180',
-  'Ghisa DN   200',
-  'Ghisa DN   225',
-  'Ghisa DN   250',
-  'Ghisa DN   275',
-  'Ghisa DN   280',
-  'Ghisa DN   300',
-  'Ghisa DN   325',
-  'Ghisa DN   350',
-  'Ghisa DN   355',
-  'Ghisa DN   375',
-  'Ghisa DN   400',
-  'Ghisa DN   450',
-  'Ghisa DN   475',
-  'Ghisa DN   500',
-  'Ghisa DN   550',
-  'Ghisa DN   600',
-  'Ghisa DN   700',
-  'Ghisa DN   800',
-  'Ghisa DN   900',
-  'Ghisa DN 1000',
-  'Ghisa DN 1200',
-  'Piombo  15',
-  'Piombo  20',
-  'Piombo  25',
-  'Piombo  27',
-  'Piombo  30',
-  'Piombo  32',
-  'Piombo  35',
-  'Piombo  40',
-  'Piombo  50',
-  'Piombo  60',
-  'Piombo  63',
-  'Piombo  110',
-  'Polietilene dn   10',
-  'Polietilene dn   11',
-  'Polietilene dn   12',
-  'Polietilene dn   14',
-  'Polietilene dn   15',
-  'Polietilene dn   16',
-  'Polietilene dn   18',
-  'Polietilene dn   20',
-  'Polietilene dn   21',
-  'Polietilene dn   25',
-  'Polietilene dn   27',
-  'Polietilene dn   30',
-  'Polietilene dn   32',
-  'Polietilene dn   35',
-  'Polietilene dn   40',
-  'Polietilene dn   42',
-  'Polietilene dn   44',
-  'Polietilene dn   50',
-  'Polietilene dn   52',
-  'Polietilene dn   53',
-  'Polietilene dn   60',
-  'Polietilene dn   63',
-  'Polietilene dn   65',
-  'Polietilene dn   68',
-  'Polietilene dn   70',
-  'Polietilene dn   74',
-  'Polietilene dn   75',
-  'Polietilene dn   80',
-  'Polietilene dn   90',
-  'Polietilene dn   96',
-  'Polietilene dn 100',
-  'Polietilene dn 110',
-  'Polietilene dn 120',
-  'Polietilene dn 125',
-  'Polietilene dn 140',
-  'Polietilene dn 147',
-  'Polietilene dn 150',
-  'Polietilene dn 160',
-  'Polietilene dn 175',
-  'Polietilene dn 180',
-  'Polietilene dn 200',
-  'Polietilene dn 225',
-  'Polietilene dn 232',
-  'Polietilene dn 250',
-  'Polietilene dn 280',
-  'Polietilene dn 300',
-  'Polietilene dn 315',
-  'Polietilene dn 350',
-  'Polietilene dn 355',
-  'Polietilene dn 400',
-  'Polietilene dn 450',
-  'Polietilene dn 560',
-  'Polietilene dn 750',
-  'Polietilene multistrato dn   16',
-  'Polietilene multistrato dn   20',
-  'Polietilene multistrato dn   25',
-  'Polietilene multistrato dn   32',
-  'Polietilene multistrato dn   40',
-  'Polietilene multistrato dn   50',
-  'Polietilene multistrato dn   63',
-  'Polietilene multistrato dn   75',
-  'Polietilene multistrato dn   80',
-  'Polietilene multistrato dn   90',
-  'Polietilene multistrato dn 100',
-  'Polietilene multistrato dn 110',
-  'Polietilene multistrato dn 125',
-  'Polietilene multistrato dn 160',
-  'Polietilene multistrato dn 200',
-  'Pvc biorientato dn 110',
-  'Pvc biorientato dn 315',
-  'Pvc dn    15',
-  'Pvc dn    18',
-  'Pvc dn    20',
-  'Pvc dn    25',
-  'Pvc dn    30',
-  'Pvc dn    32',
-  'Pvc dn    35',
-  'Pvc dn    40',
-  'Pvc dn    50',
-  'Pvc dn    60',
-  'Pvc dn    63',
-  'Pvc dn    65',
-  'Pvc dn    75',
-  'Pvc dn    80',
-  'Pvc dn    90',
-  'Pvc dn 100',
-  'Pvc dn 110',
-  'Pvc dn 125',
-  'Pvc dn 130',
-  'Pvc dn 140',
-  'Pvc dn 150',
-  'Pvc dn 160',
-  'Pvc dn 175',
-  'Pvc dn 180',
-  'Pvc dn 200',
-  'Pvc dn 220',
-  'Pvc dn 225',
-  'Pvc dn 250',
-  'Pvc dn 280',
-  'Pvc dn 300',
-  'Pvc dn 315',
-  'Pvc dn 350',
-  'Pvc dn 355',
-  'Pvc dn 400',
-  'Pvc dn 500',
-  'Vetroresina dn   75',
-  'Vetroresina dn 100',
-  'Vetroresina dn 125',
-  'Vetroresina dn 150',
-  'Vetroresina dn 250',
-  'Vetroresina dn 300',
-  'Vetroresina dn 315',
-  'Vetroresina dn 350',
-  'Vetroresina dn 355',
-  'Vetroresina dn 400',
-  'Vetroresina dn 500'  
-                  ];
-
 allacciEsistentiArray = [];
-
 
 
 tableParams = {
@@ -589,7 +326,7 @@ allacciArray = [
  /* 216 */ {"nome":"PRFV (vetroresina) DN3000",          "asNew":false, "desterno":3000.0,"dinterno":3000.0,"scabrezza":0.02,"kval":88,"scabrezzaGS":90}
   ];
 
-precision:string = "1.1-3";
+precision:string = "1.1-2";
 
 allacciEsempioArray = [];
 allacciNuoviArray = [];
@@ -633,9 +370,7 @@ ngOnInit() {
       var AllacciamentoEsistente = {};
      
       this.ads.DimensionamentoAllacciFognatura = new DimensionamentoAllacciFognatura(
-        // old parameters
-        this.rete_stradale[0], 0, 0, 0,new UnitaSingola(0,""), new UnitaDeroga(0,""), arrayContatore,0,0,0,AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{},
-        // old parameters
+        AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{},
         new ParametriAcqueNere(0,0,0,0,0,0,0),new ParametriAcqueBianche(0,0,0,0,0,0,0,0), new ParametriVincoli(0,0,1.0,1.0,0,0),
         );  
         this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1);
@@ -862,7 +597,14 @@ Do While Precisione <> 0
         
         if (allacciamento.portata >= this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista){
         
-          allacciamento.risultato = DIMFOGNA_MSG.IDONEA;
+          if (val.velocita < 0.5 || val.velocita > 5.0){
+            allacciamento.risultato = DIMFOGNA_MSG.FUORI_LIMITE;
+          
+          }
+          else {
+            allacciamento.risultato = DIMFOGNA_MSG.IDONEA;
+          
+          }
           /*
           for (let k=5.0; k<= 100.0; k += 5.0){
             let val = this.calcolaPortataEVelocita(allacciamento,k);
@@ -917,11 +659,11 @@ Do While Precisione <> 0
       case DIMFOGNA_MSG.PORTATA_NULL:
       case DIMFOGNA_MSG.ERRORE:
       case DIMFOGNA_MSG.NON_IDONEA:
+      case DIMFOGNA_MSG.FUORI_LIMITE:  
             return 'red';
       default:
         return 'green';
     }
-
   }
 
   setColorForPortata(msg){
@@ -939,11 +681,6 @@ Do While Precisione <> 0
   }
 
 
-  //--------------------------------------------------------------------------------
-  //          OLD METHODS
-  //--------------------------------------------------------------------------------
-
-
 
   setColorVelocita(item){
     //console.log("setColorVelocita")
@@ -954,17 +691,6 @@ Do While Precisione <> 0
     
   }
 
-  setColorPerdita(item, esistente?){
-    var soglia = 0.15;
-    if(!item) return;
-    setTimeout(()=>{
-      item.colorPerdita  = (item.perdita>soglia)? 'red':'green';
-    },100);
-    if(item.perdita > soglia) item.VerificaCondotta = "Condotta non idonea";
-    else if( esistente) item.VerificaCondotta = "Condotta idonea";
-    else if(item.VerificaCondotta != "Condotta di progetto") item.VerificaCondotta = "";
-    if(item.perdita == undefined) item.VerificaCondotta = "";
-  }
 
 
   
