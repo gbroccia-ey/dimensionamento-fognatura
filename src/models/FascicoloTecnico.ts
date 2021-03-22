@@ -1,4 +1,4 @@
-import { Ads,  SettoreMerceologico } from '../models/ads';
+import { Ads,  DettaglioMerceologico,  SettoreMerceologico } from '../models/ads';
 import { Params } from '../config/params'
 
 
@@ -116,7 +116,7 @@ export class FascicoloTecnico {
                   }
                 }
 
-                if(ads.DettaglioMerceologico == 3) {
+                if(ads.DettaglioMerceologico == DettaglioMerceologico.FOGNATURA) {
                     this._Acqua = false;
                     this._Fognatura = true;
                 }

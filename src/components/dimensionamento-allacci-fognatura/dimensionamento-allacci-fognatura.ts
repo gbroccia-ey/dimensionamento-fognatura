@@ -31,7 +31,7 @@ class DefluxScaleRow{
   
 }
 
-enum DIMFOGNA_MSG {
+export enum DIMFOGNA_MSG {
   IDONEA = "CONDOTTA IDONEA",
   ERRORE = "ERRORE",
   DN_INSUFF = "KO",
@@ -99,10 +99,10 @@ allacciEsistentiArray = [];
 tableParams = {
   sumUnitaScarico: 10.0,                  // Somma Unità di scarico
   freqCoef: 0.5,                          // Coefficiente di frequenza (contemporaneità) per appartamenti / locande / uffici
-  dividers: [1.0,5.0,30.0,250.0,100.0],   // Divisori per calcolo delle Unità Immobiliari equivalenti a partire da varie tipologie di utenze
+  dividers: ParametriAcqueNere.dividers,   // Divisori per calcolo delle Unità Immobiliari equivalenti a partire da varie tipologie di utenze
   affluxCoef:[1.0,0.6,0.5,0.1],           // Coefficienti di afflusso	
   maxRainIntensity: 100.0,                // Intensità massima di pioggia [mm/h]
-  uiEqFisseAcqueBianche: 2.0,             // UIeq fisse in presenza di ACQUE BIANCHE
+  uiEqFisseAcqueBianche: ParametriAcqueBianche.uiEqFisseAcqueBianche, // UIeq fisse in presenza di ACQUE BIANCHE
   def_h_r : 1.4,
 }
 
@@ -389,7 +389,7 @@ ngOnInit() {
 
   updateAcqueNere(){
     if (this.ads.DimensionamentoAllacciFognatura){
-      let sum = this.ads.DimensionamentoAllacciFognatura.AcqueNere.sumEq(this.tableParams.dividers);
+      let sum = this.ads.DimensionamentoAllacciFognatura.AcqueNere.sumEq();
       this.ads.DimensionamentoAllacciFognatura.AcqueNere.portata = this.tableParams.freqCoef*Math.sqrt(sum*this.tableParams.sumUnitaScarico);
       this.ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq = sum;
       this.updateVincoli();
@@ -704,7 +704,6 @@ Do While Precisione <> 0
       DimensionamentoSaved: this.ads.DimensionamentoSaved, 
     }, () => {}, () => {});
     */
-
   }
 
 

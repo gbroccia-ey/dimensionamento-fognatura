@@ -49,6 +49,9 @@ export class MaterialeEE{
 
 
 export class ParametriAcqueNere{
+    //Divisori per calcolo delle Unità Immobiliari equivalenti a partire da varie tipologie di utenze
+    static dividers = [1.0,5.0,30.0,250.0,100.0];   
+
     constructor(
         public usoDomestico: number,
         public alberghieri: number,
@@ -68,19 +71,20 @@ export class ParametriAcqueNere{
     }
 
 
-    sumEq(dividers){
-        if (dividers?.length == 5){
-            return  this.usoDomestico/dividers[0]+
-                this.alberghieri/dividers[1]+
-                this.ospedali/dividers[2]+
-                this.artigianali/dividers[3]+
-                this.commerciali/dividers[4] 
-        }
+    sumEq(){
+        return  this.usoDomestico/ParametriAcqueNere.dividers[0]+
+            this.alberghieri/ParametriAcqueNere.dividers[1]+
+            this.ospedali/ParametriAcqueNere.dividers[2]+
+            this.artigianali/ParametriAcqueNere.dividers[3]+
+            this.commerciali/ParametriAcqueNere.dividers[4] 
+    
     }
 }
 
 
 export class ParametriAcqueBianche{
+    static uiEqFisseAcqueBianche = 2.0;   // UIeq fisse in presenza di ACQUE BIANCHE
+
     constructor(
         public uiEqFisse: number,
         public supImpermeabili: number,

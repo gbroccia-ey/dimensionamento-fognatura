@@ -1,6 +1,15 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Ads, SettoreMerceologico } from '../../models/ads';
+import { PdfManager, PdfResult } from '../../providers/pdfManager';
+import { PrinterSignatureBean } from '../../providers/PrinterSignature';
+
+import {LogManager } from '../../providers/log-manager/logManager';
+import { WidgetManager } from '../../providers/widget-manager/widgetManager';
+
+import { PreviewPdfNoSignatures } from '../preview-pdf-no-signature/preview-pdf-no-signature';
+import { FascicoloTecnico } from '../../../models/FascicoloTecnico';
+
 
 declare var imgExample: any;
 
@@ -25,7 +34,14 @@ export class DimensionamentoAllacciPage{
   nome = "";
   cognome = "";
 
+  nomePdf;
+  blobPDF;
+  formFT : FascicoloTecnico;
+
   constructor(public navCtrl: NavController, 
+              public widgets: WidgetManager, 
+              public pdfManager: PdfManager,
+              public LogManager: LogManager,
               public navParams: NavParams) {
     this.ads = navParams.data;
     /*
@@ -35,6 +51,7 @@ export class DimensionamentoAllacciPage{
         this.logo = imgExample.getLogoDxInRete();
     }
     */
+
     this.logo = this.ads.Logo;
 
     if(this.ads.Indirizzo && this.ads.Indirizzo.Citta){
@@ -87,9 +104,76 @@ export class DimensionamentoAllacciPage{
         {DimensionamentoAllacciEE: this.ads.DimensionamentoAllacciEE},
         () => {}, (err) => {console.log(err);});
     }
-    */
     this.navCtrl.pop();
+    */
+    this.Crea_pdf_internal();
   }
+
+
+  Crea_pdf_internal(){
+    this.LogManager.info("Test - Crea_pdf");
+    var nomePdfPartial = "Fascicolo tecnico";
+    var  model = "fascicoloTecnico";
+    
+    this.formFT = new FascicoloTecnico(this.ads,"","","");
+    this.formFT._imagesPlanimetria = [];
+    this.formFT._imagesAltre = [];
+      
+    
+      var item:
+        {      
+          data: { today: string },        
+          download: { needDownload: boolean, pdfName: string, ads: object },    
+          dati: {form: Object},
+          immagine: {  }
+        }
+        =
+        {
+          data: { today: "timeWrite"},       
+          download: {
+            needDownload: false,
+            pdfName: this.nomePdf,
+            ads: this.ads
+          },
+          dati: {form: this.formFT},
+          immagine: {  }  
+        };
+  
+  
+  
+  
+      var pdfCreatedSuccess = (result: PdfResult) => {
+  
+        
+      }
+  
+      
+  
+      this.pdfManager.pdfCreate(model, item).then(
+        url => {
+          var bean: PrinterSignatureBean = new PrinterSignatureBean();
+          bean.dataTemporaryUser = item;
+          //bean.url = url.url;
+          bean.url = url;
+          bean.showDelegateFlag = false;
+          bean.title = nomePdfPartial;
+          bean.postprocessTypology = model;
+          bean.pdfBean = item;
+          this.blobPDF = url.blob;
+          bean.succCallback = pdfCreatedSuccess;
+          bean.adsToReturn = this.ads;
+  
+          this.navCtrl.push(
+            PreviewPdfNoSignatures,
+            { bean: bean }
+          );
+  
+        }, (err) => {
+          alert(err);
+        }
+      );
+  
+    }
 
 
 }
