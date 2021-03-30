@@ -1,14 +1,90 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Dimensionamento Allacci Fognatura</ion-title>
+    <ion-title>APP Preventivi Cliente Test</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  
+
+
+
+  <ion-grid>
+     <ion-row>
+    <ion-col col-1>
+        <ion-label>Società</ion-label>
+    </ion-col>
+    <ion-col col-5>
+    <ion-select [(ngModel)]="selSocieta" (ionChange)="onSocietaChange()">
+        <ion-option *ngFor="let s of Societa" [value]="s">{{ s?.label }}</ion-option>
+    </ion-select>
+    </ion-col>
+    <ion-col col-1>
+        <ion-label>Settore</ion-label>
+    </ion-col>
+    <ion-col col-5>
+    <ion-select [(ngModel)]="selSettore" (ionChange)="onSettoreChange()" [disabled]="!selSocieta">
+        <ion-option *ngFor="let s of Settori" [value]="s">{{ s?.label }}</ion-option>
+    </ion-select>
+    </ion-col>
+  </ion-row>
+   
+  <ion-row>
+    <ion-col col-1>
+        <ion-label>PDS</ion-label>
+    </ion-col>
+    <ion-col col-2>
+      <ion-select [(ngModel)]="selProdotto" (ionChange)="onProdottoChange()" [disabled]="!selSettore">
+          <ion-option *ngFor="let p of ProdottiServizio" [value]="p">{{ p.prodServizio }}</ion-option>
+      </ion-select>
+    </ion-col>
+    <ion-col col-3>
+      <ion-label>{{selProdotto?.titolo}}</ion-label>
+   </ion-col>
+  
+    <ion-col col-1>
+        <ion-label>Variante</ion-label>
+    </ion-col>
+    <ion-col col-5>
+    <ion-select [(ngModel)]="selVariante" [disabled]="!selProdotto">
+        <ion-option *ngFor="let v of selVarianti"  [value]="v">{{ v.label }}</ion-option>
+    </ion-select>
+    </ion-col>
+  </ion-row>
+
+<ion-row>
+  <ion-col col-1>
+      <ion-label>Provincia</ion-label>
+  </ion-col>
+  <ion-col col-5>
+  <ion-select [(ngModel)]="selProvincia" (ionChange)="onProvinciaChange()">
+      <ion-option *ngFor="let p of Province" [value]="p">{{ p }}</ion-option>
+  </ion-select>
+  </ion-col>
+  <ion-col col-1>
+      <ion-label>Comune</ion-label>
+  </ion-col>
+  <ion-col col-5>
+  <ion-select [(ngModel)]="selComune" >
+      <ion-option *ngFor="let c of Comuni" [disabled]="!selProvincia" [value]="c">{{ c?.Localita }}</ion-option>
+  </ion-select>
+  </ion-col>
+</ion-row>
+<ion-row>
+  <ion-col col-12>
+    <button ion-button color="warning"  (click)="resetPreventivatoreParams()" >Reset Valori</button>
+    <button ion-button color="primary"  [disabled]="gotMissingParams()" (click)="openPreventivatore()" >Preventivatore</button>
+  </ion-col>
+</ion-row>
+
+  </ion-grid>
+  <br/> 
+  <br/> 
+  <br/> 
+  <br/> 
   <div class="btnContainer"> 
-    <button style="margin:8px !important"  class="btn-fab " (click)="openDimensionamentoAllacci()" ion-fab>GO! 
-    </button>
-    
+    <button ion-button color="secondary" (click)="openDimensionamentoAllacci()" >Dimensionamento Allacci </button>    
   </div>
+
 
 </ion-content>

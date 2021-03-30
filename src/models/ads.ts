@@ -1757,7 +1757,7 @@ GetTipoLavoroLabel(){
   }
 
   GetTipoFornituraLabel() {
-    let val =  Params.TipoFornitura.find(x => x.value === Number(this.TipoFornitura));
+    let val =  Params.TipoFornitura.find(x => x.value === this.TipoFornitura );
      if(val == undefined) return "";
     return val["label"] || "";
   }

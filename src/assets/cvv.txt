@@ -1,0 +1,721 @@
+[{
+		"Comune": "Castiglione",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc. Pignoli  Autostr. S ",
+		"Vie interessate": "Loc Castagnaccia",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Castiglione",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc. Pignoli  Autostr. S ",
+		"Vie interessate": "Via Pignoli",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Castiglione",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc. Pignoli  Autostr. S ",
+		"Vie interessate": "Loc Valli",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Castiglione",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Pignoli  Autostr. S ",
+		"Vie interessate": "Via Stazione",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Castiglione",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Pignoli  Autostr. S ",
+		"Vie interessate": "via Spianamento, da            via del Palazzone",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Castiglione",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Cà d'Onofrio  Autostr. S ",
+		"Vie interessate": "Via Cà D'Onofrio, tutti i civici",
+		"Data termine applicazione contributo": "31 dicembre 2017",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Puzzola",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 1,
+		"CIVMAX": 24,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Bellaria",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Molinelli di Sotto",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Molinelli di Sopra",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Castelvecchio",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Palazzo",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Veggio Chiesa",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Cà Benassi",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Fosso",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Fusicchio",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Castello",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Poggio Mezzano",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Marconi",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Roma",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Casa Popolare",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Casa Magnani",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Pietrafitta",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Loc Campiaro",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Grizzana",
+		"Servizio": "Gas",
+		"Denominazione": "Adduzione e distribuzione Grizzana Capoluogo  abbinato all'acqua Autostr. J ",
+		"Vie interessate": "Via Castellonchio",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Malfolle",
+		"Vie interessate": "Via Malfolle",
+		"Data termine applicazione contributo": "13 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Lama di Reno zona rurale S.Silvestro  Autostr. J ",
+		"Vie interessate": "Via San Silvestro",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 4,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Lama di Reno zona rurale S.Silvestro  Autostr. J ",
+		"Vie interessate": "Via Cà Bianca ",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Lama di Reno zona rurale S.Silvestro  Autostr. J ",
+		"Vie interessate": "Via Campione ",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Lama di Reno zona rurale S.Silvestro  Autostr. J ",
+		"Vie interessate": "Via Monzale ",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Potenziamento loc. Monte Sole  Autostr. J ",
+		"Vie interessate": "Via Quercia                   ",
+		"Data termine applicazione contributo": "31 marzo 2020",
+		"CIVMIN": 26,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Potenziamento loc. Monte Sole  Autostr. J ",
+		"Vie interessate": "Via San Martino              ",
+		"Data termine applicazione contributo": "31 marzo 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Potenziamento loc. Monte Sole  Autostr. J ",
+		"Vie interessate": "Via Casaglia                 ",
+		"Data termine applicazione contributo": "31 marzo 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Loc.Montasico  Autostr. J ",
+		"Vie interessate": "Via Meladello",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Loc.Montasico  Autostr. J ",
+		"Vie interessate": "Via Montasico",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 1,
+		"CIVMAX": 53,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Loc.Montasico  Autostr. J ",
+		"Vie interessate": "Via Torrente Venola",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 41,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc. Scope  Autostr. S ",
+		"Vie interessate": " Via Cadotto ",
+		"Data termine applicazione contributo": "31 dicembre 9999",
+		"CIVMIN": 9,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc. Scope  Autostr. S ",
+		"Vie interessate": "Via Termine   ",
+		"Data termine applicazione contributo": "31 dicembre 9999",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Casone Barca-Albareda v.S.Martino  Autostr. S ",
+		"Vie interessate": "Via San Martino ",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione loc.Sconfitta - Ronchi - Monazzo  Autostr. S ",
+		"Vie interessate": "Via Torrenera",
+		"Data termine applicazione contributo": "31 marzo 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Sperticano  abbinato al gas Autostr. S ",
+		"Vie interessate": "Loc San Simone",
+		"Data termine applicazione contributo": "30 aprile 2021",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Sperticano  abbinato al gas Autostr. S ",
+		"Vie interessate": "Via Sperticano",
+		"Data termine applicazione contributo": "30 aprile 2021",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione Sperticano  abbinato al gas Autostr. S ",
+		"Vie interessate": "Via San Martino",
+		"Data termine applicazione contributo": "30 aprile 2021",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Marzabotto",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione  Sperticano  abbinato all'acqua Autostr. S ",
+		"Vie interessate": "Via Sperticano",
+		"Data termine applicazione contributo": "30 aprile 2021",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Loc La Serra",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Loc Casa Popolare",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Via Giovanni Pascoli",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Via Cà Basse",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Piazza Don Rossi",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione Trasasso  loc. Ginestrella Autostr. J ",
+		"Vie interessate": "Via dell'Alva",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Monzuno",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Tre Fasci  Autostr. S ",
+		"Vie interessate": "Loc Tre fasci",
+		"Data termine applicazione contributo": "31 dicembre 9999",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Completamento  2° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Vittime Rapido",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Completamento  2° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Cà di Sasso",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Completamento  2° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Cà di sotto",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Completamento  2° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Santa Maria Maddalena",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Completamento  2° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Serrucce",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Estensione  1° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Santa Cristina",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Estensione  1° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via La Cà",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Estensione  1° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Prà di Muzzo ",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Estensione  1° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via Borgovecchio",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "GAS RIPOLI Estensione  1° stralcio Santa Cristina Autostr. J ",
+		"Vie interessate": "Via San Vincenzo",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Acqua - GAS 1° Lotto - S. Benedetto Adduttrice e distr. S.Andrea-Castiglione acqua 73%- gas 79% Autostr. J ",
+		"Vie interessate": "Loc Montefredente ",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Acqua - GAS 1° Lotto - S. Benedetto Adduttrice e distr. S.Andrea-Castiglioneacqua 73%- gas 79% Autostr. J ",
+		"Vie interessate": "Loc Sant'Andrea",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Acqua - GAS 1° Lotto - S. Benedetto Adduttrice e distr. S.Andrea-Castiglioneacqua 73%- gas 79% Autostr. J ",
+		"Vie interessate": " Loc Pian del Voglio",
+		"Data termine applicazione contributo": "31 dicembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Ginestrella  Autostr. J ",
+		"Vie interessate": "Via Autostazione",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 26,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Ginestrella  Autostr. J ",
+		"Vie interessate": "Via Calcinara",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Ginestrella  Autostr. J ",
+		"Vie interessate": "Via Ginestrella",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione loc. Ginestrella  Autostr. J ",
+		"Vie interessate": "Via Toscana",
+		"Data termine applicazione contributo": "30 novembre 2020",
+		"CIVMIN": 28,
+		"CIVMAX": 9999,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Acquedotto GAS",
+		"Denominazione": "Estensione loc. Ponte Locatello  Autostr. J ",
+		"Vie interessate": "Via Cà di Manone",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "S.B.V.D.S.",
+		"Servizio": "Acquedotto GAS",
+		"Denominazione": "Estensione loc. Ponte Locatello  Autostr. J ",
+		"Vie interessate": "Monteacuto località Boschi di Sopra",
+		"Data termine applicazione contributo": "31 dicembre 2018",
+		"CIVMIN": 0,
+		"CIVMAX": 0,
+		"Totale": 320
+	},
+	{
+		"Comune": "Sasso",
+		"Servizio": "Acquedotto",
+		"Denominazione": "Estensione via Nugareto alta abbinato al gas Autostr. S ",
+		"Vie interessate": "Nugareto",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 1,
+		"CIVMAX": 18,
+		"Totale": 320
+	},
+	{
+		"Comune": "Sasso",
+		"Servizio": "Gas",
+		"Denominazione": "Estensione via Nugareto alta  abbinato all'acqua Autostr. S ",
+		"Vie interessate": "Nugareto",
+		"Data termine applicazione contributo": "31 dicembre 2019",
+		"CIVMIN": 1,
+		"CIVMAX": 18,
+		"Totale": 320
+	}
+]

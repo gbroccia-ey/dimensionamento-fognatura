@@ -1,5 +1,5 @@
 import { Dictionary } from '../utils/dictionary';
-import { SettoreMerceologico } from '../models/ads';
+import { SettoreMerceologico,Ads, CodSocieta } from '../models/ads';
 
 declare var exampleImg : any;
 
@@ -17,6 +17,7 @@ export class Params {
         {value: "B", label:"Bassa"}
     ];
 
+    /* Moved to Ente Model
     static Enti = [
         {key: "M30_1", value: "Giorni 30 : Comune - Denuncia Inizio Attività (DIA)"},
         {key: "M60_1", value: "Giorni 60 : Canale Emiliano Rom. (C.E.R.)"},
@@ -48,11 +49,48 @@ export class Params {
         {key: "M540_1", value: "Giorni 540 : Ferrovie di stato (FF.SS.)"}
 
     ];
+    */
 
     // PERMESSI
-    static ubicazione= ['STRADA', 'MARCIAPIEDI', 'FASCIA LATERALE', 'PARCHEGGIO', 'PISTA CICLABILE', 'PERTINENZA STRADALE', 'BANCHINA STRADALE STERRATA E/O INERBITA', 'AIUOLA E/O AREA VERDE', 'PONTICELLO CARRABILE']
-    static manto = ['TRASVERSALE RISPETTO ALL`ASSE STRADALE', 'LONGITUDINALE RISPETTO ALL`ASSE STRADALE', 'PUNTUALE', 'OBLIQUO RISPETTO ALL`ASSE STRADALE', 'IN PROSSIMITA` DI UNA INTERSEZIONE STRADALE']
-    static scavo = ['SENZA SCAVO (SENZA RILIEVO)', 'ASFALTO+USURA STR. PROVINCIALE', 'ASFALTO+USURA STR. STATALE', 'ASFALTO+USURA AUT. PORT. RA', 'SENZA SCAVO (CON RILIEVO)', 'CON SCAVO (SENZA RILIEVO)', 'TERRENO VEGETALE', 'STABILIZZATO', 'GHIAIATO', 'MACADAM - NO USURA', 'ASFALTO+USURA STR. COMUNALE', 'LASTRICATO', 'PARTICOLARI - SI USURA', 'ASFALTO PROP.PRIV. - NO USURA', 'SPINGITUBO', 'SPINGITUBO+ASFALTO']
+    static ubicazione= [
+        { key: "01", value: 'STRADA' },
+        { key: "02", value: 'MARCIAPIEDI' },
+        { key: "03", value: 'FASCIA LATERALE'},
+        { key: "04", value: 'PARCHEGGIO'},
+        { key: "05", value: 'PISTA CICLABILE'},
+        { key: "06", value: 'PERTINENZA STRADALE'},
+        { key: "07", value: 'BANCHINA STRADALE STERRATA E/O INERBITA'},
+        { key: "08", value: 'AIUOLA E/O AREA VERDE'},
+        { key: "09", value: 'PONTICELLO CARRABILE'}
+    ]
+
+    static scavo = [
+        { key: "01", value: 'TRASVERSALE RISPETTO ALL`ASSE STRADALE' },
+        { key: "02", value: 'LONGITUDINALE RISPETTO ALL`ASSE STRADALE' },
+        { key: "03", value: 'PUNTUALE'},
+        { key: "04", value: 'OBLIQUO RISPETTO ALL`ASSE STRADALE'},
+        { key: "05", value: 'IN PROSSIMITÁ DI UNA INTERSEZIONE STRADALE'},
+    ]
+
+ 
+    static manto = [
+        { key:"01",	value:"SENZA SCAVO (SENZA RILIEVO)"},
+        { key:"02",	value:"TERRENO VEGETALE"},
+        { key:"03",	value:"STABILIZZATO"},
+        { key:"04",	value:"GHIAIATO"},
+        { key:"05",	value:"MACADAM - NO USURA"},
+        { key:"06",	value:"ASFALTO+USURA STR. COMUNALE"},
+        { key:"07",	value:"LASTRICATO"},
+        { key:"08",	value:"PARTICOLARI - SI USURA"},
+        { key:"09",	value:"ASFALTO PROP.PRIV. - NO USURA"},
+        { key:"10",	value:"ASFALTO+USURA STR. PROVINCIALE"},
+        { key:"11",	value:"ASFALTO+USURA STR. STATALE"},
+        { key:"12",	value:"ASFALTO+USURA AUT. PORT. RA"},
+        { key:"13",	value:"SENZA SCAVO (CON RILIEVO)"},
+        { key:"14",	value:"CON SCAVO (SENZA RILIEVO)"},
+        { key:"15",	value:"SPINGITUBO"},
+        { key:"16",	value:"SPINGITUBO+ASFALTO"},
+    ]
 
     // DATI RETE
     static valoriAccessibilita = ['Accessibile', 'Non accessibile', 'Parzialmente accessibile']
@@ -1314,6 +1352,10 @@ export class Params {
             label: "SPOSTAMENTO ATTACCO INTERNO PROPRIETÀ"
         },
         {
+            codAttivita: "LF1631",
+            label: "PRESA IMPULSIVA AGGIUNTIVA AAA"
+        },
+        {
             codAttivita: "WF1150",
             label: "LAVORI GENERICI CONTO TERZI"
         },
@@ -2109,18 +2151,18 @@ export class Params {
     ]
 
     static TipoFornitura = [
-        {value:1, label:"ACQUEDOTTO CIVILE"},
-        {value:2, label:"ACQUEDOTTO INDUSTRIALE"},
-        {value:3, label:"FOGNATURA"},
-        {value:4, label:"DEPURAZIONE"},
-        {value:5, label:"GAS"},
-        {value:6, label:"GPL"},
-        {value:7, label:"ACQUE METEORICHE"},
-        {value:8, label:"TELERISCALDAMENTO"},
-        {value:9, label:"ALTA TENSIONE"},
-        {value:10, label:"BASSA TENSIONE"},
-        {value:11, label:"MEDIA TENSIONE"},
-        {value:12, label:"MT MISURA BT"}
+        {value:"1", label:"ACQUEDOTTO CIVILE"},
+        {value:"2", label:"ACQUEDOTTO INDUSTRIALE"},
+        {value:"3", label:"FOGNATURA"},
+        {value:"4", label:"DEPURAZIONE"},
+        {value:"5", label:"GAS"},
+        {value:"6", label:"GPL"},
+        {value:"7", label:"ACQUE METEORICHE"},
+        {value:"8", label:"TELERISCALDAMENTO"},
+        {value:"9", label:"ALTA TENSIONE"},
+        {value:"10", label:"BASSA TENSIONE"},
+        {value:"11", label:"MEDIA TENSIONE"},
+        {value:"12", label:"MT MISURA BT"}
     ]
 
     static NumeroFasi = [
@@ -2718,44 +2760,83 @@ export class Params {
     ]
     
 
-    static getValoriWrapper(key, nomeListino?){
+    static getValoriWrapper(key, ads? : Ads){
         var retValue;
-        switch(nomeListino){
-            case 'LISTINO PREZZI 2 (PROVINCIA RIMINI)':{
-                var startDate = new Date();
-                startDate.setFullYear(2000);
-                var endDate = new Date();
-                endDate.setFullYear(2100);
-                var today = new Date();
-                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
-                    retValue = this.ValoriRimini.get(key);
-                }
-                break;
-            }
-            case 'LISTINO PREZZI 2 (PROVINCIA BOLOGNA)':{
-                var startDate = new Date();
-                startDate.setFullYear(2000);
-                var endDate = new Date();
-                endDate.setFullYear(2100);
-                var today = new Date();
-                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
-                    retValue = this.ValoriBologna.get(key);
-                }
-                break;
-            }
-            case 'LISTINO PREZZI 3 (PROVINCIA FORLÌCESENA)':{
-                var startDate = new Date();
-                startDate.setFullYear(2000);
-                var endDate = new Date();
-                endDate.setFullYear(2100);
-                var today = new Date();
-                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
-                    retValue = this.ValoriForli.get(key);
-                }
-                break;
-            }
-            
+
+        if (ads){
+            switch(ads.CodiceSocieta){
+                case CodSocieta.AAA:
+                    // Prima di tutto cerco per variante di listino...
+                    if (ads.VarianteListino){
+                        switch(ads.VarianteListino){
+                            case 'LISTINO COLLINARE GAS':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                        }
+                    }
+                    // ... poi per provincia...
+                    if(!retValue){
+                        switch(ads.Indirizzo.Provincia){
+                            case "PD":
+                                retValue = this.ValoriPadova.get(key+'_AAA');
+                                break;
+                            case "TS":
+                                retValue = this.ValoriTrieste.get(key+'_AAA');
+                                break;    
+                        }
+    
+                    }
+                    // .. e infine tra i parametri generali
+                    if (!retValue){
+                        retValue = this.Valori.get(key+'_AAA');
+                    }
+
+                    break;
+    
+                case CodSocieta.HERA:        
+                default:
+                    if (ads.VarianteListino){
+                        switch(ads.VarianteListino){
+                            case 'LISTINO PREZZI 2 (PROVINCIA RIMINI)':{
+                                var startDate = new Date();
+                                startDate.setFullYear(2000);
+                                var endDate = new Date();
+                                endDate.setFullYear(2100);
+                                var today = new Date();
+                                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
+                                    retValue = this.ValoriRimini.get(key);
+                                }
+                                break;
+                            }
+                            case 'LISTINO PREZZI 2 (PROVINCIA BOLOGNA)':{
+                                var startDate = new Date();
+                                startDate.setFullYear(2000);
+                                var endDate = new Date();
+                                endDate.setFullYear(2100);
+                                var today = new Date();
+                                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
+                                    retValue = this.ValoriBologna.get(key);
+                                }
+                                break;
+                            }
+                            case 'LISTINO PREZZI 3 (PROVINCIA FORLÌCESENA)':{
+                                var startDate = new Date();
+                                startDate.setFullYear(2000);
+                                var endDate = new Date();
+                                endDate.setFullYear(2100);
+                                var today = new Date();
+                                if(today.getTime() > startDate.getTime() && today.getTime() < endDate.getTime()) {
+                                    retValue = this.ValoriForli.get(key);
+                                }
+                                break;
+                            }
+                        }    
+                    }        
+                    break;
+            }    
         }
+        
         if(!retValue) return this.Valori.get(key);
         else return retValue;
     }
@@ -2894,16 +2975,16 @@ export class Params {
                 { quotaFissa: 115 }
             ]},
             { key: "LAVFAT1040_FOGNA", value: [
-                { label: 'Allacciamento DN160 (1 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",  allacFogna: '01', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-                { label: 'Allacciamento DN160 (1 UIeq) e 1,5mt < Hm <= 2,5mt',  diametro:"DN160", maxprofondita:"2.5", allacFogna: '02', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
-                { label: 'Allacciamento DN160 (2-3 UIeq) e Hm <= 1,5m', diametro:"DN160", maxprofondita:"1.5", allacFogna: '03', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-                { label: 'Allacciamento DN160 (2-3 UIeq) e 1,5mt < Hm <= 2,5mt',diametro:"DN160", maxprofondita:"2.5", allacFogna: '04', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
-                { label: 'Allacciamento DN160 (4-5 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",allacFogna: '05', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-                { label: 'Allacciamento DN160 (4-5 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '06', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
-                { label: 'Allacciamento DN160 (6-10 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '07', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-                { label: 'Allacciamento DN160 (6-10 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '08', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
-                { label: 'Allacciamento DN160 (>10 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '09', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-                { label: 'Allacciamento DN160 (>10 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '10', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
+                { label: 'Allacciamento DN160 (1 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",  allacFogna: '01', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+                { label: 'Allacciamento DN160 (1 Uieq) e 1,5mt < Hm <= 2,5mt',  diametro:"DN160", maxprofondita:"2.5", allacFogna: '02', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
+                { label: 'Allacciamento DN160 (2-3 Uieq) e Hm <= 1,5m', diametro:"DN160", maxprofondita:"1.5", allacFogna: '03', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+                { label: 'Allacciamento DN160 (2-3 Uieq) e 1,5mt < Hm <= 2,5mt',diametro:"DN160", maxprofondita:"2.5", allacFogna: '04', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
+                { label: 'Allacciamento DN160 (4-5 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",allacFogna: '05', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+                { label: 'Allacciamento DN160 (4-5 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '06', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
+                { label: 'Allacciamento DN160 (6-10 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '07', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+                { label: 'Allacciamento DN160 (6-10 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '08', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
+                { label: 'Allacciamento DN160 (>10 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '09', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+                { label: 'Allacciamento DN160 (>10 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '10', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
                 { label: 'Allacciamento DN200 e Hm < 1,5mt', diametro:"DN200", maxprofondita:"1.5", allacFogna: '11', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
                 { label: 'Allacciamento DN200 e 1,5mt < Hm <= 2,5mt',diametro:"DN200", maxprofondita:"2.5", allacFogna: '12', quotaFissaNuovo: 2200, quotaFissaSpostamento:2940},
                 { label: 'Allacciamento DN250 e Hm <= 1,5mt',diametro:"DN250", maxprofondita:"1.5", allacFogna: '13', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
@@ -2921,7 +3002,331 @@ export class Params {
             ]},
         ])
 
+    
+    static ValoriTrieste: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+    
+        { key: "LAVFAT1040_FOGNA_AAA", value: [
+            { label: 'Nuovo allaccio in corso d\'opera',                        allacFogna: '01', quotaFissaNuovo: 1836, quotaFissaSpostamento:0},
+            { label: 'Nuovo allaccio su condotta esistente',                    allacFogna: '02', quotaFissaNuovo: 3672, quotaFissaSpostamento:0},
+            { label: 'Nuovo allaccio per doccione in corso d\'opera',           allacFogna: '11', quotaFissaNuovo: 1469, quotaFissaSpostamento:0},
+            { label: 'Nuovo allaccio per doccione su condotta esistente',       allacFogna: '12', quotaFissaNuovo: 2938, quotaFissaSpostamento:0},
+            { label: 'Vaschetta in corso d\'opera',                             allacFogna: '15', quotaFissaNuovo: 92,   quotaFissaSpostamento:0},
+            { label: 'Vaschetta su condotta esistente',                         allacFogna: '16', quotaFissaNuovo: 184,  quotaFissaSpostamento:0},
+            { label: 'Pozzetto d\'ispezione',                                   allacFogna: '17', quotaFissaNuovo: 640,  quotaFissaSpostamento:0},
+            
+            //   { label: 'Solo quota completamento', allacFogna: 'Z', quotaFissaNuovo: 707, quotaFissaSpostamento:707},
+        ]},
+        { key: "LAVFAT1010_FOGNA_AAA", value: [
+            { label: 'Nuovo allaccio in corso d\'opera',                        allacFogna: '01', quotaFissa: 1836 },
+            { label: 'Nuovo allaccio su condotta esistente',                    allacFogna: '02', quotaFissa: 3672 },
+            { label: 'Nuovo allaccio per doccione in corso d\'opera',           allacFogna: '11', quotaFissa: 1469 },
+            { label: 'Nuovo allaccio per doccione su condotta esistente',       allacFogna: '12', quotaFissa: 2938 },
+            { label: 'Vaschetta in corso d\'opera',                             allacFogna: '15', quotaFissa: 92   },
+            { label: 'Vaschetta su condotta esistente',                         allacFogna: '16', quotaFissa: 184  },
+            { label: 'Pozzetto d\'ispezione',                                   allacFogna: '17', quotaFissa: 640  },
+            
+            //   { label: 'Solo quota completamento', allacFogna: 'Z', quotaFissaNuovo: 707, quotaFissaSpostamento:707},
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1040_FOGNATURA_AAA',
+            value:[] 
+        },
+        {
+            key: 'QUOTE_LAVFAT1010_FOGNATURA_AAA',
+            value:[] 
+        },
+        {
+            key: 'QUOTE_LAVFAT1010_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Supplemento lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Supplemento prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'Quota aggiuntiva per ogni mt oltre i 6', value: 224,  placeholder:"lungh. eccedente (m)", id:"quota3"},
+                        
+                ]},
+            ] 
+          },
+          { key: "LAVFAT1010_ACQUA_AAA", value: [
+            { quotaFissa: 355, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 38.52 },
+                  { classeContatore: "DN20",  prezzo: 936   },
+                  { classeContatore: "DN32",  prezzo: 936   },
+                  { classeContatore: "DN40",  prezzo: 936   },
+                  { classeContatore: "DN50",  prezzo: 2063  },
+                  { classeContatore: "DN80",  prezzo: 3413  },
+                  { classeContatore: "DN100", prezzo: 3618 }
+            ]}
+        ]},
+        
+          { key: "LAVFAT1040_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "DN15",      descrizione:"DN15",             prezzo: 38.52 },
+                { classeContatore: "DN15_2",    descrizione:"DN15 aggiuntivi",  prezzo: 38.52 },
+                { classeContatore: "DN20",      descrizione:"DN20",             prezzo: 2163  },
+                { classeContatore: "DN20_2",    descrizione:"DN20 aggiuntivi",  prezzo: 936   },
+                { classeContatore: "DN32",      descrizione:"DN32",             prezzo: 2163  },
+                { classeContatore: "DN32_2",    descrizione:"DN32 aggiuntivi",  prezzo: 936   },
+                { classeContatore: "DN40",      descrizione:"DN40",             prezzo: 2163  },
+                { classeContatore: "DN40_2",    descrizione:"DN40 aggiuntivi",  prezzo: 936   },
+                { classeContatore: "DN50",      descrizione:"DN50",             prezzo: 2641  },
+                { classeContatore: "DN50_2",    descrizione:"DN50 aggiuntivi",  prezzo: 2063  },
+                { classeContatore: "DN80",      descrizione:"DN80",             prezzo: 3774  },
+                { classeContatore: "DN80_2",    descrizione:"DN80 aggiuntivi",  prezzo: 3413  },
+                { classeContatore: "DN100",     descrizione:"DN100",            prezzo: 4144  },
+                { classeContatore: "DN100_2",   descrizione:"DN100 aggiuntivi", prezzo: 3618  }
+            ]}
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1040_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                ]},
+            ] 
+        },
+        { key: "LAVFAT1140_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaIstruttoria:38.52, quotaVariabile: [
+                { classeContatore: "DN15",    prezzo: 38.52 },
+                { classeContatore: "DN20",    prezzo: 936   },
+                { classeContatore: "DN32",    prezzo: 936   },
+                { classeContatore: "DN40",    prezzo: 936   },
+                { classeContatore: "DN50",    prezzo: 2063  },
+                { classeContatore: "DN80",    prezzo: 3413  },
+                { classeContatore: "DN100",   prezzo: 3618  }
+                ]}
+        ]},        
+    ])
 
+    static ValoriPadova: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+    
+        { key: "LAVFAT1040_FOGNA_AAA", value: [
+            { label: 'Nuovo allacciamento (fino a 3 metri)',                    allacFogna: '01', quotaFissaNuovo: 1134.23, quotaFissaSpostamento:0 },
+            { label: 'Nuovo allacciamento (fino a 8 metri)',                    allacFogna: '11', quotaFissaNuovo: 2268.45, quotaFissaSpostamento:0 },
+            
+        ]},
+        { key: "LAVFAT1010_FOGNA_AAA", value: [
+            { label: 'Nuovo allacciamento (fino a 3 metri)',                    allacFogna: '01', quotaFissa: 1134.23 },
+            { label: 'Nuovo allacciamento (fino a 8 metri)',                    allacFogna: '11', quotaFissa: 2268.45 },
+            ]
+        },
+        {
+            key: 'QUOTE_LAVFAT1040_FOGNATURA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'supplemento mura 500 su 3 metri ', value: 1350.77, singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'supplemento mura 300 su 3 metri ', value: 1587.77, singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'supplemento mura 500 su 8 metri ', value: 226.85,  singleValue:'true', placeholder:"supplemento", id:"quota3"},
+                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"},
+                        {label: 'per ogni metro oltre gli 8 metri', value: 226.85,  placeholder:"lungh. eccedente (m)", id:"quota5"}
+                ]},
+            ] 
+        },
+        {
+            key: 'QUOTE_LAVFAT1010_FOGNATURA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'supplemento mura 500 su 3 metri ', value: 1350.77, singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'supplemento mura 300 su 3 metri ', value: 1587.77, singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'supplemento mura 500 su 8 metri ', value: 226.85,  singleValue:'true', placeholder:"supplemento", id:"quota3"},
+                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"},
+                        {label: 'per ogni metro oltre gli 8 metri', value: 226.85,  placeholder:"lungh. eccedente (m)", id:"quota5"}
+                ]},
+            ] 
+        },
+        
+        { key: "LAVFAT1010_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 623.82 },
+                  { classeContatore: "DN20",  prezzo: 623.82 },
+                  { classeContatore: "DN32",  prezzo: 623.82 },
+                  { classeContatore: "DN40",  prezzo: 1071.84 },
+                  { classeContatore: "DN50",  prezzo: 1786.4 },
+                  { classeContatore: "DN80",  prezzo: 1786.4 },
+                  { classeContatore: "DN100", prezzo: 1786.4 }
+            ]}
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1010_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                ]},
+            ] 
+          },
+        { key: "LAVFAT1040_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "DN15",      descrizione:"DN15",             prezzo: 873.35 },
+                { classeContatore: "DN15_2",    descrizione:"DN15 aggiuntivi",  prezzo: 623.82 },
+                { classeContatore: "DN20",      descrizione:"DN20",             prezzo: 873.35 },
+                { classeContatore: "DN20_2",    descrizione:"DN20 aggiuntivi",  prezzo: 623.82 },
+                { classeContatore: "DN32",      descrizione:"DN32",             prezzo: 873.35 },
+                { classeContatore: "DN32_2",    descrizione:"DN32 aggiuntivi",  prezzo: 623.82 },
+                { classeContatore: "DN40",      descrizione:"DN40",             prezzo: 1372.41 },
+                { classeContatore: "DN40_2",    descrizione:"DN40 aggiuntivi",  prezzo: 1071.84 },
+                { classeContatore: "DN50",      descrizione:"DN50",             prezzo: 2121 },
+                { classeContatore: "DN50_2",    descrizione:"DN50 aggiuntivi",  prezzo: 1786.40 },
+                { classeContatore: "DN80",      descrizione:"DN80",             prezzo: 2121 },
+                { classeContatore: "DN80_2",    descrizione:"DN80 aggiuntivi",  prezzo: 1786.40 },
+                { classeContatore: "DN100",     descrizione:"DN100",            prezzo: 2121 },
+                { classeContatore: "DN100_2",   descrizione:"DN100 aggiuntivi", prezzo: 1786.40 }
+            ]},                
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1040_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                ]},
+            ] 
+          },
+        { key: "LAVFAT1050_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 2121 },
+                  { classeContatore: "DN20",  prezzo: 2121 },
+                  { classeContatore: "DN32",  prezzo: 2121 },
+                  { classeContatore: "DN40",  prezzo: 2121 },
+                  { classeContatore: "DN50",  prezzo: 2121 },
+                  { classeContatore: "DN80",  prezzo: 2121 },
+                  { classeContatore: "DN100", prezzo: 2620.06 }
+            ]}
+        ]},
+
+        { key: "LAVFAT1070_ACQUA_AAA", value: [
+            { quotaFissa: 567.11 }
+        ]},
+        { key: "LAVFAT1100_ACQUA_AAA", value: [
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            
+        ]},       
+
+        
+        { key: "LAVFAT1110_ACQUA_AAA", value: [
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            
+        ]},   
+        { key: "LAVFAT1130_ACQUA_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 0,  quotaIstruttoria: 38.52, label: "Lavoro Interrato", quotaVariabile: [
+              { classeContatore: "DN15",  prezzo: 260.87 },
+              { classeContatore: "DN20",  prezzo: 260.87 },
+              { classeContatore: "DN32",  prezzo: 260.87 },
+              { classeContatore: "DN40",  prezzo: 680.54 },
+              { classeContatore: "DN50",  prezzo: 1111.54 },
+              { classeContatore: "DN80",  prezzo: 1111.54 },
+              { classeContatore: "DN100", prezzo: 1111.54 },
+              // { classeContatore: ">DN100", prezzo: 1111.54 }
+        ] },
+          { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
+      ]},     
+        
+        { key: "LAVFAT1140_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaIstruttoria:0, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 623.82,  },
+                  { classeContatore: "DN20",  prezzo: 623.82,  },
+                  { classeContatore: "DN32",  prezzo: 623.82,  },
+                  { classeContatore: "DN40",  prezzo: 680.54,  },
+                  { classeContatore: "DN50",  prezzo: 1071.84, },
+                  { classeContatore: "DN80",  prezzo: 1786.4,  },
+                  { classeContatore: "DN100", prezzo: 1786.4,  },
+                ]}
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1140_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                ]},
+            ] 
+          },
+        { key: "LAVFAT1181_ACQUA_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 38.52,  label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "DN15",  prezzo: 873.35 },
+                { classeContatore: "DN20",  prezzo: 873.35 },
+                { classeContatore: "DN32",  prezzo: 873.35 },
+                { classeContatore: "DN40",  prezzo: 1372.41 },
+                { classeContatore: "DN50",  prezzo: 2121 },
+                { classeContatore: "DN80",  prezzo: 2121 },
+                { classeContatore: "DN100", prezzo: 2121 },
+          ] },
+            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
+        ]},            
+    ])
+
+    static ValoriListinoCollinareGas: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 387.98 },
+                { classeContatore: "G4_2",      descrizione: "G4 aggiuntivi",       prezzo: 194    },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 452.65 },
+                { classeContatore: "G6_2",      descrizione: "G6 aggiuntivi",       prezzo: 226.32 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 517.32 },
+                { classeContatore: "G10_2",     descrizione: "G10 aggiuntivi",      prezzo: 258.66 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 581.98 },
+                { classeContatore: "G16_2",     descrizione: "G16 aggiuntivi",      prezzo: 290.99 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 711.31 },
+                { classeContatore: "G25_2",     descrizione: "G25 aggiuntivi",      prezzo: 355.66 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 969.97 },
+                { classeContatore: "G40_2",     descrizione: "G40 aggiuntivi",      prezzo: 484.98 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 387.98 },
+                { classeContatore: "G4_2",      descrizione: "G4 aggiuntivi",       prezzo: 194    },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 452.65 },
+                { classeContatore: "G6_2",      descrizione: "G6 aggiuntivi",       prezzo: 226.32 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 517.32 },
+                { classeContatore: "G10_2",     descrizione: "G10 aggiuntivi",      prezzo: 258.66 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 581.98 },
+                { classeContatore: "G16_2",     descrizione: "G16 aggiuntivi",      prezzo: 290.99 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 711.31 },
+                { classeContatore: "G25_2",     descrizione: "G25 aggiuntivi",      prezzo: 355.66 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 969.97 },
+                { classeContatore: "G40_2",     descrizione: "G40 aggiuntivi",      prezzo: 484.98 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 387.98 },
+                { classeContatore: "G6",   prezzo: 452.65 },
+                { classeContatore: "G10",  prezzo: 517.32 },
+                { classeContatore: "G16",  prezzo: 581.98 },
+                { classeContatore: "G25",  prezzo: 711.31 },
+                { classeContatore: "G40",  prezzo: 969.97 },
+                ] },
+
+        ]},
+                  
+    ])
+
+        
+        
     static Valori: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
         {
           key: 'QUOTE_LAVFAT1040_ACQUA',
@@ -3276,6 +3681,18 @@ export class Params {
               ] 
           },
           {
+            key: 'QUOTE_LAVFAT1040_GAS_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'supplemento lavorazioni siti inquinati ',          value: 1000, singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'supplemento prescrizioni SABAP (sovrintendenza) ', value: 1500, singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'quota aggiuntiva per ogni metro oltre i 10 <G6',   value: 21,  placeholder:"lungh. eccedente (m)", id:"quota3"},
+                        {label: 'quota aggiuntiva per ogni metro oltre i 10 >G6',   value: 43,  placeholder:"lungh. eccedente (m)", id:"quota4"}
+                ]},
+            ] 
+        },
+        {
             key: 'QUOTE_LAVFAT1050_GAS',
             value:[
                       {label: 'lunghezza eccedente con scavo (> 10mt)',
@@ -3541,27 +3958,51 @@ export class Params {
         { key: "LAVFAT1100_GAS", 
      
           value: [
-                  { classeContatore: "G4", quotaFissa: 1500, quotaVariabile: 350, quotaIstruttoria: 25 },
-                  { classeContatore: "G6", quotaFissa: 1500, quotaVariabile: 450, quotaIstruttoria: 25 },
-                   { classeContatore: "G10", quotaFissa: 1500, quotaVariabile: 550, quotaIstruttoria: 25 },
-                  { classeContatore: "G16", quotaFissa: 1500, quotaVariabile: 750, quotaIstruttoria: 25 },
-                  { classeContatore: "G25", quotaFissa: 1500, quotaVariabile: 800, quotaIstruttoria: 25 },
-                   { classeContatore: "G40", quotaFissa: 1500, quotaVariabile: 1000, quotaIstruttoria: 25 },
+                  { classeContatore: "G4",  quotaFissa: 1500, quotaVariabile: 350,  quotaIstruttoria: 25 },
+                  { classeContatore: "G6",  quotaFissa: 1500, quotaVariabile: 450,  quotaIstruttoria: 25 },
+                  { classeContatore: "G10", quotaFissa: 1500, quotaVariabile: 550,  quotaIstruttoria: 25 },
+                  { classeContatore: "G16", quotaFissa: 1500, quotaVariabile: 750,  quotaIstruttoria: 25 },
+                  { classeContatore: "G25", quotaFissa: 1500, quotaVariabile: 800,  quotaIstruttoria: 25 },
+                  { classeContatore: "G40", quotaFissa: 1500, quotaVariabile: 1000, quotaIstruttoria: 25 },
                   { classeContatore: "G65", quotaFissa: 1500, quotaVariabile: 1500, quotaIstruttoria: 25 },
-                   { classeContatore: "G100", quotaFissa: 1500, quotaVariabile: 1800, quotaIstruttoria: 25 }
+                  { classeContatore: "G100",quotaFissa: 1500, quotaVariabile: 1800, quotaIstruttoria: 25 }
+        ]},
+        { key: "LAVFAT1100_GAS_AAA", 
+     
+          value: [
+                  { classeContatore: "G4",  quotaFissa: 100, quotaVariabile: 0,  quotaIstruttoria: 0 },
+                  { classeContatore: "G6",  quotaFissa: 100, quotaVariabile: 0,  quotaIstruttoria: 0 },
         ]},
         
         { key: "LAVFAT1110_GAS", 
         
           value: [
-                { classeContatore: "G4", quotaFissa: 350 , quotaIstruttoria: 25},
-                { classeContatore: "G6", quotaFissa: 450 , quotaIstruttoria: 25},
-				{ classeContatore: "G10", quotaFissa: 550, quotaIstruttoria: 25 },                  
-                { classeContatore: "G16", quotaFissa: 750 , quotaIstruttoria: 25},
-                { classeContatore: "G25", quotaFissa: 800 , quotaIstruttoria: 25},  
-				{ classeContatore: "G40", quotaFissa: 1000 , quotaIstruttoria: 25},
-				{ classeContatore: "G65", quotaFissa: 1500 , quotaIstruttoria: 25},
- 				{ classeContatore: "G100", quotaFissa: 1800 , quotaIstruttoria: 25}
+                { classeContatore: "G4",    quotaFissa: 350 ,  quotaIstruttoria: 0},
+                { classeContatore: "G6",    quotaFissa: 450 ,  quotaIstruttoria: 0},
+				{ classeContatore: "G10",   quotaFissa: 550,   quotaIstruttoria: 0},                  
+                { classeContatore: "G16",   quotaFissa: 750 ,  quotaIstruttoria: 0},
+                { classeContatore: "G25",   quotaFissa: 800 ,  quotaIstruttoria: 0},  
+				{ classeContatore: "G40",   quotaFissa: 1000 , quotaIstruttoria: 0},
+				{ classeContatore: "G65",   quotaFissa: 1500 , quotaIstruttoria: 0},
+ 				{ classeContatore: "G100",  quotaFissa: 1800 , quotaIstruttoria: 0}
+            ]},
+
+        { key: "LAVFAT1110_GAS_AAA", 
+            value: [
+                { classeContatore: "G4",    quotaFissa: 137.5,  quotaIstruttoria: 0},
+                { classeContatore: "G6",    quotaFissa: 137.5,  quotaIstruttoria: 0},
+                { classeContatore: "G10",   quotaFissa: 242,    quotaIstruttoria: 0},                  
+                { classeContatore: "G16",   quotaFissa: 242,    quotaIstruttoria: 0},
+                { classeContatore: "G25",   quotaFissa: 363.5,  quotaIstruttoria: 0},  
+                { classeContatore: "G40",   quotaFissa: 630,    quotaIstruttoria: 0},
+                { classeContatore: "G65",   quotaFissa: 960,    quotaIstruttoria: 0},
+                { classeContatore: "G100",  quotaFissa: 1230,   quotaIstruttoria: 0},
+                { classeContatore: "G160",  quotaFissa: 1400,   quotaIstruttoria: 0},
+                { classeContatore: "G250",  quotaFissa: 1600,   quotaIstruttoria: 0},  
+                { classeContatore: "G400",  quotaFissa: 1750,   quotaIstruttoria: 0},
+                { classeContatore: "G1000", quotaFissa: 2220,   quotaIstruttoria: 0},
+                { classeContatore: "G1600", quotaFissa: 2420,   quotaIstruttoria: 0},
+                { classeContatore: "G2500", quotaFissa: 2620,   quotaIstruttoria: 0},  
         ]},
 
         { key: "LAVFAT1010_GAS", value: [
@@ -3577,9 +4018,22 @@ export class Params {
                 ] },
 
         ]},
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2214 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 }
+                ] },
+
+        ]},
 
         { key: "LAVFAT1040_GAS", value: [
-            { quotaFissa:  1500 , quotaVariabile: [
+            { quotaFissa:  0 , quotaVariabile: [
                 { classeContatore: "G4", prezzo: 380 },
                 { classeContatore: "G6", prezzo: 760 },
                 { classeContatore: "G10", prezzo: 970 },
@@ -3588,6 +4042,19 @@ export class Params {
                 { classeContatore: "G40", prezzo: 1780 },
                 { classeContatore: "G65", prezzo: 2080 },
                 { classeContatore: "G100", prezzo: 2380 }
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2214 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 }
                 ] },
 
         ]},
@@ -3605,7 +4072,19 @@ export class Params {
                 ] },
 
         ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2214 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 }
+                ] },
 
+        ]},
        /* { key: "LAVFAT1040_GAS", value: [
             { quotaFissa: 1500, quotaVariabile: 380 }
         ]},
@@ -3636,6 +4115,17 @@ export class Params {
             { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
         ]},
 
+        { key: "LAVFAT1130_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 985, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",  prezzo: 450 },
+                { classeContatore: "G6",  prezzo: 450 },
+                { classeContatore: "G16", prezzo: 450 },
+                { classeContatore: "G25", prezzo: 450 },
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
+        ]},
+
+        
         { key: "LAVFAT1181_GAS", value: [
             { tipoSpostamento: "1", quotaFissa: 440, label: "Lavoro Interrato", quotaVariabile: [
                 { classeContatore: "G4", prezzo: 350 },
@@ -3650,13 +4140,38 @@ export class Params {
             { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
         ]},
 
+        { key: "LAVFAT1181_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 885, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",  prezzo: 450 },
+                { classeContatore: "G6",  prezzo: 450 },
+                { classeContatore: "G16", prezzo: 450 },
+                { classeContatore: "G25", prezzo: 450 },
+                
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
+        ]},
+
         { key: "LAVFAT1610_GAS", value: [
             { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
             { tipoInterruzione: "BASE", quotaFissa: 365,label:"B" },
             { tipoInterruzione: "BYPASS", quotaFissa: 550, label:"Y" },
             { tipoInterruzione: "SCAVO", quotaFissa: 1700, label:"S" }
         ]},
+        { key: "LAVFAT1610_GAS_AAA", value: [
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+        ]},
+        
         { key: "LAVINT1630_GAS", value: [
+            { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
+            { tipoInterruzione: "BASE", quotaFissa: 365,label:"B" },
+            { tipoInterruzione: "BYPASS", quotaFissa: 550, label:"Y" },
+            { tipoInterruzione: "SCAVO", quotaFissa: 1700, label:"S" }
+        ]},
+        { key: "LAVFAT1630_GAS_AAA", value: [
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+        ]},
+
+        { key: "LAVFAT1631_GAS", value: [
             { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
             { tipoInterruzione: "BASE", quotaFissa: 365,label:"B" },
             { tipoInterruzione: "BYPASS", quotaFissa: 550, label:"Y" },
@@ -3690,14 +4205,14 @@ export class Params {
         ]},
 
          { key: "LAVFAT1010_ACQUA", value: [
-            { quotaFissa: 355, quotaVariabile: [
-                  { classeContatore: "DN15", prezzo: 320 },
-                  { classeContatore: "DN20", prezzo: 520 },
-                  { classeContatore: "DN25", prezzo: 820 },
-                  { classeContatore: "DN32", prezzo: 1120 },
-                  { classeContatore: "DN40", prezzo: 1420 },
-                  { classeContatore: "DN50", prezzo: 1720 },
-                  { classeContatore: "DN80", prezzo: 2020 },
+            { quotaFissa: 38.52, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 320  },
+                  { classeContatore: "DN20",  prezzo: 520  },
+                  { classeContatore: "DN25",  prezzo: 820  },
+                  { classeContatore: "DN32",  prezzo: 1120 },
+                  { classeContatore: "DN40",  prezzo: 1420 },
+                  { classeContatore: "DN50",  prezzo: 1720 },
+                  { classeContatore: "DN80",  prezzo: 2020 },
                   { classeContatore: "DN100", prezzo: 2320 }
             ]}
         ]},
@@ -3716,16 +4231,16 @@ export class Params {
             { label: 'Solo quota completamento', allacFogna: 'Z', quotaFissa: 707},
         ]},
         { key: "LAVFAT1040_FOGNA", value: [
-            { label: 'Allacciamento DN160 (1 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",  allacFogna: '01', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
-            { label: 'Allacciamento DN160 (1 UIeq) e 1,5mt < Hm <= 2,5mt',  diametro:"DN160", maxprofondita:"2.5", allacFogna: '02', quotaFissaNuovo: 2400, quotaFissaSpostamento:3140},
-            { label: 'Allacciamento DN160 (2-3 UIeq) e Hm <= 1,5m', diametro:"DN160", maxprofondita:"1.5", allacFogna: '03', quotaFissaNuovo: 2470, quotaFissaSpostamento:3210},
-            { label: 'Allacciamento DN160 (2-3 UIeq) e 1,5mt < Hm <= 2,5mt',diametro:"DN160", maxprofondita:"2.5", allacFogna: '04', quotaFissaNuovo: 3270, quotaFissaSpostamento:4010},
-            { label: 'Allacciamento DN160 (4-5 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",allacFogna: '05', quotaFissaNuovo: 2840, quotaFissaSpostamento:3580},
-            { label: 'Allacciamento DN160 (4-5 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '06', quotaFissaNuovo: 3640, quotaFissaSpostamento:4380},
-            { label: 'Allacciamento DN160 (6-10 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '07', quotaFissaNuovo: 3460, quotaFissaSpostamento:4200},
-            { label: 'Allacciamento DN160 (6-10 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '08', quotaFissaNuovo: 4260, quotaFissaSpostamento:5000},
-            { label: 'Allacciamento DN160 (>10 UIeq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '09', quotaFissaNuovo: 4075, quotaFissaSpostamento:4815},
-            { label: 'Allacciamento DN160 (>10 UIeq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '10', quotaFissaNuovo: 4875, quotaFissaSpostamento:5615},
+            { label: 'Allacciamento DN160 (1 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",  allacFogna: '01', quotaFissaNuovo: 1600, quotaFissaSpostamento:2340},
+            { label: 'Allacciamento DN160 (1 Uieq) e 1,5mt < Hm <= 2,5mt',  diametro:"DN160", maxprofondita:"2.5", allacFogna: '02', quotaFissaNuovo: 2400, quotaFissaSpostamento:3140},
+            { label: 'Allacciamento DN160 (2-3 Uieq) e Hm <= 1,5m', diametro:"DN160", maxprofondita:"1.5", allacFogna: '03', quotaFissaNuovo: 2470, quotaFissaSpostamento:3210},
+            { label: 'Allacciamento DN160 (2-3 Uieq) e 1,5mt < Hm <= 2,5mt',diametro:"DN160", maxprofondita:"2.5", allacFogna: '04', quotaFissaNuovo: 3270, quotaFissaSpostamento:4010},
+            { label: 'Allacciamento DN160 (4-5 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5",allacFogna: '05', quotaFissaNuovo: 2840, quotaFissaSpostamento:3580},
+            { label: 'Allacciamento DN160 (4-5 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '06', quotaFissaNuovo: 3640, quotaFissaSpostamento:4380},
+            { label: 'Allacciamento DN160 (6-10 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '07', quotaFissaNuovo: 3460, quotaFissaSpostamento:4200},
+            { label: 'Allacciamento DN160 (6-10 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '08', quotaFissaNuovo: 4260, quotaFissaSpostamento:5000},
+            { label: 'Allacciamento DN160 (>10 Uieq) e Hm <= 1,5mt', diametro:"DN160", maxprofondita:"1.5", allacFogna: '09', quotaFissaNuovo: 4075, quotaFissaSpostamento:4815},
+            { label: 'Allacciamento DN160 (>10 Uieq) e 1,5mt < Hm <= 2,5mt', diametro:"DN160", maxprofondita:"2.5", allacFogna: '10', quotaFissaNuovo: 4875, quotaFissaSpostamento:5615},
             { label: 'Allacciamento DN200 e Hm < 1,5mt', diametro:"DN200", maxprofondita:"1.5", allacFogna: '11', quotaFissaNuovo: 4690, quotaFissaSpostamento:5430},
             { label: 'Allacciamento DN200 e 1,5mt < Hm <= 2,5mt',diametro:"DN200", maxprofondita:"2.5", allacFogna: '12', quotaFissaNuovo: 5690, quotaFissaSpostamento:6430},
             { label: 'Allacciamento DN250 e Hm <= 1,5mt',diametro:"DN250", maxprofondita:"1.5", allacFogna: '13', quotaFissaNuovo: 5310, quotaFissaSpostamento:6050},
@@ -3837,6 +4352,8 @@ export class Params {
             { classeContatore: "08", quotaFissa: 1350, quotaVariabile: 950, label: "Contatore Calibro DN 80", quotaIstruttoria: 25 },
             { classeContatore: "09", quotaFissa: 1350, quotaVariabile: 1250, label: "Contatore Calibro DN 100", quotaIstruttoria: 25 }          
         ]},
+
+
 
         { key: "LAVFAT1610_ACQUA", value: [
             { quotaFissa: 115 }

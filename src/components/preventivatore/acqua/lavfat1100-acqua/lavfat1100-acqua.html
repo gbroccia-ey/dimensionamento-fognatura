@@ -1,0 +1,203 @@
+<!-- Generated template for the Lavfat1100AcquaComponent component -->
+<div>
+ <ion-slides>
+
+    <!-- 0 -->
+   <!-- <ion-slide>
+      <ion-grid> 
+        <ion-row>
+            <ion-col col-6>
+                <ion-label>Istruttoria</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-checkbox class="checkInTable" color="dark" [(ngModel)]="preventivo.Istruttoria" (ionChange)="setIstruttoria()"></ion-checkbox>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+              <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
+              <button class="btn_preventivatore" ion-button (click)="preventivo.Istruttoria ? goToSlide(3) : goToSlide(1)">Avanti</button> 
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide> -->
+
+    <!-- 1 -->
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+            <ion-col col-6>
+                <ion-label>Rifacimento</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-checkbox class="checkInTable" color="dark" checked="false" [(ngModel)]="preventivo.Rifacimento" ></ion-checkbox>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-12>
+              <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
+              <button class="btn_preventivatore" ion-button (click)="goToSlide(1)">Avanti</button> 
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+
+    <!-- 2 -->
+    <ion-slide>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>
+              <ion-label>Calibro Contatore</ion-label>
+          </ion-col>
+          <ion-col col-8>
+              <ion-select [(ngModel)]="preventivo.ClasseContatore">
+                  <ion-option *ngFor="let c of valori" [value]="c.classeContatore">{{ c.label }}</ion-option>
+              </ion-select>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-12>
+              <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
+              <button class="btn_preventivatore" ion-button (click)="goToSlide(2)">Avanti</button> 
+            </ion-col>
+        </ion-row>
+
+      </ion-grid>
+    </ion-slide>
+
+     <!-- 3 -->
+    <ion-slide>
+      <ion-grid>
+
+          <ion-row >
+              <ion-col col-4>
+                <ion-label>Calibro contatore</ion-label>
+              </ion-col>
+              <ion-col col-8>
+                <ion-label *ngIf="preventivo.ClasseContatore=='01'">Contatore Calibro DN 15   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='02'">Contatore Calibro DN 20   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='03'">Contatore Calibro DN 25   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='04'">Contatore Calibro DN 32   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='05'">Contatore Calibro DN 40   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='06'">Contatore Calibro DN 50   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='07'">Contatore Calibro DN 65   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='08'">Contatore Calibro DN 80   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='09'">Contatore Calibro DN 10   </ion-label>
+                <ion-label *ngIf="preventivo.ClasseContatore=='10'">Contatore Calibro > DN 100</ion-label> 
+              </ion-col>
+            </ion-row>
+
+
+        <ion-row >
+          <ion-col col-4>
+            <ion-label>Quota Fissa</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [(ngModel)]="preventivo.QuotaFissa" (ionChange)="aggiornaTotale()" readonly="true"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <ion-row >
+          <ion-col col-4>
+            <ion-label>Quota Contatore</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [(ngModel)]= "preventivo.QuotaContatore" (ionChange)="aggiornaTotale()" readonly="true"></ion-input>
+          </ion-col>
+        </ion-row>
+
+        <!--  <ion-row>
+          <ion-col col-4>
+              <ion-label>Cop</ion-label>
+          </ion-col>
+          <ion-col col-8>
+              <ion-input type="number" [(ngModel)]="preventivo.Cop" (ionChange)="aggiornaTotale()" disabled="false"></ion-input>
+              <calcolatrice-cop [ads]="ads" (result)="updateCop($event)" (isEdited)="isCopEdited($event)" (isEnabled)="enabledCopCheck($event)"></calcolatrice-cop>
+          </ion-col>
+        </ion-row> -->
+
+        <ion-row>
+          <ion-col col-6>
+              <ion-label>Altre spese - quote aggiuntive</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="number" [(ngModel)]="preventivo.Quote.Totale" (ionChange)="aggiornaTotale()" disabled=true></ion-input>
+              <calcolatrice-quote [ads]="ads" [preventivo]="preventivo"  (result)="updateQuote($event)" (isEdited)="isQuoteEdited($event)" (isEnabled)="enabledDerogaCheck($event)"></calcolatrice-quote>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col col-6>
+              <ion-label>Altre spese - Contributo deroga contatori singoli</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="number" [(ngModel)]="preventivo.Deroga.Totale" (ionChange)="aggiornaTotale()" disabled=true></ion-input>
+              <calcolatrice-deroga [ads]="ads" (result)="updateDeroga($event)" (isEdited)="isDerogaEdited($event)" (isEnabled)="enabledDerogaCheck($event)"></calcolatrice-deroga>
+          </ion-col>
+        </ion-row> 
+
+         
+        <ion-row *ngIf="preventivo.Rifacimento">
+          <ion-col col-6>
+              <ion-label>Cop</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="number" [(ngModel)]="preventivo.Cop" (ionChange)="aggiornaTotale()" disabled=true></ion-input>
+              <calcolatrice-cop [ads]="ads" (result)="updateCop($event)" (isEdited)="isCopEdited($event)" (isEnabled)="enabledCopCheck($event)"></calcolatrice-cop>
+          </ion-col>
+        </ion-row>
+
+
+        <ion-row >
+          <ion-col col-4>
+            <ion-label>Cer</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [(ngModel)]="preventivo.Cer" (ionChange)="aggiornaTotale()" disabled="true"></ion-input>
+            <calcolatore-cer [ads]="ads" (result)="updateCer($event)" (isEnabled)="enabledCheck($event)" (isEdited)="isEdited($event)"></calcolatore-cer>
+            
+          </ion-col>
+        </ion-row>
+        
+        <ion-row >
+          <ion-col col-4>
+            <ion-label>Cvv</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [(ngModel)]="preventivo.Cvv" (ionChange)="aggiornaTotale()" disabled="false"></ion-input>
+            <calcolatore-cvv [ads]="ads" (result)="updateCvv($event)" (isEnabled)="enabledCvvCheck($event)" (isEdited)="isCvvEdited($event)"></calcolatore-cvv>
+            
+          </ion-col>
+        </ion-row>
+
+        
+        <ion-row>
+          <ion-col col-4>
+            <ion-label>Altre Spese</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [ngModel]="preventivo.AltreSpese" (ionChange)="aggiornaTotale()" disabled></ion-input>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row>
+          <ion-col col-4>
+            <ion-label>Totale</ion-label>
+          </ion-col>
+          <ion-col col-8>
+            <ion-input type="number" [(ngModel)]="preventivo.Totale" disabled="true"></ion-input>
+          </ion-col>
+        </ion-row>  
+
+      </ion-grid>
+
+    <div>
+        <button class="btn_preventivatore" ion-button (click)="conferma_Preventivo()">Conferma</button> 
+        <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
+    </div>
+
+    </ion-slide>
+
+  </ion-slides>
+</div>

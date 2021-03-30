@@ -8,7 +8,7 @@ import {LogManager } from '../../providers/log-manager/logManager';
 import { WidgetManager } from '../../providers/widget-manager/widgetManager';
 
 import { PreviewPdfNoSignatures } from '../preview-pdf-no-signature/preview-pdf-no-signature';
-import { FascicoloTecnico } from '../../../models/FascicoloTecnico';
+import { FascicoloTecnico } from '../../models/FascicoloTecnico';
 
 
 declare var imgExample: any;

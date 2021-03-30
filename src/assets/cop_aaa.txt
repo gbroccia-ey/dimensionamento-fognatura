@@ -1,0 +1,1078 @@
+[
+    {
+        "Cod Localita": "37062",
+        "ENTE": "COMUNE",
+        "Localita": "ALTO RENO TERME",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37001",
+        "ENTE": "COMUNE",
+        "Localita": "ANZOLA DELL'EMILIA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37002",
+        "ENTE": "COMUNE",
+        "Localita": "ARGELATO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37003",
+        "ENTE": "COMUNE",
+        "Localita": "BARICELLA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37005",
+        "ENTE": "COMUNE",
+        "Localita": "BENTIVOGLIO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA FUORI MURA GAS",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA DENTRO MURA GAS",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "251"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O FUORI MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "265,20"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O DENTRO MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "574,80"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O CHIUS.STRADA FUORI MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "414"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O CHIUS.STRADA DENTRO MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "930"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O DEVIAZ.TRASP.PUBBLICO FUORI MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "786"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O DEVIAZ.TRASP.PUBBLICO DENTRO MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "1818"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O NUOVO ASFALTO 3 ANNI FUORI MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "972"
+    },
+    {
+        "Cod Localita": "37006",
+        "ENTE": "BOLOGNA H2O NUOVO ASFALTO 3 ANNI DENTRO MURA",
+        "Localita": "BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "2262"
+    },
+    {
+        "Cod Localita": "37008",
+        "ENTE": "COMUNE",
+        "Localita": "BUDRIO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37009",
+        "ENTE": "COMUNE",
+        "Localita": "CALDERARA DI RENO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37010",
+        "ENTE": "COMUNE",
+        "Localita": "CAMUGNANO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37011",
+        "ENTE": "COMUNE",
+        "Localita": "CASALECCHIO DI RENO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37013",
+        "ENTE": "COMUNE",
+        "Localita": "CASTEL D'AIANO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37015",
+        "ENTE": "COMUNE",
+        "Localita": "CASTEL DI CASIO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37019",
+        "ENTE": "COMUNE",
+        "Localita": "CASTEL MAGGIORE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36006",
+        "ENTE": "COMUNE",
+        "Localita": "CASTELFRANCO EMILIA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37017",
+        "ENTE": "COMUNE",
+        "Localita": "CASTELLO D'ARGILE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36007",
+        "ENTE": "COMUNE",
+        "Localita": "CASTELNUOVO RANGONE",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36008",
+        "ENTE": "COMUNE",
+        "Localita": "CASTELVETRO DI MODENA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37021",
+        "ENTE": "COMUNE",
+        "Localita": "CASTENASO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37022",
+        "ENTE": "COMUNE",
+        "Localita": "CASTIGLIONE DEI PEPOLI",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "39008",
+        "ENTE": "COMUNE",
+        "Localita": "CONSELICE",
+        "Provincia": "RA",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "37024",
+        "ENTE": "COMUNE",
+        "Localita": "CREVALCORE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "39010",
+        "ENTE": "COMUNE",
+        "Localita": "FAENZA",
+        "Provincia": "RA",
+        "TIPO COP": "COMUNALE",
+        "Valore": "300"
+    },
+    {
+        "Cod Localita": "36011",
+        "ENTE": "COMUNE",
+        "Localita": "FANANO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "38008",
+        "ENTE": "COMUNE",
+        "Localita": "FERRARA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "36013",
+        "ENTE": "COMUNE",
+        "Localita": "FIORANO MODENESE",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "48018",
+        "ENTE": "COMUNE",
+        "Localita": "FIRENZUOLA",
+        "Provincia": "FI",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36014",
+        "ENTE": "COMUNE",
+        "Localita": "FIUMALBO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36015",
+        "ENTE": "COMUNE",
+        "Localita": "FORMIGINE",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "251,38"
+    },
+    {
+        "Cod Localita": "37027",
+        "ENTE": "COMUNE",
+        "Localita": "GAGGIO MONTANO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37028",
+        "ENTE": "COMUNE",
+        "Localita": "GALLIERA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37030",
+        "ENTE": "COMUNE",
+        "Localita": "GRANAROLO DELL'EMILIA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37031",
+        "ENTE": "COMUNE",
+        "Localita": "GRIZZANA MORANDI",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36017",
+        "ENTE": "COMUNE",
+        "Localita": "GUIGLIA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36018",
+        "ENTE": "COMUNE",
+        "Localita": "LAMA MOCOGNO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37033",
+        "ENTE": "COMUNE",
+        "Localita": "LIZZANO IN BELVEDERE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37034",
+        "ENTE": "COMUNE",
+        "Localita": "LOIANO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37035",
+        "ENTE": "COMUNE",
+        "Localita": "MALALBERGO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36019",
+        "ENTE": "COMUNE",
+        "Localita": "MARANELLO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "252,07"
+    },
+    {
+        "Cod Localita": "36020",
+        "ENTE": "COMUNE",
+        "Localita": "MARANO SUL PANARO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37036",
+        "ENTE": "COMUNE",
+        "Localita": "MARZABOTTO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "38012",
+        "ENTE": "COMUNE",
+        "Localita": "MASI TORELLO",
+        "Provincia": "FE",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "37038",
+        "ENTE": "COMUNE",
+        "Localita": "MINERBIO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36023",
+        "ENTE": "COMUNE",
+        "Localita": "MODENA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "335"
+    },
+    {
+        "Cod Localita": "37039",
+        "ENTE": "COMUNE",
+        "Localita": "MOLINELLA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37040",
+        "ENTE": "COMUNE",
+        "Localita": "MONGHIDORO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37042",
+        "ENTE": "COMUNE",
+        "Localita": "MONTE SAN PIETRO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36024",
+        "ENTE": "COMUNE",
+        "Localita": "MONTECRETO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36025",
+        "ENTE": "COMUNE",
+        "Localita": "MONTEFIORINO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37041",
+        "ENTE": "COMUNE",
+        "Localita": "MONTERENZIO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36026",
+        "ENTE": "COMUNE",
+        "Localita": "MONTESE",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37044",
+        "ENTE": "COMUNE",
+        "Localita": "MONZUNO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37046",
+        "ENTE": "COMUNE",
+        "Localita": "OZZANO DELL'EMILIA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36029",
+        "ENTE": "COMUNE",
+        "Localita": "PALAGANO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36030",
+        "ENTE": "COMUNE",
+        "Localita": "PAVULLO NEL FRIGNANO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37047",
+        "ENTE": "COMUNE",
+        "Localita": "PIANORO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37048",
+        "ENTE": "COMUNE",
+        "Localita": "PIEVE DI CENTO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36031",
+        "ENTE": "COMUNE",
+        "Localita": "PIEVEPELAGO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36032",
+        "ENTE": "COMUNE",
+        "Localita": "POLINAGO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36033",
+        "ENTE": "COMUNE",
+        "Localita": "PRIGNANO SULLA SECCHIA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "39014",
+        "ENTE": "COMUNE",
+        "Localita": "RAVENNA",
+        "Provincia": "RA",
+        "TIPO COP": "COMUNALE",
+        "Valore": "120"
+    },
+    {
+        "Cod Localita": "39014",
+        "ENTE": "AUTORITA' PORTUALE DI RAVENNA",
+        "Localita": "RAVENNA",
+        "Provincia": "RA",
+        "TIPO COP": "COMUNALE",
+        "Valore": "200"
+    },
+    {
+        "Cod Localita": "36035",
+        "ENTE": "COMUNE",
+        "Localita": "RIOLUNATO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "38020",
+        "ENTE": "COMUNE",
+        "Localita": "RO",
+        "Provincia": "FE",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "40037",
+        "ENTE": "COMUNE",
+        "Localita": "RONCOFREDDO",
+        "Provincia": "FC",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "37051",
+        "ENTE": "COMUNE",
+        "Localita": "S BENEDETTO VAL DI SAMBRO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37050",
+        "ENTE": "COMUNE",
+        "Localita": "SALA BOLOGNESE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36036",
+        "ENTE": "COMUNE",
+        "Localita": "SAN CESARIO SUL PANARO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37052",
+        "ENTE": "COMUNE",
+        "Localita": "SAN GIORGIO DI PIANO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37053",
+        "ENTE": "COMUNE",
+        "Localita": "SAN GIOVANNI IN PERSICETO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37054",
+        "ENTE": "COMUNE",
+        "Localita": "SAN LAZZARO DI SAVENA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37055",
+        "ENTE": "COMUNE",
+        "Localita": "SAN PIETRO IN CASALE",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37057",
+        "ENTE": "COMUNE",
+        "Localita": "SASSO MARCONI",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36040",
+        "ENTE": "COMUNE",
+        "Localita": "SASSUOLO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "490"
+    },
+    {
+        "Cod Localita": "36041",
+        "ENTE": "COMUNE",
+        "Localita": "SAVIGNANO SUL PANARO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36042",
+        "ENTE": "COMUNE",
+        "Localita": "SERRAMAZZONI",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36043",
+        "ENTE": "COMUNE",
+        "Localita": "SESTOLA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "39018",
+        "ENTE": "COMUNE",
+        "Localita": "SOLAROLO",
+        "Provincia": "RA",
+        "TIPO COP": "COMUNALE",
+        "Valore": "103"
+    },
+    {
+        "Cod Localita": "36045",
+        "ENTE": "COMUNE",
+        "Localita": "SPILAMBERTO",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37061",
+        "ENTE": "COMUNE",
+        "Localita": "VALSAMOGGIA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "37059",
+        "ENTE": "COMUNE",
+        "Localita": "VERGATO",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "Cod Localita": "36046",
+        "ENTE": "COMUNE",
+        "Localita": "VIGNOLA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "36047",
+        "ENTE": "COMUNE",
+        "Localita": "ZOCCA",
+        "Provincia": "MO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "193"
+    },
+    {
+        "Cod Localita": "37060",
+        "ENTE": "COMUNE",
+        "Localita": "ZOLA PREDOSA",
+        "Provincia": "BO",
+        "TIPO COP": "COMUNALE",
+        "Valore": "151"
+    },
+    {
+        "ENTE": "CONSORZIO BURANA",
+        "Provincia": "MO",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "386"
+    },
+    {
+        "ENTE": "CONSORZIO BONIFICA PIANURA DI FERRARA",
+        "Provincia": "FE",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "392,51"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA",
+        "Provincia": "RA",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA",
+        "Provincia": "FC",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA",
+        "Provincia": "RN",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA",
+        "Provincia": "BO",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA OCCIDENTALE",
+        "Provincia": "RA",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA OCCIDENTALE",
+        "Provincia": "FC",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA OCCIDENTALE",
+        "Provincia": "RN",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "CONSORZIO DI BONIFICA DELLA ROMAGNA OCCIDENTALE",
+        "Provincia": "BO",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "250"
+    },
+    {
+        "ENTE": "PROVINCIA DI BOLOGNA",
+        "Provincia": "BO",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA DI FERRARA",
+        "Provincia": "FE",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA DI FORLI'-CESENA",
+        "Provincia": "FC",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA DI FIRENZE",
+        "Provincia": "FI",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA MODENA in sede stradale",
+        "Provincia": "MO",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "1113"
+    },
+    {
+        "ENTE": "PROVINCIA MODENA fuori sede stradale (pertinenza)",
+        "Provincia": "MO",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA DI RAVENNA",
+        "Provincia": "RA",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "PROVINCIA DI RIMINI",
+        "Provincia": "RN",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "ANAS AREA EMILIA",
+        "Provincia": "BO",
+        "TIPO COP": "STATALE",
+        "Valore": "1113"
+    },
+    {
+        "ENTE": "ANAS AREA ROMAGNA",
+        "Provincia": "FC",
+        "TIPO COP": "STATALE",
+        "Valore": "450"
+    },
+    {
+        "ENTE": "ANAS AREA EMILIA",
+        "Provincia": "FE",
+        "TIPO COP": "STATALE",
+        "Valore": "1113"
+    },
+    {
+        "ENTE": "ANAS AREA EMILIA",
+        "Provincia": "MO",
+        "TIPO COP": "STATALE",
+        "Valore": "1113"
+    },
+    {
+        "ENTE": "ANAS AREA ROMAGNA",
+        "Provincia": "RA",
+        "TIPO COP": "STATALE",
+        "Valore": "450"
+    },
+    {
+        "ENTE": "ANAS AREA ROMAGNA",
+        "Provincia": "RN",
+        "TIPO COP": "STATALE",
+        "Valore": "450"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "BRUGINE",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "60"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "CODEVIGO",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "40"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "LEGNARO",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "140"
+    },
+    {
+        "Cod Localita": "35100",
+        "ENTE": "COMUNE",
+        "Localita": "PADOVA",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "40"
+    },
+    {
+        "Cod Localita": "35028",
+        "ENTE": "COMUNE",
+        "Localita": "PIOVE DI SACCO",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "60"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "PONTE SAN NICOLO'",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "40"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "POLVERARA",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "140"
+    },
+    {
+        "Cod Localita": "35029",
+        "ENTE": "COMUNE",
+        "Localita": "PONTELONGO",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "80"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "SAONARA",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "100"
+    },
+    {
+        "Cod Localita": "35020",
+        "ENTE": "COMUNE",
+        "Localita": "SANT'ANGELO DI PIOVE DI SACCO",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "140"
+    },
+    {
+        "Cod Localita": "30010",
+        "ENTE": "COMUNE",
+        "Localita": "CONA",
+        "Provincia": "VE",
+        "TIPO COP": "COMUNALE",
+        "Valore": "60"
+    },
+    {
+        "ENTE": "PROVINCIA PADOVA",
+        "Provincia": "PD",
+        "TIPO COP": "PROVINCIALE",
+        "Valore": "140"
+    },
+    {
+        "ENTE": "VENETO STRADE",
+        "Provincia": "PD",
+        "TIPO COP": "REGIONALE",
+        "Valore": "200"
+    },
+    {
+        "ENTE": "CONSORZIO BONIFICA BACCHIGLIONE",
+        "Provincia": "PD",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "70"
+    },
+    {
+        "ENTE": "ANAS VENETO",
+        "Provincia": "PD",
+        "TIPO COP": "STATALE",
+        "Valore": "460"
+    },
+    {
+        "Cod Localita": "35036",
+        "ENTE": "COMUNE",
+        "Localita": "MONTEGROTTO TERME",
+        "Provincia": "PD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "110"
+    },
+    {
+        "ENTE": "FRIULI VENEZIA GIULIA STRADE",
+        "Provincia": "TS",
+        "TIPO COP": "REGIONALE",
+        "Valore": "202,80"
+    },
+    {
+        "ENTE": "ANAS AREA VENEZIA GIULIA",
+        "Provincia": "TS",
+        "TIPO COP": "STATALE",
+        "Valore": "455,18"
+    },
+    {
+        "Cod Localita": "33010",
+        "ENTE": "COMUNE",
+        "Localita": "CASSACCO",
+        "Provincia": "UD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "32"
+    },
+    {
+        "Cod Localita": "33010",
+        "ENTE": "COMUNE",
+        "Localita": "COLLOREDO DI M.A.",
+        "Provincia": "UD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "32"
+    },
+    {
+        "Cod Localita": "33044",
+        "ENTE": "COMUNE",
+        "Localita": "MANZANO",
+        "Provincia": "UD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "32"
+    },
+    {
+        "Cod Localita": "33010",
+        "ENTE": "COMUNE",
+        "Localita": "TAVAGNACCO",
+        "Provincia": "UD",
+        "TIPO COP": "COMUNALE",
+        "Valore": "32"
+    },
+    {
+        "Cod Localita": "-",
+        "ENTE": "FRIULI VENEZIA GIULIA STRADE",
+        "Localita": "-",
+        "Provincia": "UD",
+        "TIPO COP": "REGIONALE",
+        "Valore": "202,80"
+    },
+    {
+        "Cod Localita": "-",
+        "ENTE": "FRIULI VENEZIA GIULIA STRADE - RINNOVO",
+        "Localita": "-",
+        "Provincia": "UD",
+        "TIPO COP": "REGIONALE",
+        "Valore": "48,80"
+    },
+    {
+        "Cod Localita": "-",
+        "ENTE": "ANAS AREA FRIULI",
+        "Localita": "-",
+        "Provincia": "UD",
+        "TIPO COP": "STATALE",
+        "Valore": "359,80"
+    },
+    {
+        "Cod Localita": "-",
+        "ENTE": "CONSORZIO DI BONIFICA PIANURA FRIULANA",
+        "Localita": "-",
+        "Provincia": "UD",
+        "TIPO COP": "CONSORZIO",
+        "Valore": "32"
+    }
+]

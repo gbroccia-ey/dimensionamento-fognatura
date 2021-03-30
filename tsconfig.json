@@ -17,10 +17,6 @@
     "noImplicitAny": false
   },
   "include": [
-    "app/*.ts",
-    "pages/**/*.ts",
-    "components/**/*.ts",
-    "models/*.ts",
     "src/**/*.ts"
   ],
   "exclude": [

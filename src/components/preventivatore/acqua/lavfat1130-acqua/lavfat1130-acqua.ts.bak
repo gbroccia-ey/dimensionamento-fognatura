@@ -1,0 +1,103 @@
+import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Preventivo } from '../../../../models/preventivo';
+import { Params } from '../../../../config/params';
+import { BasePreventivatoreComponent } from '../../base-preventivatore/base-preventivatore';
+import { NavController } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
+import { AdsService } from '../../../../services/ads-service';
+/**
+ * Generated class for the Lavfat1130AcquaComponent component.
+ *
+ * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
+ * for more info on Angular Components.
+ */
+@Component({
+  selector: 'lavfat1130-acqua',
+  templateUrl: 'lavfat1130-acqua.html'
+})
+export class Lavfat1130AcquaComponent extends BasePreventivatoreComponent implements OnInit, AfterViewInit{
+
+  valori: Object[] = [];
+  preventivo: Preventivo;
+  tipo_spostamento: Array<Object>;
+  
+
+  constructor(public navCtrl: NavController, public alertCtrl: AlertController, public adsService: AdsService) {
+    super(alertCtrl, adsService, navCtrl);
+    this.preventivo = new Preventivo();
+    this.tipo_spostamento = [];
+
+    
+  }
+
+  ngOnInit() {
+    this.valori = Params.Valori.get("LAVFAT1130_ACQUA");
+
+    if(this.ads.Preventivo) {
+      this.preventivo = this.ads.Preventivo;
+      }
+    else {
+        this.preventivo = new Preventivo();
+        this.preventivo.Cer = 0;
+        this.preventivo.Cvv = 0;
+        this.preventivo.AltreSpese = 0;
+          this.preventivo.NumeroAttacchi = 1;
+        this.preventivo.QuotaFissaNAttacchi = 0;
+    }
+
+   this.valori = Params.Valori.get("LAVFAT1181_ACQUA");
+	  this.valori.forEach(v => {
+        this.tipo_spostamento.push({value: v["tipoSpostamento"], label: v["label"]});
+    });
+
+    this.updateQuotaFissa();
+  }
+
+  getTotaleUlteriori(){
+      if(this.preventivo.NumeroAttacchi && this.preventivo.QuotaFissaNAttacchi )
+        return (this.preventivo.NumeroAttacchi - 1) * this.preventivo.QuotaFissaNAttacchi;
+      return 0;
+    }
+
+   updateQuotaFissa() {
+      if(!this.preventivo.TipoSpostamento) return;
+      if(this.preventivo.NumeroAttacchi === 1) {
+        this.preventivo.QuotaFissaPrimoAttacco = Number(this.valori.find(x => x["tipoSpostamento"] === String(this.preventivo.TipoSpostamento))["quotaFissa"]);
+      }
+      else {
+        this.preventivo.QuotaFissaPrimoAttacco = Number(this.valori.find(x => x["tipoSpostamento"] === String(this.preventivo.TipoSpostamento))["quotaFissa"]);
+        this.preventivo.QuotaFissaNAttacchi = Number(this.valori.find(x => x["tipoSpostamento"] === String(this.preventivo.TipoSpostamento))["quotaFissaAggiunta"]);
+      }
+      this.aggiornaTotale();
+   
+  }
+
+
+  updateCop(res: any) {
+    let result = res.result;
+    if(typeof result === "string"){
+      result.replace(",",".");
+    }
+    this.preventivo.Cop = +result;
+    this.adsService.updateAds(this.ads, {CopInfo: res.copinfo}, () => {}, () => {});
+    
+    this.aggiornaTotale();
+  }
+
+  aggiornaTotale() {
+    this.preventivo.Totale = Number(this.preventivo.QuotaFissaPrimoAttacco) + 
+      (Number(this.preventivo.QuotaFissaNAttacchi)  * ((Number(this.preventivo.NumeroAttacchi) - 1) || 0))
+      + (+this.preventivo.Cop || 0) + +this.preventivo.Cer + +this.preventivo.Cvv + +this.preventivo.AltreSpese;
+  }
+
+  updateCer(result) {
+    this.preventivo.Cer = result;
+    this.aggiornaTotale();
+  }
+  
+  updateCvv(result) {
+    this.preventivo.Cvv = result;
+    this.aggiornaTotale();
+  }
+
+}

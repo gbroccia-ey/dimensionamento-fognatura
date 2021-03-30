@@ -7,7 +7,7 @@ export class Utils {
 
     static getDeviceEnvironment(): string {
 
-        var env: string =  WL.Client.getEnvironment();
+        var env: string =  "preview"//WL.Client.getEnvironment();
         var device: string = "unsupported";
         
         switch(env.toLowerCase()) {

@@ -1,0 +1,153 @@
+page-adsdetails {
+
+    .btnContainer{
+        width:450px;
+        height: 74px;
+    }
+
+    .odlCorrelatiIcon{
+        width:30px;
+        float:right;
+    }
+
+    .odlCorrelato{
+        box-shadow: 3px 2px 4px -1px #bdbdbd;
+        padding: 5px;
+        border-left: #e0e0e0 1px solid;
+        border-top: #e0e0e0 1px solid;
+        margin-top:4px;
+    }
+
+
+    .titleODL-bigIcon {
+        font-size: xx-large !important;
+        padding-left: calc(50% - 60px) !important;
+    }
+    .subtitleODL-bigIcon {
+        padding-left: calc(50% - 20px) !important;
+    }
+
+    .icon-setMerc-sm{
+        width:11%;
+        float:left;
+        height:50px;
+        max-width:70px;
+    }
+
+    .icon-setMerc-big{
+        width: 20%;
+        float: left;
+        height: 95px;
+        max-width: 112px;
+        position: absolute;
+    }
+
+
+    .btnDisabled{
+        background: #ffffff !important;
+        color: #111111;
+        opacity: 0.4;
+    }
+
+    .btnEnabled{
+        background:#f4f4f4;
+        color: black;
+    }
+
+    .btnRed{
+        background: red;
+    }
+
+    .subtitleODL{
+        padding-left: 16px;
+    }
+
+    .titleODL{
+        font-size: large;
+        font-weight: 700;
+    }
+
+      .rowTitle{
+        font-weight: 600;
+        font-size: large;
+        border-bottom-style: solid;
+        border-bottom-width: 2px;
+        border-bottom-color: $lilla-hera;
+        margin-top: 30px;
+        margin-right: 10px;
+    }
+
+    .inlineBtn{
+            float: right;
+    /* border-radius: 30px; */
+    height: 32px;
+    width: 32px;
+    top: -16px;
+    }
+
+    .btn-fab{
+        font-size: x-small;
+    }
+
+    button{
+        color:white;
+        
+    }
+
+    .btn-details{
+        margin-left: 16px;
+        margin-top: 16px;
+    }
+
+    .rowTab{
+       width:calc(50%);
+       float:left;
+       padding-left:16px;
+       padding-bottom:16px;
+    }
+
+    .btn-fab{
+        height: 45px;
+        margin: 10px;
+        border-radius: 10px;
+        width: 150px;
+        float: right;
+    }
+
+    @media (max-width:576px) and (orientation:portrait){
+        .rowTab{
+            width: 100%;    
+        }
+    }
+
+}
+
+ion-fab {
+    button {
+        box-shadow: 0 4px 10px #6b6b6b;
+    }
+
+    ion-fab-list button[ion-fab] {
+        text-align: center;
+        overflow: visible;
+
+        div.label {
+          position: absolute;
+          right: 48px;
+          background: rgba(248, 248, 248, 1);
+          height: 24px;
+          line-height: 16px;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-top: 8px;
+          border-radius: 5px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .button-inner {
+        overflow: visible;
+    }
+}

@@ -1,0 +1,71 @@
+<!--
+  Generated template for the PreventivatorePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>preventivatore {{ ads.ProdServizio }}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding [ngSwitch]="renderView_()">
+  <lavfat1100-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1100_GAS'"></lavfat1100-gas>
+  <lavfat1110-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1110_GAS'"></lavfat1110-gas>
+  <lavfat1010-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1010_GAS'"></lavfat1010-gas>
+  <lavfat1010-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1040_GAS'"></lavfat1010-gas>
+  <lavfat1010-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1140_GAS'"></lavfat1010-gas>
+  
+  
+  <lavfat1070-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1070_GAS'"></lavfat1070-gas>
+  <lavfat1170-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1170_GAS'"></lavfat1170-gas>
+  <lavfat1130-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1130_GAS'"></lavfat1130-gas>
+  <lavfat1130-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1181_GAS'"></lavfat1130-gas>
+  
+  <lavfat1610-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1610_GAS'"></lavfat1610-gas>
+  <lavint1630-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVINT1630_GAS'"></lavint1630-gas>
+  <lavfat1631-gas [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1631_GAS'"></lavfat1631-gas>
+
+  <lavfat1040-ee [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1040_ENERGIA_ELETTRICA'"></lavfat1040-ee>
+
+  <lavfat1100-ee [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1100_ENERGIA_ELETTRICA'"></lavfat1100-ee>
+  <lavfat1100-ee [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1120_ENERGIA_ELETTRICA'"></lavfat1100-ee>
+  
+  <lavfat1181-ee [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1181_ENERGIA_ELETTRICA'"></lavfat1181-ee>
+
+  <lavfat1010-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1010_ACQUA'"></lavfat1010-acqua>
+
+  <lavfat1010-fogna [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1010_FOGNATURA'"></lavfat1010-fogna>
+  <lavfat1040-fogna [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1040_FOGNATURA'"></lavfat1040-fogna>
+  
+
+  <lavfat1040-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1040_ACQUA'"></lavfat1040-acqua>
+  <lavfat1040-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1050_ACQUA'"></lavfat1040-acqua>
+  <lavfat1040-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1140_ACQUA'"></lavfat1040-acqua>
+  
+
+  <lavfat1070-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1070_ACQUA'"></lavfat1070-acqua>
+
+  <lavfat1170-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1170_ACQUA'"></lavfat1170-acqua>
+
+  <lavfat1130-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1130_ACQUA'"></lavfat1130-acqua>
+  <lavfat1181-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1181_ACQUA'"></lavfat1181-acqua>
+  
+
+  <lavfat1100-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1100_ACQUA'"></lavfat1100-acqua>
+
+  <lavfat1110-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1110_ACQUA'"></lavfat1110-acqua>
+
+  <lavfat1610-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVFAT1610_ACQUA'"></lavfat1610-acqua>
+  
+
+  <lavint1610-acqua [ads]="ads" (confermaPreventivo)="conferma_preventivo($event)" *ngSwitchCase="'LAVINT1610_ACQUA'"></lavint1610-acqua>
+
+  <div *ngSwitchDefault>
+    <p>Il prodotto di servizio non è preventivabile</p>
+  </div>
+
+</ion-content>

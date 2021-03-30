@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
+import { DecimalPipe} from '@angular/common';
 import { SettoreMerceologico,DettaglioMerceologico } from './ads';
 import { Utils } from '../utils/utils';
-import { DimensionamentoAllacciFognatura, ParametriAcqueNere } from './dimensionamento-allacci';
+import { DimensionamentoAllacciFognatura, ParametriAcqueNere, DIMFOGNA_MSG } from './dimensionamento-allacci';
 
 
 declare var util: any;
@@ -16,7 +17,7 @@ export class ModelFT {
     header;
     header2;
 
-    constructor() {
+    constructor(private _decimalPipe : DecimalPipe) {
 
     }
 
@@ -754,7 +755,7 @@ export class ModelFT {
             this.fillColor      = '#6c4e03';
             let headerBG        = '#6d4f00', headerFontColor = 'white', headerFontSize=14;
             
-            let header2BG       = '#fed254', header2FontSize=10,header2ColFontSize=7;
+            let header2BG       = '#fed254', header2FontSize=10, header2ColFontSize=7,header2ColFontSize2=5;
             let acqueNereBG     = '#15a43f';
             let acqueNereBG2    = '#badba5';
             let acqueBiancheBG  = '#8cb3e0';
@@ -762,15 +763,45 @@ export class ModelFT {
             let vincoliBG       = '#feff0d';
             let vincoli2BG      = header2BG;
             let paramBG         = '#cfd0d0';
+            let paramRedBG      = '#febac2';
+            let paramGreenBG    = '#bbedc4';
             
+
             var formatVal = (val) => {
                 // use precision and remove commas
-                return Number(val).toFixed(2);
+                if (isNaN(+val)) return " "+val;
+                return ""+this._decimalPipe.transform(+val,"1.1-2").replace(/,/g, "");
             }
             
+            var setColorForPortata = (msg) =>{
+                switch(msg){
+                    case DIMFOGNA_MSG.DN_INSUFF:
+                    case DIMFOGNA_MSG.NON_IDONEA:
+                    case DIMFOGNA_MSG.ERRORE:
+                          return paramRedBG;
+                    case DIMFOGNA_MSG.PORTATA_NULL:
+                          return 'white';
+                    default:
+                      return paramGreenBG;
+                  }
+            }
+            
+            var setColorForMessage = (msg) =>{
+                switch(msg){
+                    case DIMFOGNA_MSG.DN_INSUFF:
+                    case DIMFOGNA_MSG.PORTATA_NULL:
+                    case DIMFOGNA_MSG.ERRORE:
+                    case DIMFOGNA_MSG.NON_IDONEA:
+                    case DIMFOGNA_MSG.FUORI_LIMITE:  
+                          return paramRedBG;
+                    default:
+                      return paramGreenBG;
+                  }
+            }
             
 
             let dataList = [];
+            /*
             dataList.push([{text: 'OdL', fillColor:header2BG},{text: value.dati.form._ads.CodiceOdl}]);
             dataList.push([{text: 'Comune', fillColor:header2BG},{text: value.dati.form._ads.Indirizzo.Citta}]);
             dataList.push([{text: 'Indirizzo', fillColor:header2BG},{text: value.dati.form._ads.Indirizzo.toString()}]);
@@ -782,14 +813,14 @@ export class ModelFT {
                 clienteTxt = value.dati.form._ads.Cliente.RagioneSociale;
             }
             dataList.push([{text: 'Cliente', fillColor:header2BG,fontSize:header2FontSize},{text: clienteTxt}]);
-    
+            */
             let datiProgettoList = [];
             datiProgettoList.push([
                 {text:"ACQUE NERE",         fillColor: acqueNereBG,     alignment:"center", bold:true, fontSize:header2FontSize},
                 {text:"",                   fillColor: acqueNereBG,     alignment:"center", bold:true, fontSize:header2ColFontSize},
                 {text:"UIeq",               fillColor: acqueNereBG,     alignment:"center", bold:true, fontSize:header2ColFontSize},
                 {text:"ACQUE BIANCHE",      fillColor: acqueBiancheBG,  alignment:"center", bold:true, fontSize:header2FontSize},
-                {text:"Superficie(mq)",     fillColor: acqueBiancheBG,  alignment:"center", bold:true, fontSize:header2ColFontSize},
+                {text:"Superficie\n(mq)",   fillColor: acqueBiancheBG,  alignment:"center", bold:true, fontSize:header2ColFontSize},
                 {text:"Portata (l/s)",      fillColor: acqueBiancheBG,  alignment:"center", bold:true, fontSize:header2ColFontSize},
                 {text:"UIeq",               fillColor: acqueBiancheBG,  alignment:"center", bold:true, fontSize:header2ColFontSize},
 
@@ -803,7 +834,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:dimAllacci.AcqueNere.usoDomestico,                                             
+                    text:""+dimAllacci.AcqueNere.usoDomestico,                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:header2ColFontSize
@@ -838,7 +869,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:dimAllacci.AcqueNere.alberghieri,                                             
+                    text:""+dimAllacci.AcqueNere.alberghieri,                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:header2ColFontSize
@@ -878,7 +909,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:dimAllacci.AcqueNere.ospedali,                                             
+                    text:""+dimAllacci.AcqueNere.ospedali,                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:header2ColFontSize
@@ -918,7 +949,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:dimAllacci.AcqueNere.artigianali,                                             
+                    text:""+dimAllacci.AcqueNere.artigianali,                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:header2ColFontSize
@@ -956,7 +987,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:dimAllacci.AcqueNere.commerciali,                                             
+                    text:""+dimAllacci.AcqueNere.commerciali,                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:header2ColFontSize
@@ -1026,7 +1057,7 @@ export class ModelFT {
 
             datiProgettoList.push([
                 {   
-                    text:"Portata relativa alle unità abitative [l/s] (ACQUE NERE)",         
+                    text:"Portata relativa alle unità abitative [l/s]\n(ACQUE NERE)",         
                     fillColor: acqueNereBG,     
                     alignment:"left",
                     bold:true, 
@@ -1047,7 +1078,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {   
-                    text:'Portata meteorica totale [l/s] (ACQUE BIANCHE)',         
+                    text:'Portata meteorica totale [l/s]\n(ACQUE BIANCHE)',         
                     fillColor: acqueBiancheBG,     
                     alignment:"left", 
                     bold:true, 
@@ -1229,121 +1260,146 @@ export class ModelFT {
                           
             ]);
 
+
             let allacciamentiList = [];
-            
+            allacciamentiList.push([
+                {text:"Condotta allacciamento",         
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize},
+                {text:"Diam. Int. tubo scelto [mm]",                   
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize},
+                {text:"K (coef. Scabr.) [m1/3s-1]",               
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize},
+                {text:"Port. smaltibile con riemp. 70% [l/s]",      
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize2},
+                {text:"alfa",     
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize},
+                {text:"% di riemp. tubo a Portata compl.",      
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize2},
+                {text:"Vel. a Portata compl. [m/s]",      
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize},
+                {text:"Verifica condotta esist. e/o Dim. condotta nuova",               
+                    fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize2},
 
-            /*
-            let dimensionamentoList = [];
-            
-            dimensionamentoList.push([{text: 'Tubazione stradale', fillColor:this.fillColor},{text: dimAllacci.ReteStradale}]);
-            dimensionamentoList.push([{text: 'Pressione di rete [bar]', fillColor:this.fillColor},{text: dimAllacci.PressioneRete}]);
-            dimensionamentoList.push([{text: 'Lunghezza allacciamento [m]', fillColor:this.fillColor},{text: dimAllacci.LunghezzaAllacciamento}]);
-            dimensionamentoList.push([{text: 'Numero perdite di carico concentrate (curve, tee,..)', fillColor:this.fillColor},{text: dimAllacci.NumeroPerdite}]);
-            
-            let richiesteTipoA = [];
-            if(dimAllacci.UnitaSingola && dimAllacci.UnitaSingola.numero > 0)
-            richiesteTipoA.push(
-                [
-                    { text: '', fillColor:this.fillColor }, 
-                    { text: 'Numero contatori', fillColor:this.fillColor}, 
-                    { text: 'Tipo di contatore', fillColor:this.fillColor }
-                ],  [
-                    { text: '"A" Contatore per unità abitativa singola' }, 
-                    { text: ""+dimAllacci.UnitaSingola.numero}, 
-                    { text: ""+dimAllacci.UnitaSingola.tipoContatore }
-          
-                ]      
-            );
-            if(dimAllacci.UnitaDeroga && dimAllacci.UnitaDeroga.numero > 0)
-            richiesteTipoA.push(
-                [
-                    { text: '', fillColor:this.fillColor }, 
-                    { fontsize:8,text: 'Numero unità abitative civili singole servite', fillColor:this.fillColor}, 
-                    { text: 'Tipo di contatore', fillColor:this.fillColor }
-                ],   
-                [
-                    { fontSize:8, text: '"A" Contatore condominiale per unità abitative (in deroga)' }, 
-                    { text: ""+dimAllacci.UnitaDeroga.numero}, 
-                    { text: ""+dimAllacci.UnitaDeroga.tipoContatore }
-          
-                ]        
-            );
-
-
-            if(dimAllacci && dimAllacci.UnitaSingola && dimAllacci.UnitaDeroga && dimAllacci.UnitaSingola.numero <1 &&  dimAllacci.UnitaDeroga.numero<1){
-
-             richiesteTipoA.push(
-                [
-                    { text: '', fillColor:this.fillColor }, 
-                    { text: 'Numero contatori', fillColor:this.fillColor}, 
-                    { text: 'Tipo di contatore', fillColor:this.fillColor }
-                ])
-            }
-
-
-            let richiesteUsoAntincendio = [];
-            richiesteUsoAntincendio.push(
-                [
-                    { fontSize:10, text: '', fillColor:this.fillColor }, 
-                    { fontSize:8,text: 'N. contatori', fillColor:this.fillColor}, 
-                    { fontSize:10,text: 'Portata [l/s]', fillColor:this.fillColor },
-                    { fontSize:10,text: 'Portata [mc/h]', fillColor:this.fillColor },
-                    { fontSize:10,text: 'Tipo di contatore', fillColor:this.fillColor }
-                ],        
-            );
-
-            if(dimAllacci.ContatoriAntincendio && dimAllacci.ContatoriAntincendio.length === 0 ){
-                richiesteUsoAntincendio.push([
-                    " ","","","",""
-                ]);
-            }
-
-            for(var i = 0; i < dimAllacci.ContatoriAntincendio.length; i++) {
-                if(dimAllacci.ContatoriAntincendio[i].numero>0)
-                richiesteUsoAntincendio.push([
-                  '"B" Contatore per antincendio', 
-                  "" + dimAllacci.ContatoriAntincendio[i].numero, 
-                  "" + dimAllacci.ContatoriAntincendio[i].portataLS, 
-                  "" + dimAllacci.ContatoriAntincendio[i].portataMH, 
-                  "" + dimAllacci.ContatoriAntincendio[i].tipoContatore
-                ]);
-            }
-
-            var portate = [];
-            portate.push([{	text: 'PORTATA  DI CALCOLO "A" [mc/h]\n(contatori a servizio di unità abitative civili)', fillColor:this.fillColor},{text: dimAllacci.PortataCalcoloA}]);
-            portate.push([{	text: 'PORTATA  DI CALCOLO "B" [mc/h]\n(altri contatori)', fillColor:this.fillColor},{text: dimAllacci.PortataCalcoloB}]);
-            portate.push([{ text: 'PORTATA  DI CALCOLO COMPLESSIVA (A+B) [mc/h]', fillColor:this.fillColor},{text: dimAllacci.PortataCalcoloTotale}]);
-         
-            var condotte =  [];
-            condotte.push( [{text:'Condotta allacciamento',fontSize:7, fillColor:this.fillColor},
-            {text:'Diametro interno [mm]',fontSize:7, fillColor:this.fillColor},
-            {text:'Scabrezza [mm]',fontSize:7, fillColor:this.fillColor},
-            {text:'Perdita di carico [bar]',fontSize:7,  fillColor:this.fillColor},
-            {text:'Pressione al contatore [bar]',fontSize:7,  fillColor:this.fillColor},
-            {text:'Velocità [m/s]',fontSize:7, fillColor:this.fillColor},
-            {text:'Verifica cond. esistente o nuova',fontSize:7, fillColor:this.fillColor}
             ]);
+            allacciamentiList.push([
+                {text:'VERIFICA ALLACCIAMENTO ESISTENTE (scelta libera "materiale/DE/PN")',         
+                    fillColor: vincoli2BG,  alignment:"left", bold:true, colSpan:8, fontSize:header2ColFontSize},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""}
+            ]);
+            // Allacciamento Esistente
+            allacciamentiList.push([
+                {text:""+dimAllacci.AllacciamentoEsistente.nome,         
+                    fillColor: "white",  alignment:"left",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.dinterno),         
+                    fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.kval),         
+                    fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.portata),         
+                    fillColor: setColorForPortata(dimAllacci.AllacciamentoEsistente.velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.alfa),         
+                    fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.percRiempimento),         
+                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.velocita),         
+                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                
+                {text:formatVal(dimAllacci.AllacciamentoEsistente.risultato),         
+                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                                                                    
+            ]);                
 
-            condotte.push([{fontSize:10, text:"VERIFICA ALLACCIAMENTO ESISTENTE (scelta libera)", bold:true, fillColor:this.fillColor},{text:""},{text:""},{text:""},{text:""},{text:""},{text:""}]);
-            if(dimAllacci.AllacciamentoEsistente && dimAllacci.AllacciamentoEsistente.nome) condotte.push([{  fontSize: 8, text:dimAllacci.AllacciamentoEsistente.nome ? 
-                dimAllacci.AllacciamentoEsistente.nome: ' '},{ text:dimAllacci.AllacciamentoEsistente.diametro?dimAllacci.AllacciamentoEsistente.diametro: ' '},{text:dimAllacci.AllacciamentoEsistente.scabrezza? dimAllacci.AllacciamentoEsistente.scabrezza : ' '},{text:dimAllacci.AllacciamentoEsistente.perdita?dimAllacci.AllacciamentoEsistente.perdita: ' ' ,fillColor:dimAllacci.AllacciamentoEsistente.colorPerdita},{text:dimAllacci.AllacciamentoEsistente.pressione ? dimAllacci.AllacciamentoEsistente.pressione : ' '},{text:dimAllacci.AllacciamentoEsistente.velocita? dimAllacci.AllacciamentoEsistente.velocita: ' ',fillColor:dimAllacci.AllacciamentoEsistente.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoEsistente.VerificaCondotta? dimAllacci.AllacciamentoEsistente.VerificaCondotta:''}]);
-            condotte.push([{fontSize:10,text:"DIMENSIONAMENTO ALLACCIAMENTO NUOVO (scelta predefinita)", bold:true, fillColor:this.fillColor},{text:""},{text:""},{text:""},{text:""},{text:""},{text:""}]);
+            // Allacciamenti consigliati
+            allacciamentiList.push([
+                {text:'DIMENSIONAMENTO ALLACCIAMENTO NUOVO (scelta predefinita o libera "materiale/DE/PN")',         
+                    fillColor: vincoli2BG,  alignment:"left", bold:true, colSpan:8, fontSize:header2ColFontSize},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""},
+                {text:""}
+            ]);
+            // Allacciamento consigliati [01-05, fissi ]
+            let listaAllacciamenti = [
+                dimAllacci.AllacciamentoNuovo1,
+                dimAllacci.AllacciamentoNuovo2,
+                dimAllacci.AllacciamentoNuovo3,
+                dimAllacci.AllacciamentoNuovo4,
+                dimAllacci.AllacciamentoNuovo5,
+            ];
+            for(var i = 0; i < listaAllacciamenti.length; i++) {
+                allacciamentiList.push([
+                    {text:""+listaAllacciamenti[i].nome,         
+                        fillColor: vincoli2BG,  alignment:"left", bold:true, fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].dinterno),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].kval),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].portata),         
+                        fillColor: setColorForPortata(listaAllacciamenti[i].velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].alfa),         
+                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].percRiempimento),         
+                        fillColor: setColorForMessage(listaAllacciamenti[i].percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].velocita),         
+                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(listaAllacciamenti[i].risultato),         
+                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                                                                        
+                ]);
+            }    
+            
+            // Allacciamento consigliato [06, scelto dall'utente]
+            if (dimAllacci.AllacciamentoNuovo6.nome){
+                allacciamentiList.push([
+                    {text:""+dimAllacci.AllacciamentoNuovo6.nome,         
+                        fillColor: "white",  alignment:"left",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.dinterno),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.kval),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.portata),         
+                        fillColor: setColorForPortata(dimAllacci.AllacciamentoNuovo6.velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.alfa),         
+                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.percRiempimento),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.velocita),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoNuovo6.risultato),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                                                                        
+                ]);            
+            }
 
-            if(dimAllacci.AllacciamentoNuovo1) condotte.push([{fontSize:8,fillColor:this.fillColor,text:dimAllacci.AllacciamentoNuovo1.nome ? dimAllacci.AllacciamentoNuovo1.nome: ' ' },{text:dimAllacci.AllacciamentoNuovo1.diametro? dimAllacci.AllacciamentoNuovo1.diametro : ' '},{text:dimAllacci.AllacciamentoNuovo1.scabrezza ? dimAllacci.AllacciamentoNuovo1.scabrezza : ' '},{text:dimAllacci.AllacciamentoNuovo1.perdita ? dimAllacci.AllacciamentoNuovo1.perdita : ' ',fillColor:dimAllacci.AllacciamentoNuovo1.colorPerdita},{text:dimAllacci.AllacciamentoNuovo1.pressione ? dimAllacci.AllacciamentoNuovo1.pressione : ' '},{text:dimAllacci.AllacciamentoNuovo1.velocita? dimAllacci.AllacciamentoNuovo1.velocita : ' ', fillColor:dimAllacci.AllacciamentoNuovo1.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo1.VerificaCondotta ? dimAllacci.AllacciamentoNuovo1.VerificaCondotta:''}]);
-           
-            if(dimAllacci.AllacciamentoNuovo2) condotte.push([{fontSize: 8, fillColor:this.fillColor,text:dimAllacci.AllacciamentoNuovo2.nome ? dimAllacci.AllacciamentoNuovo2.nome : ' '},{text:dimAllacci.AllacciamentoNuovo2.diametro? dimAllacci.AllacciamentoNuovo2.diametro : ' '},{text:dimAllacci.AllacciamentoNuovo2.scabrezza? dimAllacci.AllacciamentoNuovo2.scabrezza : ' '},{text:dimAllacci.AllacciamentoNuovo2.perdita ? dimAllacci.AllacciamentoNuovo2.perdita : ' ',fillColor:dimAllacci.AllacciamentoNuovo2.colorPerdita},{text:dimAllacci.AllacciamentoNuovo2.pressione ? dimAllacci.AllacciamentoNuovo2.pressione : ''},{text:dimAllacci.AllacciamentoNuovo2.velocita ? dimAllacci.AllacciamentoNuovo2.velocita : ' ', fillColor:dimAllacci.AllacciamentoNuovo2.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo2.VerificaCondotta?dimAllacci.AllacciamentoNuovo2.VerificaCondotta:''}]);
             
-            if(dimAllacci.AllacciamentoNuovo3) condotte.push([{fontSize: 8, fillColor:this.fillColor,text:dimAllacci.AllacciamentoNuovo3.nome? dimAllacci.AllacciamentoNuovo3.nome : ' '},{text:dimAllacci.AllacciamentoNuovo3.diametro ? dimAllacci.AllacciamentoNuovo3.diametro : ''},{text:dimAllacci.AllacciamentoNuovo3.scabrezza ? dimAllacci.AllacciamentoNuovo3.scabrezza : ' '},{text:dimAllacci.AllacciamentoNuovo3.perdita ? dimAllacci.AllacciamentoNuovo3.perdita : ' ',fillColor:dimAllacci.AllacciamentoNuovo3.colorPerdita},{text:dimAllacci.AllacciamentoNuovo3.pressione ?dimAllacci.AllacciamentoNuovo3.pressione :""},{text:dimAllacci.AllacciamentoNuovo3.velocita ? dimAllacci.AllacciamentoNuovo3.velocita : '', fillColor:dimAllacci.AllacciamentoNuovo3.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo3.VerificaCondotta?dimAllacci.AllacciamentoNuovo3.VerificaCondotta:''}]);
-            
-            if(dimAllacci.AllacciamentoNuovo4) condotte.push([{fontSize: 8, fillColor:this.fillColor,text:dimAllacci.AllacciamentoNuovo4.nome},{text:dimAllacci.AllacciamentoNuovo4.diametro},{text:dimAllacci.AllacciamentoNuovo4.scabrezza},{text:dimAllacci.AllacciamentoNuovo4.perdita?
-                dimAllacci.AllacciamentoNuovo4.perdita: '',fillColor:dimAllacci.AllacciamentoNuovo4.colorPerdita},{text:dimAllacci.AllacciamentoNuovo4.pressione? dimAllacci.AllacciamentoNuovo4.pressione : ' '},{text:dimAllacci.AllacciamentoNuovo4.velocita ? dimAllacci.AllacciamentoNuovo4.velocita : '', fillColor:dimAllacci.AllacciamentoNuovo4.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo4.VerificaCondotta?dimAllacci.AllacciamentoNuovo4.VerificaCondotta:''}]);
-            
-            if(dimAllacci.AllacciamentoNuovo5) condotte.push([{fontSize: 8, fillColor:this.fillColor,text:dimAllacci.AllacciamentoNuovo5.nome ? dimAllacci.AllacciamentoNuovo5.nome : ''},{text:dimAllacci.AllacciamentoNuovo5.diametro? dimAllacci.AllacciamentoNuovo5.diametro : ''},{text:dimAllacci.AllacciamentoNuovo5.scabrezza ? dimAllacci.AllacciamentoNuovo5.scabrezza : ''},{text:dimAllacci.AllacciamentoNuovo5.perdita? dimAllacci.AllacciamentoNuovo5.perdita : '',fillColor:dimAllacci.AllacciamentoNuovo5.colorPerdita},{text:dimAllacci.AllacciamentoNuovo5.pressione ? dimAllacci.AllacciamentoNuovo5.pressione : ''},{text:dimAllacci.AllacciamentoNuovo5.velocita ? dimAllacci.AllacciamentoNuovo5.velocita : '', fillColor:dimAllacci.AllacciamentoNuovo5.colorVelocita},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo5.VerificaCondotta?dimAllacci.AllacciamentoNuovo5.VerificaCondotta:''}]);
-            
-            if(dimAllacci.AllacciamentoNuovo6 && dimAllacci.AllacciamentoNuovo6.nome) condotte.push([{fontSize: 8, text:dimAllacci.AllacciamentoNuovo6.nome?dimAllacci.AllacciamentoNuovo6.nome: ' '},{text:dimAllacci.AllacciamentoNuovo6.diametro ? dimAllacci.AllacciamentoNuovo6.diametro : ' '},{text:dimAllacci.AllacciamentoNuovo6.scabrezza? dimAllacci.AllacciamentoNuovo6.scabrezza : ''},{text:dimAllacci.AllacciamentoNuovo6.perdita ? dimAllacci.AllacciamentoNuovo6.perdita : ' ',fillColor:dimAllacci.AllacciamentoNuovo6.colorPerdita ?
-            dimAllacci.AllacciamentoNuovo6.colorPerdita : ''},{text:dimAllacci.AllacciamentoNuovo6.pressione ? dimAllacci.AllacciamentoNuovo6.pressione : ''},{text:dimAllacci.AllacciamentoNuovo6.velocita? dimAllacci.AllacciamentoNuovo6.velocita : '', fillColor:dimAllacci.AllacciamentoNuovo6.colorVelocita ? dimAllacci.AllacciamentoNuovo6.colorVelocita : ''},{fontSize: 8, text:dimAllacci.AllacciamentoNuovo6.VerificaCondotta?dimAllacci.AllacciamentoNuovo6.VerificaCondotta:''}]);
-            */
-
             var page = [  
                 this.header2, 
                 {
@@ -1365,6 +1421,7 @@ export class ModelFT {
                               ]
                     }
                   },
+                  /*
                  {
                     style: 'tableImg',
                     table: {
@@ -1373,6 +1430,7 @@ export class ModelFT {
                         dataList
                         }
                 },
+                */
                 {
                     style: 'header',
                     table: {
@@ -1383,7 +1441,7 @@ export class ModelFT {
                                 {
                                     border:[false,true,true,true],
                                     text: 'Dati Progetto', 
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     bold:true, 
                                     alignment: 'center', 
                                     color: headerFontColor,
@@ -1395,10 +1453,10 @@ export class ModelFT {
                 {
                     style: 'tableImg',
                     table: {
-                        widths: [100,50,50,100,60,50,'*'],
+                        widths: [160,30,30,150,30,30,'*'],
                         body: 
                             datiProgettoList
-                        
+                      
                     }
                 },
                 {
@@ -1411,7 +1469,7 @@ export class ModelFT {
                                 {
                                     border:[false,true,true,true],
                                     text: 'Verifica allacciamento esistente / Dimensionamento nuovo allaccio', 
-                                    fontSize: 16,
+                                    fontSize: 12,
                                     bold:true, 
                                     alignment: 'center', 
                                     color: headerFontColor,
@@ -1423,79 +1481,24 @@ export class ModelFT {
                 {
                     style: 'tableImg',
                     table: {
-                        widths: [100,50,50,100,60,50,'*'],
+                        widths: [90,50,50,50,50,50,50,'*'],
                         body: 
                             allacciamentiList
                         
                     }
                 },
-            /*
-                 {
-                     table:
-                             {
-                                 headerRows: 1,
-                                 widths: ['50%','25%','25%'],
-                                 body: richiesteTipoA        
-                             },                  
-                 },              
-                    
-                {
-                    table:
-                            {
-                                headerRows: 1,
-                                widths: ['35%','10%','15%','15%','25%'],
-                                body: richiesteUsoAntincendio
-                            }, 
-                },
-
-                {
-                    table:
-                            {
-                                headerRows: 1,
-                                widths: ['34%','6%','24%','6%','24%','6%'],
-                                body: [[{fontSize:8, text:"PORTATA DI CALCOLO A [MC/H] (contatori a servizio di unità abitative civili)", fillColor:this.fillColor},{	fontSize: 8,text:dimAllacci.PortataCalcoloA},{fontSize:10,text:"PORTATA DI CALCOLO B [MC/H] (altri contatori)",fillColor:this.fillColor},{	fontSize: 8, text:dimAllacci.PortataCalcoloB},{fontSize:8,text:"PORTATA DI CALCOLO COMPLESSIVA (A+B) [MC/H]", fillColor:this.fillColor},{	fontSize: 8, text:dimAllacci.PortataCalcoloTotale}]]
-                            }, 
-                },
-
-
-                {
-                    style: 'tableExample',
-                    table:
-                            {
-                                headerRows: 1,
-                                fontSize:10,
-                                widths: ['100%'],
-                                body: [
-                                    [ {text:"Verifica allacciamento esistente / Dimensionamento nuovo allaccio", fillColor:this.fillColor}
-                                    ]
-                                ]
-                                
-                            }, 
-                },
-                {
-                    style: 'tableExample',
-                    table:
-                            {
-                                headerRows: 1,
-                                widths: ['30%','10%','10%','12%','12%','10%','16%'],
-                                body: 
-                                    condotte
-                                
-                                
-                            }, 
-                },
-                    {   
+                {   
                     style: 'big',
                         table: {
                             widths: ['*'],
                             body: [
                                     [{	
-                                        image: imgExample.getNoteFT(),
-                                        width: 500, alignment:'center', border: [ true, false, true, false]}]
+                                        image: imgExample.getNoteFTFogna(),
+                                        width: 500, alignment:'center', border: [ true, true, true, true]}]
                                 ]
                         }
                     },
-                    */
+            
             ];
     
          return page;

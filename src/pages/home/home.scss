@@ -1,0 +1,172 @@
+page-home {
+
+    .separator{
+        height:50%;
+    }
+
+    .bigTitle{
+        color: $lilla-hera;
+    }
+
+    .headerEl{
+      color:white;
+    }
+
+    .item-md{
+        padding-left:0px !important;
+    }
+
+    .item-inner{
+        border-bottom: 0px !important;
+        padding:0px !important;
+    }
+
+    .label{
+        margin:0px !important;
+    }
+
+    .tile{
+        border-left: solid;
+        border-left-color: #e0e0e0;
+        border-left-width:1px; 
+        border-top: solid;
+        border-top-color: #e0e0e0;
+        border-top-width:1px;
+    }
+
+    .logoNew{
+        position: absolute;
+        max-width: 60px;
+        max-height: 60px;
+        /* float: right; */
+        right: 18px;
+    }
+
+    .logoNewFilter{
+        position: absolute;
+        max-width: 60px;
+        max-height: 60px;
+        /* float: right; */
+        right: 47px;
+    }
+
+    .rowTab{
+        border:none;
+    }
+
+    .avatar {
+        height: 60px;
+        width: 60px;
+         max-width:60px;
+        padding:10%;
+    }
+
+    .textRow{
+        font-size:small;
+        overflow: auto;
+    }
+
+}
+
+.firstTimeWizard {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 9999;
+    text-align: center;
+    color:white;
+    
+    
+}
+
+.firstTimeWizard h2, h3 {
+    margin-top:100px;
+}
+
+.hide {
+    display: none;
+}
+page-form2 {
+
+    .selectMultiple{
+        width:80%;
+        max-width: 80%;
+    }
+
+    .select-text{
+        white-space: unset;
+    }
+
+    .btn-fab{
+        height: 45px;
+        margin: 10px;
+        border-radius: 10px;
+        width: 150px;
+    }
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
+
+
+.wrapping-list .item-content, .wrapping-list .item {
+    overflow: initial;
+    white-space: initial;
+}
+
+.alert-radio-label {
+    white-space: normal!important;
+}
+
+.text_box {
+    width: 100% !important;
+    border: none !important;
+}
+
+.myCustomSelect{
+  max-width: 100% !important;
+}
+.alert-wrapper{
+  max-width: 90% !important;
+}
+ion-fab {
+    button {
+        box-shadow: 0 4px 10px #6b6b6b;
+    }
+
+    ion-fab-list button[ion-fab] {
+        text-align: center;
+        overflow: visible;
+
+        div.label {
+          position: absolute;
+          right: 48px;
+          background: rgba(248, 248, 248, 1);
+          height: 24px;
+          line-height: 16px;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-top: 8px;
+          border-radius: 5px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .button-inner {
+        overflow: visible;
+    }
+}

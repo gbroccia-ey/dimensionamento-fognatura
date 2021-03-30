@@ -1,0 +1,180 @@
+// http://ionicframework.com/docs/v2/theming/
+
+
+// App Global Sass
+// --------------------------------------------------
+// Put style rules here that you want to apply globally. These
+// styles are for the entire app and not just one component.
+// Additionally, this file can be also used as an entry point
+// to import other Sass files to be included in the output CSS.
+//
+// Shared Sass variables, which can be used to adjust Ionic's
+// default Sass variables, belong in "theme/variables.scss".
+//
+// To declare rules for a specific mode, create a child rule
+// for the .md, .ios, or .wp mode classes. The mode class is
+// automatically applied to the <body> element in the app.
+
+@import "style/_variables";
+@import "style/_mixins";
+@import "style/_clearfix";
+@import "style/_center-block";
+@import "style/_hide-text";
+@import "style/_utilities";
+@import "style/_buttons";
+@import "style/_types";
+@import "style/_font-awesome";
+// @import "style/_glyphicons";
+@import "style/_style";
+@import "header";
+@import "tablet";
+
+
+ion-select {
+    max-width: 88%;
+}
+
+
+.dijitMenuItemLabel {
+    font-size: medium !important;
+}
+
+.uieq_bg{
+    background-color: yellow;
+}
+
+.btn_closeModal{
+    width:20px;
+    padding: 20px;
+}
+
+.numTel{
+    color:#488aff;
+    text-decoration: underline;
+    position:relative;
+}
+
+.checkInTable{
+    margin:15px;
+}
+
+.lbl_empty_date{
+    color:#999;
+    position: relative;
+    top: 20px;
+
+    }
+
+.glass {
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+    -webkit-filter: url(#blur-filter);
+    filter: url(#blur-filter);
+    -webkit-filter: blur(3px);
+    filter: blur(3px);
+}
+
+.btn-fab{
+    margin-right: 32px;
+}
+
+.hideSm{
+    display:block;
+}
+
+.showSm{
+    display:none;
+}
+
+.hidden{
+    display: none;
+}
+
+.underlineTitle{
+    font-weight: 600;
+    font-size: large;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: $lilla-hera;
+    margin-top: 30px;
+    margin-right: 10px;
+}
+
+.btn_preventivatore{
+    width: calc( 50% - 20px);
+    float:left;
+    margin:10px;
+    position:relative;
+}
+
+@media (max-width: 576px){
+        .hideSm{
+        display:none !important;
+    }
+
+    .showSm{
+        display:block !important;
+    }
+}
+
+    .titleSection{
+        font-weight: bold;
+        margin-top: 45px;
+        margin-bottom: 0px;
+        font-size:large;
+    }
+
+    .halfItemSection{
+        width: 50%;
+        padding-right: 10px;
+        float: left;
+    }
+
+    .backFab{
+        position: absolute;
+        width: 100%;
+        height: 1000%;
+        background: rgba(0,0,0,0.7);
+        z-index: 9999;
+        text-align: center;
+        color:white;
+    }
+
+    .btn-container{
+        margin:16px;
+    }
+
+    .button-mr{
+        width: calc(100% - 16px) !important;
+    }
+
+    .containerPR{
+        margin-right:16px;
+    }
+
+    .inputPreventivi {
+        opacity: 0.4;
+        margin-top: 15px;
+        margin-left: 8px;
+    }
+
+
+    .alertBig  .alert-radio-group {
+        max-height: 274px !important;
+    }
+
+   *:not(svg){
+    -o-transition-property: none !important;
+    -moz-transition-property: none !important;
+    -ms-transition-property: none !important;
+    -webkit-transition-property: none !important;
+    transition-property: none !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important;
+}
+
+    button[disabled], [ion-button][disabled] {
+        opacity: .4 !important;
+    }

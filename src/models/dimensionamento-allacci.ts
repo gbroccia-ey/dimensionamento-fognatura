@@ -108,7 +108,14 @@ export class ParametriVincoli{
       ){ }
 }
 
-
+export enum DIMFOGNA_MSG {
+    IDONEA = "CONDOTTA IDONEA",
+    ERRORE = "ERRORE",
+    DN_INSUFF = "KO",
+    NON_IDONEA = "CONDOTTA NON IDONEA",
+    PORTATA_NULL = "ERRORE: PORTATA COMPLESSIVA NULLA",
+    FUORI_LIMITE = "VELOCITA' FUORI LIMITE"
+  }
 
 
 export class DimensionamentoAllacciGas{

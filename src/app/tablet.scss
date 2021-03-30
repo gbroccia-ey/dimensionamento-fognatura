@@ -1,0 +1,97 @@
+ @media (min-width:576px) {
+
+        .signaturePad-big{
+            width:60% !important;
+            max-width:500px;
+            float: left;    
+        }
+
+        .signaturePad-small{
+            width:40% !important;
+            float:left;
+            max-width:430px;
+            margin-left: 5px;
+        }
+
+        .checkbox-inner{
+            left: 8px !important;
+            width: 10px !important;
+            height: 20px !important;
+        }
+
+        .checkbox-icon{
+            height:30px !important; 
+            width:30px !important;
+            }
+
+        input[type='checkbox'], input[type="radio"]{
+            height:30px;
+            width:30px;
+        }
+
+        .titleODL{
+            font-size: xx-large !important;
+            padding-left: calc(50% - 130px) !important;
+        }
+
+        .subtitleODL{
+            padding-left: calc(50% - 95px) !important;
+        }
+
+        .scroll-content{
+            font-size: medium !important;  
+        }
+
+        .textRow{
+             font-size: medium !important;  
+        }
+
+
+
+        .btn-fab{
+            height: 60px !important;
+            width: 200px !important;
+            margin-right: 48px !important;
+            font-size:  medium !important;  
+        }
+
+        .logoContainer{
+            top:14vh !important;
+        }
+
+        .containerCenteredTop {
+            padding-right: 16px !important;
+            margin-top: calc(14vh + 20vw) !important;
+            width: 100% !important;
+            height: 50% !important;
+        }
+
+        h2{
+            font-size: x-large !important;
+        }
+
+
+
+
+    }
+
+    @media (min-width:576px) and (orientation:landscape) {
+            
+            .avatar {
+                height: 140px !important;
+                width: 140px !important;
+                max-width:140px !important;
+                padding:10%;
+            }
+    }
+
+    
+    @media (min-width:576px) and (orientation:portrait) {
+            
+            .avatar {
+                height: 120px !important;
+                width: 120px !important;
+                 max-width:120px !important;
+                padding:10%;
+            }
+    }
