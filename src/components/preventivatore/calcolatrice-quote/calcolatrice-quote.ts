@@ -42,20 +42,31 @@ import { Params } from '../../../config/params';
             <div col-12>
             <ion-list>
               <div *ngFor="let itemQuota of item.value" style="height:70px"> 
-                <ion-item  *ngIf="!itemQuota.singleValue" (click)="selezionaQuota(itemQuota, item)"  class="row" col-7  style="float:left; margin-top:20px">
+              <ion-item  *ngIf="itemQuota.selectValue"   class="row" col-7  style="float:left; margin-top:20px">
+                  <ion-checkbox checked="{{itemQuota.checked}}" style="opacity:1"  disabled> </ion-checkbox>  
+                  <ion-label style="opacity:1"> {{itemQuota.label}}</ion-label>   
+                  <ion-select  (ionChange)="selezionaQuota(itemQuota, item)"
+                          [(ngModel)]="itemQuota.selOption">
+                            <ion-option *ngFor="let option of itemQuota.options" [value]="option">{{option.label}} {{option.value}}&euro;</ion-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item  *ngIf="!itemQuota.selectValue && !itemQuota.singleValue" (click)="selezionaQuota(itemQuota, item)"  class="row" col-7  style="float:left; margin-top:20px">
                   <ion-checkbox checked="{{itemQuota.checked}}" style="opacity:1"  disabled> </ion-checkbox>  
                   <ion-label style="opacity:1"> {{itemQuota.label}} {{itemQuota.value}}&euro;</ion-label>   
                 </ion-item>
-              <ion-item  *ngIf="itemQuota.singleValue" (click)="selezionaQuota(itemQuota, item)"  class="row" col-10  style="float:left; margin-top:20px">
+              <ion-item  *ngIf="!itemQuota.selectValue && itemQuota.singleValue" (click)="selezionaQuota(itemQuota, item)"  class="row" col-10  style="float:left; margin-top:20px">
                 <ion-checkbox checked="{{itemQuota.checked}}" style="opacity:1"  disabled> </ion-checkbox>  
                 <ion-label style="opacity:1"> {{itemQuota.label}} {{itemQuota.value}}&euro;</ion-label>   
               </ion-item>
-                <ion-item *ngIf="!itemQuota.singleValue" col-3 style="float:left">
+                <ion-item *ngIf="!itemQuota.selectValue && !itemQuota.singleValue" col-3 style="float:left">
                   <ion-label floating  style="opacity:1"> {{itemQuota.placeholder}}</ion-label>  
                   <ion-input  type="number" [(ngModel)]="itemQuota.num" disabled="{{isDisabled(itemQuota)}}" style="float:left"></ion-input>    
                 </ion-item>
-                <ion-label col-2 *ngIf="itemQuota.num > 0" class="labelQuote">
+                <ion-label col-2 *ngIf="itemQuota.num > 0 && !itemQuota.selectValue" class="labelQuote">
                 &euro; {{itemQuota.num * itemQuota.value}}
+                </ion-label>
+                <ion-label col-2 *ngIf="itemQuota.selectValue" class="labelQuote">
+                &euro; {{itemQuota.selOption?.value}}
                 </ion-label>
                 <ion-label col-2 *ngIf="!itemQuota.num ||  itemQuota.num  == 0" style="padding-top:16px;  margin-top:20px">
                 .
@@ -95,6 +106,7 @@ export class ModalQuote {
   isEdited: boolean = false;
   totale;
   quoteItems;
+  JSON = JSON;
 
   constructor(public viewCtrl: ViewController, public navParams: NavParams,
               public alertCtrl: AlertController, public zone: NgZone) {
@@ -131,7 +143,7 @@ export class ModalQuote {
           elem.num = "";
         }
         else {
-          if(item.value[0].singleValue) elem.num = 1;
+          if((item.value[0].singleValue) ||  (item.value[0].selectValue)) elem.num = 1;
           if(elem.checked) elem.num = "";
           elem.checked = !elem.checked;
           
@@ -152,8 +164,16 @@ export class ModalQuote {
           alert("Completa tutti i campi selezionati");
           return;
         }
-        if(item.num > 0) this.totale += item.value * item.num ;
-        if(item.enabled && item.singleValue) this.totale += item.value;
+        if(item.selectValue){
+          item.value = item.selOption.value;
+          item.label = item.selOption.label;         
+          this.totale += item.selOption.value;
+        }
+        else {
+          if(item.num > 0) this.totale += item.value * item.num ;
+          if(item.enabled && item.singleValue) this.totale += item.value;
+        }
+        
       }
     }
     if(this.quoteItems && this.quoteItems.altroNum) this.totale += Number(this.quoteItems.altroNum);

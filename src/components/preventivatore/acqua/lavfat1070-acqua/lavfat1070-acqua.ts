@@ -38,7 +38,7 @@ export class Lavfat1070AcquaComponent extends BasePreventivatoreComponent implem
         this.preventivo.QuotaFissa = this.valori[0]["quotaFissa"];
         this.preventivo.Totale = Number(this.preventivo.QuotaFissa);
         let keyQuote = "QUOTE_"+this.ads.ProdServizio + "_ACQUA";
-        this.preventivo.QuoteItems = Params.Valori.get(keyQuote);
+        this.preventivo.QuoteItems = Params.getValoriWrapper(keyQuote, this.ads);
         this.preventivo.Quote = {"Totale":0};
         this.preventivo.Cop = 0;
         this.preventivo.Cer = 0;

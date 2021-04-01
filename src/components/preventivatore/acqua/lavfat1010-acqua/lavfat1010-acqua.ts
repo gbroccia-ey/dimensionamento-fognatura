@@ -53,7 +53,7 @@ export class Lavfat1010AcquaComponent extends BasePreventivatoreComponent implem
         this.preventivo.Deroga = {"Totale":0};
         this.preventivo.Quote = {"Totale":0};
         let keyQuote = "QUOTE_"+this.ads.ProdServizio + "_ACQUA";
-        this.preventivo.QuoteItems = Params.Valori.get(keyQuote);
+        this.preventivo.QuoteItems = Params.getValoriWrapper(keyQuote, this.ads);
         this.preventivo.Totale = Number(this.preventivo.QuotaFissa);
         this.aggiornaTotale();
       }

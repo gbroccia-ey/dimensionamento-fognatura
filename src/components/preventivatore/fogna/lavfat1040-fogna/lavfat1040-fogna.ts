@@ -56,7 +56,7 @@ export class Lavfat1040FognaComponent extends BasePreventivatoreComponent implem
         this.preventivo.UiEqFogna = "";
         this.preventivo.Quote = {"Totale":0};
         let keyQuote = "QUOTE_"+this.ads.ProdServizio + "_FOGNATURA";
-        this.preventivo.QuoteItems = Params.Valori.get(keyQuote);
+        this.preventivo.QuoteItems = Params.getValoriWrapper(keyQuote, this.ads);
     }
   }
 

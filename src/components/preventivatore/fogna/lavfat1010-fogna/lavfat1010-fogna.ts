@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AdsService } from '../../../../services/ads-service';
 import { Preventivo } from '../../../../models/preventivo';
+import { Ads,CodSocieta } from '../../../../models/ads';
 import { Params } from '../../../../config/params';
 
 /**
@@ -20,6 +21,7 @@ export class Lavfat1010FognaComponent extends BasePreventivatoreComponent implem
 
   valori: Object[] = [];
   preventivo: Preventivo;
+  showQuotaFissa = false;
 
   constructor(public navCtrl: NavController, 
               public alertCtrl: AlertController, public adsService: AdsService) {
@@ -29,7 +31,7 @@ export class Lavfat1010FognaComponent extends BasePreventivatoreComponent implem
   }
 
   ngOnInit() {
-    this.valori = Params.Valori.get("LAVFAT1010_FOGNA");
+    this.valori = Params.getValoriWrapper("LAVFAT1010_FOGNA", this.ads);
 
     if(this.ads.Preventivo) {
       this.preventivo = this.ads.Preventivo;
@@ -38,11 +40,18 @@ export class Lavfat1010FognaComponent extends BasePreventivatoreComponent implem
         this.preventivo = new Preventivo();
         this.preventivo.Quote = {"Totale":0};
         let keyQuote = "QUOTE_"+this.ads.ProdServizio + "_FOGNATURA";
-        this.preventivo.QuoteItems = Params.Valori.get(keyQuote);
+        this.preventivo.QuoteItems = Params.getValoriWrapper(keyQuote, this.ads);
         this.preventivo.AltreSpese = 0;
         this.preventivo.Quote = {"Totale":0};
-        this.preventivo.UiEqFogna = "Z";
-        this.preventivo.QuotaFissa = 707;
+        if(this.ads.CodiceSocieta === CodSocieta.AAA){
+          this.preventivo.QuotaFissa = 0;
+          this.showQuotaFissa = true;
+        }
+        else {
+          this.preventivo.UiEqFogna = "Z";
+          this.preventivo.QuotaFissa = 707;
+          this.showQuotaFissa = false;
+        }
         if(this.ads.VarianteListino == "LISTINO PREZZI 2 (PROVINCIA RIMINI)") this.preventivo.QuotaFissa = 700;
         this.aggiornaTotale();
     }

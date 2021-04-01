@@ -55,7 +55,7 @@ export class Lavfat1100GasComponent extends BasePreventivatoreComponent implemen
       this.preventivo.Rifacimento = false;
       this.preventivo.Quote = { "Totale": 0 };
       let keyQuote = "QUOTE_" + this.ads.ProdServizio + "_GAS";
-      this.preventivo.QuoteItems = Params.Valori.get(keyQuote);
+      this.preventivo.QuoteItems = Params.getValoriWrapper(keyQuote, this.ads);
       this.aggiornaTotale();
     }
   }

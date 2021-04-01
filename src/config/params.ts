@@ -2773,6 +2773,98 @@ export class Params {
                                 retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
                                 break;
                             }
+                            case 'LISTINO FORFAIT TRIESTE FOGNA':{
+                                retValue = this.ValoriTrieste.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO FORFAIT PADOVA FOGNA':{
+                                retValue = this.ValoriPadova.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO TOLMEZZO':{
+                                retValue = this.ValoriListinoGasTolmezzo.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO ARTEGNA':{
+                                retValue = this.ValoriListinoGasArtegna.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO BUTTRIO':{
+                                retValue = this.ValoriListinoGasButtrio.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO CAMPOFORMIDO':{
+                                retValue = this.ValoriListinoGasCampoFormido.get(key+'_AAA');
+                                break;
+                            }
+                            /*
+                            case 'LISTINO ALL.GAS METANO CODROIPO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO MANZANO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO MARTIGNACCO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO MOGGIO UDINESE':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO PAGNACCO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO PASIAN DI PRATO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO PAVIA DI UDINE':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO POZZUOLO DEL FRIULI':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO PRADAMANO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO PREMARIACCO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO REMANZACCO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO RESIA':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO RESIUTTA':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO SEDEGLIANO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO TAVAGNACCO':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            case 'LISTINO ALL.GAS METANO UDINE':{
+                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                break;
+                            }
+                            */
+                            
+                            
                         }
                     }
                     // ... poi per provincia...
@@ -3003,8 +3095,10 @@ export class Params {
         ])
 
     
-    static ValoriTrieste: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
     
+    static ValoriTrieste: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+
+        /**************************     TRIESTE FOGNATURA  ***************************************/
         { key: "LAVFAT1040_FOGNA_AAA", value: [
             { label: 'Nuovo allaccio in corso d\'opera',                        allacFogna: '01', quotaFissaNuovo: 1836, quotaFissaSpostamento:0},
             { label: 'Nuovo allaccio su condotta esistente',                    allacFogna: '02', quotaFissaNuovo: 3672, quotaFissaSpostamento:0},
@@ -3016,6 +3110,12 @@ export class Params {
             
             //   { label: 'Solo quota completamento', allacFogna: 'Z', quotaFissaNuovo: 707, quotaFissaSpostamento:707},
         ]},
+        {
+            key: 'QUOTE_LAVFAT1040_FOGNATURA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1010_FOGNA_AAA", value: [
             { label: 'Nuovo allaccio in corso d\'opera',                        allacFogna: '01', quotaFissa: 1836 },
             { label: 'Nuovo allaccio su condotta esistente',                    allacFogna: '02', quotaFissa: 3672 },
@@ -3028,27 +3128,13 @@ export class Params {
             //   { label: 'Solo quota completamento', allacFogna: 'Z', quotaFissaNuovo: 707, quotaFissaSpostamento:707},
         ]},
         {
-            key: 'QUOTE_LAVFAT1040_FOGNATURA_AAA',
-            value:[] 
-        },
-        {
             key: 'QUOTE_LAVFAT1010_FOGNATURA_AAA',
             value:[] 
         },
-        {
-            key: 'QUOTE_LAVFAT1010_ACQUA_AAA',
-            value:[
-                {label: 'Supplementi',
-                    value:  [
-                        {label: 'Supplemento lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
-                        {label: 'Supplemento prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
-                        {label: 'Quota aggiuntiva per ogni mt oltre i 6', value: 224,  placeholder:"lungh. eccedente (m)", id:"quota3"},
-                        
-                ]},
-            ] 
-          },
-          { key: "LAVFAT1010_ACQUA_AAA", value: [
-            { quotaFissa: 355, quotaVariabile: [
+        /**************************     TRIESTE ACQUA  ***************************************/
+        
+        { key: "LAVFAT1010_ACQUA_AAA", value: [
+            { quotaFissa: 38.52, quotaVariabile: [
                   { classeContatore: "DN15",  prezzo: 38.52 },
                   { classeContatore: "DN20",  prezzo: 936   },
                   { classeContatore: "DN32",  prezzo: 936   },
@@ -3058,6 +3144,19 @@ export class Params {
                   { classeContatore: "DN100", prezzo: 3618 }
             ]}
         ]},
+        {
+            key: 'QUOTE_LAVFAT1010_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'Quota agg. per ogni mt oltre i 6', value: 224,  placeholder:"lungh. eccedente (m)", id:"quota3"},
+                        
+                ]},
+            ] 
+          },
+        //----------------------------------------------------------------------------------------
         
           { key: "LAVFAT1040_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
@@ -3082,11 +3181,119 @@ export class Params {
             value:[
                 {label: 'Supplementi',
                     value:  [
-                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
-                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                        {label: 'Quota agg. per ogni mt oltre i 6', value: 224,  placeholder:"lungh. eccedente (m)", id:"quota3"},
+                        
                 ]},
             ] 
+          },
+        //----------------------------------------------------------------------------------------
+        { key: "LAVFAT1050_ACQUA_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                  { classeContatore: "DN15",  prezzo: 3774 },
+                  { classeContatore: "DN20",  prezzo: 3774 },
+                  { classeContatore: "DN32",  prezzo: 3774 },
+                  { classeContatore: "DN40",  prezzo: 3774 },
+                  { classeContatore: "DN50",  prezzo: 3774 },
+                  { classeContatore: "DN80",  prezzo: 4144 },
+                  { classeContatore: "DN100", prezzo: 4144 }
+            ]}
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1050_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
         },
+        //----------------------------------------------------------------------------------------
+        { key: "LAVFAT1070_ACQUA_AAA", value: [
+            { quotaFissa: 0 }
+        ]},
+        
+        {   
+            key: 'QUOTE_LAVFAT1070_ACQUA_AAA',
+            value:[
+                      {label: 'Int derivazione/sezionamento',
+                       value:  [
+                        {label: 'con scavo',            value: 818, singleValue:'true', placeholder:"",id:"quota1"},
+                        {label: 'senza scavo(aereo)',   value: 146, singleValue:'true', placeholder:"",id:"quota2"},
+                      ]}
+              ] 
+          },
+        //----------------------------------------------------------------------------------------
+        { key: "LAVFAT1100_ACQUA_AAA", value: [
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 804,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1542,    label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 1746,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            
+        ]},     
+        {
+            key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
+        },
+        //----------------------------------------------------------------------------------------
+        { key: "LAVFAT1110_ACQUA_AAA", value: [
+            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            
+        ]},   
+        {
+            key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
+        },
+        //----------------------------------------------------------------------------------------
+        
+        { key: "LAVFAT1130_ACQUA_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 0,  quotaIstruttoria: 0, label: "Lavoro Interrato", quotaVariabile: [
+              { classeContatore: "DN15",  prezzo: 38.52 },
+              { classeContatore: "DN20",  prezzo: 936   },
+              { classeContatore: "DN32",  prezzo: 936   },
+              { classeContatore: "DN40",  prezzo: 936   },
+              { classeContatore: "DN50",  prezzo: 2063  },
+              { classeContatore: "DN80",  prezzo: 3413  },
+              { classeContatore: "DN100", prezzo: 3618  },
+              // { classeContatore: ">DN100", prezzo: 1111.54 }
+        ] }
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1130_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
+        },  
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1140_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaIstruttoria:38.52, quotaVariabile: [
                 { classeContatore: "DN15",    prezzo: 38.52 },
@@ -3098,20 +3305,53 @@ export class Params {
                 { classeContatore: "DN100",   prezzo: 3618  }
                 ]}
         ]},        
+        {
+            key: 'QUOTE_LAVFAT1140_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
+        },  
+        //----------------------------------------------------------------------------------------
+
+        { key: "LAVFAT1181_ACQUA_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 0,  label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "DN15",  prezzo: 936  },
+                { classeContatore: "DN20",  prezzo: 936  },
+                { classeContatore: "DN32",  prezzo: 936  },
+                { classeContatore: "DN40",  prezzo: 936  },
+                { classeContatore: "DN50",  prezzo: 2063 },
+                { classeContatore: "DN80",  prezzo: 3413 },
+                { classeContatore: "DN100", prezzo: 3618 },
+          ] }
+        ]},   
+        {
+            key: 'QUOTE_LAVFAT1181_ACQUA_AAA',
+            value:[
+                {label: 'Supplementi',
+                    value:  [
+                        {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
+                        {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
+                ]},
+            ]  
+        },  
+        
+        /**************************     TRIESTE GAS  ***************************************/
+        // Vengono utilizzati i valori globali
+
     ])
 
     static ValoriPadova: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
-    
+        /**************************     PADOVA FOGNATURA  ***************************************/
+        
         { key: "LAVFAT1040_FOGNA_AAA", value: [
             { label: 'Nuovo allacciamento (fino a 3 metri)',                    allacFogna: '01', quotaFissaNuovo: 1134.23, quotaFissaSpostamento:0 },
             { label: 'Nuovo allacciamento (fino a 8 metri)',                    allacFogna: '11', quotaFissaNuovo: 2268.45, quotaFissaSpostamento:0 },
             
         ]},
-        { key: "LAVFAT1010_FOGNA_AAA", value: [
-            { label: 'Nuovo allacciamento (fino a 3 metri)',                    allacFogna: '01', quotaFissa: 1134.23 },
-            { label: 'Nuovo allacciamento (fino a 8 metri)',                    allacFogna: '11', quotaFissa: 2268.45 },
-            ]
-        },
         {
             key: 'QUOTE_LAVFAT1040_FOGNATURA_AAA',
             value:[
@@ -3124,6 +3364,13 @@ export class Params {
                         {label: 'per ogni metro oltre gli 8 metri', value: 226.85,  placeholder:"lungh. eccedente (m)", id:"quota5"}
                 ]},
             ] 
+        },
+        //----------------------------------------------------------------------------------------
+        
+        { key: "LAVFAT1010_FOGNA_AAA", value: [
+            { label: 'Nuovo allacciamento (fino a 3 metri)',                    allacFogna: '01', quotaFissa: 1134.23 },
+            { label: 'Nuovo allacciamento (fino a 8 metri)',                    allacFogna: '11', quotaFissa: 2268.45 },
+            ]
         },
         {
             key: 'QUOTE_LAVFAT1010_FOGNATURA_AAA',
@@ -3138,6 +3385,7 @@ export class Params {
                 ]},
             ] 
         },
+        /**************************     PADOVA ACQUA  ***************************************/
         
         { key: "LAVFAT1010_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
@@ -3155,11 +3403,13 @@ export class Params {
             value:[
                 {label: 'Supplementi',
                     value:  [
-                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
-                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                        {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
             ] 
           },
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1040_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
                 { classeContatore: "DN15",      descrizione:"DN15",             prezzo: 873.35 },
@@ -3183,11 +3433,13 @@ export class Params {
             value:[
                 {label: 'Supplementi',
                     value:  [
-                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
-                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                        {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
             ] 
           },
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1050_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
                   { classeContatore: "DN15",  prezzo: 2121 },
@@ -3199,34 +3451,55 @@ export class Params {
                   { classeContatore: "DN100", prezzo: 2620.06 }
             ]}
         ]},
-
+        {
+            key: 'QUOTE_LAVFAT1050_ACQUA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1070_ACQUA_AAA", value: [
             { quotaFissa: 567.11 }
         ]},
+        {
+            key: 'QUOTE_LAVFAT1070_ACQUA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
+        
         { key: "LAVFAT1100_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
-            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
             
         ]},       
-
+        {
+            key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1110_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
-            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
             
         ]},   
+        {       
+            key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
+
         { key: "LAVFAT1130_ACQUA_AAA", value: [
             { tipoSpostamento: "1", quotaFissa: 0,  quotaIstruttoria: 38.52, label: "Lavoro Interrato", quotaVariabile: [
               { classeContatore: "DN15",  prezzo: 260.87 },
@@ -3237,10 +3510,14 @@ export class Params {
               { classeContatore: "DN80",  prezzo: 1111.54 },
               { classeContatore: "DN100", prezzo: 1111.54 },
               // { classeContatore: ">DN100", prezzo: 1111.54 }
-        ] },
-          { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
-      ]},     
-        
+            ] }
+        ]},     
+        {       
+            key: 'QUOTE_LAVFAT1130_ACQUA_AAA',
+            value:[] 
+        },
+        //----------------------------------------------------------------------------------------
+
         { key: "LAVFAT1140_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaIstruttoria:0, quotaVariabile: [
                   { classeContatore: "DN15",  prezzo: 623.82,  },
@@ -3257,11 +3534,13 @@ export class Params {
             value:[
                 {label: 'Supplementi',
                     value:  [
-                        {label: 'Quota aggiuntiva per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
-                        {label: 'Quota aggiuntiva per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
+                        {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
+                        {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
             ] 
-          },
+        },
+        //----------------------------------------------------------------------------------------
+
         { key: "LAVFAT1181_ACQUA_AAA", value: [
             { tipoSpostamento: "1", quotaFissa: 38.52,  label: "Lavoro Interrato", quotaVariabile: [
                 { classeContatore: "DN15",  prezzo: 873.35 },
@@ -3271,9 +3550,15 @@ export class Params {
                 { classeContatore: "DN50",  prezzo: 2121 },
                 { classeContatore: "DN80",  prezzo: 2121 },
                 { classeContatore: "DN100", prezzo: 2121 },
-          ] },
-            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
-        ]},            
+          ] }
+        ]},   
+        {       
+            key: 'QUOTE_LAVFAT1181_ACQUA_AAA',
+            value:[] 
+        },
+        /**************************     PADOVA GAS  ***************************************/
+        // Vengono utilizzati i valori globali
+                 
     ])
 
     static ValoriListinoCollinareGas: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
@@ -3313,18 +3598,213 @@ export class Params {
         ]},
         { key: "LAVFAT1140_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
-                { classeContatore: "G4",   prezzo: 387.98 },
-                { classeContatore: "G6",   prezzo: 452.65 },
-                { classeContatore: "G10",  prezzo: 517.32 },
-                { classeContatore: "G16",  prezzo: 581.98 },
-                { classeContatore: "G25",  prezzo: 711.31 },
-                { classeContatore: "G40",  prezzo: 969.97 },
+                { classeContatore: "G4",   prezzo: 323.32 },
+                { classeContatore: "G6",   prezzo: 377.21 },
+                { classeContatore: "G10",  prezzo: 431.1  },
+                { classeContatore: "G16",  prezzo: 484.98 },
+                { classeContatore: "G25",  prezzo: 592.76 },
+                { classeContatore: "G40",  prezzo: 808.31 },
                 ] },
 
         ]},
                   
     ])
 
+    static ValoriListinoGasTolmezzo: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 571.06 },
+                { classeContatore: "G4_2",      descrizione: "G4 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 571.06 },
+                { classeContatore: "G6_2",      descrizione: "G6 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 571.06 },
+                { classeContatore: "G10_2",     descrizione: "G10 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 571.06 },
+                { classeContatore: "G16_2",     descrizione: "G16 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 571.06 },
+                { classeContatore: "G25_2",     descrizione: "G25 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 571.06 },
+                { classeContatore: "G40_2",     descrizione: "G40 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 571.06 },
+                { classeContatore: "G65_2",     descrizione: "G65 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 571.06 },
+                { classeContatore: "G100_2",    descrizione: "G100 aggiuntivi",     prezzo: 513.95 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 571.06 },
+                { classeContatore: "G4_2",      descrizione: "G4 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 571.06 },
+                { classeContatore: "G6_2",      descrizione: "G6 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 571.06 },
+                { classeContatore: "G10_2",     descrizione: "G10 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 571.06 },
+                { classeContatore: "G16_2",     descrizione: "G16 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 571.06 },
+                { classeContatore: "G25_2",     descrizione: "G25 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 571.06 },
+                { classeContatore: "G40_2",     descrizione: "G40 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 571.06 },
+                { classeContatore: "G65_2",     descrizione: "G65 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 571.06 },
+                { classeContatore: "G100_2",    descrizione: "G100 aggiuntivi",     prezzo: 513.95 },
+            ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 571.06 },
+                { classeContatore: "G4_2",      descrizione: "G4 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 571.06 },
+                { classeContatore: "G6_2",      descrizione: "G6 aggiuntivi",       prezzo: 513.95 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 571.06 },
+                { classeContatore: "G10_2",     descrizione: "G10 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 571.06 },
+                { classeContatore: "G16_2",     descrizione: "G16 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 571.06 },
+                { classeContatore: "G25_2",     descrizione: "G25 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 571.06 },
+                { classeContatore: "G40_2",     descrizione: "G40 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 571.06 },
+                { classeContatore: "G65_2",     descrizione: "G65 aggiuntivi",      prezzo: 513.95 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 571.06 },
+                { classeContatore: "G100_2",    descrizione: "G100 aggiuntivi",     prezzo: 513.95 },
+            ] },
+
+        ]},
+                  
+    ])
+    static ValoriListinoGasArtegna: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 445.44 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 445.44 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 445.44 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 445.44 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 445.44 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 445.44 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 445.44 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 445.44 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 445.44 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 445.44 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 445.44 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 445.44 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 445.44 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 445.44 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 445.44 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 445.44 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 445.44 },
+                { classeContatore: "G6",   prezzo: 445.44 },
+                { classeContatore: "G10",  prezzo: 445.44 },
+                { classeContatore: "G16",  prezzo: 445.44 },
+                { classeContatore: "G25",  prezzo: 445.44 },
+                { classeContatore: "G40",  prezzo: 445.44 },
+                { classeContatore: "G65",  prezzo: 445.44 },
+                { classeContatore: "G100", prezzo: 445.44 },
+
+                ] },
+
+        ]},
+                  
+    ])
+
+static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 729.17 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 729.17 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 729.17 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 729.17 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 729.17 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 729.17 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 729.17 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 729.17 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 729.17 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 729.17 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 729.17 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 729.17 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 729.17 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 729.17 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 729.17 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 729.17 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 729.17 },
+                { classeContatore: "G6",   prezzo: 729.17 },
+                { classeContatore: "G10",  prezzo: 729.17 },
+                { classeContatore: "G16",  prezzo: 729.17 },
+                { classeContatore: "G25",  prezzo: 729.17 },
+                { classeContatore: "G40",  prezzo: 729.17 },
+                { classeContatore: "G65",  prezzo: 729.17 },
+                { classeContatore: "G100", prezzo: 729.17 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasCampoFormido: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 348.21 },
+                { classeContatore: "G6",   prezzo: 348.21 },
+                { classeContatore: "G10",  prezzo: 348.21 },
+                { classeContatore: "G16",  prezzo: 348.21 },
+                { classeContatore: "G25",  prezzo: 348.21 },
+                { classeContatore: "G40",  prezzo: 348.21 },
+                { classeContatore: "G65",  prezzo: 348.21},
+                { classeContatore: "G100", prezzo: 348.21 },
+                ] },
+
+        ]},
+                  
+    ])
         
         
     static Valori: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
@@ -3680,18 +4160,7 @@ export class Params {
                       ]},
               ] 
           },
-          {
-            key: 'QUOTE_LAVFAT1040_GAS_AAA',
-            value:[
-                {label: 'Supplementi',
-                    value:  [
-                        {label: 'supplemento lavorazioni siti inquinati ',          value: 1000, singleValue:'true', placeholder:"supplemento", id:"quota1"},
-                        {label: 'supplemento prescrizioni SABAP (sovrintendenza) ', value: 1500, singleValue:'true', placeholder:"supplemento", id:"quota2"},
-                        {label: 'quota aggiuntiva per ogni metro oltre i 10 <G6',   value: 21,  placeholder:"lungh. eccedente (m)", id:"quota3"},
-                        {label: 'quota aggiuntiva per ogni metro oltre i 10 >G6',   value: 43,  placeholder:"lungh. eccedente (m)", id:"quota4"}
-                ]},
-            ] 
-        },
+          
         {
             key: 'QUOTE_LAVFAT1050_GAS',
             value:[
@@ -3967,12 +4436,7 @@ export class Params {
                   { classeContatore: "G65", quotaFissa: 1500, quotaVariabile: 1500, quotaIstruttoria: 25 },
                   { classeContatore: "G100",quotaFissa: 1500, quotaVariabile: 1800, quotaIstruttoria: 25 }
         ]},
-        { key: "LAVFAT1100_GAS_AAA", 
-     
-          value: [
-                  { classeContatore: "G4",  quotaFissa: 100, quotaVariabile: 0,  quotaIstruttoria: 0 },
-                  { classeContatore: "G6",  quotaFissa: 100, quotaVariabile: 0,  quotaIstruttoria: 0 },
-        ]},
+        
         
         { key: "LAVFAT1110_GAS", 
         
@@ -3987,23 +4451,7 @@ export class Params {
  				{ classeContatore: "G100",  quotaFissa: 1800 , quotaIstruttoria: 0}
             ]},
 
-        { key: "LAVFAT1110_GAS_AAA", 
-            value: [
-                { classeContatore: "G4",    quotaFissa: 137.5,  quotaIstruttoria: 0},
-                { classeContatore: "G6",    quotaFissa: 137.5,  quotaIstruttoria: 0},
-                { classeContatore: "G10",   quotaFissa: 242,    quotaIstruttoria: 0},                  
-                { classeContatore: "G16",   quotaFissa: 242,    quotaIstruttoria: 0},
-                { classeContatore: "G25",   quotaFissa: 363.5,  quotaIstruttoria: 0},  
-                { classeContatore: "G40",   quotaFissa: 630,    quotaIstruttoria: 0},
-                { classeContatore: "G65",   quotaFissa: 960,    quotaIstruttoria: 0},
-                { classeContatore: "G100",  quotaFissa: 1230,   quotaIstruttoria: 0},
-                { classeContatore: "G160",  quotaFissa: 1400,   quotaIstruttoria: 0},
-                { classeContatore: "G250",  quotaFissa: 1600,   quotaIstruttoria: 0},  
-                { classeContatore: "G400",  quotaFissa: 1750,   quotaIstruttoria: 0},
-                { classeContatore: "G1000", quotaFissa: 2220,   quotaIstruttoria: 0},
-                { classeContatore: "G1600", quotaFissa: 2420,   quotaIstruttoria: 0},
-                { classeContatore: "G2500", quotaFissa: 2620,   quotaIstruttoria: 0},  
-        ]},
+        
 
         { key: "LAVFAT1010_GAS", value: [
             { quotaFissa: 350, quotaVariabile: [
@@ -4018,19 +4466,7 @@ export class Params {
                 ] },
 
         ]},
-        { key: "LAVFAT1010_GAS_AAA", value: [
-            { quotaFissa: 0, quotaVariabile: [
-                { classeContatore: "G4",   prezzo: 980 },
-                { classeContatore: "G6",   prezzo: 980 },
-                { classeContatore: "G10",  prezzo: 1900 },
-                { classeContatore: "G16",  prezzo: 1900 },
-                { classeContatore: "G25",  prezzo: 1900 },
-                { classeContatore: "G40",  prezzo: 2214 },
-                { classeContatore: "G65",  prezzo: 3150 },
-                { classeContatore: "G100", prezzo: 4200 }
-                ] },
-
-        ]},
+        
 
         { key: "LAVFAT1040_GAS", value: [
             { quotaFissa:  0 , quotaVariabile: [
@@ -4045,19 +4481,7 @@ export class Params {
                 ] },
 
         ]},
-        { key: "LAVFAT1040_GAS_AAA", value: [
-            { quotaFissa: 0, quotaVariabile: [
-                { classeContatore: "G4",   prezzo: 980 },
-                { classeContatore: "G6",   prezzo: 980 },
-                { classeContatore: "G10",  prezzo: 1900 },
-                { classeContatore: "G16",  prezzo: 1900 },
-                { classeContatore: "G25",  prezzo: 1900 },
-                { classeContatore: "G40",  prezzo: 2214 },
-                { classeContatore: "G65",  prezzo: 3150 },
-                { classeContatore: "G100", prezzo: 4200 }
-                ] },
-
-        ]},
+        
 
         { key: "LAVFAT1140_GAS", value: [
             { quotaFissa: 350, quotaVariabile: [
@@ -4072,19 +4496,7 @@ export class Params {
                 ] },
 
         ]},
-        { key: "LAVFAT1140_GAS_AAA", value: [
-            { quotaFissa: 0, quotaVariabile: [
-                { classeContatore: "G4",   prezzo: 980 },
-                { classeContatore: "G6",   prezzo: 980 },
-                { classeContatore: "G10",  prezzo: 1900 },
-                { classeContatore: "G16",  prezzo: 1900 },
-                { classeContatore: "G25",  prezzo: 1900 },
-                { classeContatore: "G40",  prezzo: 2214 },
-                { classeContatore: "G65",  prezzo: 3150 },
-                { classeContatore: "G100", prezzo: 4200 }
-                ] },
-
-        ]},
+        
        /* { key: "LAVFAT1040_GAS", value: [
             { quotaFissa: 1500, quotaVariabile: 380 }
         ]},
@@ -4115,15 +4527,7 @@ export class Params {
             { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
         ]},
 
-        { key: "LAVFAT1130_GAS_AAA", value: [
-            { tipoSpostamento: "1", quotaFissa: 985, label: "Lavoro Interrato", quotaVariabile: [
-                { classeContatore: "G4",  prezzo: 450 },
-                { classeContatore: "G6",  prezzo: 450 },
-                { classeContatore: "G16", prezzo: 450 },
-                { classeContatore: "G25", prezzo: 450 },
-            ]},
-            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
-        ]},
+        
 
         
         { key: "LAVFAT1181_GAS", value: [
@@ -4140,16 +4544,7 @@ export class Params {
             { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
         ]},
 
-        { key: "LAVFAT1181_GAS_AAA", value: [
-            { tipoSpostamento: "1", quotaFissa: 885, label: "Lavoro Interrato", quotaVariabile: [
-                { classeContatore: "G4",  prezzo: 450 },
-                { classeContatore: "G6",  prezzo: 450 },
-                { classeContatore: "G16", prezzo: 450 },
-                { classeContatore: "G25", prezzo: 450 },
-                
-            ]},
-            { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
-        ]},
+        
 
         { key: "LAVFAT1610_GAS", value: [
             { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
@@ -4157,9 +4552,7 @@ export class Params {
             { tipoInterruzione: "BYPASS", quotaFissa: 550, label:"Y" },
             { tipoInterruzione: "SCAVO", quotaFissa: 1700, label:"S" }
         ]},
-        { key: "LAVFAT1610_GAS_AAA", value: [
-            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
-        ]},
+        
         
         { key: "LAVINT1630_GAS", value: [
             { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
@@ -4167,9 +4560,7 @@ export class Params {
             { tipoInterruzione: "BYPASS", quotaFissa: 550, label:"Y" },
             { tipoInterruzione: "SCAVO", quotaFissa: 1700, label:"S" }
         ]},
-        { key: "LAVFAT1630_GAS_AAA", value: [
-            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
-        ]},
+        
 
         { key: "LAVFAT1631_GAS", value: [
             { tipoInterruzione: "AUTOSCALA", quotaFissa: 798,label:"A" },
@@ -4365,10 +4756,431 @@ export class Params {
             { condizione: 'V1', label: 'Valvola a vista', quotaFissa: 350 },
             { condizione: 'V2', label: 'Valvola da inserire', quotaFissa: 645 },
             { condizione: 'V3', label: 'Valvola non a vista', quotaFissa: 1165 }
-        ]}
+        ]},
 
+        /******************** AAA - VALORI GLOBALI (non soggenti a varianti) *******************************/
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2214 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 },
+                { classeContatore: "G160", prezzo: 4720 }
+            ] },
 
-            
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1010_GAS_AAA',
+            value:[
+                    {   label: 'Quote Aggiuntive',
+                        value:  [
+                            {label: 'Quota agg. per ogni metro oltre i 10 <G6', value: 21, placeholder:"numero",id:"quota1"},
+                            {label: 'Quota agg. per ogni metro oltre i 10 >G6', value: 43, placeholder:"numero",id:"quota2"},                          
+                        ],
+                    },  
+                    {   label: 'Scavo agguntivo',
+                        value:  [
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo escluso', value: 121, placeholder:"mt",id:"quota4"},
+                        ],
+                    },  
+                    {   label: 'Modifiche Allaccio',
+                        value:  [                            
+                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                        ],
+                    },  
+                    {   label: 'Allacciamenti',
+                        value:  [                            
+                            
+                            {label: 'Allacciamento in media pressione con scavo ', value: 1187,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Allacciamento in media pressione senza scavo ', value: 1090,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },                        
+              ] 
+          },
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2210 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 },
+                { classeContatore: "G160", prezzo: 4720 }
+                ] },
+
+        ]},
+{
+            key: 'QUOTE_LAVFAT1040_GAS_AAA',
+            value:[
+                    {   label: 'Quote Aggiuntive',
+                        value:  [
+                            {label: 'Quota agg. per ogni metro oltre i 10 <G6', value: 21, placeholder:"numero",id:"quota1"},
+                            {label: 'Quota agg. per ogni metro oltre i 10 >G6', value: 43, placeholder:"numero",id:"quota2"},                          
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },                        
+              ] 
+          },
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1070_GAS_AAA", value: [
+            { quotaFissa: 0 }
+        ]},
+        {   
+            key: 'QUOTE_LAVFAT1070_GAS_AAA',
+            value:[
+                      {label: 'Tipo Lavoro',
+                       value:  [
+                        {label: 'interrato',            value: 805, singleValue:'true', placeholder:"",id:"quota41"},
+                        {label: 'senza scavo(aereo)',   value: 144, singleValue:'true', placeholder:"",id:"quota42"},
+                      ]}
+              ] 
+          },
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1100_GAS_AAA", 
+     
+          value: [
+                  { classeContatore: "G4",   quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G6",   quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G10",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G16",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G25",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G40",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G65",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G100", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G160", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G250", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G400", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G650", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G1000",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G1600",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G2500",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 }
+        ]},  
+        {
+            key: 'QUOTE_LAVFAT1100_GAS_AAA',
+            value:[
+                    {   label: 'Scavo agguntivo',
+                        value:  [
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo escluso', value: 121, placeholder:"mt",id:"quota4"},
+                        ],
+                    },  
+                    {   label: 'Modifiche Allaccio',
+                        value:  [                            
+                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                        ],
+                    },  
+                    {   label: 'Allacciamenti',
+                        value:  [                            
+                            
+                            {label: 'Allacciamento in media pressione con scavo ', value: 1187,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Allacciamento in media pressione senza scavo ', value: 1090,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'NDER',
+                        value:  [                            
+
+                            {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER<=80mm, lavoro senza scavo ',  value: 796,   singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER>100mm, lavoro interrato ',    value: 2210,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                            {label: 'NDER>100mm, lavoro senza scavo ',  value: 1342,  singleValue:'true', placeholder:"supplemento", id:"quota23"},
+                        ],
+                    },  
+                    {   label: 'Interventi su Derivazione',
+                        value:  [                            
+                            {label: 'Intervento su derivazione, lavoro interrato ',    value: 805,  singleValue:'true', placeholder:"", id:"quota24"},
+                            {label: 'Intervento su derivazione, lavoro senza scavo ',  value: 144,  singleValue:'true', placeholder:"", id:"quota25"},
+
+                        ],
+                    },  
+                      
+              ] 
+          },
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1110_GAS_AAA", 
+            value: [
+                { classeContatore: "G4",   quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G6",   quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G10",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G16",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G25",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G40",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G65",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G100", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G160", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G250", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G400", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G650", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G1000",quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G1600",quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G2500",quotaFissa: 2210, quotaIstruttoria: 37 }
+                
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1110_GAS_AAA',
+            value:[
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'NDER',
+                        value:  [                            
+
+                            {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER<=80mm, lavoro senza scavo ',  value: 796,   singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER>100mm, lavoro interrato ',    value: 2210,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                            {label: 'NDER>100mm, lavoro senza scavo ',  value: 1342,  singleValue:'true', placeholder:"supplemento", id:"quota23"},
+                        ],
+                    },  
+                    {   label: 'Interventi su Derivazione',
+                        value:  [                            
+                            {label: 'Intervento su derivazione, lavoro interrato ',    value: 805,  singleValue:'true', placeholder:"", id:"quota24"},
+                            {label: 'Intervento su derivazione, lavoro senza scavo ',  value: 144,  singleValue:'true', placeholder:"", id:"quota25"},
+
+                        ],
+                    },  
+                      
+              ] 
+          },
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1130_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",   quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G6",   quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G10",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G16",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G25",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G40",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G65",  quotaFissa: 1900, quotaIstruttoria: 37 },
+                { classeContatore: "G100", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G160", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G250", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G400", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G650", quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G1000",quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G1600",quotaFissa: 2210, quotaIstruttoria: 37 },
+                { classeContatore: "G2500",quotaFissa: 2210, quotaIstruttoria: 37 }
+
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 144, label: "Parte idraulica o aerea" }
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1130_GAS_AAA',
+            value:[
+                    {   label: 'Scavo agguntivo',
+                        value:  [
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo escluso', value: 121, placeholder:"mt",id:"quota4"},
+                        ],
+                    },  
+                    {   label: 'Modifiche Allaccio',
+                        value:  [                            
+                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                        ],
+                    },  
+                    {   label: 'Allacciamenti',
+                        value:  [                            
+                            
+                            {label: 'Allacciamento in media pressione con scavo ', value: 1187,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Allacciamento in media pressione senza scavo ', value: 1090,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'NDER',
+                        value:  [                            
+
+                            {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER<=80mm, lavoro senza scavo ',  value: 796,   singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER>100mm, lavoro interrato ',    value: 2210,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                            {label: 'NDER>100mm, lavoro senza scavo ',  value: 1342,  singleValue:'true', placeholder:"supplemento", id:"quota23"},
+                        ],
+                    },  
+                    {   label: 'Interventi su Derivazione',
+                        value:  [                            
+                            {label: 'Intervento su derivazione, lavoro interrato ',    value: 805,  singleValue:'true', placeholder:"", id:"quota24"},
+                            {label: 'Intervento su derivazione, lavoro senza scavo ',  value: 144,  singleValue:'true', placeholder:"", id:"quota25"},
+
+                        ],
+                    },  
+                      
+              ] 
+          },
+        
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 980 },
+                { classeContatore: "G6",   prezzo: 980 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 2210 },
+                { classeContatore: "G65",  prezzo: 3150 },
+                { classeContatore: "G100", prezzo: 4200 },
+                { classeContatore: "G160", prezzo: 4720 }
+                ] },
+
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1140_GAS_AAA',
+            value:[
+                    {   label: 'Quote Aggiuntive',
+                        value:  [
+                            {label: 'Quota agg. per ogni metro oltre i 10 <G6', value: 21, placeholder:"numero",id:"quota1"},
+                            {label: 'Quota agg. per ogni metro oltre i 10 >G6', value: 43, placeholder:"numero",id:"quota2"},                          
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },                        
+              ] 
+          },
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1170_GAS_AAA", value: [
+            { quotaFissa: 0 }
+        ]},
+        {   
+            key: 'QUOTE_LAVFAT1170_GAS_AAA',
+            value:[
+                      {label: 'Tipo Lavoro',
+                       value:  [
+                        {label: 'interrato',            value: 805, singleValue:'true', placeholder:"",id:"quota41"},
+                        {label: 'senza scavo(aereo)',   value: 144, singleValue:'true', placeholder:"",id:"quota42"},
+                      ]}
+              ] 
+          },
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1181_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 1900 },
+                { classeContatore: "G6",   prezzo: 1900 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 1900 },
+                { classeContatore: "G65",  prezzo: 1900 },
+                { classeContatore: "G100", prezzo: 2210 },
+                { classeContatore: "G160", prezzo: 2210 },
+                { classeContatore: "G250", prezzo: 2210 },
+                { classeContatore: "G400", prezzo: 2210 },
+                { classeContatore: "G650", prezzo: 2210 },
+                { classeContatore: "G1000",prezzo: 2210 },
+                { classeContatore: "G1600",prezzo: 2210 },
+                { classeContatore: "G2500",prezzo: 2210 }
+                
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 144, label: "Parte idraulica o aerea" }
+        ]},
+        {
+            key: 'QUOTE_LAVFAT1181_GAS_AAA',
+            value:[
+                    {   label: 'Scavo agguntivo',
+                        value:  [
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo escluso', value: 121, placeholder:"mt",id:"quota4"},
+                        ],
+                    },  
+                    {   label: 'Modifiche Allaccio',
+                        value:  [                            
+                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                        ],
+                    },  
+                    {   label: 'Allacciamenti',
+                        value:  [                            
+                            
+                            {label: 'Allacciamento in media pressione con scavo ', value: 1187,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Allacciamento in media pressione senza scavo ', value: 1090,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota10"},
+                            {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
+                        ],
+                    },  
+                    {   label: 'NDER',
+                        value:  [                            
+
+                            {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER<=80mm, lavoro senza scavo ',  value: 796,   singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER>100mm, lavoro interrato ',    value: 2210,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                            {label: 'NDER>100mm, lavoro senza scavo ',  value: 1342,  singleValue:'true', placeholder:"supplemento", id:"quota23"},
+                        ],
+                    },  
+                    {   label: 'Interventi su Derivazione',
+                        value:  [                            
+                            {label: 'Intervento su derivazione, lavoro interrato ',    value: 805,  singleValue:'true', placeholder:"", id:"quota24"},
+                            {label: 'Intervento su derivazione, lavoro senza scavo ',  value: 144,  singleValue:'true', placeholder:"", id:"quota25"},
+
+                        ],
+                    },  
+                      
+              ] 
+          },
+        
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1610_GAS_AAA", value: [
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+        ]},
+        
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1630_GAS_AAA", value: [
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+        ]},
 
         
     ]);

@@ -65,7 +65,6 @@ import { AlertController } from 'ionic-angular';
             </ion-col>-->
           </ion-row>
 
-          
           <ion-row>
             <ion-col col-1>
               <input type="radio" name="tipo" (click)="selezionaTipo('statale')" [disabled]="statale.length === 0" [checked]="stataleChecked">
@@ -74,7 +73,12 @@ import { AlertController } from 'ionic-angular';
               <ion-label>Scavo su strada Statale (ANAS):</ion-label>
             </ion-col>
             <ion-col col-6>
+              <ion-select [(ngModel)]="statale_valore" [disabled]="statale.length === 0 || statale.length === 1">
+                <ion-option *ngFor="let c of statale" [value]="c.Valore"  [selected]="statale.length === 1">{{ c.ENTE }} - {{ c.Localita}}</ion-option>
+              </ion-select>
+              <!--
               <ion-label>{{statale.ENTE}}</ion-label>
+              -->
             </ion-col>
           </ion-row>
 
@@ -186,14 +190,16 @@ export class ModalCalc implements OnInit{
       }catch(Error){}
       try{
         this.statale = this.copItems.filter(x => x["TIPO COP"] === "STATALE" &&
-                                            x["Provincia"].toUpperCase().includes(this.ads.Indirizzo.Provincia.toUpperCase()))[0];        
+                                            x["Provincia"].toUpperCase().includes(this.ads.Indirizzo.Provincia.toUpperCase()));        
         
         if(this.statale === undefined) {
           this.statale = [];
-        }else {
+        }
+        /*
+        else {
           this.statale_valore = this.statale["Valore"];
         }
-        
+        */
       }catch(Error){}
       try{
         this.consorzio = this.copItems.filter(x => x["TIPO COP"] === "CONSORZIO")[0];        
@@ -224,6 +230,11 @@ export class ModalCalc implements OnInit{
     if(tipo === "provinciale") {
       if(this.provinciale.length === 1) {
         this.provinciale_valore = this.provinciale[0].Valore;
+      }
+    }
+    if(tipo === "statale") {
+      if(this.statale.length === 1) {
+        this.statale_valore = this.statale[0].Valore;
       }
     }
   }
@@ -314,8 +325,8 @@ export class CalcolatriceCopComponent implements OnInit {
     switch(this.ads.CodiceSocieta){
        case CodSocieta.AAA:
        default:
-         url = 'assets/cop_aaa.txt'; 
-         // url = 'assets/cop.txt'; 
+         //url = 'assets/cop_aaa.txt'; 
+         url = 'assets/cop.txt'; 
          break;
     }
  

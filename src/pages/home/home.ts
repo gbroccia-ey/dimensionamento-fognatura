@@ -17,6 +17,33 @@ import { Params } from '../../config/params';
 export class HomePage {
   ads:Ads;
 
+  PreventivableProducts = [
+    'LAVFAT1100_GAS',
+    'LAVFAT1110_GAS',
+    'LAVFAT1010_GAS',
+    'LAVFAT1040_GAS',
+    'LAVFAT1140_GAS',
+    'LAVFAT1070_GAS',
+    'LAVFAT1170_GAS',
+    'LAVFAT1130_GAS',
+    'LAVFAT1181_GAS',
+    'LAVFAT1610_GAS',
+    'LAVINT1630_GAS',
+    'LAVFAT1631_GAS',
+    'LAVFAT1010_ACQUA',
+    'LAVFAT1040_ACQUA',
+    'LAVFAT1050_ACQUA',
+    'LAVFAT1140_ACQUA',
+    'LAVFAT1070_ACQUA',
+    'LAVFAT1170_ACQUA',
+    'LAVFAT1130_ACQUA',
+    'LAVFAT1181_ACQUA',
+    'LAVFAT1100_ACQUA',
+    'LAVFAT1110_ACQUA',
+    'LAVFAT1610_ACQUA',
+    'LAVFAT1010_FOGNATURA',
+    'LAVFAT1040_FOGNATURA',
+  ];
   
   Societa = [
     {label:CodSocieta.AAA , code:7010 },
@@ -27,7 +54,7 @@ export class HomePage {
   
   Settori = [
     {label:"ACQUA", settore: SettoreMerceologico.ACQUA, dettaglio: DettaglioMerceologico.ACQUEDOTTO_CIVILE},
-    {label:"FOGNATURA", settore: SettoreMerceologico.ACQUA, dettaglio: DettaglioMerceologico.FOGNATURA},
+    {label:"FOGNA", settore: SettoreMerceologico.ACQUA, dettaglio: DettaglioMerceologico.FOGNATURA},
     {label:"GAS", settore: SettoreMerceologico.GAS, dettaglio: DettaglioMerceologico.GAS}, 
   ]
 
@@ -62,8 +89,8 @@ export class HomePage {
     { prov:"PD", label: "ACQUA PADOVA",  settore:"ACQUA", societa: CodSocieta.AAA},
     
     // AAA - FOGNATURA
-    { prov:"TS", label: "LISTINO FORFAIT TRIESTE FOGNA", settore:"FOGNATURA", societa: CodSocieta.AAA},
-    { prov:"PD", label: "LISTINO FORFAIT PADOVA FOGNA", settore:"FOGNATURA", societa: CodSocieta.AAA},
+    { prov:"TS", label: "LISTINO FORFAIT TRIESTE FOGNA", settore:"FOGNA", societa: CodSocieta.AAA},
+    { prov:"PD", label: "LISTINO FORFAIT PADOVA FOGNA", settore:"FOGNA", societa: CodSocieta.AAA},
     
     // HERA - GAS
     { prov:"",   label: "LISTINO BASE", settore:"GAS", societa: CodSocieta.HERA},
@@ -76,7 +103,7 @@ export class HomePage {
     { prov:"RM", label: "LISTINO PREZZI 2 (PROVINCIA RIMINI)", settore:"ACQUA", societa: CodSocieta.HERA},
     
     // HERA - FOGNATURA
-    { prov:"",   label: "LISTINO BASE", settore:"ACQUA", societa: CodSocieta.HERA},
+    { prov:"",   label: "LISTINO BASE", settore:"FOGNA", societa: CodSocieta.HERA},
     
   ]
 
@@ -97,12 +124,13 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,public http: Http) {
     this.selSocieta = this.Societa[0];
-    var url = 'assets/cop_aaa.txt'; 
+    var url = 'assets/cop.txt'; 
     this.http.get(url).subscribe(res => {
       this.copList = res.json();
       this.copList.forEach(val => {
         if (!this.Province.includes(val["Provincia"].toUpperCase())){
           this.Province.push(val["Provincia"].toUpperCase())
+        
         }
       });
     });
@@ -155,9 +183,12 @@ export class HomePage {
     var self = this;
     this.ProdottiServizio = [];
     this.selProdotto = undefined;
+
     Params.prodServizioList.forEach( (prod) => {
-      if (prod.prestazione === self.selSettore.label){
+      var key = prod.prodServizio+'_'+((prod.prestazione==="FOGNA")?"FOGNATURA":prod.prestazione);
+      if (prod.prestazione === self.selSettore.label && self.PreventivableProducts.includes(key)){
         self.ProdottiServizio.push(prod);
+        
       }
     })
 
@@ -172,6 +203,7 @@ export class HomePage {
   }
 
 
+  
   onProdottoChange(){
     
   }
@@ -188,7 +220,7 @@ export class HomePage {
 
 
   gotMissingParams() {
-    return !(this.selProdotto && this.selSocieta && this.selSettore && this.selVariante);
+    return !(this.selProdotto && this.selSocieta && this.selSettore );
   }
 
 
@@ -215,10 +247,10 @@ export class HomePage {
 
     this.ads._altro1 = JSON.stringify({
       societa:this.selSocieta.code,
-      varianteListino: this.selVariante.label
+      varianteListino: this.selVariante?.label
     });
     
-    if (this.selVariante.prov !== ""){
+    if (this.selVariante && this.selVariante.prov !== ""){
       this.ads.Indirizzo.Provincia = this.selVariante.prov;
     }
 
@@ -227,7 +259,9 @@ export class HomePage {
     }
     
     if (this.selComune){
-      this.ads.Indirizzo.Provincia = this.selProvincia;
+      this.ads.Indirizzo.Citta = this.selComune["Localita"];
+      this.ads.Indirizzo.Cap = this.selComune["Cod Localita"];
+      this.ads.Indirizzo.Provincia = this.selComune["Provincia"];
     }
     
     this.ads._base64Img = [];
