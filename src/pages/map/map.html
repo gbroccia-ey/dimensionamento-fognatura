@@ -1,0 +1,233 @@
+<!--
+  Generated template for the MapPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>map</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding >
+    <!-- <div class="calcite">
+    <div id="mainWindow" data-dojo-type="dijit/layout/BorderContainer" data-dojo-props="design:'headline',gutters:false"
+    style="width:100%; height:100%;">
+      <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'">
+        <div style="position:absolute; right:20px; top:10px; z-Index:999;">
+          <div id="titlePane" data-dojo-type="dijit/TitlePane" data-dojo-props="title:'Measurement', closable:false">
+            <div id="measurementDiv"></div>
+            <span style="font-size:smaller;padding:5px 5px;">Press <b>CTRL</b> to enable snapping.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+
+<div class="claro">
+  <div id="content"
+       style="width: 100%; margin: 0;">
+
+    <div id="details"
+         style="overflow:auto; width:200px;float:left; left: -8px; position: relative">
+
+        <!-- <div id="detailsSon"
+         data-dojo-type="dijit.layout.ContentPane"
+         data-dojo-props="region:'left', splitter:true"
+         style="overflow:auto; width:200px;">
+        </div> -->
+
+            <div *ngIf="ads.TubaturaPosizionata!=false">
+
+           <ion-item>
+              <ion-label>Acqua</ion-label>
+              <ion-checkbox [(ngModel)]="acquaLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              
+                
+                <ion-label>Elettrico&nbsp;&nbsp;&nbsp;&nbsp;<ion-icon class="right" ion-2x style="zoom:1.5;"name="logo-buffer"></ion-icon> </ion-label>
+                <ion-checkbox [(ngModel)]="EELayer.checked" (click)="openMapTree()" (ionChange)="updateLayers()"></ion-checkbox>
+                
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Gas</ion-label>
+              <ion-checkbox [(ngModel)]="gasLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>TLR</ion-label>
+              <ion-checkbox [(ngModel)]="tlrLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Fognatura</ion-label>
+              <ion-checkbox [(ngModel)]="fognaturaLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+            
+            <ion-item>
+              <ion-label>Satellitare</ion-label>
+              <ion-checkbox [(ngModel)]="basemapLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Ctr</ion-label>
+              <ion-checkbox [(ngModel)]="ctrLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+
+            <ion-item>
+              <ion-label>Pianetti</ion-label>
+              <ion-checkbox [(ngModel)]="pianettiLayer.checked" (ionChange)="updateLayers()"></ion-checkbox>
+            </ion-item>
+
+            </div>
+
+              <div *ngIf="extendGis && ads.TubaturaPosizionata!=true" class="containerPos">
+                <label style="padding-left: 7px;font-weight: 700;">	Posiziona alloggiamento </label>
+                 <ion-item>
+                    <button ion-button (click)="posizionaAlloggiamento(true)" style="width:100%">
+              	        automatico
+                    </button>
+                  </ion-item>
+                   <ion-item>
+                       <button ion-button (click)="posizionaAlloggiamento(false)" style="width:100%">
+              	        manuale
+                    </button>
+                    </ion-item>
+              </div>
+
+
+              <div *ngIf="ads.TubaturaPosizionata==false" class="">
+          
+          <div style="min-width:200px;float:left; font-weight:700;" class="containerPos">
+              <ion-label style="margin-left:5px;">
+              Seleziona tratta
+            </ion-label>
+          <div style="max-height:calc(100vh - 530px);overflow: scroll;font-weight:700;">
+          <ion-list radio-group [(ngModel)]="tubaturaLayer" (ionChange)="mostraTubatura()">
+            <div *ngFor="let item of tubature" [ngClass]="getDescrTrattaH20(item)!=undefined? 'trattaContainerAcqua' : 'trattaContainer'">
+            
+            <ion-item>
+               <ion-label>Tratta: {{item[2].OBJECTID}}</ion-label>
+              <ion-radio value="{{item[2].OBJECTID}}"></ion-radio>
+            </ion-item>
+              <div *ngIf="getDescrTratta(item)!=''" style="padding-left: 10px;"> {{getDescrTratta(item)}} </div>
+               <div *ngIf="getDescrTrattaH20(item)!=''" style="padding-left: 10px;"> {{getDescrTrattaH20(item)}} </div>
+            <div [ngStyle]="{'background-color':item.color}" style="width: 58px;
+    height: 5px;
+    margin-left: 10px;"></div>
+              <div style="margin-left: 10px;    width: calc(100% - 35px); border-bottom: 1px solid #dedede;"></div>
+              </div>
+          </ion-list>
+          </div>
+
+          <div style="border-top: 1px solid #dedede;">
+           <button ion-button (click)="selezionaDaMappa();" style="margin: 8px;
+    margin-top: 16px;
+    width: calc(100% - 16px);width:calc(100% - 16px)" [disabled]="disableManuale">MANUALE</button>
+          </div>
+          </div>
+
+          <div  style="float:left;font-weight:700;">
+              <ion-label>
+              Concludi posizionamento
+            </ion-label>
+          <ion-item>
+
+          <ion-label *ngIf="alloggiamento!='colonna' && alloggiamento!='nessuno'">Alloggiamento</ion-label>
+          <ion-label  style="max-width: 54px;" *ngIf="alloggiamento=='colonna'||alloggiamento=='nessuno'">Alloggiamento</ion-label>
+          <ion-select [(ngModel)]="alloggiamento" (ionChange)="setConfermable()" [disabled]="disableAlloggiamento == true">
+            <ion-option value="singolo">Singolo</ion-option>
+            <ion-option value="multiplo">Multiplo</ion-option>
+            <ion-option value="colonna">Colonna montante</ion-option>
+            <ion-option value="nessuno">Nessuno dei precedenti</ion-option>
+          </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="alloggiamento!=undefined && alloggiamento!='nessuno' && isGas==true">
+          <ion-label>GRU</ion-label>
+          <ion-select [(ngModel)]="gru.stato" (ionChange)="setConfermable()">
+            <ion-option value="si">SI - GRU esistente</ion-option>
+            <ion-option value="nuovo">SI - GRU nuovo</ion-option>
+            <ion-option value="no">NO</ion-option>
+          </ion-select>
+          </ion-item>
+
+          <ion-item *ngIf="alloggiamento!='nessuno' && gru.stato == 'si'">
+          <ion-label>Marca</ion-label>
+          <ion-select [(ngModel)]="gru.marca" (ionChange)="setListaModelli()">
+            <ion-option *ngFor="let item of listaGru.lista" value="{{item.marca}}">{{item.marca}}</ion-option>
+          </ion-select>
+          </ion-item>
+
+
+          <ion-item  *ngIf="alloggiamento!='nessuno' &&  gru.stato == 'si' && listaModelli != undefined">
+          <ion-label>Modello</ion-label>
+          <ion-select [(ngModel)]="gru.modello" (ionChange)="setConfermable()">
+              <ion-option *ngFor="let item of listaModelli" value="{{item}}">{{item}}</ion-option>
+          </ion-select>
+          </ion-item>
+          </div>
+
+        <button ion-button (click)="confermaAlloggiamento();" style="margin: 16px;margin-right: 0px;margin-left: 8px;position: relative; float: left; font-size:13px" [disabled]="checkConfermable()!=true">conferma</button>
+         <button ion-button (click)="eliminaAlloggiamento();" style="margin: 16px;margin-right: 0px;margin-left: 8px;position: relative; float: left; font-size:12px">annulla</button>
+      </div>
+
+            
+          <div *ngIf="ads.TubaturaPosizionata!=false">
+            <ion-item>
+              <button ion-button (click)="findPosition()" style="width:100%; height:42px;">
+                Trova posizione
+              </button>
+            </ion-item>
+       
+           
+
+            <ion-item>
+                  <label style="margin-bottom:5px">Misura</label>
+                 <div class="calcite">
+                        <div id="measurementDiv"></div>
+                      </div>
+            </ion-item>
+
+              <!--<div class="calcite" id="details"
+                  data-dojo-type="dijit.layout.ContentPane"
+                  data-dojo-props="region:'left', splitter:true"
+                  style="overflow:auto; width:200px;">
+                    <div id="titlePane" data-dojo-type="dijit/TitlePane" data-dojo-props="title:'Measurement', closable:false">
+                        <div id="measurementDiv"></div>
+                      </div>
+              </div>-->
+
+
+            <ion-item>
+
+              <button ion-button (click)="takeScreenshot()"  [disabled]="shotting" style="width:100%; height:42px;">
+                 Salva immagine mappa
+              </button>
+            </ion-item>
+
+            <div *ngFor="let img of images" style="width:80px;height:80px;float:left;margin:3px;">
+              <img width="80" height="80" [src]="img.base64" (click)="goToFoto()">
+            </div>
+            </div>
+
+    </div>
+
+    <div *ngIf="showInfoTitle" class="infoTubatura">{{infoTitle}}</div>
+    <div  id="map"
+         style="overflow:hidden; width:calc(100% - 235px); height:85vh;">
+    </div>
+    
+
+  </div>
+
+  </div> 
+</ion-content>

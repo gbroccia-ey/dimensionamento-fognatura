@@ -1,0 +1,202 @@
+page-map {
+
+    li{
+      min-heigh:25px;
+    }
+
+    .trattaContainer{
+        height: 75px;
+    }
+
+    .trattaContainerAcqua{
+      height: 90px;
+    }
+
+    .trattaContainerAcqua .item .item-inner{
+      border-bottom: 0px;
+    }
+
+    .trattaContainer .item .item-inner{
+      border-bottom: 0px;
+    }
+
+    .infoTubatura{
+        border-top: 1px black solid;
+        border-bottom: 1px black solid;
+        margin-left: 220px;
+        /* border-radius: 15px; */
+        width: calc(100% - 262px);
+        text-align: center;
+        background: linear-gradient(to left, #faefc9 0%, #ffdac5 100%) !important;
+    }
+
+    .alert-radio-group{
+      max-height:100% !important;
+    }
+
+    .preventClick{
+        height:calc(100% - 200px);
+      position: fixed;
+      width:100%;
+      top:0px;
+    }
+
+    .preventClickSmall{
+      height:calc(100% - 200px);
+      position: fixed;
+      width:20%;
+      top:0px;
+    }
+
+    .alloggiamento{
+      height:320px;
+      position: fixed;
+      width:100%;
+      bottom:12px;
+      background: white;
+      z-index: 111;
+      border: 1px black solid;
+      border-radius: 5px;
+      padding: 16px;
+      max-width: 615px;
+    }
+
+  .containerPos{
+      margin-top: 16px;
+      margin-bottom: 16px;
+      margin-right: 2px;
+      border: 1px solid #cccccc;
+      border-radius: 5px;
+    }
+
+      #map {
+        border:solid 2px #808775;
+        -moz-border-radius:4px;
+        -webkit-border-radius:4px;
+        border-radius:4px;
+        margin:5px;
+        padding:0px;
+      }
+
+      //#map_graphics_layer {
+      circle{
+        -webkit-animation-duration: 3s;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-name: pulse;
+        -moz-animation-duration: 3s;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-name: pulse;
+      }
+
+      #search_menu_button{
+        display:none;
+      }
+
+      .searchBtn{
+        display:none;
+      }
+
+
+      #titlePane{
+        width:280px;
+      }
+
+      .esriIconFallbackText{
+        display:none;
+      }
+
+      .esri-icon-loading-indicator{
+        display:none;
+      }
+
+      #allPageMap{
+        width:100%;
+        height:100%;
+      }
+      
+     @-webkit-keyframes
+       pulse
+      {
+        0%
+        {
+          opacity: 1.0;
+
+        }
+        45%
+        {
+          opacity: .20;
+
+        }
+        100%
+        {
+          opacity: 1.0;
+
+        }
+      }
+     @-moz-keyframes
+       pulse
+      {
+        0%
+        {
+          opacity: 1.0;
+        }
+        45%
+        {
+          opacity: .20;
+
+        }
+        100%
+        {
+          opacity: 1.0;
+        }
+      }
+
+      .scaleLabelDiv {
+        color: #ece3e3
+      }
+
+      .esriScalebarLabel {
+        color: #ece3e3
+      }
+
+      .esriScalebar {
+        left: 248px !important;
+        top: 86%;
+      }
+      
+      #details {
+        margin-right: 20px !important;
+      }
+
+      .item-md {
+        padding-left: 8px !important;
+        font-size: 1.4rem !important;
+      }
+      .searchInputGroup {
+        input {
+            width: calc(100% - 1px) !important;
+            border: 1px solid grey;
+        }
+      }
+
+      .arcgisSearch  {
+        position: relative !important;
+      }
+      .searchBtn {
+        padding: 6px 0 6px 0 !important;
+      }
+
+      .searchClear {
+        right: 6px !important;
+      }
+      
+      .showSuggestions .suggestionsMenu {
+        width: 150px !important;
+        position: relative !important;
+      }
+    
+      .listaAllacci {
+        overflow: scroll;
+        max-height: 68%;    
+      }
+}

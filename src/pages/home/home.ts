@@ -4,11 +4,14 @@ import { Http } from '@angular/http';
 import { NavController } from 'ionic-angular';
 import { DimensionamentoAllacciPage } from '../dimensionamento-allacci/dimensionamento-allacci';
 import { PreventivatorePage } from '../preventivatore/preventivatore';
+import { MapPage } from '../map/map';
 import { Ads,SettoreMerceologico,DettaglioMerceologico, CodSocieta } from '../../models/ads';
 import { Caratteristiche } from '../../models/caratteristiche';
 import { Cliente } from '../../models/cliente';
 import { Indirizzo } from '../../models/indirizzo';
 import { Params } from '../../config/params';
+
+declare var esriCtrl;
 
 @Component({
   selector: 'page-home',
@@ -124,6 +127,7 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,public http: Http) {
     this.selSocieta = this.Societa[0];
+    esriCtrl.addEsri();
     var url = 'assets/cop.txt'; 
     this.http.get(url).subscribe(res => {
       this.copList = res.json();
@@ -161,6 +165,44 @@ export class HomePage {
     this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
     this.ads._altro1 = JSON.stringify({
       societa:7010
+    }); 
+    
+    this.ads.ProdServizio="LAVFAT1040";
+    this.ads.CodiceAttivita="WF1040";
+
+    this.ads._base64Img = [];
+    
+  }
+
+//------------------------------------------------------------
+  //               Mappa
+  //------------------------------------------------------------
+  openMap(){
+    this.populateMap();
+    let address = {
+        location: {
+          x: 7.266635,
+          y: 11.336377
+        }
+      },
+        data = {id:this.ads.Id, address: address, ads:this.ads, extendGis :true};
+
+    this.navCtrl.push(MapPage, data);
+  }
+
+
+  populateMap(){
+    this.ads = new Ads();
+
+    this.ads.CodiceAds = "TestCodeAds"
+    this.ads.CodiceOdl = "TestCodeOdl"
+    this.ads.SettoreMerceologico = SettoreMerceologico.GAS;
+    this.ads.Caratteristiche = new Caratteristiche();
+    this.ads.Cliente = new Cliente("cognome","nome","rag_soc","codCli","01234567","a@b.it",
+                  new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO"));
+    this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
+    this.ads._altro1 = JSON.stringify({
+      societa:7010 // AAA
     }); 
     
     this.ads.ProdServizio="LAVFAT1040";
@@ -269,7 +311,8 @@ export class HomePage {
   }
 
   openPreventivatore() {
-    this.populateAdsPreventivatore()
+    this.populateAdsPreventivatore();
+    
     this.navCtrl.push(PreventivatorePage, {ads:this.ads});
   }
 

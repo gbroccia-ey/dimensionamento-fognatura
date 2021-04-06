@@ -1,0 +1,25 @@
+<!--
+  Generated template for the MapTreePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Map Tree</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <resource-tree-view [TreeData]="treeItems" [hasCheckbox]="true">
+  </resource-tree-view>
+  
+  <div>
+    <button class="btn_preventivatore" ion-button (click)="confirmSelection()">Conferma</button> 
+    <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
+  </div>
+</ion-content>

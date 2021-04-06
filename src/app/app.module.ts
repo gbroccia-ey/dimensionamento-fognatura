@@ -1,10 +1,9 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { DecimalPipe} from '@angular/common';
 import { HttpModule } from '@angular/http';
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+
 import {DimensionamentoAllacciPage} from '../pages/dimensionamento-allacci/dimensionamento-allacci';
 import {PreventivatorePage} from '../pages/preventivatore/preventivatore';
 import {DimensionamentoAllacciFognaturaComponent,RemoveCommaPipe} from '../components/dimensionamento-allacci/dimensionamento-allacci-fognatura/dimensionamento-allacci-fognatura';
@@ -56,7 +55,7 @@ import { CerCalc } from '../components/preventivatore/calcolatore-cer/calcolator
 import { CvvCalc } from '../components/preventivatore/calcolatore-cvv/calcolatore-cvv';
 import { CalcolatoreCvvComponent } from '../components/preventivatore/calcolatore-cvv/calcolatore-cvv';
 import { BasePreventivatoreComponent } from '../components/preventivatore/base-preventivatore/base-preventivatore';
-
+import { ResourceTree} from '../components/resource-tree/resource-tree'
 
 
 import { HomePage } from '../pages/home/home';
@@ -64,12 +63,16 @@ import { ModelDatiRetePdf } from '../models/ModelDatiRetePdf';
 import { ModelPermessi } from '../models/ModelPermessi';
 import { PreviewPdfNoSignatures } from '../pages/preview-pdf-no-signature/preview-pdf-no-signature';
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
+import { MapPage } from '../pages/map/map';
+import { MapTreePage } from '../pages/map-tree/map-tree';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
+    MapPage,
+    MapTreePage,
     DimensionamentoAllacciFognaturaComponent,
     RemoveCommaPipe,
     PreventivatorePage,
@@ -111,16 +114,20 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     CalcolatoreCvvComponent ,
     BasePreventivatoreComponent,
     PreviewPdfNoSignatures,
+    ResourceTree
   ],
   imports: [
   BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
+    MapPage,
+    MapTreePage,
+    
     PreventivatorePage,
     DimensionamentoAllacciPage,
     PreviewPdfNoSignatures,
@@ -129,7 +136,7 @@ import { PdfViewerComponent } from 'ng2-pdf-viewer';
     ModalCalc,
     ModalDeroga,
     ModalQuote,
-    
+    ResourceTree
   ],
   providers: [
     PdfManager,
