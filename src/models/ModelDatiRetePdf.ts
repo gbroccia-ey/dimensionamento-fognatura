@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SettoreMerceologico } from '../models/ads'
+import { DatiRete } from './DatiRete';
 
 declare var util: any;
 declare var imgExample;
@@ -12,6 +13,7 @@ export class ModelDatiRetePdf {
     indirizzo;
     settoreMerceologico;
     odlCode= '';
+    datiRete: DatiRete;
     header;
     header2;
 
@@ -22,24 +24,24 @@ export class ModelDatiRetePdf {
     getPage2(value) {
         let dataList = [];
 
-        dataList.push([{text: 'Valori accessibilità', fillColor:this.fillColor},{text: value.dati.form.valoriAccessibilita}]);
-        dataList.push([{text: 'Caratteristiche alloggiamento', fillColor:this.fillColor},{text: value.dati.form.caratteristicheAlloggiamento}]);
-        dataList.push([{text: 'Caratteristica Sportello', fillColor:this.fillColor},{text: value.dati.form.caratteristicaSportello}]);
-        dataList.push([{text: 'Conformità installazione GdM', fillColor:this.fillColor},{text: value.dati.form.conformitaInstallazione}]);
-        dataList.push([{text: 'Telelettura', fillColor:this.fillColor},{text: value.dati.form.telettatura}]);
-        dataList.push([{text: 'Spazio Confinato', fillColor:this.fillColor},{text: value.dati.form.spazioConfinato}]);
-        dataList.push([{text: 'Potenzialità Iniziale di Proge', fillColor:this.fillColor},{text: value.dati.form.potenzialitaIniziale}]);
-        dataList.push([{text: 'Pressione di Fornitura di Prog', fillColor:this.fillColor},{text: value.dati.form.pressioneFornitura}]);
-        dataList.push([{text: 'Potenza tecnica impianto (kW)', fillColor:this.fillColor},{text: value.dati.form.potenzaTecnica}]);
-        dataList.push([{text: 'Presenza blocco antimorosità', fillColor:this.fillColor},{text: value.dati.form.bloccoAntimorosita}]);
-        dataList.push([{text: 'Valvola con chiave', fillColor:this.fillColor},{text: value.dati.form.valvolaChiave}]);
-        dataList.push([{text: 'Chiave n°', fillColor:this.fillColor},{text: value.dati.form.numChiave}]);
-        dataList.push([{text: 'Presenza chiavi condominio', fillColor:this.fillColor},{text: value.dati.form.presenzaChiavi}]);
-        dataList.push([{text: 'Mensola', fillColor:this.fillColor},{text: value.dati.form.mensola}]);
-        dataList.push([{text: 'Indicazione per sezionamento morosità', fillColor:this.fillColor},{text: value.dati.form.sezionamentoMorosita}]);
-        dataList.push([{text: 'Presenza Produzione Energia (Gas)', fillColor:this.fillColor},{text: value.dati.form.presenzaEnergia}]);
-        dataList.push([{text: 'Flusso', fillColor:this.fillColor},{text: value.dati.form.flusso}]);
-        dataList.push([{text: 'Posizione', fillColor:this.fillColor},{text: value.dati.form.posizione}]);
+        dataList.push([{text: 'Valori accessibilità', fillColor:this.fillColor},{text: this.datiRete.valoriAccessibilita}]);
+        dataList.push([{text: 'Caratteristiche alloggiamento', fillColor:this.fillColor},{text: this.datiRete.caratteristicheAlloggiamento}]);
+        dataList.push([{text: 'Caratteristica Sportello', fillColor:this.fillColor},{text: this.datiRete.caratteristicaSportello}]);
+        dataList.push([{text: 'Conformità installazione GdM', fillColor:this.fillColor},{text: this.datiRete.conformitaInstallazione}]);
+        dataList.push([{text: 'Telelettura', fillColor:this.fillColor},{text: this.datiRete.telelettura}]);
+        dataList.push([{text: 'Spazio Confinato', fillColor:this.fillColor},{text: this.datiRete.spazioConfinato}]);
+        dataList.push([{text: 'Potenzialità Iniziale di Progetto', fillColor:this.fillColor},{text: this.datiRete.potenzialitaIniziale}]);
+        dataList.push([{text: 'Pressione di Fornitura di Progetto', fillColor:this.fillColor},{text: this.datiRete.pressioneFornitura}]);
+        dataList.push([{text: 'Potenza tecnica impianto (kW)', fillColor:this.fillColor},{text: this.datiRete.potenzaTecnica}]);
+        dataList.push([{text: 'Presenza blocco antimorosità', fillColor:this.fillColor},{text: this.datiRete.bloccoAntimorosita}]);
+        dataList.push([{text: 'Valvola con chiave', fillColor:this.fillColor},{text: this.datiRete.valvolaChiave}]);
+        dataList.push([{text: 'Chiave n°', fillColor:this.fillColor},{text: this.datiRete.numChiave}]);
+        dataList.push([{text: 'Presenza chiavi condominio', fillColor:this.fillColor},{text: this.datiRete.presenzaChiavi}]);
+        dataList.push([{text: 'Mensola', fillColor:this.fillColor},{text: this.datiRete.mensola}]);
+        dataList.push([{text: 'Indicazione per sezionamento morosità', fillColor:this.fillColor},{text: this.datiRete.sezionamentoMorosita}]);
+        dataList.push([{text: 'Presenza Produzione Energia (Gas)', fillColor:this.fillColor},{text: this.datiRete.presenzaEnergia}]);
+        dataList.push([{text: 'Flusso', fillColor:this.fillColor},{text: this.datiRete.flusso}]);
+        dataList.push([{text: 'Posizione', fillColor:this.fillColor},{text: this.datiRete.posizione}]);
 
         var page = [
             { style: 'separator',
@@ -105,7 +107,7 @@ export class ModelDatiRetePdf {
                         fillColor:this.fillColor
                     }, 
                     {
-                        text:value.dati.form.ads.CodiceAds
+                        text:value.download.ads.CodiceAds
                     }]
                     ]
             }
@@ -173,7 +175,7 @@ export class ModelDatiRetePdf {
                     widths: ['*'],
                     body: [
                             [{text: 'Settore merceologico', bold:true, fontSize: 10, alignment: 'center', border: [ true, true, true, false]}],
-                            [{text: value.dati.form.TipoServizio, fontSize: 20,bold:true, alignment: 'center', fillColor:this.fillColor,  border: [ true, false, true, false]}],
+                            [{text: this.datiRete.TipoServizio, fontSize: 20,bold:true, alignment: 'center', fillColor:this.fillColor,  border: [ true, false, true, false]}],
                             [{text: '', fontSize: 20,bold:true, alignment: 'center',  border: [ true, false, true, false]}],
                             [{	image: this.icon,
                                 width: 60, alignment:'center', border: [ true, false, true, false]}],
@@ -199,9 +201,18 @@ export class ModelDatiRetePdf {
 
     public getTesProvDomDefinition(value): Promise<any> {
 
-        this.odlCode = value.dati.form.ads.CodiceOdl != null || undefined ? value.dati.form.ads.CodiceOdl : ''
+        this.odlCode = value.download.ads.CodiceOdl != null || undefined ? value.download.ads.CodiceOdl : ' '
 
-        switch(value.dati.form.TipoServizio ){
+        this.datiRete = new DatiRete(value.dati.form)
+
+        // sostituzione dati null, undefined e "" con " "
+        for(let key in this.datiRete) {
+            if(this.datiRete[key] == undefined || this.datiRete[key] == null || this.datiRete[key] ==""){
+                this.datiRete[key] = " ";
+            }
+        }
+
+        switch(this.datiRete.TipoServizio ){
             case('ACQUA'):{
               this.fillColor = "#fcce5";
               break;
@@ -225,7 +236,7 @@ export class ModelDatiRetePdf {
         table: {
             widths: ["*"],
             body: [[{
-                        image: value.dati.form.LogoDx,
+                        image: value.download.ads.Logo,
                         width: 150,
                         border: [false, false, false, false]
                     }
@@ -254,8 +265,8 @@ export class ModelDatiRetePdf {
         //         }
         //     };
 
-        this.icon = value.dati.form.ads.getIconBase64()
-        this.indirizzo = value.dati.form.ads.Indirizzo.toString();
+        this.icon = value.download.ads.getIconBase64()
+        this.indirizzo = value.download.ads.Indirizzo.toString();
 
         return new Promise((resolve, reject) => {    
 

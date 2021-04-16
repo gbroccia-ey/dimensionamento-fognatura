@@ -46,7 +46,7 @@ util.placeCall = function(num) {
   }
 
   util.isProduction = function(){
-    return true;
+    return false;
   }
 
   

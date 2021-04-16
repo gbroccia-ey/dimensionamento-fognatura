@@ -106,7 +106,6 @@ export class ModalQuote {
   isEdited: boolean = false;
   totale;
   quoteItems;
-  JSON = JSON;
 
   constructor(public viewCtrl: ViewController, public navParams: NavParams,
               public alertCtrl: AlertController, public zone: NgZone) {

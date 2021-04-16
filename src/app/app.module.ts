@@ -4,6 +4,10 @@ import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 
+import { SignaturePadModule } from 'angular2-signaturepad';
+//import { IonicStorageModule } from '@ionic/storage';
+
+
 import {DimensionamentoAllacciPage} from '../pages/dimensionamento-allacci/dimensionamento-allacci';
 import {PreventivatorePage} from '../pages/preventivatore/preventivatore';
 import {DimensionamentoAllacciFognaturaComponent,RemoveCommaPipe} from '../components/dimensionamento-allacci/dimensionamento-allacci-fognatura/dimensionamento-allacci-fognatura';
@@ -18,6 +22,8 @@ import { ModelFT} from '../models/ModelFT';
 import { PreventivoPDF } from '../models/PreventivoPDF';
 import { AdsService } from '../services/ads-service';
 import { AdsSync } from '../services/ads-synchronizer';
+import { JSONStoreManager } from '../providers/jsonstore-manager/jsonstoremanager';
+import { FileBackupService } from '../services/file-backup-service';
 
 import { Lavfat1100GasComponent } from '../components/preventivatore/gas/lavfat1100-gas/lavfat1100-gas';
 import { Lavfat1110GasComponent } from '../components/preventivatore/gas/lavfat1110-gas/lavfat1110-gas';
@@ -65,6 +71,17 @@ import { PreviewPdfNoSignatures } from '../pages/preview-pdf-no-signature/previe
 import { PdfViewerComponent } from 'ng2-pdf-viewer';
 import { MapPage } from '../pages/map/map';
 import { MapTreePage } from '../pages/map-tree/map-tree';
+import { SceltapagePage } from '../pages/sceltapage/sceltapage';
+import { Form1Page } from '../pages/form1/form1';
+import { Form2Page } from '../pages/form2/form2';
+import { ModalepdfPage } from '../pages/modalepdf/modalepdf';
+import { PainterPage2 } from '../pages/painter2/painter2';
+import { FotoPage } from '../pages/foto/foto';
+import { NoteVerbalePage } from '../pages/note-verbale/note-verbale';
+import { ModalenotePage } from '../pages/modalenote/modalenote';
+import { PreviewPdfTwoSignatures } from '../pages/preview-pdf-two-signature/preview-pdf-two-signature';
+import { ModalefirmaPage } from '../pages/modalefirma/modalefirma';
+
 
 
 @NgModule({
@@ -73,6 +90,16 @@ import { MapTreePage } from '../pages/map-tree/map-tree';
     HomePage,
     MapPage,
     MapTreePage,
+    Form1Page,
+    Form2Page,
+    ModalepdfPage,
+    ModalenotePage,
+    ModalefirmaPage,
+    PainterPage2,
+    FotoPage,
+    NoteVerbalePage,
+    SceltapagePage,
+
     DimensionamentoAllacciFognaturaComponent,
     RemoveCommaPipe,
     PreventivatorePage,
@@ -114,10 +141,15 @@ import { MapTreePage } from '../pages/map-tree/map-tree';
     CalcolatoreCvvComponent ,
     BasePreventivatoreComponent,
     PreviewPdfNoSignatures,
+    PreviewPdfTwoSignatures,
     ResourceTree
   ],
   imports: [
-  BrowserModule,
+  
+    BrowserModule,
+    SignaturePadModule,
+    //IonicStorageModule.forRoot(),    
+    
     IonicModule.forRoot(MyApp),
     HttpModule,
   ],
@@ -127,10 +159,22 @@ import { MapTreePage } from '../pages/map-tree/map-tree';
     HomePage,
     MapPage,
     MapTreePage,
-    
+    Form1Page,
+    Form2Page,
+    SceltapagePage,
+
+    ModalepdfPage,
+    ModalenotePage,
+    ModalefirmaPage,
+    PainterPage2,
+    FotoPage,
+    NoteVerbalePage,
+
     PreventivatorePage,
     DimensionamentoAllacciPage,
     PreviewPdfNoSignatures,
+    PreviewPdfTwoSignatures,
+    
     CerCalc,
     CvvCalc,
     ModalCalc,
@@ -152,6 +196,9 @@ import { MapTreePage } from '../pages/map-tree/map-tree';
     DecimalPipe,
     RemoveCommaPipe,
     AdsService,
+    JSONStoreManager,
+    FileBackupService,
+    
     AdsSync,
     { provide: ErrorHandler, useClass: IonicErrorHandler},
 

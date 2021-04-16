@@ -755,7 +755,7 @@ export class ModelFT {
             this.fillColor      = '#6c4e03';
             let headerBG        = '#6d4f00', headerFontColor = 'white', headerFontSize=14;
             
-            let header2BG       = '#fed254', header2FontSize=10, header2ColFontSize=7,header2ColFontSize2=5;
+            let header2BG       = '#fed254', header2FontSize=10, header2ColFontSize=7,header2ColFontSize2=5,paramColFontSize=8;
             let acqueNereBG     = '#15a43f';
             let acqueNereBG2    = '#badba5';
             let acqueBiancheBG  = '#8cb3e0';
@@ -837,13 +837,13 @@ export class ModelFT {
                     text:""+dimAllacci.AcqueNere.usoDomestico,                                             
                     fillColor: "white",     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:formatVal(dimAllacci.AcqueNere.usoDomestico/ParametriAcqueNere.dividers[0]),                                             
                     fillColor: acqueNereBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'Unità equivalenti "fisse" in presenza di portata bianca',         
@@ -857,7 +857,7 @@ export class ModelFT {
                     text:dimAllacci.AcqueBianche.uiEqFisse,         
                     fillColor: acqueBiancheBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 
             ]);
@@ -872,13 +872,13 @@ export class ModelFT {
                     text:""+dimAllacci.AcqueNere.alberghieri,                                             
                     fillColor: "white",     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:formatVal(dimAllacci.AcqueNere.alberghieri/ParametriAcqueNere.dividers[1]),                                             
                     fillColor: acqueNereBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'Superfici impermeabili (tetti, strade) [mq]',         
@@ -890,12 +890,12 @@ export class ModelFT {
                     text:formatVal(dimAllacci.AcqueBianche.supImpermeabili),         
                     fillColor: 'white',     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   text:formatVal(dimAllacci.AcqueBianche.portataImpermeabili),
                     fillColor: acqueBiancheBG2,
                     alignment:"center", 
-                    fontSize:header2ColFontSize 
+                    fontSize:paramColFontSize 
                 },
                 {   text:'',fillColor: acqueBiancheBG2,fontSize:header2ColFontSize },
                 
@@ -912,13 +912,13 @@ export class ModelFT {
                     text:""+dimAllacci.AcqueNere.ospedali,                                             
                     fillColor: "white",     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:formatVal(dimAllacci.AcqueNere.ospedali/ParametriAcqueNere.dividers[2]),                                             
                     fillColor: acqueNereBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'Superfici semipermeabili drenati (parcheggi) [mq]',         
@@ -930,12 +930,12 @@ export class ModelFT {
                     text:formatVal(dimAllacci.AcqueBianche.supSemipermeabili),         
                     fillColor: 'white',     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   text:formatVal(dimAllacci.AcqueBianche.portataSemipermeabili),
                     fillColor: acqueBiancheBG2,
                     alignment:"center", 
-                    fontSize:header2ColFontSize 
+                    fontSize:paramColFontSize 
                 },
                 {   text:'',fillColor: acqueBiancheBG2,fontSize:header2ColFontSize },
                 
@@ -952,13 +952,13 @@ export class ModelFT {
                     text:""+dimAllacci.AcqueNere.artigianali,                                             
                     fillColor: "white",     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:formatVal(dimAllacci.AcqueNere.artigianali/ParametriAcqueNere.dividers[3]),                                             
                     fillColor: acqueNereBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'',         
@@ -990,13 +990,13 @@ export class ModelFT {
                     text:""+dimAllacci.AcqueNere.commerciali,                                             
                     fillColor: "white",     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:formatVal(dimAllacci.AcqueNere.commerciali/ParametriAcqueNere.dividers[4]),                                             
                     fillColor: acqueNereBG2,     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'Portate di acque bianche con limitazione (es. vasche laminazione, strozzature, etc) [l/s]',         
@@ -1009,7 +1009,7 @@ export class ModelFT {
                     text:formatVal(dimAllacci.AcqueBianche.portateLimitate),         
                     fillColor: 'white',     
                     alignment:"center", 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   text:'',fillColor: acqueBiancheBG2,fontSize:header2ColFontSize },                
             ]);
@@ -1027,14 +1027,14 @@ export class ModelFT {
                     fillColor: acqueNereBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
-                    text:formatVal(dimAllacci.AcqueNere.sumEq()),                                             
+                    text:formatVal(ParametriAcqueNere.sumEq(dimAllacci.AcqueNere)),                                             
                     fillColor: acqueNereBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   
                     text:'Somma Uieq (ACQUE BIANCHE)',         
@@ -1050,7 +1050,7 @@ export class ModelFT {
                     fillColor: acqueBiancheBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                           
             ]);
@@ -1068,7 +1068,7 @@ export class ModelFT {
                     fillColor: acqueNereBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:'',                                             
@@ -1090,7 +1090,7 @@ export class ModelFT {
                     fillColor: acqueBiancheBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {   text:'',fillColor: acqueBiancheBG,fontSize:header2ColFontSize },      
                           
@@ -1112,7 +1112,7 @@ export class ModelFT {
                     fillColor: vincoliBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1139,7 +1139,7 @@ export class ModelFT {
                     fillColor: vincoliBG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1166,7 +1166,7 @@ export class ModelFT {
                     fillColor: 'white',     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1193,7 +1193,7 @@ export class ModelFT {
                     fillColor: 'white',     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1220,7 +1220,7 @@ export class ModelFT {
                     fillColor: vincoli2BG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1247,7 +1247,7 @@ export class ModelFT {
                     fillColor: vincoli2BG,     
                     alignment:"center", 
                     bold:true, 
-                    fontSize:header2ColFontSize
+                    fontSize:paramColFontSize
                 },
                 {
                     text:' ',                                             
@@ -1281,44 +1281,47 @@ export class ModelFT {
                     fillColor: vincoli2BG,  alignment:"center", fontSize:header2ColFontSize2},
 
             ]);
-            allacciamentiList.push([
-                {text:'VERIFICA ALLACCIAMENTO ESISTENTE (scelta libera "materiale/DE/PN")',         
-                    fillColor: vincoli2BG,  alignment:"left", bold:true, colSpan:8, fontSize:header2ColFontSize},
-                {text:""},
-                {text:""},
-                {text:""},
-                {text:""},
-                {text:""},
-                {text:""},
-                {text:""}
-            ]);
-            // Allacciamento Esistente
-            allacciamentiList.push([
-                {text:""+dimAllacci.AllacciamentoEsistente.nome,         
-                    fillColor: "white",  alignment:"left",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.dinterno),         
-                    fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.kval),         
-                    fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.portata),         
-                    fillColor: setColorForPortata(dimAllacci.AllacciamentoEsistente.velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.alfa),         
-                    fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.percRiempimento),         
-                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.velocita),         
-                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
-                
-                {text:formatVal(dimAllacci.AllacciamentoEsistente.risultato),         
-                    fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
-                                                                    
-            ]);                
+            
+            if (dimAllacci.AllacciamentoEsistente.nome?.length > 0){
+                allacciamentiList.push([
+                    {text:'VERIFICA ALLACCIAMENTO ESISTENTE (scelta libera "materiale/DE/PN")',         
+                        fillColor: vincoli2BG,  alignment:"left", bold:true, colSpan:8, fontSize:header2ColFontSize},
+                    {text:""},
+                    {text:""},
+                    {text:""},
+                    {text:""},
+                    {text:""},
+                    {text:""},
+                    {text:""}
+                ]);
+                // Allacciamento Esistente
+                allacciamentiList.push([
+                    {text:""+dimAllacci.AllacciamentoEsistente.nome,         
+                        fillColor: "white",  alignment:"left",  fontSize:header2ColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.dinterno),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.kval),         
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.portata),         
+                        fillColor: setColorForPortata(dimAllacci.AllacciamentoEsistente.velocita),  bold:true, alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.alfa),         
+                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.percRiempimento),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.percRiempimento),  bold:true, alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.velocita),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
+                    
+                    {text:formatVal(dimAllacci.AllacciamentoEsistente.risultato),         
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoEsistente.risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
+                                                                        
+                ]);                
+            }
 
             // Allacciamenti consigliati
             allacciamentiList.push([
@@ -1346,25 +1349,25 @@ export class ModelFT {
                         fillColor: vincoli2BG,  alignment:"left", bold:true, fontSize:header2ColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].dinterno),         
-                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].kval),         
-                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].portata),         
-                        fillColor: setColorForPortata(listaAllacciamenti[i].velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForPortata(listaAllacciamenti[i].velocita),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].alfa),         
-                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].percRiempimento),         
-                        fillColor: setColorForMessage(listaAllacciamenti[i].percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(listaAllacciamenti[i].percRiempimento),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].velocita),         
-                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(listaAllacciamenti[i].risultato),         
-                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(listaAllacciamenti[i].risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                                                                         
                 ]);
             }    
@@ -1376,25 +1379,25 @@ export class ModelFT {
                         fillColor: "white",  alignment:"left",  fontSize:header2ColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.dinterno),         
-                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.kval),         
-                        fillColor: paramBG,  alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.portata),         
-                        fillColor: setColorForPortata(dimAllacci.AllacciamentoNuovo6.velocita),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForPortata(dimAllacci.AllacciamentoNuovo6.velocita),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.alfa),         
-                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: paramBG,  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.percRiempimento),         
-                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.percRiempimento),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.percRiempimento),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.velocita),         
-                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                     
                     {text:formatVal(dimAllacci.AllacciamentoNuovo6.risultato),         
-                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:header2ColFontSize},
+                        fillColor: setColorForMessage(dimAllacci.AllacciamentoNuovo6.risultato),  bold:true, alignment:"center",  fontSize:paramColFontSize},
                                                                         
                 ]);            
             }
@@ -2222,17 +2225,14 @@ export class ModelFT {
         }
     
 
-        
         var page1 = this.getPage1(value);
-        var page2 = []; //this.getPage2(value);
-        var page3 = []; //this.getPage3(value);
-        var page4 = []; //this.getPage4(value);    
+        var page2 = this.getPage2(value);
+        var page3 = this.getPage3(value);
+        var page4 = this.getPage4(value);
         var page6 = this.getPage6(value);
 
         var contPdf = this.getAllDoc(page1,page2,page3,page4, page6);
-        
             var docDefinition = {
-                
                     footer: function(currentPage, pageCount) {return {	"table": {
 					"widths": [30, 50, "*", 160, 30],
 					"body": [[{
@@ -2255,15 +2255,15 @@ export class ModelFT {
 				}}
 				
                 },
-                
                 content: [                
-                    contPdf
+                   contPdf
                 ]
             }
             resolve(docDefinition);
             contPdf = null;
             docDefinition = null;
         });
+
 
     }                
 

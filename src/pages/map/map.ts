@@ -149,7 +149,7 @@ export class MapPage {
         alert.present();  
       });
 
-      var userData = {};
+      var userData = {username :"GIANAMEDEO.DEPLANO",password:"@EYINT2021"};
       switch(self.ads.SettoreMerceologico)
       {
         case SettoreMerceologico.ACQUA: 

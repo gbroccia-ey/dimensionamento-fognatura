@@ -29,16 +29,17 @@ console.log("ESRI JS: BEGIN");
     var visibleLayersACQUA = ['17','18','19','20','21','23','25','26','28','29'];
 */
 
- var visibleLayersTLR = [0,1,2,3,4,5,6,7,8,9,10,11,12,13];
-var visibleLayersFOGNATURA = [14,	15,	16,	17,	18, 19,	20,	21,	22,	23,	24,	25,	26,	27];
-var visibleLayersEE = [	28,	29,	30,	31,	32,	33,	34,	35,	36,	37,	38,	39,	40,	41,	42,	43,	44,	45,	46,	47,	48,	49,	50,	51,	52,	53,	54,55,56,57,58];
-var visibleLayersGAS = [	59,	60,	61,	62,	63,	64,	65,	66,	67,	68,	69,	70,	71, 72, 73, 74, 75];
- var visibleLayersACQUA = [	77,	78,	79,	80,	81,	82,	83,	84,	86, 87, 88, 89, 90, 91];
-var visibleLayersCONTATORE = [85];
+// Update 2021/04/14
+var visibleLayersTLR = [0,1,2,3,4,/* 5,*/6,7,8,9,10,11,12,13,14];
+var visibleLayersFOGNATURA = [15,	16,	17,	18, 19,	/*20,*/	21,	22,	23,	24,	/*25,*/	26,	27,28,29,	30,];
+var visibleLayersEE = [		31,	32,	33,	34,	35,	36,	37,	38,	39,	40,	41,	42,	43,	44,	45,	46,	47,	48,	49,	50,	51,	52,	53,	54,55,56,57,58,59,60,61];
+var visibleLayersGAS = [ 62,	63,	64,	65,	66,	/*67*/,	68,	69,	70,	71, 72, 73, 74, 75, 77,	78,	79];
+var visibleLayersACQUA = [	80,	81,	82,	83,	84,	/*85,*/ 86, 87, 88, /*90,*/ 92 ,93, 94, 95, 96, 97];
+var visibleLayersCONTATORE = [/*85,*/ 91];
 
-var cartobase = [ 93, 95, 96, 98, 100, 101, 102, 106, 107, 110, 111, 112, 113, 114, 119];
+var cartobase = [ 99, 101, 102,104,106, 107,108,112, 113,116, 117, 118, 119, 120, 125];
 
-var visibleCtrLayers = [126,	127,	128,129,	130];
+var visibleCtrLayers = [132,	133,	134, 135,	136];
 
 var lastPoint;
 var lastGraphic;
@@ -137,17 +138,17 @@ function getAppNameFromAds(ads){
 				case 2140:
 				case 2160:
 				case 2150:
-					code = "HERA";
+					appName = "HERA";
 					break;				
 				case 7010: 	// AcegasApsAmga S.p.A.
 				case 7021:
 				case 7022:
 				case 7023:
 				case 7024:	
-					code = "AAA";
+          appName = "AAA";
 					break;
 				case 8060:	// Marche Multiservizi S.p.A
-					code = "MMS";
+          appName = "MMS";
 					break;
 				default:
 					console.error("Field Societa not valid: "+ads.Societa)
@@ -518,7 +519,7 @@ esriCtrl.init = function(lat,lng,layer,ads,userData){
         }
       })
     }
-        
+
 
     esriCtrl.deleteLastPosition = function(){
         require([
@@ -783,7 +784,7 @@ esriCtrl.deleteLine = function(saveText){
                
         layerMappa = layers;
         pianettiChecked = false;
-        for(i=0; i<layers.length;i++){
+        for(var i=0; i<layers.length;i++){
           if(layers[i].checked==true && layers[i].name=='tlr'){
               for(var a =0; a<visibleLayersTLR.length;a++){
                  visible.push(visibleLayersTLR[a]);
@@ -957,12 +958,12 @@ esriCtrl.deleteLine = function(saveText){
         */
         var esri = document.createElement("link");
         esri.rel = "stylesheet";
-        esri.href = "http://js.arcgis.com/3.22/esri/css/esri.css";
+        esri.href = "http://js.arcgis.com/3.35/esri/css/esri.css";
         document.head.appendChild(esri);
   
         var claro = document.createElement("link");
         claro.rel = "stylesheet";
-        claro.href = "http://js.arcgis.com/3.22/dijit/themes/claro/claro.css";
+        claro.href = "http://js.arcgis.com/3.35/dijit/themes/claro/claro.css";
         document.head.appendChild(claro);
         }catch(err){
           console.log("ESRI CATCH ERRORE: " + err);
@@ -974,12 +975,14 @@ esriCtrl.deleteLine = function(saveText){
     }
 
 esriCtrl.getListaTubature = function (lng, lat, layerSelected,callback) {
+  
+  if(measurement!=undefined && measurement!=null) {measurement.destroy();}
   console.log('getLista tubature');
   if(util.getMockMap()==true){
      callback(toJson("", ''));
      return;
   }
-     
+  
  
   var url = ''
   if (gisUpdateEnabled){

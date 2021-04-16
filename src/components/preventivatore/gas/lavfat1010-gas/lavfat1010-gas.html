@@ -13,7 +13,7 @@
 
   <ion-row *ngFor="let item of preventivo.Attributi">
     <ion-col col-3>
-        <ion-label>{{item.Nome}}</ion-label>
+        <ion-label>{{(item.Descrizione)? item.Descrizione : item.Nome}}</ion-label>
     </ion-col>
      <ion-col col-2>
          <ion-input type="number" [(ngModel)]="item.Prezzo" disabled></ion-input>

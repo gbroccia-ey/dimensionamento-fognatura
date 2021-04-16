@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Progetto Allacciamento Fognatura</ion-title>
+    <ion-title>Dimensionamento Allacci</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,13 +31,15 @@
       <ion-row>
         <ion-col>
             <div class="label-header label-header-green" >
-            <span>Avviso/OdL</span>
+            <span *ngIf="ads.CodiceOdl; else adsLabel">OdL</span>
+            <ng-template #adsLabel>AdS</ng-template>
             </div>
         </ion-col>
         <ion-col col-9>
                     <div class="label-header label-header-green" >
-            <span >{{ads.CodiceAds}}{{(ads.CodiceOdl) ? "/"+ads.CodiceOdl:""}}</span>
-                  </div>
+            <span *ngIf="ads.CodiceOdl; else adsValue">{{ads.CodiceOdl}}</span>
+            <ng-template #adsValue>{{ads.CodiceAds}}</ng-template>
+                    </div>
         </ion-col>
        
       </ion-row>
@@ -90,5 +92,5 @@
     </ion-grid>
 
 
-  <dimensionamento-allacci-fognatura [ads]="ads" (saveAction)="updateDimensionamentoAllacci($event)" ></dimensionamento-allacci-fognatura>
+  <dimensionamento-allacci-fognatura [ads]="ads" (saveAction)="updateDimensionamentoAllacci($event)"*ngIf="DettaglioMerceologico[ads.DettaglioMerceologico] === 'FOGNATURA'"  ></dimensionamento-allacci-fognatura>
 </ion-content>

@@ -1,4 +1,4 @@
-import {Ads} from './ads';
+import {Ads, DettaglioMerceologico, SettoreMerceologico} from './ads';
 
 export class NotePlaceholder {
     name:string;
@@ -107,7 +107,20 @@ export class NotaSopralluogo{
             value: ""
         },
     ];
-    static _note_AAA_FOGNATURA: NoteItem[] = NotaSopralluogo._note_AAA_ACQUA;
+    static _note_AAA_FOGNATURA: NoteItem[] = [
+        {
+            text : "La quota di ricevimento dei reflui fognari è normalmente compresa tra 50 e 70 cm sotto il livello del finito stradale. Si evidenzia che la stessa non può essere garantita fino all’esecuzione dell’allaccio.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "   La mera esecuzione dell’allaccio di fognatura non presuppone automaticamente ad un autorizzazione allo scarico nè alcuna validazione degli schemi progettuali eventualmente consegnati ad AcegasApsAmga.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+    ];
 
     static _note_AAA_GAS: NoteItem[] = [
         {
@@ -237,11 +250,127 @@ export class NotaSopralluogo{
         
     ];
 
+    static _note_INRETE_GAS: NoteItem[] = [
+        {
+            text : "Informato il cliente che il punto di consegna dell'allacciamento richiesto non è ubicato in luogo dove già esistono le condotte e quindi si procede rispondere negativamente alla richiesta di accesso alla rete. Il cliente dichiara di NON essere interessato a ricevere un preventivo di estensione e/o potenziamento della rete e di rinunciare quindi espressamente a ricevere tale preventivo.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che dovrà presentare una  nuova richiesta al Venditore. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che la sua richiesta non è fattibile perché è in contrasto con norme e regolamenti vigenti.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Sulla base di quanto emerso durante il sopralluogo la prestazione richiesta non risulta necessaria. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente  si dichiara non più  interessato al lavoro richiesto e di rinunciare  quindi espressamente a ricevere il relativo preventivo.  ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che prima di accettare il preventivo dovrà ottenere il benestare del condominio per le parti comuni e/o di terzi per altre proprietà affinchè INRETE DISTRIBUZIONE ENERGIA sia autorizzata ad eseguire le opere richieste.  ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        
+        
+    ];
+    
+    static _note_HERA_ACQUA: NoteItem[] = [
+        {
+            text : "Informato il cliente che il punto di consegna dell'allacciamento richiesto non è ubicato in luogo dove già esistono le condotte e quindi si procede rispondere negativamente alla richiesta di accesso alla rete. Il cliente dichiara di NON essere interessato a ricevere un preventivo di estensione e/o potenziamento della rete e di rinunciare quindi espressamente a ricevere tale preventivo.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che dovrà presentare una  nuova richiesta ad HERA SPA. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che la sua richiesta non è fattibile perché è in contrasto con norme e regolamenti vigenti.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : " Il cliente è stato informato che la sua richiesta di avere un contatore acqua condominiale è in contrasto con norme e regolamenti vigenti.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Sulla base di quanto emerso durante il sopralluogo la prestazione richiesta non risulta necessaria. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che dovrà installare un riduttore di pressione. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che dovrà installare una autoclave. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Nel caso la quota di scorrimento della rete privata realizzata dal cliente al punto di conferimento sia inferiore alla quota di scorrimento della rete fognaria sarà cura e onere del cliente provvedere a un sistema di sollevamento dei reflui. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente  si dichiara non più interessato al lavoro richiesto e di rinunciare  quindi espressamente a ricevere il relativo preventivo.  ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che prima di accettare il preventivo dovrà ottenere il benestare del condominio per le parti comuni e/o di terzi per altre proprietà affinchè HERA SPA sia autorizzata ad eseguire le opere richieste.  ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        
+        
+    ];
+
+    static _note_HERATECH_ACQUA:  NoteItem[] = NotaSopralluogo._note_HERA_ACQUA;
+
 
     static getNotes(ads:Ads): NoteItem[]{
         // TODO: fetch by ads
-        let res = [],
+        let res = [],name;
+
+        if (ads.SettoreMerceologico === SettoreMerceologico.ACQUA && ads.DettaglioMerceologico === DettaglioMerceologico.FOGNATURA){
+            name = "_note_"+ads.CodiceSocieta+"_FOGNATURA"
+        }
+        else {
             name = "_note_"+ads.CodiceSocieta+"_"+ads.NomeSettore
+        }
+            
+
 
         if (NotaSopralluogo[name] !== undefined)
             res = NotaSopralluogo[name];

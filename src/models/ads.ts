@@ -5,9 +5,10 @@ import { Preventivo } from './preventivo';
 import { Utils } from '../utils/utils';
 import { Params } from '../config/params';
 import * as moment from 'moment';
-import {CopInfo} from './cop-info';
-import { VerbaleDiSopralluogo } from './verbale_di_sopralluogo';
-import { DimensionamentoAllacciGas, DimensionamentoAllacciAcqua,DimensionamentoAllacciFognatura, DimensionamentoAllacciEE } from './dimensionamento-allacci';
+import {CopInfo} from '../models/cop-info';
+import { VerbaleDiSopralluogo } from '../models/verbale_di_sopralluogo';
+import { DimensionamentoAllacciGas, DimensionamentoAllacciAcqua,DimensionamentoAllacciFognatura, DimensionamentoAllacciEE } from '../models/dimensionamento-allacci';
+import { DatiRete } from '../models/DatiRete'
 
 declare var imgExample: any;
 declare var fileUtil: any;
@@ -202,9 +203,14 @@ export class Ads {
 
     needToSendAttachment;
     _preventivoInibito;
+    _permessi;
     _dimensionamentoSaved;
+    _permessiSaved;
+    _datiReteSaved;
 
     _tipoRichiesta;
+
+    _datiRete: DatiRete;
 
     get DimensionamentoSaved(){
         return this._dimensionamentoSaved;
@@ -212,6 +218,38 @@ export class Ads {
 
     set DimensionamentoSaved(value){
         this._dimensionamentoSaved = value;
+    }
+
+    get PermessiSaved(){
+        return this._permessiSaved;
+    }
+
+    set PermessiSaved(value){
+        this._permessiSaved = value;
+    }
+
+    get DatiReteSaved(){
+        return this._datiReteSaved;
+    }
+
+    set DatiReteSaved(value){
+        this._datiReteSaved = value;
+    }
+
+    get Permessi(){
+        return this._permessi;
+    }
+
+    set Permessi(value){
+        this._permessi = value;
+    }
+
+    get DatiRete(){
+        return this._datiRete;
+    }
+
+    set DatiRete(value){
+        this._datiRete = value;
     }
 
     get PreventivoInibito(){
@@ -329,6 +367,34 @@ export class Ads {
         }
     }
 
+    get NomeSocieta() {
+        try{
+        var obj = JSON.parse(this._altro1);
+        if(obj) {
+            let res = "";
+            switch (parseInt(""+obj.societa)){
+                case 7010: 	// AcegasApsAmga S.p.A.
+                    res = "AcegasApsAmga";
+                    break;
+                case 1900:	// Inrete Distr. Energia SpA
+                    res = "Inrete";
+                    break;
+                
+                case 8060:	// Marche Multiservizi S.p.A (al momento accorpiamo)
+                case 5010:	// Hera S.p.A.
+                    res = "Hera";
+                    break;
+            
+                default:
+                    break;				
+            }
+            return res;
+        }
+        else return "";
+        }catch(err){
+            return "";
+        }
+    }
     get TipoRichiesta() {
         try{
         var obj = JSON.parse(this._altro1);
@@ -471,7 +537,16 @@ export class Ads {
     }
 
     get TipoPreventivo() {
-        return this._tipoPreventivo;
+        try{
+            if(!Number(this._tipoPreventivo)){
+                var obj = JSON.parse(this._altro1);
+                if(obj) this._tipoPreventivo = Number(obj.tipoPreventivo);
+            }
+        }catch(err){
+                ;
+        }
+        
+        return this._tipoPreventivo ;
     }
 
     set TipoPreventivo(tipoPreventivo: number) {
@@ -1344,7 +1419,7 @@ export class Ads {
         a.TelefonoPrestazione = ads.TelefonoPrestazione;
         a.CodiceAds = ads.CodiceAds;
         a.CodiceOdl = ads.CodiceOdl;
-        a.Prestazione = ads.Caratteristiche.AttivitaNormata;
+        a.Prestazione = ads.Caratteristiche?.AttivitaNormata;
         a.Indirizzo = Indirizzo.parseServerDto(ads.Indirizzo);
         a.CodiceRintracciabilita = ads.CodiceRintracciabilita;
         a.CodiceAvviso = ads.CodiceAvviso;
@@ -1400,7 +1475,7 @@ export class Ads {
         a.pathJSON = ads.pathJSON;
 
         //altro1 = TipoPreventivo
-        a.TipoPreventivo = Number(ads.Altro1);
+        a.TipoPreventivo = ads.TipoPreventivo;
         a.Altro1 = ads.Altro1;
 
         a.StatoPrecedente = ads.StatoPrecedente;
@@ -1408,6 +1483,7 @@ export class Ads {
 
         a.DimensionamentoAllacciGas = ads.DimensionamentoAllacciGas;
         a.DimensionamentoAllacciAcqua = ads.DimensionamentoAllacciAcqua;
+        a.DimensionamentoAllacciFognatura = ads.DimensionamentoAllacciFognatura;
 
         a.NoteProgettuali = ads.NoteProgettuali;
         a.NoteEsecutive = ads.NoteEsecutive;
@@ -1442,6 +1518,12 @@ export class Ads {
         a.TelefonoIncaricato = ads.TelefonoIncaricato;
         a.CognomeIncaricato = ads.CognomeIncaricato;
         a.DimensionamentoSaved = ads.DimensionamentoSaved;
+        
+        a.PermessiSaved = ads.PermessiSaved;
+        a.Permessi = ads.Permessi;
+
+        a.DatiReteSaved = ads.DatiReteSaved;
+        a.DatiRete = ads.DatiRete;
         return a;
     }
 
@@ -1562,13 +1644,14 @@ export class Ads {
         }
 
         obj["Altro1"] = ads.Altro1;
-        obj["TipoPreventivo"] = ads.Altro1;
+        obj["TipoPreventivo"] = ads.TipoPreventivo;
 
         obj["StatoPrecedente"] = ads.StatoPrecedente;
         obj["ForzaMaggiore"] = ads.ForzaMaggiore;
 
         obj["DimensionamentoAllacciGas"] = ads.DimensionamentoAllacciGas;
         obj["DimensionamentoAllacciAcqua"] = ads.DimensionamentoAllacciAcqua;
+        obj["DimensionamentoAllacciFognatura"] = ads.DimensionamentoAllacciFognatura;
 
         obj["NoteProgettuali"] = ads.NoteProgettuali;
         obj["NoteEsecutive"] = ads.NoteEsecutive;
@@ -1597,6 +1680,12 @@ export class Ads {
         obj["NomeIncaricato"] = ads.NomeIncaricato;
         obj["TelefonoIncaricato"] = ads.TelefonoIncaricato;
         obj["DimensionamentoSaved"] = ads.DimensionamentoSaved;
+
+        obj["Permessi"] = ads.Permessi
+        obj["PermessiSaved"] = ads.PermessiSaved
+
+        obj["DatiRete"] = ads.DatiRete
+        obj["DatiReteSaved"] = ads.DatiReteSaved
         return obj;
 
     }
@@ -1704,11 +1793,26 @@ export class Ads {
         if (this.TipoPreventivo){
             let item
             switch(this.SettoreMerceologico){
-                case SettoreMerceologico.ACQUA:
-                    item = Params.TipoPreventivoAcqua.find((x) => x.value === ""+this.TipoPreventivo);
-                    break;
                 case SettoreMerceologico.ENERGIA_ELETTRICA:
                     item = Params.TipoPreventivoEE.find((x) => x.value === ""+this.TipoPreventivo);
+                    break;
+                default:
+                    break;
+            }
+            if (item) {
+                label = item.label;
+            }
+        }
+        return label;
+    }
+
+    GetTipoRichiestaLabel(){
+        let label = "";
+        if (this.TipoRichiesta){
+            let item
+            switch(this.SettoreMerceologico){
+                case SettoreMerceologico.ACQUA:
+                    item = Params.TipoRichiestaAcqua.find((x) => x.value === ""+this.TipoRichiesta);
                     break;
                 default:
                     break;
@@ -1757,7 +1861,7 @@ GetTipoLavoroLabel(){
   }
 
   GetTipoFornituraLabel() {
-    let val =  Params.TipoFornitura.find(x => x.value === this.TipoFornitura );
+    let val =  Params.TipoFornitura.find(x => Number(x.value) === Number(this.TipoFornitura));
      if(val == undefined) return "";
     return val["label"] || "";
   }

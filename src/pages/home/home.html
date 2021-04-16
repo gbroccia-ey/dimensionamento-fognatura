@@ -73,7 +73,10 @@
 <ion-row>
   <ion-col col-12>
     <button ion-button color="warning"  (click)="resetPreventivatoreParams()" >Reset Valori</button>
-    <button ion-button color="primary"  [disabled]="gotMissingParams()" (click)="openPreventivatore()" >Preventivatore</button>
+    <button ion-button color="primary"  *ngIf="testPreventivatoreEnabled" [disabled]="gotMissingParams()" (click)="openPreventivatore()" >Preventivatore</button>
+    <button ion-button color="primary"  *ngIf="testVerbaleEnabled"  (click)="openVerbale()" [disabled]="gotMissingParams()" >Verbale Sopralluogo</button>
+    <button ion-button color="primary"  *ngIf="testVerbaleEnabled"  (click)="openVerbaleFast()" >Verbale (fast)</button>
+    
   </ion-col>
 </ion-row>
 
@@ -82,7 +85,7 @@
   <br/> 
   <br/> 
   <br/> 
-  <div class="btnContainer"> 
+  <div class="btnContainer" *ngIf="testDimensionamentoEnabled"> 
     <button ion-button color="secondary" (click)="openDimensionamentoAllacci()" >Dimensionamento Allacci </button>    
   </div>
 
@@ -90,7 +93,7 @@
   <br/> 
   <br/> 
   <br/> 
-  <div class="btnContainer"> 
+  <div class="btnContainer" *ngIf="testMapEnabled"> 
     <button ion-button color="secondary" (click)="openMap()" >Mappa GIS </button>    
   </div>
 

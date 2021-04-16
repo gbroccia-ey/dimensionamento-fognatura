@@ -203,14 +203,26 @@ export class FascicoloTecnico {
                 if (this.isEmpty(ads.Caratteristiche.PotenzaNominaleRichiesta)==false) this._DatiTecnici += 'Potenza Nominale Richiesta: ' +ads.Caratteristiche.PotenzaNominaleRichiesta+'\n';
                 if (this.isEmpty(ads.Caratteristiche.AttivitaNormata)==false) 
                   this._DatiTecnici += 'Attivita Normata: ' +ads.Caratteristiche.AttivitaNormata+'\n';
-                if (this.isEmpty(ads.TipologiaPreventivo)==false){
-                    let tipoPreventivoLabel = ads.GetTipoPreventivoLabel();
-                    if (tipoPreventivoLabel?.length > 0){
-                        this._DatiTecnici += 'Tipologia Preventivo: ' +tipoPreventivoLabel+'\n';
-                    }
-                    
-                  } 
+                if (ads.SettoreMerceologico === SettoreMerceologico.ACQUA){
+                    if (this.isEmpty(ads.TipoRichiesta)==false){
+                        let tipoRichiestaLabel = ads.GetTipoRichiestaLabel();
+                        if (tipoRichiestaLabel?.length > 0){
+                            this._DatiTecnici += 'Tipologia Preventivo: ' +tipoRichiestaLabel+'\n';
+                        }
+                        
+                      } 
                 
+                }
+                if (ads.SettoreMerceologico === SettoreMerceologico.ENERGIA_ELETTRICA){
+                    if (this.isEmpty(ads.TipoPreventivo)==false){
+                        let tipoPreventivoLabel = ads.GetTipoPreventivoLabel();
+                        if (tipoPreventivoLabel?.length > 0){
+                            this._DatiTecnici += 'Tipologia Preventivo: ' +tipoPreventivoLabel+'\n';
+                        }
+                        
+                    } 
+                } 
+            
                 
                 
                 if (ads.Caratteristiche.TipoAllaccio==1)
@@ -220,9 +232,16 @@ export class FascicoloTecnico {
                 
 
                 if (this.isEmpty(ads.Caratteristiche.GRUPresente)==false)
-                    this._DatiTecnici += 'Installazione/Modifica Gruppo di riduzione: '+ads.Caratteristiche.GRUPresente+'\n';
-                   
-                // this._LogoSx = imgExample.getLogoSxHera();
+                   this._DatiTecnici += 'Installazione/Modifica Gruppo di riduzione: '+ads.Caratteristiche.GRUPresente+'\n';
+                  
+                if (this.isEmpty(ads.Caratteristiche.PresaImpulsiva)==false)
+                   this._DatiTecnici += 'Tipo Uscita Presa Impulsiva: '+ads.Caratteristiche.PresaImpulsiva+'\n';
+                  
+                if (this.isEmpty(ads.Caratteristiche.FornituraInstallazione)==false)
+                   this._DatiTecnici += 'Fornitura e installazione: '+ads.Caratteristiche.FornituraInstallazione+'\n';
+                  
+               
+                    // this._LogoSx = imgExample.getLogoSxHera();
                 // this._LogoDx = imgExample.getLogoDxHera();
                 // if(this._Energia_Elettrica==true || this._Gas==true) this._LogoDx = imgExample.getLogoDxInRete();
                 this._LogoSx = imgExample.getLogoSxImg(ads.NomeSettore,ads.CodiceSocieta);

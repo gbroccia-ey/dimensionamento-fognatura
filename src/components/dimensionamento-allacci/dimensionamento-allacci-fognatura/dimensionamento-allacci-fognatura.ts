@@ -339,19 +339,17 @@ ngOnInit() {
       this.ads.DimensionamentoAllacciFognatura = this.ads.DimensionamentoAllacciFognatura;
 
       if(this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.nome) {
-        for(let allEs of this.allacciEsistentiArray){
+        for(let allEs of this.allacciArray){
           if(allEs.nome == this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente.nome) this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente = allEs;
         }
       }
-
+      if(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.nome) {
+        for(let allEs of this.allacciArray){
+          if(allEs.nome == this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6.nome) this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6 = allEs;
+        }
+      }
     }
     else {
-      var arrayContatore = new Array<ContatoreAntincendio>();
-      arrayContatore.push(new ContatoreAntincendio(undefined,"",undefined,undefined));
-      arrayContatore.push(new ContatoreAntincendio(undefined,"",undefined,undefined));
-      arrayContatore.push(new ContatoreAntincendio(undefined,"",undefined,undefined));
-      arrayContatore.push(new ContatoreAntincendio(undefined,"",undefined,undefined));
-          //this.ads.DimensionamentoAllacciFognatura.RichiesteNonDomestiche.push(new RichiestaNonDomestica("G4", 0, 0)); 
       var AllacciamentoNuovo1 = {... this.allacciArray[2]};   // PVC SN8 DN160
       var AllacciamentoNuovo2 = {... this.allacciArray[3]};   // PVC SN8 DN200
       var AllacciamentoNuovo3 = {... this.allacciArray[124]}; // POLIPROPILENE CORRUGATO SN16 DN250
@@ -364,23 +362,25 @@ ngOnInit() {
         AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{},
         new ParametriAcqueNere(0,0,0,0,0,0,0),new ParametriAcqueBianche(0,0,0,0,0,0,0,0), new ParametriVincoli(0,0,1.0,1.0,0,0),
         );  
-        this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1);
-        this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2);
-        this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3);
-        this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4);
-        this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5);
-        //this.allacciNuoviArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6);
-        
-        //this.allacciEsistentiArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente);
-        
-        this.updateVincoli();
         
     }
+
+    this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo1);
+    this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo2);
+    this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo3);
+    this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo4);
+    this.allacciEsempioArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo5);
+    //this.allacciNuoviArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6);
+    
+    //this.allacciEsistentiArray.push(this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente);
+    
+    this.updateVincoli();
+
   }
 
   updateAcqueNere(){
     if (this.ads.DimensionamentoAllacciFognatura){
-      let sum = this.ads.DimensionamentoAllacciFognatura.AcqueNere.sumEq();
+      let sum = ParametriAcqueNere.sumEq(this.ads.DimensionamentoAllacciFognatura.AcqueNere);
       this.ads.DimensionamentoAllacciFognatura.AcqueNere.portata = this.tableParams.freqCoef*Math.sqrt(sum*this.tableParams.sumUnitaScarico);
       this.ads.DimensionamentoAllacciFognatura.AcqueNere.sommaUIeq = sum;
       this.updateVincoli();

@@ -2010,9 +2010,9 @@ export class Params {
         {label: "Mod. Conn. Temp. in MT", value:"10"},
     ];
     
-    static TipoPreventivoAcqua = [
-        {label: "Preventivo nuovo allaccio", value: "1"}, 
-        {label: "Preventivo nuovo allaccio con attivazione", value:"2"}
+    static TipoRichiestaAcqua = [
+        {label: "Preventivo nuovo allaccio", value: "01"}, 
+        {label: "Preventivo nuovo allaccio con attivazione", value:"02"}
     ];
 
     static TipologiaIntervento = [
@@ -2797,72 +2797,68 @@ export class Params {
                                 retValue = this.ValoriListinoGasCampoFormido.get(key+'_AAA');
                                 break;
                             }
-                            /*
                             case 'LISTINO ALL.GAS METANO CODROIPO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoCodroipo.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO MANZANO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoManzano.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO MARTIGNACCO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoMartignacco.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO MOGGIO UDINESE':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoMoggioUdinese.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO PAGNACCO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPagnacco.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO PASIAN DI PRATO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPasianDiPrato.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO PAVIA DI UDINE':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPaviaDiUdine.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO POZZUOLO DEL FRIULI':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPozzuoloDelFriuli.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO PRADAMANO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPradamano.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO PREMARIACCO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoPremariacco.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO REMANZACCO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoRemanzacco.get(key+'_AAA');
                                 break;
                             }
-                            case 'LISTINO ALL.GAS METANO RESIA':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
-                                break;
-                            }
+                            case 'LISTINO ALL.GAS METANO RESIA':
                             case 'LISTINO ALL.GAS METANO RESIUTTA':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoResiaResiutta.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO SEDEGLIANO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoSedegliano.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO TAVAGNACCO':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoTavagnacco.get(key+'_AAA');
                                 break;
                             }
                             case 'LISTINO ALL.GAS METANO UDINE':{
-                                retValue = this.ValoriListinoCollinareGas.get(key+'_AAA');
+                                retValue = this.ValoriListinoGasMetanoUdine.get(key+'_AAA');
                                 break;
                             }
-                            */
+                            
                             
                             
                         }
@@ -3227,18 +3223,22 @@ export class Params {
           },
         //----------------------------------------------------------------------------------------
         { key: "LAVFAT1100_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 804,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1542,    label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 1746,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 804,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1542,    label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 1746,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
             
         ]},     
         {
             key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3360,7 +3360,10 @@ export class Params {
                         {label: 'supplemento mura 500 su 3 metri ', value: 1350.77, singleValue:'true', placeholder:"supplemento", id:"quota1"},
                         {label: 'supplemento mura 300 su 3 metri ', value: 1587.77, singleValue:'true', placeholder:"supplemento", id:"quota2"},
                         {label: 'supplemento mura 500 su 8 metri ', value: 226.85,  singleValue:'true', placeholder:"supplemento", id:"quota3"},
-                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"},
+                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"}
+                ]},
+                {label: 'Supplementi ulteriori',
+                    value:  [
                         {label: 'per ogni metro oltre gli 8 metri', value: 226.85,  placeholder:"lungh. eccedente (m)", id:"quota5"}
                 ]},
             ] 
@@ -3380,7 +3383,10 @@ export class Params {
                         {label: 'supplemento mura 500 su 3 metri ', value: 1350.77, singleValue:'true', placeholder:"supplemento", id:"quota1"},
                         {label: 'supplemento mura 300 su 3 metri ', value: 1587.77, singleValue:'true', placeholder:"supplemento", id:"quota2"},
                         {label: 'supplemento mura 500 su 8 metri ', value: 226.85,  singleValue:'true', placeholder:"supplemento", id:"quota3"},
-                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"},
+                        {label: 'supplemento mura 300 su 8 metri ', value: 453.69,  singleValue:'true', placeholder:"supplemento", id:"quota4"}
+                ]},
+                {label: 'Supplementi ulteriori',
+                    value:  [
                         {label: 'per ogni metro oltre gli 8 metri', value: 226.85,  placeholder:"lungh. eccedente (m)", id:"quota5"}
                 ]},
             ] 
@@ -3676,6 +3682,7 @@ export class Params {
         ]},
                   
     ])
+
     static ValoriListinoGasArtegna: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
         { key: "LAVFAT1010_GAS_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
@@ -3806,6 +3813,651 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                   
     ])
         
+    static ValoriListinoGasMetanoCodroipo: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 535.72 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 535.72 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 535.72 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 535.72 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 535.72 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 535.72 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 535.72 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 535.72 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 535.72 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 535.72 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 535.72 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 535.72 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 535.72 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 535.72 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 535.72 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 535.72 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 535.72 },
+                { classeContatore: "G6",   prezzo: 535.72 },
+                { classeContatore: "G10",  prezzo: 535.72 },
+                { classeContatore: "G16",  prezzo: 535.72 },
+                { classeContatore: "G25",  prezzo: 535.72 },
+                { classeContatore: "G40",  prezzo: 535.72 },
+                { classeContatore: "G65",  prezzo: 535.72},
+                { classeContatore: "G100", prezzo: 535.72 },
+                ] },
+
+        ]},
+                  
+    ])
+
+    static ValoriListinoGasMetanoManzano: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 381.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 381.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 381.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 381.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 381.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 381.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 381.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 381.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 381.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 381.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 381.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 381.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 381.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 381.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 381.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 381.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 381.2 },
+                { classeContatore: "G6",   prezzo: 381.2 },
+                { classeContatore: "G10",  prezzo: 381.2 },
+                { classeContatore: "G16",  prezzo: 381.2 },
+                { classeContatore: "G25",  prezzo: 381.2 },
+                { classeContatore: "G40",  prezzo: 381.2 },
+                { classeContatore: "G65",  prezzo: 381.2},
+                { classeContatore: "G100", prezzo: 381.2 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoMartignacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.93 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.93 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.93 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.93 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.93 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.93 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.93 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.93 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.93 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.93 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.93 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.93 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.93 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.93 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.93 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.93 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 348.93 },
+                { classeContatore: "G6",   prezzo: 348.93 },
+                { classeContatore: "G10",  prezzo: 348.93 },
+                { classeContatore: "G16",  prezzo: 348.93 },
+                { classeContatore: "G25",  prezzo: 348.93 },
+                { classeContatore: "G40",  prezzo: 348.93 },
+                { classeContatore: "G65",  prezzo: 348.93},
+                { classeContatore: "G100", prezzo: 348.93 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoMoggioUdinese: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 37.0 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 37.0 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 37.0 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 37.0 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 37.0 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 37.0 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 37.0 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 37.0 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 37.0 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 37.0 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 37.0 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 37.0 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 37.0 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 37.0 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 37.0 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 37.0 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 37.0 },
+                { classeContatore: "G6",   prezzo: 37.0 },
+                { classeContatore: "G10",  prezzo: 37.0 },
+                { classeContatore: "G16",  prezzo: 37.0 },
+                { classeContatore: "G25",  prezzo: 37.0 },
+                { classeContatore: "G40",  prezzo: 37.0 },
+                { classeContatore: "G65",  prezzo: 37.0 },
+                { classeContatore: "G100", prezzo: 37.0 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPagnacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 386.37 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 386.37 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 386.37 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 386.37 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 386.37 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 386.37 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 386.37 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 386.37 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 386.37 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 386.37 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 386.37 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 386.37 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 386.37 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 386.37 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 386.37 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 386.37 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 386.37 },
+                { classeContatore: "G6",   prezzo: 386.37 },
+                { classeContatore: "G10",  prezzo: 386.37 },
+                { classeContatore: "G16",  prezzo: 386.37 },
+                { classeContatore: "G25",  prezzo: 386.37 },
+                { classeContatore: "G40",  prezzo: 386.37 },
+                { classeContatore: "G65",  prezzo: 386.37 },
+                { classeContatore: "G100", prezzo: 386.37 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPasianDiPrato: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 476.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 476.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 476.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 476.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 476.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 476.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 476.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 476.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 476.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 476.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 476.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 476.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 476.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 476.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 476.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 476.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 476.2 },
+                { classeContatore: "G6",   prezzo: 476.2 },
+                { classeContatore: "G10",  prezzo: 476.2 },
+                { classeContatore: "G16",  prezzo: 476.2 },
+                { classeContatore: "G25",  prezzo: 476.2 },
+                { classeContatore: "G40",  prezzo: 476.2 },
+                { classeContatore: "G65",  prezzo: 476.2 },
+                { classeContatore: "G100", prezzo: 476.2 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPaviaDiUdine: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 406.83 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 406.83 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 406.83 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 406.83 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 406.83 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 406.83 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 406.83 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 406.83 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 406.83 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 406.83 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 406.83 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 406.83 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 406.83 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 406.83 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 406.83 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 406.83 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 406.83 },
+                { classeContatore: "G6",   prezzo: 406.83 },
+                { classeContatore: "G10",  prezzo: 406.83 },
+                { classeContatore: "G16",  prezzo: 406.83 },
+                { classeContatore: "G25",  prezzo: 406.83 },
+                { classeContatore: "G40",  prezzo: 406.83 },
+                { classeContatore: "G65",  prezzo: 406.83 },
+                { classeContatore: "G100", prezzo: 406.83 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPozzuoloDelFriuli: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 245.53 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 245.53 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 245.53 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 245.53 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 245.53 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 245.53 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 245.53 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 245.53 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 245.53 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 245.53 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 245.53 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 245.53 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 245.53 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 245.53 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 245.53 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 245.53 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 245.53 },
+                { classeContatore: "G6",   prezzo: 245.53 },
+                { classeContatore: "G10",  prezzo: 245.53 },
+                { classeContatore: "G16",  prezzo: 245.53 },
+                { classeContatore: "G25",  prezzo: 245.53 },
+                { classeContatore: "G40",  prezzo: 245.53 },
+                { classeContatore: "G65",  prezzo: 245.53 },
+                { classeContatore: "G100", prezzo: 245.53 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPradamano: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 466.99 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 466.99 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 466.99 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 466.99 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 466.99 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 466.99 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 466.99 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 466.99 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 466.99 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 466.99 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 466.99 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 466.99 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 466.99 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 466.99 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 466.99 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 466.99 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 466.99 },
+                { classeContatore: "G6",   prezzo: 466.99 },
+                { classeContatore: "G10",  prezzo: 466.99 },
+                { classeContatore: "G16",  prezzo: 466.99 },
+                { classeContatore: "G25",  prezzo: 466.99 },
+                { classeContatore: "G40",  prezzo: 466.99 },
+                { classeContatore: "G65",  prezzo: 466.99 },
+                { classeContatore: "G100", prezzo: 466.99 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoPremariacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 348.21 },
+                { classeContatore: "G6",   prezzo: 348.21 },
+                { classeContatore: "G10",  prezzo: 348.21 },
+                { classeContatore: "G16",  prezzo: 348.21 },
+                { classeContatore: "G25",  prezzo: 348.21 },
+                { classeContatore: "G40",  prezzo: 348.21 },
+                { classeContatore: "G65",  prezzo: 348.21 },
+                { classeContatore: "G100", prezzo: 348.21 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoRemanzacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 381.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 381.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 381.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 381.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 381.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 381.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 381.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 381.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 381.2 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 381.2 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 381.2 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 381.2 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 381.2 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 381.2 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 381.2 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 381.2 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 381.2 },
+                { classeContatore: "G6",   prezzo: 381.2 },
+                { classeContatore: "G10",  prezzo: 381.2 },
+                { classeContatore: "G16",  prezzo: 381.2 },
+                { classeContatore: "G25",  prezzo: 381.2 },
+                { classeContatore: "G40",  prezzo: 381.2 },
+                { classeContatore: "G65",  prezzo: 381.2 },
+                { classeContatore: "G100", prezzo: 381.2 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoResiaResiutta: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 375.3 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 375.3 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 375.3 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 375.3 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 375.3 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 375.3 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 375.3 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 375.3 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 375.3 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 375.3 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 375.3 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 375.3 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 375.3 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 375.3 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 375.3 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 375.3 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 375.3 },
+                { classeContatore: "G6",   prezzo: 375.3 },
+                { classeContatore: "G10",  prezzo: 375.3 },
+                { classeContatore: "G16",  prezzo: 375.3 },
+                { classeContatore: "G25",  prezzo: 375.3 },
+                { classeContatore: "G40",  prezzo: 375.3 },
+                { classeContatore: "G65",  prezzo: 375.3 },
+                { classeContatore: "G100", prezzo: 375.3 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoSedegliano: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 376.16 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 376.16 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 376.16 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 376.16 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 376.16 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 376.16 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 376.16 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 376.16 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 376.16 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 376.16 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 376.16 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 376.16 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 376.16 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 376.16 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 376.16 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 376.16 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 376.16 },
+                { classeContatore: "G6",   prezzo: 376.16 },
+                { classeContatore: "G10",  prezzo: 376.16 },
+                { classeContatore: "G16",  prezzo: 376.16 },
+                { classeContatore: "G25",  prezzo: 376.16 },
+                { classeContatore: "G40",  prezzo: 376.16 },
+                { classeContatore: "G65",  prezzo: 376.16 },
+                { classeContatore: "G100", prezzo: 376.16 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoTavagnacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 452.58 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 452.58 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 452.58 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 452.58 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 452.58 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 452.58 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 452.58 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 452.58 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 452.58 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 452.58 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 452.58 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 452.58 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 452.58 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 452.58 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 452.58 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 452.58 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 452.58 },
+                { classeContatore: "G6",   prezzo: 452.58 },
+                { classeContatore: "G10",  prezzo: 452.58 },
+                { classeContatore: "G16",  prezzo: 452.58 },
+                { classeContatore: "G25",  prezzo: 452.58 },
+                { classeContatore: "G40",  prezzo: 452.58 },
+                { classeContatore: "G65",  prezzo: 452.58 },
+                { classeContatore: "G100", prezzo: 452.58 },
+                ] },
+
+        ]},
+                  
+    ])
+    
+    static ValoriListinoGasMetanoUdine: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
+        { key: "LAVFAT1010_GAS_AAA", value: [
+            { quotaFissa: 0, quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 200.0 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 200.0 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 200.0 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 200.0 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 200.0 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 200.0 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 200.0 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 200.0 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1040_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 200.0 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 200.0 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 200.0 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 200.0 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 200.0 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 200.0 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 200.0 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 200.0 },
+                ] },
+
+        ]},
+        { key: "LAVFAT1140_GAS_AAA", value: [
+            { quotaFissa:  0 , quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 200.0 },
+                { classeContatore: "G6",   prezzo: 200.0 },
+                { classeContatore: "G10",  prezzo: 200.0 },
+                { classeContatore: "G16",  prezzo: 200.0 },
+                { classeContatore: "G25",  prezzo: 200.0 },
+                { classeContatore: "G40",  prezzo: 200.0 },
+                { classeContatore: "G65",  prezzo: 200.0 },
+                { classeContatore: "G100", prezzo: 200.0 },
+                ] },
+
+        ]},
+                  
+    ])
+    
         
     static Valori: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
         {
@@ -4543,7 +5195,6 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
             ]},
             { tipoSpostamento: "2", quotaFissa: 0, label: "Parte idraulica o aerea" }
         ]},
-
         
 
         { key: "LAVFAT1610_GAS", value: [
@@ -4790,9 +5441,9 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                     },  
                     {   label: 'Modifiche Allaccio',
                         value:  [                            
-                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
-                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
-                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                            {label: 'Mod. Allaccio Aereo: DN<=2”',      value: 95, placeholder:"mt", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”',  value: 125,placeholder:"mt", id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”',       value: 175,placeholder:"mt", id:"quota7"},
                         ],
                     },  
                     {   label: 'Allacciamenti',
@@ -4864,25 +5515,30 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         { key: "LAVFAT1100_GAS_AAA", 
      
           value: [
-                  { classeContatore: "G4",   quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G6",   quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G10",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G16",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G25",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G40",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G65",  quotaFissa: 37, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G100", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G160", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G250", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G400", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G650", quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G1000",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G1600",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G2500",quotaFissa: 37, quotaVariabile: 2210, quotaIstruttoria: 0 }
+                  { classeContatore: "G4",   quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G6",   quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G10",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G16",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G25",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G40",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G65",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
+                  { classeContatore: "G100", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G160", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G250", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G400", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G650", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G1000",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G1600",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
+                  { classeContatore: "G2500",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 }
         ]},  
         {
             key: 'QUOTE_LAVFAT1100_GAS_AAA',
             value:[
+                    {   label: 'Quota Istruttoria',
+                        value:  [
+                            {label: 'Quota Istruttoria',            value: 37, singleValue:'true', placeholder:"",id:"quota50"},
+                    ]},
+         
                     {   label: 'Scavo agguntivo',
                         value:  [
                             {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
@@ -4891,9 +5547,9 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                     },  
                     {   label: 'Modifiche Allaccio',
                         value:  [                            
-                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
-                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
-                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                            {label: 'Mod. Allaccio Aereo: DN<=2”',      value: 95, placeholder:"mt", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”',  value: 125,placeholder:"mt", id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”',       value: 175,placeholder:"mt", id:"quota7"},
                         ],
                     },  
                     {   label: 'Allacciamenti',
@@ -4910,7 +5566,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                             {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
                         ],
                     },  
-                    {   label: 'NDER',
+                    {   label: 'Nuova Derivazione',
                         value:  [                            
 
                             {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
@@ -4959,7 +5615,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                             {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
                         ],
                     },  
-                    {   label: 'NDER',
+                    {   label: 'Nuova Derivazione',
                         value:  [                            
 
                             {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
@@ -5011,10 +5667,10 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                     },  
                     {   label: 'Modifiche Allaccio',
                         value:  [                            
-                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
-                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
-                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
-                        ],
+                            {label: 'Mod. Allaccio Aereo: DN<=2”',      value: 95, placeholder:"mt", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”',  value: 125,placeholder:"mt", id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”',       value: 175,placeholder:"mt", id:"quota7"},
+                       ],
                     },  
                     {   label: 'Allacciamenti',
                         value:  [                            
@@ -5030,7 +5686,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                             {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
                         ],
                     },  
-                    {   label: 'NDER',
+                    {   label: 'Nuova Derivazione',
                         value:  [                            
 
                             {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
@@ -5132,9 +5788,9 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                     },  
                     {   label: 'Modifiche Allaccio',
                         value:  [                            
-                            {label: 'Mod. Allaccio Aereo: DN<=2”', value: 95, singleValue:'true', placeholder:"", id:"quota5"},
-                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”', value: 125, singleValue:'true', placeholder:"",id:"quota6"},
-                            {label: 'Mod. Allaccio Aereo: DN>3”', value: 175, singleValue:'true', placeholder:"",id:"quota7"},
+                            {label: 'Mod. Allaccio Aereo: DN<=2”',      value: 95, placeholder:"mt", id:"quota5"},
+                            {label: 'Mod. Allaccio Aereo: DN>2”,<=3”',  value: 125,placeholder:"mt", id:"quota6"},
+                            {label: 'Mod. Allaccio Aereo: DN>3”',       value: 175,placeholder:"mt", id:"quota7"},
                         ],
                     },  
                     {   label: 'Allacciamenti',
@@ -5151,7 +5807,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                             {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota11"},
                         ],
                     },  
-                    {   label: 'NDER',
+                    {   label: 'Nuova Derivazione',
                         value:  [                            
 
                             {label: 'NDER<=80mm, lavoro interrato ',    value: 1900,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
@@ -5202,5 +5858,15 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         }
         return "";
     }
+    
+    static TipoPresaImpulsiva = {
+        AUTOALIMENTATA : "AUTOALIM.",
+        ALIMENTATA : "ALIM."
+      };
+      
+    static TipoFornituraInstallazione = {
+        CONTESTUALE : "CONTEST.",
+        SUCCESSIVA : "SUCC."
+      }
     
 }

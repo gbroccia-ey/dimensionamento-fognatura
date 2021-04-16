@@ -64,6 +64,7 @@ export class Lavfat1010AcquaComponent extends BasePreventivatoreComponent implem
       for(var a = 0; a <attributi.length; a++){
           var attr = new Attributo();
           attr.Nome = attributi[a].classeContatore;
+          attr.Descrizione =  attributi[a].descrizione;
           attr.Prezzo = attributi[a].prezzo;
           attr.Quantita = 0;
           this.preventivo.Attributi.push(attr);

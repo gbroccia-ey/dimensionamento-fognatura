@@ -32,7 +32,9 @@ export class ModelGas {
             for(let item of img){
                 retData.push(item);
             }
-             if(img.length>0){
+             // if(img.length>0)
+             if(false)
+             {
                     retData.push(
                         { 
                                      table: {
@@ -162,10 +164,6 @@ export class ModelGas {
 
         
         
-        // Prestazion correlate
-        var prestazioni_correlate = "____________________";
-        var prestazioni_correlate_chk = "[__]";
-
         
         // Richieste aggiuntive
         var descrizioni_aggiuntive_aggregate = " ";
@@ -195,10 +193,21 @@ export class ModelGas {
         let checked = "[ X ]";
         let unchecked = "[__]";
 
-        var prestazioni_correlate = (vs.PrestazioniCorrelate?.length > 0) ? vs.PrestazioniCorrelate : "____________________";
-        var prestazioni_correlate_chk = (vs.PrestazioniCorrelate?.length > 0) ? checked : unchecked;
-
-        var descrizioni_aggiuntive_check_txt = " PRESTAZIONI AGGIUNTIVE CONCORDATE IN SEDE DI SOPRALLUOGO                         " + PN1 + " " + PM1 +  " " + PR1;
+        
+        // Prestazioni correlate
+        var prestazioni_correlate,prestazioni_correlate_chk,prestazioni_correlate_notes;
+                
+        if (vs.PrestazioniCorrelate?.length > 2){
+            prestazioni_correlate = vs.PrestazioniCorrelate;
+            prestazioni_correlate_chk = checked;
+            prestazioni_correlate_notes = "Il richiedente la prestazione ha avanzato richiesta, sempre per lo stesso indirizzo di lavoro, di preventivo anche per altre prestazioni. Essendo le esecuzioni dei vari interventi correlate, con la presente nota si rende edotto il richiedente che il gestore potrà sospendere il computo dei tempi di esecuzione, ai fini del calcolo dei livelli specifici o generali di qualità commerciale, di ognuno dei singoli interventi, fintantoché il richiedente non abbia provveduto a trasmettere l’accettazione di tutti i preventivi tra loro correlati e non abbia eseguito i lavori da realizzarsi a sua cura ed ottenuto le concessioni, autorizzazioni o servitù di sua spettanza, dandone comunicazione al gestore, il tutto con le modalità e nei termini riportati nei preventivi medesimi.";
+        } else {
+            prestazioni_correlate = "____________________";
+            prestazioni_correlate_chk = unchecked;
+            prestazioni_correlate_notes = "";
+        }
+        
+        var descrizioni_aggiuntive_check_txt = " Altre prestazioni per le quali il richiedente ha manifestato interesse           " + PN1 + " " + PM1 +  " " + PR1;
         let descrizioni_aggiuntive_check = "";
 
         let note_prestazioni;
@@ -269,10 +278,11 @@ export class ModelGas {
         // Pratica sospesa e Pratica annullata    
         var ZS05, ZS06, ZS03, ZS08, N33, N29, N30, N31, N32, N21, N28;
         var messaggio_ZS03 = "";
-        var messaggio_ZS05 = "Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali si provvederà alla emissione del preventivo considerando confermate queste ultime.";
-        var messaggio_ZS06 = "Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali si provvederà alla emissione del preventivo considerando confermate queste ultime.";
-        var messaggio_ZS08 = "Per la ZS08 trascorsi 30(trenta) giorni solari dalla data del sopralluogo, in mancanza di consegna dell'autorizzazione da parte del cliente, il preventivo verrà chiuso con Esito Negativo.";
-        var messaggio_N29 = "Il Cliente si dichiara interessato a ricevere un preventivo/progetto di estensione/potenziamento della rete";
+        var messaggio_ZS05 = "(*) Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali al netto di eventuali proroghe il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_ZS06 = "(*) Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali al netto di eventuali proroghe il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_ZS08 = "(**) Per la ZS08 trascorsi 30(trenta) giorni solari dalla data del sopralluogo, al netto di eventuali proroghe in mancanza di consegna dell'autorizzazione da parte del cliente, il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_N29 = "(***) Il Cliente si dichiara interessato a ricevere un preventivo/progetto di estensione/potenziamento della rete";
+        var messaggio_N29_N30_N32 = "\nGli esiti negativi N29,N30 e N32 specificano le motivazioni del rifiuto dell'impresa distributrice all'accesso alla rete di distribuzione nel caso non sia possibile eseguire i lavori richiesti.";
 
 
 
@@ -281,8 +291,8 @@ export class ModelGas {
         ZS08 = "[__] ZS08 Mancanza autorizzazione terzi (**)";
             
         N33 = "[__] N33 Revoca del richiedente";
-        N29 = "[__] N29 Rete non disponibile (**)";
-        N30 = "[__] N30 Non tecn-fattibile";
+        N29 = "[__] N29 Rete non disponibile (***)";
+        N30 = "[__] N30 Non tecnicamente fattibile";
         N31 = "[__] N31 Impianto cliente non a norma";
         N32 = "[__] N32 Prest. non comp. con la richiesta";
         N21 = "[__] N21 Cliente assente ODL con appuntamento";
@@ -294,10 +304,10 @@ export class ModelGas {
                 N33 = "[ X ] N33 Revoca del richiedente";
             break;
             case "N29":
-                N29 = "[ X ] N29 Rete non disponibile";
+                N29 = "[ X ] N29 Rete non disponibile (***)";
             break;
             case "N30":
-                N30 = "[ X ] N30 Non tecn. fattibile";
+                N30 = "[ X ] N30 Non tecnicamente fattibile";
             break;
             case "N31":
                 N31 = "[ X ] N31 Impianto cliente non a norma";
@@ -361,28 +371,42 @@ export class ModelGas {
             causa_mancato_rispetto = "[ X ] Verificato che l'inizio effettivo della prestazione o sopralluogo non rispetta la fascia di puntualità, dichiaro che il mancato rispetto dell'appuntamento è causato da:\n [__] cause di forze maggiore        [__] cause imputabili al cliente        [ X ] cause imputabili al gestore" ;            
         }        
 
-         //DATE
-         var AppConcordatoData = value.dati.form.App_Concordato_Data;
-         if(AppConcordatoData.indexOf("T") > -1){
-             AppConcordatoData = moment(AppConcordatoData).format("DD-MM-YYYY");
-             if(AppConcordatoData.includes("Invalid")){
-                 AppConcordatoData = "";
-             }
-         }
- 
-         var AppAnticipatoData = value.dati.form.App_Anticipato_Data;
-         if(AppAnticipatoData.indexOf("T") > -1){
-             AppAnticipatoData = moment(AppAnticipatoData).format("DD-MM-YYYY");
-             if(AppAnticipatoData.includes("Invalid")){
-                 AppAnticipatoData = "";
-             }
-         }
+                //DATE
+        var AppConcordatoData,AppConcordatoOraInizio,AppConcordatoOraFine;
+        if (value.download.ads.ChiaveTestoStd === "ZES0"){
+            AppConcordatoData="________";
+            AppConcordatoOraInizio = "________";
+            AppConcordatoOraFine = "________";
+            
+        }
+        else {
 
+            AppConcordatoData = value.dati.form.App_Concordato_Data;
+            if(AppConcordatoData.indexOf("T") > -1){
+                AppConcordatoData = moment(AppConcordatoData).format("DD-MM-YYYY");
+                if(AppConcordatoData.includes("Invalid")){
+                    AppConcordatoData = "";
+                }
+            }
+            AppConcordatoOraInizio = value.dati.form.App_Concordato_Ora_Inizio;
+            AppConcordatoOraFine = value.dati.form.App_Concordato_Ora_Fine;
+        }
+        
+        var AppAnticipatoData = value.dati.form.App_Anticipato_Data;    
+            if(AppAnticipatoData.indexOf("T") > -1){
+                AppAnticipatoData = moment(AppAnticipatoData).format("DD-MM-YYYY");
+                if(AppAnticipatoData.includes("Invalid")){
+                    AppAnticipatoData = "";
+                }
+            }
+
+         var DataRichiesta = value.download.ads.DataRichiesta?.replaceAll("-","/");
+        
 
         // Descrizioni e note
         var descrizione_e_note = '';
         
-        if((value.dati.form.Note_dinamiche.length > 0)
+        if((value.dati.form.Note_dinamiche?.length > 0)
             || ((value.dati.form.Descrizione_note != undefined) && (value.dati.form.Descrizione_note != " ") && (value.dati.form.Descrizione_note != "")))
         {
             var max_caratteri = 1222250;
@@ -390,7 +414,7 @@ export class ModelGas {
             if (value.dati.form.Note_dinamiche){
                 for (let note of value.dati.form.Note_dinamiche){
                   if (note.checked){
-                    descrizione_e_note += '; '+ NotaSopralluogo.interpolateNoteText(note) + ';';
+                    descrizione_e_note += '\n'+ NotaSopralluogo.interpolateNoteText(note) ;
                   }
                 }
               }
@@ -408,27 +432,33 @@ export class ModelGas {
         switch(value.dati.form.Paratica_Sospesa)
         {
             case "ZS05":
-                ZS05 = "[ X ] ZS05 Attesa dati tecnici";
+                ZS05 = "[ X ] ZS05 Attesa dati tecnici (*)";
                 descrizione_e_note = " " + descrizione_e_note;
                 errorMsg = messaggio_ZS05;
             break;
             case "ZS06":
-                ZS06 = "[ X ] ZS06 Decisione punto fornitura";
+                ZS06 = "[ X ] ZS06 Decisione punto fornitura (*)";
                 descrizione_e_note = " " + descrizione_e_note;
                 errorMsg = messaggio_ZS06;
             break;            
             case "ZS03":
                 //ZS03 = "[ X ] ZS03 Causa carenza rete";
-                 descrizione_e_note = " " + descrizione_e_note + messaggio_ZS03;
+                 descrizione_e_note = " " + descrizione_e_note +"\n"+ messaggio_ZS03;
             break;
             case "ZS08":
-                ZS08 = "[ X ] ZS08 Mancanza autorizzazione terzi";
+                ZS08 = "[ X ] ZS08 Mancanza autorizzazione terzi (**)";
                 errorMsg = messaggio_ZS08;
             break;                                    
         }
 
+        // 2020_B001 aggiornamento 06/04/2021
         if(value.dati.form.Pratica_Annullata == "N29"){
-            errorMsg = messaggio_N29;
+            errorMsg = messaggio_N29 + "\n" + messaggio_N29_N30_N32;
+            boldMsg = true;
+        }
+
+        if((value.dati.form.Pratica_Annullata == "N30")||(value.dati.form.Pratica_Annullata == "N32")){
+            errorMsg = messaggio_N29_N30_N32;
             boldMsg = true;
         }
 
@@ -487,6 +517,21 @@ export class ModelGas {
 
 
         var imgBoxSize = 320;
+        var errNote = { style: 'margin_Top_Font_Little', text:[ {text: errorMsg, bold:true}]};    
+        var descrNote = { 
+            style: 'margin_Top_Font_Little',
+            table: {
+                headerRows: 1,
+                dontBreakRows: true,
+                keepWithHeaderRows: 1,
+                widths: ["*"],
+                body:[ 
+                    [{text:"DESCRIZIONE E NOTE\n", bold:true}], 
+                    [{text:descrizione_e_note, decoration: 'underline', bold:true }]
+                ]
+            }
+        };    
+
         var beforeImg = [                   
                             {
                                 table: {
@@ -527,12 +572,14 @@ export class ModelGas {
                                     },{
                                         style: 'font_size_8',
                                         table: {
-                                            widths: [90, '*', 40 ,'*'],
+                                            widths: [90, '*', 55 ,40, 50 ,'*'],
                                             body: [
                                                 [{text: 'Codice di rintracciabilità ', bold: true , border:[false, false, false, false]} , 
-                                                {text: value.dati.form.Rintracciabilita, border:[false, false, false, true]},
+                                                {text: ""+value.dati.form.Rintracciabilita, border:[false, false, false, true]},
+                                                {text: 'Data richiesta ', bold: true , border:[false, false, false, false]} , 
+                                                {text: ""+DataRichiesta, border:[false, false, false, true]},
                                                 {text: 'Avviso/Odl', border:[false, false, false, false]},
-                                                {text: value.dati.form.Avviso, border:[false, false, false, true]}] 
+                                                {text: ""+value.dati.form.Avviso, border:[false, false, false, true]}] 
                                                 ]
                                         },
                                     },
@@ -719,7 +766,7 @@ export class ModelGas {
                                             ]
                                         }
                                     },	
-                                    
+                                    errNote,
                                     {
                                         "layout": "noBorders",
                                         "table": {
@@ -727,14 +774,14 @@ export class ModelGas {
                                                 [
                                                     {
                                                         "fontSize": 8,
-                                                        "text": prestazioni_correlate_chk + " PRESTAZIONI CORRELATE                         Avviso / OdL (se disponibile)"+prestazioni_correlate
+                                                        "text": prestazioni_correlate_chk + " PRESTAZIONI CORRELATE                         Avviso / OdL "+prestazioni_correlate
                                                     }
                                                 ],
                                                 [
                                                     {
                                                         "bold": true,
                                                         "fontSize": 6,
-                                                        "text": "Il richiedente la prestazione ha avanzato richiesta, sempre per lo stesso indirizzo di lavoro, di preventivo anche per altre prestazioni. Essendo le esecuzioni dei vari interventi correlate, con la presente nota si rende edotto il richiedente che il distributore potrà sospendere il computo dei tempi di esecuzione, ai fini del calcolo dei livelli specifici o generali di qualità commerciale, di ognuno dei singoli interventi, fintantoché il richiedente non abbia provveduto a trasmettere l’accettazione di tutti i preventivi tra loro correlati e non abbia eseguito i lavori da realizzarsi a sua cura ed ottenuto le concessioni, autorizzazioni o servitù di sua spettanza, dandone comunicazione al distributore, il tutto con le modalità e nei termini riportati nei preventivi medesimi."
+                                                        "text": prestazioni_correlate_notes
                                                     }
                                                 ]
                                             ]
@@ -892,7 +939,7 @@ export class ModelGas {
                                                                                             false
                                                                                         ],
                                                                                         fontSize: 6,
-                                                                                        "text": alloggiamento_altro_check + " Altro "
+                                                                                        "text": alloggiamento_altro_check + " Altro (vedi note)"
                                                                                     }
                                                                                 ]
                                                                             ]
@@ -930,7 +977,7 @@ export class ModelGas {
                                                         ],
                                                         colSpan: 3,
                                                         fontSize: 8,
-                                                        text: "DIMENSIONAMENTO ALLOGGIAMENTO",
+                                                        text: "DIMENSIONI INTERNE ALLOGGIAMENTO",
                                                         width: 65
                                                     },
                                                     {
@@ -963,8 +1010,8 @@ export class ModelGas {
                                                                     {   text: "" },
                                                                     {   text: "" },
                                                                 ],
-                                                                [{fontSize:6,text:'H(cm)'}, {fontSize:6,text:'L(cm)'},{fontSize:6, text:'P(cm)'}, {fontSize:6,text:'A(cm)'}, {fontSize:6,text:'S(cm)'}],
-                                                                [{fontSize:8,text: value.dati.form.H_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.L_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.A_Opere_1_IMG1}, {fontSize:8,text: 6}],                                                                                    
+                                                                [{fontSize:6,text:'L(cm)'}, {fontSize:6,text:'P(cm)'},{fontSize:6, text:'H(cm)'}, {fontSize:6,text:'A(cm)'}, {fontSize:6,text:'S(cm)'}],
+                                                                [{fontSize:8,text: value.dati.form.L_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.H_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.A_Opere_1_IMG1}, {fontSize:8,text: 6}],                                                                                    
                                                                 [
                                                                     {
                                                                         bold: true,
@@ -1005,16 +1052,23 @@ export class ModelGas {
                                             ]
                                         }
                                     },
+                                    descrNote
                                     ];
                                
-                                var descrNote =  {};
-                                    descrNote = { fontSize: 7, text:[ {text:"DESCRIZIONE E NOTE"}, {text:descrizione_e_note, bold:true}, 
-                                    { text:  note_prestazioni ,decoration: 'underline', bold: true}, {text: errorMsg, bold:true}]};    
-
-                                var adempimentiGestoreLabel = (atti_autorizzativi == Ente.NO_ENTE)?    
-                                    {} : {style: 'margin_Top_Font_Little', text: 'ADEMPIMENTI A CARICO DEL DISTRIBUTORE: ATTI AUTORIZZATIVI PER L\'ESECUZIONE DELLA PRESTAZIONE ',bold: true};
-                                var adempimentiGestoreSection = (atti_autorizzativi == Ente.NO_ENTE)?
-                                    {} : {
+                                
+                                var adempimentiGestoreLabel = {style: 'margin_Top_Font_Little', text: 'ADEMPIMENTI A CARICO DEL DISTRIBUTORE: ATTI AUTORIZZATIVI NECESSARI PER L\'ESECUZIONE DELLA PRESTAZIONE ',bold: true};
+                                var adempimentiGestoreSection = (atti_autorizzativi.length == 0)?
+                                    {
+                                            style: 'tableExample',
+                                            table: {
+                                                widths: ['*', '*','*'],
+                                                headerRows: 1,
+                                                body: [
+                                                    [{colSpan: 3,text: ' \n \n', style: 'no_border'}],
+                                
+                                                ]
+                                            },
+                                    } : {
                                             style: 'tableExample',
                                             table: {
                                                 widths: ['*', '*','*'],
@@ -1031,18 +1085,25 @@ export class ModelGas {
                                                     { 
                                                         table: {
                                                             body: [
-                                                                [                                                                
-                                                                {text: descrizioni_aggiuntive_check, fontSize: 6},
-                                                                ],
+                                                                [{text: descrizioni_aggiuntive_check, style: 'margin_Top_Font_Little', bold: true}],
+                                                                [{bold: true, fontSize: 6,text: note_prestazioni}],
                                                                 [{bold: true, fontSize: 6,text: 'Note: ' + descrizioni_aggiuntive_aggregate}]
-         
+                        
                                                             ]
                                                         },
                                                         layout: 'noBorders'
-
+                        
                                                     },
-                                                    
-                                                   descrNote,
+                                    
+                                                    { 
+                                                        table: {
+                                                           body: [
+                                                                [{ text:' ', border: [ false, false, false, false]}]
+                                                           ]
+                                                        },
+                                                        pageBreak: 'after'
+                                                       
+                                                   },
                                                     
                                                    // {style: 'margin_Top_Font_Little', text: allegato_tecnico},
                                                     
@@ -1118,7 +1179,7 @@ export class ModelGas {
                                                             
                                                             body: [
                                                                 [
-                                                                    {fontSize: 8,border: [true,true,true, false],text:'APPUNTAMENTO CONCORDATO               Data:' +  AppConcordatoData + ' (fascia puntualità)        Ora inizio:' +  value.dati.form.App_Concordato_Ora_Inizio +'               Ora fine:' + value.dati.form.App_Concordato_Ora_Fine + '\n    (data e fascia puntualita\')'  }
+                                                                    {fontSize: 8,border: [true,true,true, false],text:'APPUNTAMENTO CONCORDATO               Data:' +  AppConcordatoData + ' (fascia puntualità)        Ora inizio:' +  AppConcordatoOraInizio +'               Ora fine:' + AppConcordatoOraFine + '\n    (data e fascia puntualita\')'  }
                                                                 ],
                                                             ]
                                                         }

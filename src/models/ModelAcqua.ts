@@ -29,7 +29,10 @@ export class ModelAcqua {
             for(let item of img){
                 retData.push(item);
             }
-             if(img.length>0){
+             
+            //if(img.length>0)
+             if (false) // Debug
+             {
                     retData.push(
                         { 
                                      table: {
@@ -196,11 +199,21 @@ export class ModelAcqua {
         let unchecked = "[__]";
 
         
-        var prestazioni_correlate = (vs.PrestazioniCorrelate?.length > 0) ? vs.PrestazioniCorrelate : "____________________";
-        var prestazioni_correlate_chk = (vs.PrestazioniCorrelate?.length > 0) ? checked : unchecked;
+        // Prestazioni correlate
+        var prestazioni_correlate,prestazioni_correlate_chk,prestazioni_correlate_notes;
+                
+        if (vs.PrestazioniCorrelate?.length > 2){
+            prestazioni_correlate = vs.PrestazioniCorrelate;
+            prestazioni_correlate_chk = checked;
+            prestazioni_correlate_notes = "Il richiedente la prestazione ha avanzato richiesta, sempre per lo stesso indirizzo di lavoro, di preventivo anche per altre prestazioni. Essendo le esecuzioni dei vari interventi correlate, con la presente nota si rende edotto il richiedente che il distributore potrà sospendere il computo dei tempi di esecuzione, ai fini del calcolo dei livelli specifici o generali di qualità commerciale, di ognuno dei singoli interventi, fintantoché il richiedente non abbia provveduto a trasmettere l’accettazione di tutti i preventivi tra loro correlati e non abbia eseguito i lavori da realizzarsi a sua cura ed ottenuto le concessioni, autorizzazioni o servitù di sua spettanza, dandone comunicazione al distributore, il tutto con le modalità e nei termini riportati nei preventivi medesimi.";
+        } else {
+            prestazioni_correlate = "____________________";
+            prestazioni_correlate_chk = unchecked;
+            prestazioni_correlate_notes = "";
+        }
+        
 
-
-        var descrizioni_aggiuntive_check_txt = " PRESTAZIONI AGGIUNTIVE CONCORDATE IN SEDE DI SOPRALLUOGO                         " + PN1 + " " + PM1 +  " " + PR1;
+        var descrizioni_aggiuntive_check_txt = " Altre prestazioni per le quali il richiedente ha manifestato interesse           " + PN1 + " " + PM1 +  " " + PR1;
         let descrizioni_aggiuntive_check = "";
         
         if(aggFlag === true) {
@@ -275,10 +288,11 @@ export class ModelAcqua {
         // Pratica sospesa e Pratica annullata    
         var ZS05, ZS06, ZS03, ZS08, N33, N29, N30, N31, N32, N21, N28;
         var messaggio_ZS03 = "";
-        var messaggio_ZS05 = "Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali si provvederà alla emissione del preventivo considerando confermate queste ultime.";
-        var messaggio_ZS06 = "Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni  definite durante il sopralluogo, trascorsi i quali si provvederà alla emissione del preventivo considerando confermate queste ultime.";
-        var messaggio_ZS08 = "Per la ZS08 trascorsi 30(trenta) giorni solari dalla data del sopralluogo, in mancanza di consegna dell'autorizzazione da parte del cliente, il preventivo verrà chiuso con Esito Negativo.";
-        var messaggio_N29 = "Il Cliente si dichiara interessato a ricevere un preventivo/progetto di estensione/potenziamento della rete";
+        var messaggio_ZS05 = "(*) Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni definite durante il sopralluogo, trascorsi i quali al netto di eventuali proroghe il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_ZS06 = "(*) Per le sospensioni ZS05 e ZS06 Il cliente (o suo incaricato) ha 8 (otto) giorni solari di tempo dalla data di sopralluogo per comunicare eventuali variazioni alle informazioni definite durante il sopralluogo, trascorsi i quali al netto di eventuali proroghe il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_ZS08 = "(**) Per la ZS08 trascorsi 30(trenta) giorni solari dalla data del sopralluogo, al netto di eventuali proroghe in mancanza di consegna dell'autorizzazione da parte del cliente, il preventivo verrà chiuso con Esito Negativo.";
+        var messaggio_N29  = "(***) Il Cliente si dichiara interessato a ricevere un preventivo/progetto di estensione/potenziamento della rete";
+        var messaggio_N29_N30_N32 = "Gli esiti negativi N29,N30 e N32 specificano le motivazioni del rifiuto del Gestore all'accesso alla rete di distribuzione nel caso non sia possibile eseguire i lavori richiesti.";
 
 
         ZS05 = "[__] ZS05 Attesa dati tecnici (*)";
@@ -286,8 +300,8 @@ export class ModelAcqua {
         ZS08 = "[__] ZS08 Mancanza autorizzazione terzi (**)";
             
         N33 = "[__] N33 Revoca del richiedente";
-        N29 = "[__] N29 Rete non disponibile (**)";
-        N30 = "[__] N30 Non tecn.fattibile";
+        N29 = "[__] N29 Rete non disponibile (***)";
+        N30 = "[__] N30 Non tecnicamente fattibile";
         N31 = "[__] N31 Impianto cliente non a norma";
         N32 = "[__] N32 Prest. non comp. con la richiesta";
         N21 = "[__] N21 Cliente assente ODL con appuntamento";
@@ -299,10 +313,10 @@ export class ModelAcqua {
                 N33 = "[ X ] N33 Revoca del richiedente";
             break;
             case "N29":
-                N29 = "[ X ] N29 Rete non disponibile (**)";
+                N29 = "[ X ] N29 Rete non disponibile (***)";
             break;
             case "N30":
-                N30 = "[ X ] N30 Non tecn. fattibile";
+                N30 = "[ X ] N30 Non tecnicamente fattibile";
             break;
             case "N31":
                 N31 = "[ X ] N31 Impianto cliente non a norma";
@@ -367,26 +381,42 @@ export class ModelAcqua {
         }        
 
         //DATE
-        var AppConcordatoData = value.dati.form.App_Concordato_Data;
-        if(AppConcordatoData.indexOf("T") > -1){
-            AppConcordatoData = moment(AppConcordatoData).format("DD-MM-YYYY");
-            if(AppConcordatoData.includes("Invalid")){
-                AppConcordatoData = "";
-            }
+        var AppConcordatoData,AppConcordatoOraInizio,AppConcordatoOraFine;
+        if (value.download.ads.ChiaveTestoStd === "ZES0"){
+            AppConcordatoData="________";
+            AppConcordatoOraInizio = "________";
+            AppConcordatoOraFine = "________";
+            
         }
+        else {
 
-        var AppAnticipatoData = value.dati.form.App_Anticipato_Data;
-        if(AppAnticipatoData.indexOf("T") > -1){
-            AppAnticipatoData = moment(AppAnticipatoData).format("DD-MM-YYYY");
-            if(AppAnticipatoData.includes("Invalid")){
-                AppAnticipatoData = "";
+            AppConcordatoData = value.dati.form.App_Concordato_Data;
+            if(AppConcordatoData.indexOf("T") > -1){
+                AppConcordatoData = moment(AppConcordatoData).format("DD-MM-YYYY");
+                if(AppConcordatoData.includes("Invalid")){
+                    AppConcordatoData = "";
+                }
             }
+            AppConcordatoOraInizio = value.dati.form.App_Concordato_Ora_Inizio;
+            AppConcordatoOraFine = value.dati.form.App_Concordato_Ora_Fine;
         }
+        
+        var AppAnticipatoData = value.dati.form.App_Anticipato_Data;    
+            if(AppAnticipatoData.indexOf("T") > -1){
+                AppAnticipatoData = moment(AppAnticipatoData).format("DD-MM-YYYY");
+                if(AppAnticipatoData.includes("Invalid")){
+                    AppAnticipatoData = "";
+                }
+            }
+        
 
+        var DataRichiesta = value.download.ads.DataRichiesta?.replaceAll("-","/");
+        
+        
         // Descrizioni e note
         var descrizione_e_note = '';
         
-        if((value.dati.form.Note_dinamiche.length > 0)
+        if((value.dati.form.Note_dinamiche?.length > 0)
             || ((value.dati.form.Descrizione_note != undefined) && (value.dati.form.Descrizione_note != " ") && (value.dati.form.Descrizione_note != "")))
         {
             var max_caratteri = 1222250;
@@ -394,7 +424,7 @@ export class ModelAcqua {
             if (value.dati.form.Note_dinamiche){
                 for (let note of value.dati.form.Note_dinamiche){
                   if (note.checked){
-                    descrizione_e_note += '; '+ NotaSopralluogo.interpolateNoteText(note) + ';';
+                    descrizione_e_note += '\n'+ NotaSopralluogo.interpolateNoteText(note) ;
                   }
                 }
               }
@@ -412,27 +442,33 @@ export class ModelAcqua {
         switch(value.dati.form.Paratica_Sospesa)
         {
             case "ZS05":
-                ZS05 = "[ X ] ZS05 Attesa dati tecnici";
+                ZS05 = "[ X ] ZS05 Attesa dati tecnici (*)";
                 descrizione_e_note = " " + descrizione_e_note;
                 errorMsg = messaggio_ZS05;
             break;
             case "ZS06":
-                ZS06 = "[ X ] ZS06 Decisione punto fornitura";
+                ZS06 = "[ X ] ZS06 Decisione punto fornitura (*)";
                 descrizione_e_note = " " + descrizione_e_note;
                 errorMsg = messaggio_ZS06;
             break;            
             case "ZS03":
                 //ZS03 = "[ X ] ZS03 Causa carenza rete";
-                 descrizione_e_note = " " + descrizione_e_note + messaggio_ZS03;
+                 descrizione_e_note = " " + descrizione_e_note + "\n"+ messaggio_ZS03;
             break;
             case "ZS08":
-                ZS08 = "[ X ] ZS08 Mancanza autorizzazione terzi";
+                ZS08 = "[ X ] ZS08 Mancanza autorizzazione terzi (**)";
                 errorMsg = messaggio_ZS08;
             break;                                    
         }
 
+        // 2020_B001 aggiornamento 06/04/2021
         if(value.dati.form.Pratica_Annullata == "N29"){
-            errorMsg = messaggio_N29;
+            errorMsg = messaggio_N29 + "\n" + messaggio_N29_N30_N32;
+            boldMsg = true;
+        }
+
+        if((value.dati.form.Pratica_Annullata == "N30")||(value.dati.form.Pratica_Annullata == "N32")){
+            errorMsg = messaggio_N29_N30_N32;
             boldMsg = true;
         }
 
@@ -491,6 +527,23 @@ export class ModelAcqua {
 
 
         var imgBoxSize = 320;
+
+        var errNote = { style: 'margin_Top_Font_Little', text:[ {text: errorMsg, bold:true}]};    
+        var descrNote = { 
+            style: 'margin_Top_Font_Little',
+            table: {
+                headerRows: 1,
+                dontBreakRows: true,
+                keepWithHeaderRows: 1,
+                widths: ["*"],
+                body:[ 
+                    [{text:"DESCRIZIONE E NOTE\n", bold:true}], 
+                    [{text:descrizione_e_note, decoration: 'underline', bold:true }]
+                ]
+            }
+        };               
+
+
         var beforeImg = [                    
                             {
                     
@@ -532,12 +585,14 @@ export class ModelAcqua {
                             {
                                 style: 'font_size_8',
                                 table: {
-                                    widths: [90, '*', 40 ,'*'],
+                                    widths: [90, '*', 55 ,40, 50 ,'*'],
                                     body: [
                                         [{text: 'Codice di rintracciabilità ', bold: true , border:[false, false, false, false]} , 
-                                        {text: value.dati.form.Rintracciabilita, border:[false, false, false, true]},
-                                        {text: 'Avviso /OdL', border:[false, false, false, false]},
-                                        {text: value.dati.form.Avviso, border:[false, false, false, true]}] 
+                                        {text: ""+value.dati.form.Rintracciabilita, border:[false, false, false, true]},
+                                        {text: 'Data richiesta ', bold: true , border:[false, false, false, false]} , 
+                                        {text: ""+DataRichiesta, border:[false, false, false, true]},
+                                        {text: 'Avviso/Odl', border:[false, false, false, false]},
+                                        {text: ""+value.dati.form.Avviso, border:[false, false, false, true]}] 
                                         ]
                                 },
                             },
@@ -731,6 +786,7 @@ export class ModelAcqua {
                                     ]
                                 }
                             },
+                            errNote,
                             {
                                 layout: "noBorders",
                                 table: {
@@ -738,14 +794,14 @@ export class ModelAcqua {
                                         [
                                             {
                                                 fontSize: 8,
-                                                text: prestazioni_correlate_chk + " PRESTAZIONI CORRELATE                         Avviso / OdL (se disponibile) "+prestazioni_correlate
+                                                text: prestazioni_correlate_chk + " PRESTAZIONI CORRELATE                         Avviso / OdL "+prestazioni_correlate
                                             }
                                         ],
                                         [
                                             {
                                                 bold: true,
                                                 fontSize: 6,
-                                                text: "Il richiedente la prestazione ha avanzato richiesta, sempre per lo stesso indirizzo di lavoro, di preventivo anche per altre prestazioni. Essendo le esecuzioni dei vari interventi correlate, con la presente nota si rende edotto il richiedente che il distributore potrà sospendere il computo dei tempi di esecuzione, ai fini del calcolo dei livelli specifici o generali di qualità commerciale, di ognuno dei singoli interventi, fintantoché il richiedente non abbia provveduto a trasmettere l’accettazione di tutti i preventivi tra loro correlati e non abbia eseguito i lavori da realizzarsi a sua cura ed ottenuto le concessioni, autorizzazioni o servitù di sua spettanza, dandone comunicazione al distributore, il tutto con le modalità e nei termini riportati nei preventivi medesimi."
+                                                text: prestazioni_correlate_notes,
                                             }
                                         ]
                                     ]
@@ -903,7 +959,7 @@ export class ModelAcqua {
                                                                                     false
                                                                                 ],
                                                                                 "fontSize": 6,
-                                                                                "text": alloggiamento_altro_check + " Altro "
+                                                                                "text": alloggiamento_altro_check + " Altro (vedi note)"
                                                                             }
                                                                         ]
                                                                     ]
@@ -985,7 +1041,7 @@ export class ModelAcqua {
                                                             {   "text": "" }
                                                         ],
                                                         [{fontSize:6,text:'L (cm)'},{fontSize:6,text: 'P (cm)'}, {fontSize:6,text:'H (cm)'}],
-                                                        [{fontSize:8,text: value.dati.form.L_Opere_1_IMG2}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG2}, {bold:true, fontSize:8,text: value.dati.form.H_Opere_1_IMG2}],
+                                                        [{fontSize:8,text: value.dati.form.L_Opere_1_IMG2}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG2}, { fontSize:8,text: value.dati.form.H_Opere_1_IMG2}],
                                                         
                                                     ],
                                                     "widths": [
@@ -1025,8 +1081,8 @@ export class ModelAcqua {
                                                             {   "text": "" },
                                                             {   "text": "" },
                                                         ],
-                                                        [{fontSize:6,text:'H(cm)'}, {fontSize:6,text:'L(cm)'},{fontSize:6, text:'P(cm)'}, {fontSize:6,text:'A(cm)'}, {fontSize:6,text:'S(cm)'}],
-                                                        [{fontSize:8,text: value.dati.form.H_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.L_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.A_Opere_1_IMG1}, {fontSize:8,text: 6}],                                                                                    
+                                                        [ {fontSize:6,text:'L(cm)'},{fontSize:6, text:'P(cm)'}, {fontSize:6,text:'H(cm)'},{fontSize:6,text:'A(cm)'}, {fontSize:6,text:'S(cm)'}],
+                                                        [{fontSize:8,text: value.dati.form.L_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.H_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.A_Opere_1_IMG1}, {fontSize:8,text: 6}],                                                                                    
                                                         [
                                                             {
                                                                 "bold": true,
@@ -1067,298 +1123,244 @@ export class ModelAcqua {
                                         imgBoxSize
                                     ]
                                 }
-                            }
-                            /*
-                            {
-                                table: {
-                                    widths: [80, 20, 110, '*'],
-
-                                    body: [
-                                            [   
-                                                {
-                                                    border: [true,true,false,false],
-                                                    image: imgExample.getDisegno2(),
-                                                    width: 85,
-                                                    colSpan:2,
-                                                }, 
-                                                {
-                                                    border: [false,true,false,false],
-                                                    text:' ',
-                                                },
-                                                {
-                                                    border: [false,true,true,false],                                    
-                                                    table: {
-                                                        // widths: [30, 25, 25, 25],
-                                                        widths: [25, 25, 25],
-                                                        body: [
-                                                            [{border:[false,false, false, false],fontSize: 6, text: "dimensioni pozzetto", colSpan:3}, {text:""},{text:""}],
-                                                            [ 
-                                                                {fontSize:6,text:'L (cm)'},{fontSize:6,text: 'P (cm)'}, {fontSize:6,text:'H (cm)'}],
-                                                            [ {fontSize:8,text: value.dati.form.L_Opere_1_IMG2}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG2}, {bold:true, fontSize:8,text: value.dati.form.H_Opere_1_IMG2}],
-                                                        ]
-                                                        },
-                                                },   
-                                                {
-                                                    rowSpan: 2,
-                                                    image: Disegno_Schema_TMP,
-                                                    fit : [400,180] ,
-                                                    alignment: 'center',
-                                                },                     
-                                        
-                                            ],
-                                            [   
-                                                {
-                                                    image: imgExample.getDisegno1(),
-                                                    width: 70,
-                                                    border: [true,false,false,true],
-                                                }, 
-                                                
-                                                {
-                                                    border: [false,false,false,true],  
-                                                    table: {
-                                                        widths: [18, 18, 18, 18, 18],
-                                                        body: [
-                                                            [{border:[false,false, false, false],fontSize: 6, text: "Dimensioni armadio a nicchia a parete", colSpan: 5},{text:""},{text:""},{text:""},{text:""}],
-                                                            [{fontSize:6,text:'H(cm)'}, {fontSize:6,text:'L(cm)'},{fontSize:6, text:'P(cm)'}, {fontSize:6,text:'A(cm)'}, {fontSize:6,text:'S*(cm)'}],
-                                                            [{fontSize:8,text: value.dati.form.H_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.L_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.P_Opere_1_IMG1}, {fontSize:8,text: value.dati.form.A_Opere_1_IMG1}, {fontSize:8,text: 6}],
-                                                            [{bold:true, fontSize:6, border: [false,false,false,false], text:"*NB.Qualora la parete posteriore dell’armadio collocato sia di spessore inferiore a quanto indicato ed obbligatorio,  il distributore non sarà ritenuto responsabile di danni cagionati nelle operazioni di fissaggio con tasselli e staffe delle apparecchiature. Eventuali ripristini di stuccature o quant’altro sia ritenuto necessario alla riparazione, saranno sempre a cura e con oneri a carico del cliente. SPORTELLO IN MATERIALE POLIMERICO (permeabile alle onde radio)", colSpan:5}]
-                                                            ]
-                                                    },
-                                                },  
-                                                {
-                                                    text: '',
-                                                    border: [false,false,false,true],
-                                                }, 
-                                                {
-                                                    text: '',
-                                                    border: [false,false,false,true],
-                                                }                
-                                            ],
-                                        ]
-
-                                    }
-                                }
+                            },
+                            descrNote,
                             
-                            
-                            */];
-                                var descrNote =  {};
-                                    descrNote = { style: 'margin_Top_Font_Little', text:[ {text:"DESCRIZIONE E NOTE"}, {text:descrizione_e_note, bold:true},  
-                                    { text:  note_prestazioni ,decoration: 'underline', bold: true}, {text: errorMsg, bold:true}]};    
                                 
-                                var adempimentiGestoreLabel = (atti_autorizzativi == Ente.NO_ENTE)?    
-                                        {} : {style: 'margin_Top_Font_Little', text: 'ADEMPIMENTI A CARICO DEL GESTORE: ATTI AUTORIZZATIVI PER L\'ESECUZIONE DELLA PRESTAZIONE ',bold: true};
-                                var adempimentiGestoreSection = (atti_autorizzativi == Ente.NO_ENTE)?
-                                        {} : {
-                                                style: 'tableExample',
-                                                table: {
-                                                    widths: ['*', '*','*'],
-                                                    headerRows: 1,
-                                                    body: [
-                                                        [{colSpan: 3,text: atti_autorizzativi, style: 'no_border'}],
+                            ];
+                                
+        
+        
+        var adempimentiGestoreLabel = {style: 'margin_Top_Font_Little', text: 'ADEMPIMENTI A CARICO DEL GESTORE: ATTI AUTORIZZATIVI NECESSARI PER L\'ESECUZIONE DELLA PRESTAZIONE ',bold: true};
+        var adempimentiGestoreSection = (atti_autorizzativi.length == 0)?
+                {
+                    style: 'tableExample',
+                        table: {
+                            widths: ['*', '*','*'],
+                            headerRows: 1,
+                            body: [
+                            [{colSpan: 3,text: ' \n \n', style: 'no_border'}],
+            
+                            ]
+                        },
+                } : {
+                        style: 'tableExample',
+                        table: {
+                            widths: ['*', '*','*'],
+                            headerRows: 1,
+                            body: [
+                                [{colSpan: 3,text: atti_autorizzativi, style: 'no_border'}],
+            
+                            ]
+                        },
+            
+                    };	
+                
+        var afterImg = [
+                            { 
+                                table: {
+                                    body: [
+                                        [{text: descrizioni_aggiuntive_check, style: 'margin_Top_Font_Little', bold: true}],
+                                        [{bold: true, fontSize: 6,text: note_prestazioni}],
+                                        [{bold: true, fontSize: 6,text: 'Note: ' + descrizioni_aggiuntive_aggregate}]
+
+                                    ]
+                                },
+                                layout: 'noBorders'
+
+                            },
+                            
+                            { 
+                                table: {
+                                   body: [
+                                        [{ text:' ', border: [ false, false, false, false]}]
+                                   ]
+                                },
+                                pageBreak: 'after'
+                               
+                           },
+                            
+                            // {style: 'margin_Top_Font_Little', text: allegato_tecnico},
+                            
+                            adempimentiGestoreLabel,
+                            adempimentiGestoreSection,
+                            
+                            
+                            {style: 'margin_Top_Font_Little', text: 'IL CLIENTE (O SUO INCARICATO) DICHIARA: ',bold: true},                
+                    
+                    
+                    
+                            {
+                                style: 'tableExample',
+                                table: {
+                                    widths: ['*', '*','*'],
+                                    headerRows: 1,
+                                    body: [
+                                        [{colSpan: 3,text: [
+                                            {fontSize:7,text:'1) di aver letto e di'},
+                                            {fontSize:7,text:" accettare le condizioni riportate sul presente verbale di sopralluogo in tutte le parti \n", decoration: 'underline',bold:true}, 
+                                            {fontSize:7,text:'2) di predisporre '}, 
+                                            {fontSize:7,text:'quanto indicato per l\'accettazione e l\'esecuzione dei lavori, dandone comunicazione secondo le indicazioni riportate nel preventivo', decoration: 'underline',bold:true} 
+                                        ], style: 'no_border'}],
+                                    ]
+                                },
+                    
+                            },	
+                            {                                                        
+                                alignment: 'center',
+                                table: {
+                                    widths:['*', '*', '*'],                                                            
+                                    body: [
+                                        [                                                            
+                                        { text: ' ' , fontSize: 7, border:[true, true,true, false]},                                                                
+                                        { text: 'Firma del cliente o suo incaricato' , fontSize: 7,border:[true, true,true, false]},                                                                
+                                        { text: 'Firma del tecnico o incaricato GESTORE' , fontSize: 7,border:[true, true,true, false]},
+                                        ]
+                                    ]
+                                }
+                            },
+
+                            {
+                                alignment: 'center',
+                                table: {
+                                    widths:[ '*', '*', '*'],
                                     
-                                                    ]
-                                                },
+                                    body: [
+                                        [{ text: messaggio_data , fontSize: 7, border:[true, false,true, true]},
+                                            
+                                        (value.signatureUser === undefined ?
+                                            { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : {border:[true, false,true, true], image: value.signatureUser, width: 100, height: 25 }
+                                        )       ,                                                               
+                                        (value.signatureOperator === undefined ?
+                                            { text: '……………………………………………', width: 100, height: 25,border:[true, false,true, true] } : { border:[true, false,true, true],image: value.signatureOperator, width: 100, height: 25 }
+                                        ),                                                        
+                                                                                                    
+                                        ]
+                                    ]
+                                }
+                            },		
+                    
+                            {
+                                bold:true, 
+                                fontSize: 8, text:"DATI APPUNTAMENTO / ASSENZA CLIENTE NELLA FASCIA DI PUNTUALITA' / MANCATO RISPETTO FASCIA DI PUNTUALITA'"
+                            },	
+                    
+                            {
+                                
+                                table: {
+                                    widths:['*'],
                                     
-                                            };	
+                                    body: [
+                                        [
+                                            {fontSize: 8,border: [true,true,true, false],text:'APPUNTAMENTO CONCORDATO              Data:' +  AppConcordatoData + ' (fascia puntualità)         Ora inizio:' +  AppConcordatoOraInizio +'               Ora fine:' + AppConcordatoOraFine + '\n    (data e fascia puntualità)'  }
+                                        ],
+                                    ]
+                                }
+                                
+                            },
+
+                            //Appuntamento anticipato
+                            (value.download.ads.ChiaveTestoStd == "ZAP3" ?
+                            {
+                                
+                                table: {
+                                    widths:[ '*'],
+                                    
+                                    body: [
+                                        [{fontSize: 8, border: [true,true,true, false],text:'APPUNTAMENTO ANTICIPATO                 Data:' +  AppAnticipatoData + ' (fascia puntualità)        Ora inizio:' +  value.dati.form.App_Anticipato_Ora_Inizio + '          Ora fine:' + value.dati.form.App_Anticipato_Ora_Fine+'\n    (proposto dal gestore con consenso del cliente)'  } 
+                                    ],
+                                    ]
+                                }
+                            }
+                            : {}
+                            ),
+                            (value.download.ads.ChiaveTestoStd == "ZAP3" ?
+                                {
+                                table: {
+                                    widths:[ '*'],
+                                    
+                                    body: [
+                                        [{fontSize: 7, border: [true,false,true, false], text: 'Con il consenso del richiedente, preliminarmente alla data inizialmente fissata, l’appuntamento per il sopralluogo è stato anticipato alla data e nella fascia oraria indicata”. '}
+                                    ],
+                                ]
+                                }
+                                }
+                                : {}	
+                            ),
+                            //Fine appuntamento anticipato
+                            
+                            {
+                                
+                                table: {
+                                    widths:['*'],
+                                    
+                                    body: [
+                                        [
+                                            {fontSize: 7,border: [true,false,true, false],text:' Inizio effettivo prestazione o sopralluogo          Data: ' +  value.dati.form.App_Effettivo_Data+ '                Ora: ' +  value.dati.form.App_Effettivo_Ora_Inizio+"    "+esecuzioneAnticipataLabel }]
+                                    ]
+                                }
+                                
+                            },	
+                            {
+                                
+                                table: {
+                                    widths:['*'],
+                                    
+                                    body: [
+                                        [
+                                            {fontSize: 6,border: [true,false,true, false],text:causa_mancato_rispetto}]
+                                    ]
+                                }
+                                
+                            },	
+                            {
+                                
+                                table: {
+                                    widths:['*'],
+                                    
+                                    body: [
+                                        [
+                                            {fontSize:6, border: [true,false,true, false],text:assenzaClienteLabel+'       ' + value.dati.form.App_Verificata_Assenza_Data + ' Ora:  ' + value.dati.form.App_Verificata_Assenza_Ora + "  dichiaro l\' impedimento ad eseguire l\' attività." }]
+                                    ]
+                                }
+                                
+                            },	
+                    
+                            
+                            {                                                        
+                                alignment: 'center',
+                                table: {
+                                    widths:['*', '*', '*'],                                                            
+                                    body: [                                                         
+                                        [                                                            
+                                        { text: ' ' , fontSize: 7, border:[true, true,false, false]},                                                                
+                                        { text: 'Firma del cliente o suo incaricato' , fontSize: 7, border:[true, true,true, false]},                                                                
+                                        { text: 'Firma del tecnico o incaricato del GESTORE' , fontSize: 7, border:[false, true,true, false]},
+                                        ]
+                                    ]
+                                }
+                            },
+
+                            {
+                                alignment: 'center',
+                                table: {
+                                    widths:['*', '*', '*'],
+                                    
+                                    body: [
+                                        [                                                            
+                                        { text: messaggio_data , fontSize: 7, border:[true, false,false, true]},
+                                        (value.dati.form.App_Firma_Cliente === undefined || value.dati.form.App_Firma_Cliente === " " ?
+                                            { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : {border:[true, false,true, true], image: value.dati.form.App_Firma_Cliente, width: 100, height: 25 }
+                                        ),
+                                        (value.dati.form.App_Firma_Tecnico === undefined || value.dati.form.App_Firma_Tecnico === " " ?
+                                            { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : { border:[false, false,true, true],image: value.dati.form.App_Firma_Tecnico, width: 100, height: 25 }
+                                        ),
                                         
-                                var afterImg = [
-                                                    { 
-                                                        table: {
-                                                            body: [
-                                                                [                                                                
-                                                                {text: descrizioni_aggiuntive_check, fontSize: 6},
-                                                                ],
-                                                                [{bold: true, fontSize: 6,text: 'Note: ' + descrizioni_aggiuntive_aggregate}]
-         
-                                                            ]
-                                                        },
-                                                        layout: 'noBorders'
-
-                                                    },
-                                                    
-                                                   descrNote,
-                                                    
-                                                   // {style: 'margin_Top_Font_Little', text: allegato_tecnico},
-                                                    
-                                                   adempimentiGestoreLabel,
-                                                   adempimentiGestoreSection,
-                                                    
-                                                    
-                                                    {style: 'margin_Top_Font_Little', text: 'IL CLIENTE (O SUO INCARICATO) DICHIARA: ',bold: true},                
-                                            
-                                            
-                                            
-                                                    {
-                                                        style: 'tableExample',
-                                                        table: {
-                                                            widths: ['*', '*','*'],
-                                                            headerRows: 1,
-                                                            body: [
-                                                                [{colSpan: 3,text: [
-                                                                    {fontSize:7,text:'1) di aver letto e di'},
-                                                                    {fontSize:7,text:" accettare le condizioni riportate sul presente verbale di sopralluogo in tutte le parti \n", decoration: 'underline',bold:true}, 
-                                                                    {fontSize:7,text:'2) di predisporre '}, 
-                                                                    {fontSize:7,text:'quanto indicato per l\'accettazione e l\'esecuzione dei lavori, dandone comunicazione secondo le indicazioni riportate nel preventivo', decoration: 'underline',bold:true} 
-                                                                ], style: 'no_border'}],
-                                                            ]
-                                                        },
-                                            
-                                                    },	
-                                                    {                                                        
-                                                        alignment: 'center',
-                                                        table: {
-                                                            widths:['*', '*', '*'],                                                            
-                                                            body: [
-                                                                [                                                            
-                                                                { text: ' ' , fontSize: 7, border:[true, true,true, false]},                                                                
-                                                                { text: 'Firma del cliente o suo incaricato' , fontSize: 7,border:[true, true,true, false]},                                                                
-                                                                { text: 'Firma del tecnico o incaricato GESTORE' , fontSize: 7,border:[true, true,true, false]},
-                                                                ]
-                                                            ]
-                                                        }
-                                                    },
-
-                                                    {
-                                                        alignment: 'center',
-                                                        table: {
-                                                            widths:[ '*', '*', '*'],
-                                                            
-                                                            body: [
-                                                                [{ text: messaggio_data , fontSize: 7, border:[true, false,true, true]},
-                                                                  
-                                                                (value.signatureUser === undefined ?
-                                                                    { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : {border:[true, false,true, true], image: value.signatureUser, width: 100, height: 25 }
-                                                                )       ,                                                               
-                                                                (value.signatureOperator === undefined ?
-                                                                    { text: '……………………………………………', width: 100, height: 25,border:[true, false,true, true] } : { border:[true, false,true, true],image: value.signatureOperator, width: 100, height: 25 }
-                                                                ),                                                        
-                                                                                                                          
-                                                                ]
-                                                            ]
-                                                        }
-                                                    },		
-                                            
-                                                    {
-                                                      bold:true, fontSize: 8, text:"DATI APPUNTAMENTO / ASSENZA CLIENTE NELLA FASCIA DI PUNTUALITA' / MANCATO RISPETTO FASCIA DI PUNTUALITA'"
-                                                    },	
-                                            
-                                                    {
-                                                       
-                                                        table: {
-                                                            widths:['*'],
-                                                            
-                                                            body: [
-                                                                [
-                                                                    {fontSize: 8,border: [true,true,true, false],text:'APPUNTAMENTO CONCORDATO              Data:' +  AppConcordatoData + ' (fascia puntualità)         Ora inizio:' +  value.dati.form.App_Concordato_Ora_Inizio +'               Ora fine:' + value.dati.form.App_Concordato_Ora_Fine + '\n    (data e fascia puntualità)'  }
-                                                                ],
-                                                            ]
-                                                        }
-                                                        
-                                                    },
-
-                                                    //Appuntamento anticipato
-                                                    (value.download.ads.ChiaveTestoStd == "ZAP3" ?
-                                                    {
-                                                      
-                                                        table: {
-                                                            widths:[ '*'],
-                                                            
-                                                            body: [
-                                                                [{fontSize: 8, border: [true,true,true, false],text:'APPUNTAMENTO ANTICIPATO                 Data:' +  AppAnticipatoData + ' (fascia puntualità)        Ora inizio:' +  value.dati.form.App_Anticipato_Ora_Inizio + '          Ora fine:' + value.dati.form.App_Anticipato_Ora_Fine+'\n    (proposto dal gestore con consenso del cliente)'  } 
-                                                            ],
-                                                            ]
-                                                        }
-                                                    }
-                                                    : {}
-                                                    ),
-                                                   (value.download.ads.ChiaveTestoStd == "ZAP3" ?
-                                                       {
-                                                        table: {
-                                                            widths:[ '*'],
-                                                            
-                                                            body: [
-                                                                [{fontSize: 7, border: [true,false,true, false], text: 'Con il consenso del richiedente, preliminarmente alla data inizialmente fissata, l’appuntamento per il sopralluogo è stato anticipato alla data e nella fascia oraria indicata”. '}
-                                                            ],
-                                                        ]
-                                                        }
-                                                     }
-                                                        : {}	
-                                                    ),
-                                                    //Fine appuntamento anticipato
-                                                    
-                                                    {
-                                                       
-                                                        table: {
-                                                            widths:['*'],
-                                                            
-                                                            body: [
-                                                                [
-                                                                    {fontSize: 7,border: [true,false,true, false],text:' Inizio effettivo prestazione o sopralluogo          Data: ' +  value.dati.form.App_Effettivo_Data+ '                Ora: ' +  value.dati.form.App_Effettivo_Ora_Inizio+"    "+esecuzioneAnticipataLabel }]
-                                                            ]
-                                                        }
-                                                        
-                                                    },	
-                                                    {
-                                                       
-                                                        table: {
-                                                            widths:['*'],
-                                                            
-                                                            body: [
-                                                                [
-                                                                    {fontSize: 6,border: [true,false,true, false],text:causa_mancato_rispetto}]
-                                                            ]
-                                                        }
-                                                        
-                                                    },	
-                                                    {
-                                                       
-                                                        table: {
-                                                            widths:['*'],
-                                                            
-                                                            body: [
-                                                                [
-                                                                    {fontSize:6, border: [true,false,true, false],text:assenzaClienteLabel+'       ' + value.dati.form.App_Verificata_Assenza_Data + ' Ora:  ' + value.dati.form.App_Verificata_Assenza_Ora + "  dichiaro l\' impedimento ad eseguire l\' attività." }]
-                                                            ]
-                                                        }
-                                                        
-                                                    },	
-                                            
-                                                   
-                                                    {                                                        
-                                                        alignment: 'center',
-                                                        table: {
-                                                            widths:['*', '*', '*'],                                                            
-                                                            body: [                                                         
-                                                                [                                                            
-                                                                { text: ' ' , fontSize: 7, border:[true, true,false, false]},                                                                
-                                                                { text: 'Firma del cliente o suo incaricato' , fontSize: 7, border:[true, true,true, false]},                                                                
-                                                                { text: 'Firma del tecnico o incaricato del GESTORE' , fontSize: 7, border:[false, true,true, false]},
-                                                                ]
-                                                            ]
-                                                        }
-                                                    },
-
-                                                    {
-                                                        
-                                                        alignment: 'center',
-                                                        table: {
-                                                            widths:['*', '*', '*'],
-                                                            
-                                                            body: [
-                                                                [                                                            
-                                                                { text: messaggio_data , fontSize: 7, border:[true, false,false, true]},
-                                                             (value.dati.form.App_Firma_Cliente === undefined || value.dati.form.App_Firma_Cliente === " " ?
-                                                                    { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : {border:[true, false,true, true], image: value.dati.form.App_Firma_Cliente, width: 100, height: 25 }
-                                                                ),
-                                                                (value.dati.form.App_Firma_Tecnico === undefined || value.dati.form.App_Firma_Tecnico === " " ?
-                                                                    { text: '……………………………………………', width: 100, height: 25 ,border:[true, false,true, true]} : { border:[false, false,true, true],image: value.dati.form.App_Firma_Tecnico, width: 100, height: 25 }
-                                                                ),
-                                                                
-                                                                
-                                                                ]
-                                                            ]
-                                                        }
-                                                    }
+                                        
+                                        ]
+                                    ]
+                                }
+                            }
                 ];
 
 

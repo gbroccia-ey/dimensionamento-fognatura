@@ -5,12 +5,18 @@ import { BasePreventivatoreComponent } from '../../base-preventivatore/base-prev
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AdsService } from '../../../../services/ads-service';
+
+
 /**
  * Generated class for the Lavint1630GasComponent component.
  *
  * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
  * for more info on Angular Components.
  */
+
+
+
+
 @Component({
   selector: 'lavfat1631-gas',
   templateUrl: 'lavfat1631-gas.html'
@@ -18,12 +24,12 @@ import { AdsService } from '../../../../services/ads-service';
 export class Lavfat1631GasComponent extends BasePreventivatoreComponent implements OnInit {
 
   presaImpulsivaValues = [
-    {value: 'autoalim', label: 'Autoalimentata'},
-    {value: 'alim', label: 'Alimentazione da rete elettrica'}
+    {value: Params.TipoPresaImpulsiva.AUTOALIMENTATA, label: 'Autoalimentata'},
+    {value: Params.TipoPresaImpulsiva.ALIMENTATA, label: 'Alimentazione da rete elettrica'}
   ]
   fornituraInstallazioneValues = [
-    {value: 'contest', label: 'Contestuale'},
-    {value: 'succ', label: 'Successiva'}
+    {value: Params.TipoFornituraInstallazione.CONTESTUALE, label: 'Contestuale'},
+    {value: Params.TipoFornituraInstallazione.SUCCESSIVA, label: 'Successiva'}
   ]
 
   preventivo: Preventivo;
@@ -42,39 +48,32 @@ export class Lavfat1631GasComponent extends BasePreventivatoreComponent implemen
   ngOnInit() {
     if(this.ads.Preventivo) {
       this.preventivo = this.ads.Preventivo;
-      this.retrievePresaFornitura()
       }
       else {
         this.preventivo = new Preventivo();
-        this.presaImpulsiva = ''
-        this.fornituraInstallazione = ''
-        this.preventivo.PresaFornitura = 0
+        this.presaImpulsiva = this.ads?.Caratteristiche?.PresaImpulsiva;
+        this.fornituraInstallazione = this.ads?.Caratteristiche?.FornituraInstallazione;
         this.preventivo.Cer = 0;
         this.preventivo.Cvv = 0;
         this.preventivo.Cif = 0;
         this.preventivo.AltreSpese = 0;
-        this.list_cif = Params.getValoriWrapper("CIF");
+        // this.list_cif = Params.getValoriWrapper("CIF");
       }
-
-      this.valori = Params.getValoriWrapper(`${this.ads.ProdServizio}_GAS`, this.ads);
-      this.tipo_interruzione = [];
-      this.valori.forEach(x => {
-          if(x["label"]==this.ads.Caratteristiche.TipoTaglio) this.preventivo.TipoInterruzione = x["tipoInterruzione"];
-          this.tipo_interruzione.push({label: x["tipoInterruzione"], value: x["tipoInterruzione"]});
-      });
-      if(this.preventivo.TipoInterruzione)
-        this.updateQuota();
+      this.retrievePresaFornitura()
+      this.updateQuota();
 
   }
 
-  updateQuota() {
-    if (this.preventivo.TipoInterruzione !== undefined){
-      this.preventivo.QuotaFissa = Number(this.valori.find(x => x["tipoInterruzione"] === this.preventivo.TipoInterruzione)["quotaFissa"]);
-      this.preventivo.Cif = this.calcolaCif(this.preventivo.TipoInterruzione);
-    }
+  ionViewDidLoad(){
+    this.presaImpulsiva = this.presaImpulsiva;
+    this.fornituraInstallazione = this.fornituraInstallazione;
+  }
 
+  updateQuota() {
+    
     if (this.fornituraInstallazione !== '' && this.presaImpulsiva !== '') {
-      this.updatePresaFornitura()
+      this.preventivo.QuotaFissa = this.updatePresaFornitura();
+      this.preventivo.TipoInterruzione = this.presaImpulsiva+'/'+this.fornituraInstallazione;
     }
 
     this.aggiornaTotale();
@@ -83,41 +82,27 @@ export class Lavfat1631GasComponent extends BasePreventivatoreComponent implemen
   updatePresaFornitura () {
     // Updates the price from a combination of values
     var key = this.presaImpulsiva + this.fornituraInstallazione
-    
+    var value = 0;
     switch (key) {
-      case '':
-        this.preventivo.PresaFornitura = 0
+      case  Params.TipoPresaImpulsiva.AUTOALIMENTATA+Params.TipoFornituraInstallazione.CONTESTUALE:
+        value = 412
         break;
-      case 'autoalimcontest':
-        this.preventivo.PresaFornitura = 412
+      case Params.TipoPresaImpulsiva.AUTOALIMENTATA+Params.TipoFornituraInstallazione.SUCCESSIVA:
+        value =  834
         break;
-      case 'autoalimsucc':
-        this.preventivo.PresaFornitura = 834
+      case Params.TipoPresaImpulsiva.ALIMENTATA+Params.TipoFornituraInstallazione.CONTESTUALE:
+        value =  301
         break;
-      case 'alimcontest':
-        this.preventivo.PresaFornitura = 301
+      case Params.TipoPresaImpulsiva.ALIMENTATA+Params.TipoFornituraInstallazione.SUCCESSIVA:
+        value =  670
         break;
-      case 'alimsucc':
-        this.preventivo.PresaFornitura = 670
-        break;
-      default:
-        this.preventivo.PresaFornitura = 0
-        break;
+      
     }
-  }
-
-  calcolaCif(cif){
-    for(let item of this.list_cif){
-      if(item.tipoInterruzione == cif) {
-        return item.quotaFissa;
-      }
-    }
-    return 0;
+    return value;
   }
 
   aggiornaTotale() {
-    this.preventivo.Totale = Number(this.preventivo.QuotaFissa) + Number(this.preventivo.Cer) + Number(this.preventivo.Cvv) + Number(this.preventivo.AltreSpese) 
-                            + Number(this.preventivo.Cif) + Number(this.preventivo.PresaFornitura);
+    this.preventivo.Totale = Number(this.preventivo.QuotaFissa) + Number(this.preventivo.Cer) + Number(this.preventivo.Cvv) + Number(this.preventivo.AltreSpese);
   }
 
   updateCer(result) {
@@ -133,27 +118,26 @@ export class Lavfat1631GasComponent extends BasePreventivatoreComponent implemen
 
   retrievePresaFornitura() {
     // retrieves existing values for presaimpulsiva and forniturainstallazione from previously saved ads.preventivo.presafornitura price
-    switch (this.preventivo.PresaFornitura) {
-      case 412:
-        this.presaImpulsiva = 'alim'
-        this.fornituraInstallazione = 'contest'
+    switch (this.preventivo.TipoInterruzione) {
+      case  Params.TipoPresaImpulsiva.AUTOALIMENTATA+Params.TipoFornituraInstallazione.CONTESTUALE:
+        this.presaImpulsiva = Params.TipoPresaImpulsiva.ALIMENTATA;
+        this.fornituraInstallazione = Params.TipoFornituraInstallazione.CONTESTUALE;
         break;
-      case 834:
-        this.presaImpulsiva = 'alim'
-        this.fornituraInstallazione = 'succ'
+      case Params.TipoPresaImpulsiva.AUTOALIMENTATA+Params.TipoFornituraInstallazione.SUCCESSIVA:
+        this.presaImpulsiva = Params.TipoPresaImpulsiva.ALIMENTATA;
+        this.fornituraInstallazione = Params.TipoFornituraInstallazione.SUCCESSIVA;
         break;
-      case 301:
-        this.presaImpulsiva = 'autoalim'
-        this.fornituraInstallazione = 'contest'
+      case Params.TipoPresaImpulsiva.ALIMENTATA+Params.TipoFornituraInstallazione.CONTESTUALE:
+        this.presaImpulsiva = Params.TipoPresaImpulsiva.AUTOALIMENTATA;
+        this.fornituraInstallazione = Params.TipoFornituraInstallazione.CONTESTUALE;
         break;
-      case 670:
-        this.presaImpulsiva = 'autoalim'
-        this.fornituraInstallazione = 'succ'
+      case Params.TipoPresaImpulsiva.ALIMENTATA+Params.TipoFornituraInstallazione.SUCCESSIVA:
+        this.presaImpulsiva = Params.TipoPresaImpulsiva.AUTOALIMENTATA;
+        this.fornituraInstallazione = Params.TipoFornituraInstallazione.SUCCESSIVA
         break;
-      default:
-        this.presaImpulsiva = ''
-        this.fornituraInstallazione = ''
-        break;
+
     }
   }
+
+
 }

@@ -45,5 +45,6 @@ export class Preventivo {
     _hasDeroga:boolean;
     QuoteItems;
     NumeroCer: number;
-    PresaFornitura: number;
+    PresaFornitura: string;
+    
 }

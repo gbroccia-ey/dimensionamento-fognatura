@@ -71,12 +71,13 @@ export class ParametriAcqueNere{
     }
 
 
-    sumEq(){
-        return  this.usoDomestico/ParametriAcqueNere.dividers[0]+
-            this.alberghieri/ParametriAcqueNere.dividers[1]+
-            this.ospedali/ParametriAcqueNere.dividers[2]+
-            this.artigianali/ParametriAcqueNere.dividers[3]+
-            this.commerciali/ParametriAcqueNere.dividers[4] 
+    static sumEq(obj:ParametriAcqueNere){
+        if (obj)
+            return  obj.usoDomestico/ParametriAcqueNere.dividers[0]+
+                obj.alberghieri/ParametriAcqueNere.dividers[1]+
+                obj.ospedali/ParametriAcqueNere.dividers[2]+
+                obj.artigianali/ParametriAcqueNere.dividers[3]+
+                obj.commerciali/ParametriAcqueNere.dividers[4] 
     
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SettoreMerceologico } from './ads';
+import { Ads,SettoreMerceologico } from './ads';
 
 declare var util: any;
 declare var imgExample;
@@ -12,6 +12,9 @@ export class PreventivoPDF {
     fillColor;
     header;
     header2;
+    PresaFornitura;
+    logoSx;
+    logoDx;
 
     constructor() {
 
@@ -51,7 +54,7 @@ export class PreventivoPDF {
                 for(var a =0; a<value.dati.form.preventivo.Attributi.length;a++){
                     var obj = value.dati.form.preventivo.Attributi[a];
                     if(obj.Quantita>0)
-                        datiPreventivo.push([{text: obj.Nome,	 alignment:'right', fillColor:this.fillColor},{ alignment:'right',text:util.formatIntNumber(obj.Prezzo)},{ alignment:'center',text:util.formatIntNumber(obj.Quantita)},{alignment:'right',text:util.formatNumber(obj.Quantita * obj.Prezzo)}]);
+                        datiPreventivo.push([{text: (obj.Descrizione)? obj.Descrizione:obj.Nome,	 alignment:'right', fillColor:this.fillColor},{ alignment:'right',text:util.formatNumber(obj.Prezzo)},{ alignment:'center',text:util.formatIntNumber(obj.Quantita)},{alignment:'right',text:util.formatNumber(obj.Quantita * obj.Prezzo)}]);
                 }
             } 
 
@@ -81,7 +84,31 @@ export class PreventivoPDF {
             else if(value.dati.form.preventivo.TipoAllaccio==2) datiPreventivo.push([{text: 'TipoAllaccio',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text:'',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:"Nuovo all. con spostamento"}]);
             if(value.dati.form.preventivo.TipoSpostamento!=undefined) datiPreventivo.push([{text: 'TipoSpostamento',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:value.dati.form._TipoSpostamentoLabel?value.dati.form._TipoSpostamentoLabel:' '}]);
             if(value.dati.form.preventivo.NumeroAttacchi!=undefined) datiPreventivo.push([{text: 'NumeroAttacchi', 	 alignment:'right',fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:value.dati.form.preventivo.NumeroAttacchi}]);
-            if(value.dati.form.preventivo.TipoInterruzione!=undefined) datiPreventivo.push([{text: 'TipoInterruzione',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:value.dati.form.preventivo.TipoInterruzione}]);
+            
+            if(value.dati.form.preventivo.TipoInterruzione!=undefined){
+                if(value.dati.form.preventivo.PresaFornitura) {
+                    datiPreventivo.push([
+                        {
+                            text: 'Tipo Uscita Presa Impulsiva/\nFornitura e installazione',
+                            alignment:'right',
+                            fillColor:this.fillColor
+                        },
+                        {text: '', border: [false, true,false,false ]},
+                        {text: '',border: [false, true,false,false	]},
+                        {
+                            border: [false, true,true,true],
+                            alignment:'right',
+                            text: value.dati.form.preventivo.TipoInterruzione
+                        }
+                    ])
+                }
+                else {
+                    datiPreventivo.push([{text: 'TipoInterruzione',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:value.dati.form.preventivo.TipoInterruzione}]);
+                }
+            } 
+            
+            
+            
             if(value.dati.form.preventivo.QuotaContatore!=undefined) datiPreventivo.push([{text: 'QuotaContatore',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:util.formatNumber(value.dati.form.preventivo.QuotaContatore)}]);
             if(value.dati.form.preventivo.QuotaFissaPrimoAttacco!=undefined) datiPreventivo.push([{text: 'QuotaFissa 1° attacco',	 alignment:'right', fillColor:this.fillColor},{text: '', border: [false, true,false,false ]},{text: '',border: [false, true,false,false	]},{border: [false, true,true,true],	 alignment:'right',text:util.formatNumber(value.dati.form.preventivo.QuotaFissaPrimoAttacco)}]);
             if(value.dati.form.preventivo.QuotaFissaNAttacchi!=undefined && value.dati.form.preventivo.NumeroAttacchi>1) 
@@ -146,7 +173,7 @@ export class PreventivoPDF {
                                 datiPreventivo
                               }
                     },   
-                    { 
+                    {
                         style: 'separator',
                         table: {
                            widths: ['*'],
@@ -324,82 +351,48 @@ export class PreventivoPDF {
         for(var i=0; i < value.download.ads.foto.length; i++ )
           this.foto_salvate[i] = fileUtil.readBase64Image(value.download.ads._codice_odl,"image",value.download.ads.foto[i].name);
   */     
+        var ads: Ads = value.dati.form.ads
+
         this.foto_planimetria = [];   
         this.foto_altre = [];
         this.fillColor = value.dati.form.fillColor;
 
-        if(value.dati.form.ads.SettoreMerceologico == "GAS" || value.dati.form.ads.SettoreMerceologico == 10){
-            this.header = {
-				style: "header",
-				table: {
-					widths: ["*", 100],
-					body: [[{
-								image: value.dati.form.LogoSx,
-								width: 150,
-								border: [false, false, false, false]
-							}, {
-								image: imgExample.getLogoDxInRete(),
-							    margin: [-30,10],
-								width: 125,
-								border: [false, false, false, false]
-							}
-						]]
-				}
-			};
-            this.header2 = {
-				style: "header",
-				table: {
-					widths: ["*", 100],
-					body: [[{
-								image: value.dati.form.LogoSx,
-								width: 150,
-								border: [false, false, false, false]
-							}, {
-								image: imgExample.getLogoDxInRete(),
-							   margin: [-30,10],
-								width: 125,
-								border: [false, false, false, false]
-							}
-						]]
-				}
-			};
-
-        }
-        else {
-            this.header = {
-            	style: "header",
-				table: {
-					widths: ["*", 100],
-					body: [[{
-								image: value.dati.form.LogoSx,
-								width: 150,
-								border: [false, false, false, false]
-							}, {
-								image: value.dati.form.LogoDx,
-								width: 100,
-								border: [false, false, false, false]
-							}
-						]]
-				}
+        
+        this.header = {
+            style: "header",
+            table: {
+                widths: ["*", 100],
+                body: [[{
+                            image: value.dati.form.LogoSx,
+                            width: 150,
+                            border: [false, false, false, false]
+                        }, {
+                            image: value.dati.form.LogoDx,
+                            margin: [-30,10],
+                            width: 125,
+                            border: [false, false, false, false]
+                        }
+                    ]]
+            }
         };
         this.header2 = {
             style: "header",
-				table: {
-					widths: ["*", 100],
-					body: [[{
-								image: value.dati.form.LogoSx,
-								width: 150,
-								border: [false, false, false, false]
-							}, {
-								image: value.dati.form.LogoDx,
-								width: 100,
-								border: [false, false, false, false]
-							}
-						]]
-				}
-        }
-    
-        }
+            table: {
+                widths: ["*", 100],
+                body: [[{
+                            image: value.dati.form.LogoSx,
+                            width: 150,
+                            border: [false, false, false, false]
+                        }, {
+                            image: value.dati.form.LogoDx,
+                            margin: [-30,10],
+                            width: 125,
+                            border: [false, false, false, false]
+                        }
+                    ]]
+            }
+        };
+
 
         return new Promise((resolve, reject) => {
         

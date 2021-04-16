@@ -1,4 +1,6 @@
 
+  
+
 export class Caratteristiche {
 
     PdS;
@@ -66,6 +68,10 @@ export class Caratteristiche {
     Profondita;
 
     GRUPresente;
+
+    PresaImpulsiva;
+    FornituraInstallazione;
+    TipoInterruzione;
 
     static parseServerDto(caratteristiche: Caratteristiche) : Caratteristiche {
         var c = new Caratteristiche();
@@ -135,6 +141,10 @@ export class Caratteristiche {
         }
         
         c.GRUPresente =  caratteristiche.GRUPresente;
+
+        c.PresaImpulsiva =  caratteristiche.PresaImpulsiva
+        c.FornituraInstallazione =  caratteristiche.FornituraInstallazione;
+        c.TipoInterruzione = caratteristiche.TipoInterruzione
         
         return c;
 
@@ -179,6 +189,9 @@ export class Caratteristiche {
         obj["Diametro"] = caratteristiche.Diametro;
         obj["Profondita"] = caratteristiche.Profondita;
         obj["GRUPresente"] = caratteristiche.GRUPresente;
+        obj["PresaImpulsiva"] = caratteristiche.PresaImpulsiva;
+        obj["FornituraInstallazione"] = caratteristiche.FornituraInstallazione;
+        obj["TipoInterruzione"] = caratteristiche.TipoInterruzione;
         return obj;
     }
 }

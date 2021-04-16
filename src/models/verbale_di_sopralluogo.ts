@@ -6,17 +6,17 @@ declare var imgExample;
 
 export enum AdeguamentoCliente{
     NONE = -1,
-    DA_REALIZZARE =0,
-    ADEGUATO = 1,
-    NON_ADEGUATO = 2,
+    DA_REALIZZARE = 1,
+    ADEGUATO = 2,
+    NON_ADEGUATO = 3,
 }
 
 export enum AdeguamentoNecessarioCliente{
     NONE = -1,
-    MANCA_SPORTELLO = 0,
-    DIMENSIONI_NON_IDONEE = 1,
-    SPESSORE_SCHIEMA_ARMADIO = 2,
-    ALTRO = 3
+    MANCA_SPORTELLO = 1,
+    DIMENSIONI_NON_IDONEE = 2,
+    SPESSORE_SCHIEMA_ARMADIO = 3,
+    ALTRO = 4
 }
 
 export class VerbaleDiSopralluogo {

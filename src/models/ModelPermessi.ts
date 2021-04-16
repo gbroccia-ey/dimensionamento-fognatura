@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 import { SettoreMerceologico } from '../models/ads'
 import { Utils } from '../utils/utils'
+import { Params } from '../config/params'
 
 declare var util: any;
 declare var imgExample;
+
+export enum TagPermessi {
+    MAPPA_GIS = 'Permesso_MappaGIS',
+    LARGHEZZA_STRADA= 'Permesso_LarghezzaStrada',
+    PUNTO_CONSEGNA = 'Permesso_punto_consegna', 
+    PARTICOLARI ='Permesso_particolari'
+}
+
 
 @Injectable()
 export class ModelPermessi {
@@ -21,6 +30,10 @@ export class ModelPermessi {
     fotoCons;
     fotoPart;
 
+    scavo;
+    manto;
+    ubicazione;
+
     constructor() {
 
     }
@@ -36,7 +49,7 @@ export class ModelPermessi {
           if(sources.indexOf('base64')==-1) sources = 'data:image/jpg;base64,'+sources;
         }
 
-        var thumbSize = tipo== 'permgis' ? 1400 : 1200
+        var thumbSize = tipo== TagPermessi.MAPPA_GIS ? 1400 : 1200
         var resized = await Utils.resizedataURL(sources,-1,thumbSize);
 
         var foto = {
@@ -47,16 +60,16 @@ export class ModelPermessi {
 
         console.log(foto)
         
-        if(tipo=='permgis'){
+        if(tipo==TagPermessi.MAPPA_GIS){
           this.fotoGis.push(foto)
         }
-        if(tipo=='permlarg'){
+        if(tipo==TagPermessi.LARGHEZZA_STRADA){
           this.fotoLarg.push(foto)
         }
-        if(tipo=='permcons'){
+        if(tipo==TagPermessi.PUNTO_CONSEGNA){
          this.fotoCons.push(foto)
         }
-        if(tipo=='permpart'){
+        if(tipo==TagPermessi.PARTICOLARI){
           this.fotoPart.push(foto)
         }
     }
@@ -586,13 +599,13 @@ export class ModelPermessi {
 
     getPage1(value){
 
-        const form = value.dati.form.data.value
+        const form = value.dati.form.permesso
 
         let values = []
 
-        values.push('Ubicazione Scavo: ' + form.ubicazioneScavo)
-        values.push('Tipo Manto: ' + form.tipoManto)
-        values.push('Tipo Scavo: ' + form.tipoScavo)
+        values.push('Ubicazione Scavo: ' + this.ubicazione.value)
+        values.push('Tipo Manto: ' + this.manto.value)
+        values.push('Tipo Scavo: ' + this.scavo.value)
         values.push('Numero Scavi: ' + form.numeroScavi)
         values.push('Larghezza mt: ' + form.larghezza)
         values.push('Lunghezza mt: ' + form.lunghezza)
@@ -705,7 +718,7 @@ export class ModelPermessi {
                             "text": "Avviso"
                         },
                         {
-                            "text": value.dati.form.ads.CodiceAds
+                            "text": value.download.ads.CodiceAds
                         },
                         {
                             "border": [
@@ -765,7 +778,7 @@ export class ModelPermessi {
                             "text": "Pds"
                         },
                         {
-                            "text": value.dati.form.ads.ProdServizio
+                            "text": value.download.ads.ProdServizio
                         }
                     ]
                 ],
@@ -806,7 +819,7 @@ export class ModelPermessi {
                             "text": "Cod.Att."
                         },
                         {
-                            "text": value.dati.form.ads.CodiceAttivita
+                            "text": value.download.ads.CodiceAttivita
                         }
                     ]
                 ],
@@ -847,7 +860,7 @@ export class ModelPermessi {
                             "text": "SOT"
                         },
                         {
-                            "text": value.dati.form.ads.Societa
+                            "text": value.download.ads.Societa
                         }
                     ]
                 ],
@@ -1072,15 +1085,19 @@ export class ModelPermessi {
         this.fotoCons = []
         this.fotoPart = []
 
+        this.ubicazione = Params.ubicazione.find(el => el.key === value.dati.form.permesso.ubicazioneScavo)
+        this.manto = Params.manto.find(el => el.key === value.dati.form.permesso.tipoManto)
+        this.scavo = Params.scavo.find(el => el.key === value.dati.form.permesso.tipoScavo)
+
         // Settore merceologico for logo
-        let TipoServizio = SettoreMerceologico[value.dati.form.ads.SettoreMerceologico];
+        let TipoServizio = SettoreMerceologico[value.download.ads.SettoreMerceologico];
         //this.LogoSx = imgExample.getLogoSxHera();
         //if(TipoServizio=='ENERGIA_ELETTRICA' || TipoServizio=='GAS') this.LogoSx = imgExample.getLogoDxInRete();
 
-        this.LogoSx = imgExample.getLogoSxImg(value.dati.form.ads.SettoreMerceologico,value.dati.form.ads.CodiceSocieta);
+        this.LogoSx = value.download.ads.Logo;
                 
         // Get ODL code if existing
-        this.odlCode = value.dati.form.ads.CodiceOdl != null || undefined ? value.dati.form.ads.CodiceOdl : ''
+        this.odlCode = value.download.ads.CodiceOdl != null || undefined ? value.download.ads.CodiceOdl : ''
 
         // Get fillcolor
         switch( TipoServizio ){
@@ -1137,8 +1154,8 @@ export class ModelPermessi {
         //         }
         //     };
 
-        this.icon = value.dati.form.ads.getIconBase64()
-        this.indirizzo = value.dati.form.ads.Indirizzo.toString();
+        this.icon = value.download.ads.getIconBase64()
+        this.indirizzo = value.download.ads.Indirizzo.toString();
 
         return new Promise (async (resolve, reject) => {
 
@@ -1155,7 +1172,7 @@ export class ModelPermessi {
                 tag = tag.replace("-", " ");
             }
             title = title[0];
-            await this.addFoto(item.tag, item.name, value.dati.form.ads, title);
+            await this.addFoto(item.tag, item.name, value.download.ads, title);
             }
 
         if(this.fotoGis.length>0 && this.fotoGis[0]==' ') this.fotoGis = [];
