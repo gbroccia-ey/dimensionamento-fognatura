@@ -1,0 +1,62 @@
+<!--
+  Generated template for the InterruzionePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Note Verbale</ion-title>
+    </ion-navbar>
+  
+  </ion-header>
+    
+  <ion-content padding>
+  
+    <ion-grid>
+      <ion-row *ngFor="let note of notes">
+        
+        <ion-col col-1>
+          <div class="label-header" >
+            <ion-checkbox [(ngModel)]="note.checked" color="blue" style="opacity:1" class="text-input-md" ></ion-checkbox> 
+          </div>
+        </ion-col>
+        
+        <ion-col col-7>
+          <div class="label-header" >
+            <ion-textarea type="text" auto-grow="true" rows="5" readonly [innerHTML]="note.value" ></ion-textarea>
+          </div>
+        </ion-col>
+        
+        <ion-col col-4>
+          <ion-grid *ngIf="note.placeholders.length > 0">
+            <ion-row *ngFor="let placeholder of note.placeholders">
+
+              <ion-col col-8>
+                <div class="label-header" >
+                  <ion-label>{{placeholder.name}}</ion-label>
+                </div>
+              </ion-col>
+              
+              <ion-col col-4>
+                <ion-input [type]="placeholder.type" *ngIf="note.checked"
+                      [(ngModel)]="placeholder.value" (keyup)="interpolateNoteText(note)"></ion-input>
+              </ion-col>
+            </ion-row>
+
+          </ion-grid>
+      
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button color="light" type="button" (click)="annulla()">Annulla</button>
+          <button ion-button color="light" type="button" (click)="reset()">Reset</button>
+          <button ion-button float-right type="button" (click)="confirm()">Conferma</button>
+        </ion-col>            
+      </ion-row>
+    </ion-grid>
+</ion-content>
+  

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Ads, SettoreMerceologico } from '../../models/ads';
+import { Ads, SettoreMerceologico,DettaglioMerceologico } from '../../models/ads';
 import { PdfManager, PdfResult } from '../../providers/pdfManager';
 import { PrinterSignatureBean } from '../../providers/PrinterSignature';
 
@@ -27,6 +27,7 @@ export class DimensionamentoAllacciPage{
 
   ads: Ads;  
   SettoreMerceologico = SettoreMerceologico;
+  DettaglioMerceologico = DettaglioMerceologico;
   logo;
   comune = "";
   indirizzo = "";

@@ -21,6 +21,7 @@ export class Lavfat1100EeComponent extends BasePreventivatoreComponent implement
   preventivo: Preventivo;
   valori: Object;
   Params = Params;
+  differenzaPotenza:number;
 
   constructor(public alertCtrl: AlertController, public adsService: AdsService, public navCtrl: NavController) {
     super(alertCtrl, adsService, navCtrl);
@@ -29,6 +30,7 @@ export class Lavfat1100EeComponent extends BasePreventivatoreComponent implement
   }
 
   aggiornaTotale() {
+    /*
     if(this.preventivo.PotenzaPrevista < 34) {
       this.preventivo.Totale = parseFloat((Number(this.preventivo.QuotaOneriAmm) + (Number(this.preventivo.QuotaPotenza) * Number(this.preventivo.PotenzaPrevista))).toFixed(2))
                                 + Number(this.preventivo.AltreSpese);
@@ -37,20 +39,32 @@ export class Lavfat1100EeComponent extends BasePreventivatoreComponent implement
       this.preventivo.Totale = parseFloat((Number(this.preventivo.QuotaOneriAmm) + Number(this.preventivo.QuotaPotenza * this.preventivo.PotenzaPrevistaManuale)).toFixed(2))
                                 + Number(this.preventivo.AltreSpese);
     }
-    
+    */
+    this.preventivo.PotenzaPrevista= (Number(this.preventivo.PotenzaContrPrevista) > Number(this.preventivo.PotenzaAttuale)) ? 
+        (Number(this.preventivo.PotenzaContrPrevista) - Number(this.preventivo.PotenzaAttuale)) : 0;
+
+    this.preventivo.Totale = parseFloat((Number(this.preventivo.QuotaOneriAmm) + Number(this.preventivo.QuotaPotenza * this.preventivo.PotenzaPrevista)).toFixed(2))
+    + Number(this.preventivo.AltreSpese);
+
   }
 
   ngOnInit() {
     if(this.ads.Preventivo) {
-      this.preventivo = this.ads.Preventivo;
+        this.preventivo = this.ads.Preventivo;
       }
       else {
         this.preventivo = new Preventivo();
         this.preventivo.QuotaOneriAmm = this.valori[0]["quotaOneriAmm"];
         this.preventivo.QuotaPotenza = this.valori[0]["quotaPotenza"];
+
+        this.preventivo.PotenzaAttuale = this.ads.Caratteristiche.PotenzaAttuale;
+        this.preventivo.PotenzaContrPrevista= this.ads.Caratteristiche.PotenzaContrRichiesta;
+        this.preventivo.PotenzaPrevista= (this.preventivo.PotenzaContrPrevista > this.preventivo.PotenzaAttuale) ? (this.preventivo.PotenzaContrPrevista - this.preventivo.PotenzaAttuale) : 0;
+
         this.preventivo.Totale = 0;
         this.preventivo.AltreSpese = 0;
       }
+      this.aggiornaTotale();
   }
 
 

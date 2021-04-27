@@ -1,0 +1,40 @@
+page-note-verbale {
+
+	.warning-message{
+		color: red;
+    	font-size: x-small;
+    	float: right;
+	}
+
+	.ng-valid[required], .ng-valid.required  {
+		border-bottom: 1px solid #32db64;
+		-webkit-box-shadow: #32db64;
+		box-shadow: #32db64;
+	}
+
+	.ng-invalid:not(form)  {
+	  border-bottom: 1px solid red;
+		-webkit-box-shadow: red;
+		box-shadow: red;
+	}
+
+	.formError{
+		color:red;
+		font-size:10px;
+	}
+	
+	.customDateTime {
+		width: 100%;
+	}
+
+	.text-input[disabled] {
+		opacity: initial !important;
+		color: black;
+	}
+
+	.disablePreavviso{
+		opacity: 0.3;
+	}
+
+
+}

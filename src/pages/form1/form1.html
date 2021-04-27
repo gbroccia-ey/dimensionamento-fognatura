@@ -1,0 +1,511 @@
+<!--
+  Generated template for the Form1Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Verbale di sopralluogo</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+      <ion-fab right bottom style="right:32px; position:fixed;z-index:11111111;">
+
+         <!-- <button ion-fab (click) ="processForm()"> Salva..</button>   -->
+        <button ion-fab (click)="clickFab()"><ion-icon name="add"></ion-icon></button>         
+        <ion-fab-list side="top" style="right: -8px;">
+          <button class="btn-fab" (click)="Salva_Dati()" ion-fab>Salva
+          </button>
+          <button class="btn-fab" (click)="ShowModaleNote('progettuali')" ion-fab>Note progettuali
+          </button>
+          <button class="btn-fab" (click)="ShowModaleNote('esecutive')" ion-fab>Note esecutive
+          </button>
+          <button class="btn-fab" (click)="GoToFoto()" ion-fab>Allega foto
+          </button>
+          <button class="btn-fab" (click)="Importa()" ion-fab>Importa da esistente
+          </button>
+        </ion-fab-list>        
+     </ion-fab>
+     
+<ion-content  >
+      <div *ngIf="showBack" class="backFab" >
+    </div>
+  <div id="allPageF1" padding>
+    <div style="text-align:center">
+    <img style="padding-left: 6%;" [src]="logo"  style="max-height:60px"> 
+    </div>
+    
+    <p class="titleSection" style="margin-top:0px">Tipologia Servizio</p>
+    <ion-item>
+      <ion-label>Acqua</ion-label>
+      <ion-checkbox color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.Acqua" checked="false" disabled></ion-checkbox>    
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Fognatura</ion-label>
+      <ion-checkbox color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.Fognatura" checked="false" disabled></ion-checkbox>    
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tlr</ion-label>
+      <ion-checkbox color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.Tlr" checked="false" disabled></ion-checkbox>    
+    </ion-item>
+
+
+    <p class="titleSection">Descrizione del lavoro</p>
+
+    <ion-item>
+      <ion-label>PN1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.PN1" color="blue" checked="false" disabled></ion-checkbox>    
+    </ion-item>
+
+    <ion-item>
+      <ion-label>PM1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.PM1" color="blue" checked="false" disabled></ion-checkbox>    
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>PR1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.PR1" color="blue" checked="false" disabled></ion-checkbox>    
+    </ion-item>    
+    
+    <p class="titleSection"> Codici</p>
+    <ion-item>
+      <ion-label floating>Rintracciabilità</ion-label>
+      <ion-input type="text" [(ngModel)]="ads.VerbaleDiSopralluogo.Rintracciabilita" disabled ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Avviso</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Avviso" type="text" disabled ></ion-input>
+    </ion-item>
+
+
+    <p class="titleSection">Indirizzo lavoro</p>
+
+    <ion-item>
+      <ion-label floating>Comune</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Comune_Lavoro" type="text" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Via / P.zza</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Via_Lavoro" type="text" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+        <p>Matricole contatori esistenti {{numMatricole}}</p>
+        <!--
+        <div class="row header">
+          <div class="col">Matricola 1</div>
+          <div class="col">Matricola 2</div>
+          <div class="col">Matricola 3</div>
+        </div>
+         -->
+          <div class="row" >
+          <div class="col"  > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_1_vecchio_contatore"> </div>
+          <div class="col"  > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_2_vecchio_contatore"> </div>
+          <div class="col"  > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_3_vecchio_contatore"> </div>
+          </div>
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_1_vecchio_contatore_2"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_2_vecchio_contatore_2"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_3_vecchio_contatore_2"> </div>
+          </div>
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_1_vecchio_contatore_3"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_2_vecchio_contatore_3"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_3_vecchio_contatore_3"> </div>                    
+          </div>
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_1_vecchio_contatore_4"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_2_vecchio_contatore_4"> </div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Matricola_3_vecchio_contatore_4"> </div>                    
+          </div>          
+    </ion-item>
+
+    <ion-item>
+        <p>Contatori richiesti </p>
+        
+        <div class="row header">
+          <div class="col" rowspan="2" >Calibro</div>
+          <div class="col">Numero</div>
+          <div class="col">Portata</div>
+          <div class="col">Uso</div>
+        </div>
+        <!-- <div class="row" ng-repeat="data in ctrl.data"> -->
+          <div class="row" >
+           <div class="col"  style="padding:0px;padding-left:10px">
+              <ion-item>
+                <ion-select [(ngModel)]="ads.VerbaleDiSopralluogo.Calibro_Contatore" multiple="false" cancelText="Cancella" okText="Ok" (ionCancel)="cleanContatore1()">
+                <ion-option *ngFor="let item of listaContatori" [value]="item" >{{item}}</ion-option>
+              </ion-select>
+              </ion-item>
+           </div> 
+           <div class="col" > <input type="text" class ="text_box"  [(ngModel)]="ads.VerbaleDiSopralluogo.Numero_Contatore"></div>
+          <div class="col" > <input type="text" class ="text_box"   [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Contatore"></div>          
+          <div class="col" > <input type="text" class ="text_box"   [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Contatore"></div>
+        </div>
+
+          <div class="row" >        
+          <div class="col"  style="padding:0px;padding-left:10px">
+              <ion-item>
+                <ion-select [(ngModel)]="ads.VerbaleDiSopralluogo.Calibro_Contatore_2" multiple="false" cancelText="Cancella" okText="Ok" (ionCancel)="cleanContatore2()">
+                    <ion-option *ngFor="let item of listaContatori" [value]="item" >{{item}}</ion-option>
+                </ion-select>
+             </ion-item>
+          </div>
+          <div class="col" > <input type="text" class ="text_box"  [(ngModel)]="ads.VerbaleDiSopralluogo.Numero_Contatore_2"></div>
+          <div class="col" > <input type="text" class ="text_box"  [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Contatore_2"></div>          
+          <div class="col" > <input type="text" class ="text_box"  [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Contatore_2"></div>
+        </div>
+
+          <div class="row" >
+          <div class="col"  style="padding:0px;padding-left:10px">
+              <ion-item>
+                <ion-select [(ngModel)]="ads.VerbaleDiSopralluogo.Calibro_Contatore_3" multiple="false" cancelText="Cancella" okText="Ok" (ionCancel)="cleanContatore3()">
+                    <ion-option *ngFor="let item of listaContatori" [value]="item" >{{item}}</ion-option>
+                </ion-select>
+             </ion-item>
+          </div>
+          <div class="col"> <input type="text" class ="text_box"  [(ngModel)]="ads.VerbaleDiSopralluogo.Numero_Contatore_3"></div>
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Contatore_3"></div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Contatore_3"></div>
+        </div>
+
+
+    </ion-item>
+
+    <ion-item>
+        <p>Fognatura </p>
+        
+        <div class="row header">
+          <div class="col">Tipo</div>
+          <div class="col">Portata rich. (_) U.I (_) mq</div>
+          <div class="col">Uso</div>
+        </div>
+        <!-- <div class="row" ng-repeat="data in ctrl.data"> -->
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Tipo_Fogna"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Fogna"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Fogna"> </div>
+        </div>
+
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Tipo_Fogna_2"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Fogna_2"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Fogna_2"> </div>
+        </div>
+
+          <div class="row" >
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Tipo_Fogna_3"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Portata_Fogna_3"> </div>          
+          <div class="col" > <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Uso_Fogna_3"> </div>
+        </div>                
+    </ion-item>  
+
+
+    <p class="titleSection">Dati del richiedente</p>
+    <div class="divItem">
+   
+   <ion-item *ngIf="ads.VerbaleDiSopralluogo.Cognome_Richiedente!=undefined && ads.VerbaleDiSopralluogo.Cognome_Richiedente!=''" class="halfItemSection">
+      <ion-label floating>Cognome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Cognome_Richiedente" type="text" disabled></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="ads.VerbaleDiSopralluogo.Cognome_Richiedente!=undefined && ads.VerbaleDiSopralluogo.Cognome_Richiedente!=''" class="halfItemSection"> 
+      <ion-label floating>Nome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Nome_Richiedente"type="text" disabled></ion-input>
+    </ion-item>
+    </div>
+
+    <ion-item *ngIf="ads.VerbaleDiSopralluogo.Ragione_Sociale && ads.VerbaleDiSopralluogo.Ragione_Sociale !== ' '">
+      <ion-label floating>Ragione sociale</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Ragione_Sociale" disabled></ion-input>
+    </ion-item>
+    
+    <!-- <ion-item *ngIf="ads.VerbaleDiSopralluogo.Cognome_Richiedente==undefined || ads.VerbaleDiSopralluogo.Cognome_Richiedente==''">
+      <ion-label floating>Ragione sociale</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Nome_Richiedente" disabled></ion-input>
+    </ion-item> -->
+ 
+    <ion-item>
+      <ion-label floating>Codice cliente</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Codice_Cliente" type="number" disabled></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Telefono</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Telefono_Richiedente" type="tel"></ion-input>
+    </ion-item>  
+
+    <ion-item>
+      <ion-label floating>Email</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Email" type="email" disabled></ion-input>
+    </ion-item>  
+
+
+
+    <p class="titleSection">  Dati dell'incaricato dal cliente finale presente al sopralluogo  </p>
+    <div class="divItem">
+    <ion-item class="halfItemSection">
+      <ion-label floating>Cognome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Cognome_Incaricato" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item class="halfItemSection">
+      <ion-label floating>Nome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Nome_Incaricato" type="text"></ion-input>
+    </ion-item>
+    </div>
+
+    <ion-item>
+        <ion-label floating>Telefono</ion-label>
+        <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Telefono_Incaricato" type="tel"></ion-input>
+    </ion-item>   
+   
+
+
+  
+
+    <p class="titleSection">  Dati del tecnico referente della sua pratica per conto del gestore  </p>
+    <div class="divItem">
+    <ion-item class="halfItemSection">
+      <ion-label floating>Cognome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Cognome_Tecnico" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item class="halfItemSection">
+      <ion-label floating>Nome</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Nome_Tecnico" type="text"></ion-input>
+    </ion-item>
+    </div>
+
+    <ion-item>
+      <ion-label floating>Telefono</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Telefono_Tecnico"type="tel"></ion-input>
+    </ion-item>    
+    
+
+    <ion-item style="padding-top: 10px; padding-bottom:10px">
+      <ion-label>Pratica sospesa</ion-label>      
+      <ion-select [(ngModel)]="ads.VerbaleDiSopralluogo.Paratica_Sospesa" multiple="false" cancelText="Cancella" okText="Ok" (ionCancel)="cleanParaticaSospesa()">
+          <ion-option value="ZS03" >ZS03 Causa carenza rete </ion-option>
+		<ion-option value="ZS05" >ZS05 Attesa dati tecnici </ion-option>
+        <ion-option value="ZS06" >ZS06 Decisione punto fornitura</ion-option>
+        <ion-option value="ZS08" >ZS08 Mancanza autorizzazione terzi </ion-option>               
+      </ion-select>
+    </ion-item>
+
+    <ion-item style="color: red" >
+      <ion-label style="color: red">Pratica con esito negativo</ion-label>
+      <ion-select  [(ngModel)]="ads.VerbaleDiSopralluogo.Pratica_Annullata" multiple="false" cancelText="Cancella" okText="Ok" (ionCancel)="cleanPraticaAnnullata()">
+        <ion-option value="N33" >N33 Rinuncia del richiedente </ion-option>
+        <ion-option value="N29" >N29 Assenza di rete </ion-option>
+        <ion-option value="N30" >N30 Non tecnicamente fattibile</ion-option>
+        <ion-option value="N32" >N32 Prestazione non compatibile con la richiesta</ion-option>
+        <ion-option value="N21" >N21 Cliente assente ODL con appuntamento</ion-option>   
+      </ion-select>
+    </ion-item>
+
+    <p class="titleSection">  Prestazioni correlate  </p>
+    <ion-item >
+      <ion-label floating>Avviso/OdL (se disponibile)</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.PrestazioniCorrelate" type="text"></ion-input>
+    </ion-item>  
+
+    <br>
+
+    <p class="titleSection">  Richieste aggiuntive  </p>
+
+    <div style="width:142px;float:left;margin-bottom:16px">
+    <ion-item style="padding-top:22px">
+      <ion-label>PN1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[0]['tipo']" color="blue" style="opacity:1"></ion-checkbox> 
+    </ion-item>
+ 
+    <ion-item style="padding-top:22px">
+      <ion-label>PM1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[1]['tipo']" color="blue" style="opacity:1" ></ion-checkbox>    
+    </ion-item>
+     <ion-item style="padding-top:22px">
+      <ion-label>PR1</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[2]['tipo']" color="blue" style="opacity:1"></ion-checkbox>    
+    </ion-item>   
+    </div>  
+    <div style="width:calc(100% - 145px); float:left;">
+    <ion-item >
+      <ion-label floating>Descrizione PN1</ion-label>
+      <ion-input [disabled]="ads.VerbaleDiSopralluogo.show_comp[0]['tipo']==false"   [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[0]['descrizione']" type="text"></ion-input>
+    </ion-item>  
+    <ion-item  >
+      <ion-label floating>Descrizione PM1</ion-label>
+      <ion-input [disabled]="ads.VerbaleDiSopralluogo.show_comp[1]['tipo']==false"   [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[1]['descrizione']" type="text"></ion-input>
+    </ion-item> 
+    <ion-item >
+      <ion-label floating>Descrizione PR1</ion-label>
+      <ion-input [disabled]="ads.VerbaleDiSopralluogo.show_comp[2]['tipo']==false"   [(ngModel)]="ads.VerbaleDiSopralluogo.show_comp[2]['descrizione']" type="text"></ion-input>
+    </ion-item> 
+    </div>
+
+    <br>
+ <div style="clear:both;padding-top:1px">
+  <p class="titleSection">ADEMPIMENTI A CARICO DEL CLIENTE</p>
+ </div>
+  <br> 
+  
+  <!-- Gestione degli schemi e delle opere -->
+  <ion-item >
+    <ion-label >Seleziona Stato Alloggiamento Misuratori</ion-label>
+    <ion-select id="selectAdeguamenti" [(ngModel)]="ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente" cancelText="Cancella" okText="Ok" (ionChange)="updateSelectAdeguamenti()" (ionCancel)="cleanAdeguamenti()">
+      <ion-option [value]="adeguamentoCliente.DA_REALIZZARE" >Alloggiamento non esistente: da realizzare </ion-option>
+      <ion-option [value]="adeguamentoCliente.ADEGUATO" >Alloggiamento esistente adeguato </ion-option>
+      <ion-option [value]="adeguamentoCliente.NON_ADEGUATO" >Alloggiamento esistente non adeguato </ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="(ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente === adeguamentoCliente.NON_ADEGUATO)">
+    <ion-label > Adeguamenti necessari</ion-label>
+    <ion-select id="selectAdeguamentiNecessari" [(ngModel)]="ads.VerbaleDiSopralluogo.AdeguamentiNecessariCliente" cancelText="Cancella" okText="Ok" multiple=true (ionChange)="updateSelectAdeguamentiNecessari()">
+      <ion-option [value]="adeguamentoNecessarioCliente.MANCA_SPORTELLO" >Manca sportello </ion-option>
+      <ion-option [value]="adeguamentoNecessarioCliente.DIMENSIONI_NON_IDONEE" >Dimensioni non idonee </ion-option>
+      <ion-option [value]="adeguamentoNecessarioCliente.SPESSORE_SCHIEMA_ARMADIO" >Spessore schiena armadio </ion-option>
+      <ion-option [value]="adeguamentoNecessarioCliente.ALTRO" >Altro (vedi note)</ion-option>
+    </ion-select>
+  </ion-item>
+
+
+  <!--
+  <ion-item>
+    <ion-label>Necessari adeguamenti a carico del cliente</ion-label>
+    <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.AdeguamentoNicchiaCaricoCliente"></ion-checkbox>
+  </ion-item>
+  -->
+
+ <!-- Gestione degli schemi e delle opere -->
+ <div style="clear:both;padding-top:1px">
+    <p class="titleSection">Dimensione interna alloggiamento</p>
+</div>
+<br> 
+<div style="display: inline-flex;">            
+      <div style="width: 17%">      
+        <img src="img/img1.png">
+      </div >     
+      
+        <div style="width: 75%; padding-top: 3%;"> 
+          <div class="row header">
+            <!-- <div class="col">Servizio</div> -->
+            <div class="col">L (cm)</div>
+            <div class="col">P (cm)</div>
+            <div class="col">H (cm)</div>
+            <div class="col">A (cm)</div>
+            <div class="col">S* (cm)</div>
+          </div>        
+          <div class="row" >
+            <!-- <div class="col" contenteditable="true"> <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Servizio_Opere_1_IMG1"> </div> -->
+            <div class="col" contenteditable="false"> <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.L_Opere_1_IMG1" (focusout)="checkValidNumber('L_Opere_1_IMG1')"> </div>
+            <div class="col" contenteditable="false"> <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.P_Opere_1_IMG1" (focusout)="checkValidNumber('P_Opere_1_IMG1')"> </div>
+            <div class="col" contenteditable="false"> <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.H_Opere_1_IMG1" (focusout)="checkValidNumber('H_Opere_1_IMG1')"></div>
+            <div class="col" contenteditable="false"> <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.A_Opere_1_IMG1" (focusout)="checkValidNumber('A_Opere_1_IMG1')"> </div>
+            <div class="col" contenteditable="false"> 6 </div>
+          </div>              
+      </div>       
+      
+</div>
+
+<div style="display: inline-flex; margin-top: 50px;">            
+  <div style="width: 20%">      
+    <img src="img/img2.png">
+  </div >     
+  
+  <div style="width: 72%; "> 
+    <div class="row header">
+      <!-- <div class="col">Servizio</div> -->
+      <div class="col">L (cm)</div>
+      <div class="col">P (cm)</div>
+      <div class="col">H (cm)</div>          
+    </div>        
+    <div class="row" >
+      <!-- <div class="col" contenteditable="true"> <input type="text" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.Servizio_Opere_1_IMG2"> </div> -->
+      <div class="col" > <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.L_Opere_1_IMG2" (focusout)="checkValidNumber('L_Opere_1_IMG2')"> </div>
+      <div class="col" > <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.P_Opere_1_IMG2" (focusout)="checkValidNumber('P_Opere_1_IMG2')"> </div>
+      <div class="col" > <input type="number" class ="text_box" [(ngModel)]="ads.VerbaleDiSopralluogo.H_Opere_1_IMG2" (focusout)="checkValidNumber('H_Opere_1_IMG2')"> </div>
+    </div>
+               
+</div>
+
+
+</div>
+
+    <div style="text-align: -webkit-center; padding-top: 4%;">
+      <button class="btn btn--secondary inline-block" ion-button (click) ="Documentazione_Tecnica()">Documentazione tecnica</button>
+    </div>
+
+    <div style="padding-top: 2%; padding-bottom:3%; text-align: -webkit-center;" >
+      <button style="background-color:red" ion-button *ngIf="imgPaint==undefined || imgPaint=='' || imgPaint==' '"  ion-button block (click) ="Disegna()">Disegna schema indicativo <br> delle opere da eseguire (OBBLIGATORIO) </button>
+    </div>
+
+
+
+  <div *ngIf="imgPaint!=undefined">
+  <div style="width:100%">
+    <button ion-button class="closeButton" (click)="deletePaint()">X</button></div>
+    <img class="paintImg" src="{{imgPaint}}" (click)="modifyPaint()">
+  </div>
+  
+  
+  <div *ngIf="got_note_templates" style="display: inline-flex; margin-top: 10px;">            
+    <div style="width: 100%">      
+      <button ion-button type="button" (click)="Note_Dinamiche()">Inserisci Note</button>
+    </div >     
+  </div>
+  
+  <ion-item *ngIf="got_note_templates" >
+    <ion-textarea [(ngModel)]="note_dinamiche" readonly type="text" rows=6></ion-textarea>
+  </ion-item> 
+
+    <ion-item>
+      <ion-label floating>Altre Note</ion-label>
+      <ion-textarea [(ngModel)]="ads.VerbaleDiSopralluogo.Descrizione_note"  type="text" rows=6></ion-textarea>
+    </ion-item>  
+    <ion-item>
+      <ion-label > Consegnato allegato tecnico (le misure sono da intendersi utili interne e si riferiscono agli ingombri dei soli impianti del gestore </ion-label>
+      <ion-checkbox  [(ngModel)]="ads.VerbaleDiSopralluogo.Consegnato_Allegato_tecnico" color="blue" checked="false"> </ion-checkbox>    
+
+    </ion-item>
+ 
+  <ion-item></ion-item>
+  <p class="titleSection">  Atti autorizzativi necessari per l'esecuzione della prestazione da parte del gestore </p>  
+  <p>  Il gestore, ricevuta l'accettazione del preventivo, trasmetterà richiesta per i seguenti Atti Autorizzativi: </p>  
+
+          <ion-item >
+            <ion-label >Seleziona ente</ion-label>
+            <ion-select id="selectMultiple" [(ngModel)]="ads.VerbaleDiSopralluogo.Seleziona_Ente" multiple="true" cancelText="Cancella" okText="Ok" (ionChange)="updateSelectMultiple()">
+              <ion-option *ngFor="let item of enti" [value]="item.value">{{item.label}}</ion-option>
+            </ion-select>
+          </ion-item>
+
+
+    <ion-item>
+      <ion-label>Altro</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.Adempimenti_Altro" color="blue" checked="false"></ion-checkbox>    
+    </ion-item>   
+
+    <ion-item *ngIf="Adempimenti_Altro">
+      <ion-label floating>Altro note</ion-label>
+      <ion-textarea [(ngModel)]="ads.VerbaleDiSopralluogo.Adempimenti_Altro_Note" type="text"></ion-textarea>
+    </ion-item>
+    <ion-item *ngIf="Adempimenti_Altro">
+      <ion-label floating>Tempi stimati (gg)</ion-label>
+      <ion-input [(ngModel)]="ads.VerbaleDiSopralluogo.Adempimenti_Altro_Stima" type="text"></ion-input>
+    </ion-item>
+
+
+
+ <button ion-button block (click) ="Richiama_Salvataggio_e_pdf()" > Anteprima e firma </button>
+
+     </div>
+</ion-content>

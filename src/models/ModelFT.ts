@@ -769,7 +769,11 @@ export class ModelFT {
 
             var formatVal = (val) => {
                 // use precision and remove commas
-                if (isNaN(+val)) return " "+val;
+                if (isNaN(+val)){
+                    if (val == undefined|| typeof(val) == "number") return " "; // NaN
+                    else return " "+val; // String
+                } 
+                if (+val == 0) return " ";
                 return ""+this._decimalPipe.transform(+val,"1.1-2").replace(/,/g, "");
             }
             
@@ -834,7 +838,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:""+dimAllacci.AcqueNere.usoDomestico,                                             
+                    text:formatVal(dimAllacci.AcqueNere.usoDomestico),                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:paramColFontSize
@@ -869,7 +873,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:""+dimAllacci.AcqueNere.alberghieri,                                             
+                    text:formatVal(dimAllacci.AcqueNere.alberghieri),                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:paramColFontSize
@@ -909,7 +913,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:""+dimAllacci.AcqueNere.ospedali,                                             
+                    text:formatVal(dimAllacci.AcqueNere.ospedali),                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:paramColFontSize
@@ -949,7 +953,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:""+dimAllacci.AcqueNere.artigianali,                                             
+                    text:formatVal(dimAllacci.AcqueNere.artigianali),                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:paramColFontSize
@@ -987,7 +991,7 @@ export class ModelFT {
                     fontSize:header2ColFontSize
                 },
                 {
-                    text:""+dimAllacci.AcqueNere.commerciali,                                             
+                    text:formatVal(dimAllacci.AcqueNere.commerciali),                                             
                     fillColor: "white",     
                     alignment:"center", 
                     fontSize:paramColFontSize

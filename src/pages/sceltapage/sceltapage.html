@@ -1,0 +1,234 @@
+<!--
+  Generated template for the SceltapagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Appuntamento / Fascia di puntualità</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding >
+
+  <!-- <ion-list> -->
+
+    <p class="titleSection" style="margin-top:0px">Appuntamento concordato con consenso del cliente</p>
+    
+    <ion-item>
+      <ion-label floating>Data (gg/mm/aaaa)</ion-label>
+      <ion-datetime disabled displayFormat="DD/MM/YYYY" 
+                    [(ngModel)]="ads.VerbaleDiSopralluogo.App_Concordato_Data"
+                    cancelText="Annulla" doneText="OK">  
+      </ion-datetime>      
+    </ion-item>
+    <div class="divItem">
+    <ion-item class="halfItemSection">
+      <ion-label floating>Ora inizio</ion-label>
+      <ion-datetime disabled displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Concordato_Ora_Inizio"></ion-datetime>      
+    </ion-item>
+    <ion-item class="halfItemSection">
+      <ion-label floating>Ora fine</ion-label>
+      <ion-datetime disabled displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Concordato_Ora_Fine"></ion-datetime>      
+    </ion-item>
+    </div>
+   
+    <!-- anticipato-->
+    <div *ngIf="ads.ChiaveTestoStd === 'ZAP3'">
+        <p class="titleSection" style="margin-top:0px">Appuntamento anticipato con consenso del cliente</p>
+    
+        <ion-item>
+          <ion-label floating>Data (gg/mm/aaaa)</ion-label>
+          <ion-datetime disabled displayFormat="DD/MM/YYYY" 
+                        [(ngModel)]="ads.VerbaleDiSopralluogo.App_Anticipato_Data"
+                        cancelText="Annulla" doneText="OK">  
+          </ion-datetime>      
+        </ion-item>
+        <div class="divItem">
+        <ion-item class="halfItemSection">
+          <ion-label floating>Ora inizio</ion-label>
+          <ion-datetime disabled displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Inizio"></ion-datetime>      
+        </ion-item>
+        <ion-item class="halfItemSection">
+          <ion-label floating>Ora fine</ion-label>
+          <ion-datetime disabled displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Fine"></ion-datetime>      
+        </ion-item>
+        </div>
+        <div style="font-weight:700;margin-top:22px;">Con la firma del presente Verbale il cliente o la persona da esso incaricata esprime il consenso all' esecuzione anticipata del sopralluogo</div>
+    </div>
+
+    <!-- fine anticipato -->
+
+
+
+
+    <p class="titleSection">Inizio effettivo prestazione o sopralluogo. <br>
+    <i>Tale orario verrà conteggiato ai fini della qualità commerciale</i></p>
+     <div class="divItem">
+    <ion-item class="halfItemSection">
+      <ion-label class="halfItemSection" floating>Data (gg/mm/aaaa)</ion-label>    
+      <ion-datetime displayFormat="DD/MM/YYYY" min="{{minDate}}" 
+                    max="{{maxDate}}" 
+                    [(ngModel)]="ads.VerbaleDiSopralluogo.App_Effettivo_Data"
+                    cancelText="Annulla" doneText="OK">  
+      </ion-datetime>
+    </ion-item>
+
+  <ion-item class="halfItemSection" style="height:78.2px">
+      <ion-label floating>Ora inizio</ion-label>
+      <ion-input type="text" disabled=true (click)="openOraInizioPicker()" [ngModel]="App_Effettivo_Ora_Inizio_tmp"></ion-input>
+     <ion-datetime #oraInizioPicker style="display:none" id="oraSopralluogo" displayFormat="HH:mm"
+                   (ionChange)="setTime('App_Effettivo_Ora_Inizio','App_Effettivo_Ora_Inizio_tmp')" 
+                   pickerFormat="HH:mm" [(ngModel)]="App_Effettivo_Ora_Inizio_tmp"
+                   cancelText="Annulla" doneText="OK">  
+     </ion-datetime>     
+   </ion-item>
+  
+
+    </div>
+
+    <p *ngIf="orarioSballato()" style="color:red">L'orario inserito è fuori la fascia di appuntamento concordata con il cliente</p>
+    <ion-item *ngIf="orarioAnticipoAnticipo()">
+      <ion-label>Il cliente acconsente all'esecuzione anticipata</ion-label>
+      <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.ConsensoAppuntamentoAnticipatoCliente"></ion-checkbox>
+    </ion-item>
+
+    <p class="titleSection">{{descrizioneRitardo}}</p>
+  
+
+     <ion-item style="width:60px;position:relative;float:left;margin-top:12px;">
+       <ion-checkbox (ionChange)= "setCheck('App_Verificata_Assenza');cleanDate('App_Verificata_Assenza_Data');cleanDate('App_Verificata_Assenza_Ora');" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza" color="blue" style="opacity:1"></ion-checkbox> 
+    </ion-item>
+    <div style=" float: left;
+    width: calc(100% - 60px);">
+      <ion-label style="    font-size: small;text-overflow: unset;
+    white-space: unset; font-weight:700;margin-top:32px;">Verificata l'assenza dal luogo di appuntamento del cliente dichiaro l'impedimento ad eseguire l'attività.</ion-label>
+    </div>  
+
+
+     <div class="divItem" style="height:180px">
+        <ion-item  (click)="showTimeAssData('App_Verificata_Assenza_Data')"  
+                  *ngIf="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data==''" 
+                  class="halfItemSection" style="height:78.2px">
+              <label class="lbl_empty_date">Data (gg/mm/aaaa)</label>
+              <div  style="height:20px;width:100%"></div>
+        </ion-item>
+        <ion-item [hidden]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data==''" class="halfItemSection">
+          <ion-label floating>Data (gg/mm/aaaa)</ion-label>    
+          <ion-datetime (ionCancel)="cleanDate('App_Verificata_Assenza_Data')"
+                        id="App_Verificata_Assenza_Data" 
+                        displayFormat="DD/MM/YYYY"  
+                        [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data"
+                        cancelText="Annulla" doneText="OK">  
+          </ion-datetime>
+        </ion-item>
+
+        <ion-item  [attr.disabled]='ads.VerbaleDiSopralluogo.App_Verificata_Assenza==false' (click)="showTimeAssData('App_Verificata_Assenza_Ora')"  *ngIf="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Ora==''" class="halfItemSection" style="height:78.2px">
+              <label class="lbl_empty_date">Ora</label>
+              <div  style="height:20px;width:100%"></div>
+        </ion-item>
+        <ion-item [hidden]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Ora==''" class="halfItemSection">
+          <ion-label floating>Ora</ion-label>
+          <ion-datetime  (ionCancel)="cleanDate('App_Verificata_Assenza_Ora')" 
+                          id="App_Verificata_Assenza_Ora" displayFormat="HH:mm" 
+                          pickerFormat="HH:mm"  
+                          (ionChange)="setTime('ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Ora','App_Verificata_Assenza_Ora_tmp')" 
+                          [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Ora"
+                          cancelText="Annulla" doneText="OK">
+
+          </ion-datetime>
+        </ion-item>   
+    </div>
+
+
+
+<div>
+    <ion-item (click)="setCheckVAV();" style="width:60px;position:relative;float:left;margin-top:0px;">
+       <ion-checkbox [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Verificato" color="blue" disabled style="opacity:1"></ion-checkbox> 
+    </ion-item>
+    <div style=" float: left;width: calc(100% - 60px);">
+      <ion-label style="font-size: small;text-overflow: unset;white-space: unset;font-weight:700" class="">Verificato che l'inizio effettivo della prestazione o sopralluogo non rispetta la fascia di puntualità, dichiaro che il mancato rispetto è causato da:</ion-label>
+    </div>  
+    
+</div>
+
+    <div>
+    <ion-item>
+      <ion-label>Cause di forza maggiore </ion-label>
+      <ion-checkbox disabled='{{App_Verificata_Assenza_Verificato==false}}' color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Forza_Maggiore" checked="false"></ion-checkbox>    
+    </ion-item>           
+    <ion-item>
+      <ion-label>Cause imputabili al cliente </ion-label>
+      <ion-checkbox disabled='{{App_Verificata_Assenza_Verificato==false}}' color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Cliente" checked="false"></ion-checkbox>    
+    </ion-item>           
+    <ion-item>
+      <ion-label>Cause imputabili al {{gestore}} </ion-label>
+      <ion-checkbox disabled='{{App_Verificata_Assenza_Verificato==false}}' color="blue" [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Gestore" checked="false"></ion-checkbox>    
+    </ion-item>           
+
+
+     <p class="titleSection">Letto, confermato e sottoscritto in data</p>
+    <ion-item >
+      <ion-label floating class="" >Data (gg/mm/aaaa)</ion-label>
+      <ion-datetime  displayFormat="DD/MM/YYYY"  disabled 
+                      [(ngModel)]="ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Letto_in_Data"
+                      cancelText="Annulla" doneText="OK">
+      </ion-datetime>
+    </ion-item> 
+    </div>
+
+  <!-- </ion-list> -->
+
+ <p class="titleSection" style="padding-top: 5%;">Firma cliente o del suo incaricato</p>
+  
+  <ion-row class="rowSignature" [ngClass]="{'drawing-active': isDrawing_cliente}">
+    <ion-col col-2 showWhen="landscape"></ion-col>
+      <ion-col style="border:unset">
+          <ion-row style="border:unset">
+            <div class="signaturePad-big">
+              <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart('cliente')" (onEndEvent)="drawComplete('cliente')" #signaturePad></signature-pad>
+              <button style="margin-bottom:10px;" class="btn btn--secondary inline-block"  (click)="clearPad('cliente')">Pulisci</button>
+              <button class="btn btn--secondary inline-block"  (click)="savePad('cliente')">Applica firma</button>
+            </div>
+            <div class="signaturePad-small" *ngIf="signature!=whiteImg" >
+                    <div style="margin:6px">Firma inserita</div>
+                    <img id="firma_del_cliente" [src]="signature" style="width:100%;padding:5px;padding-top:0px;"/>
+            </div>
+          </ion-row>
+      </ion-col>
+  </ion-row>
+
+
+  <p class="titleSection" style="padding-top: 5%;">Firma tecnico</p>
+
+  <ion-row class="rowSignature" [ngClass]="{'drawing-active': isDrawing_tecnico}">
+    <ion-col col-2 showWhen="landscape"></ion-col>
+      <ion-col style="border:unset">
+          <ion-row style="border:unset">
+            <div class="signaturePad-big">
+                <signature-pad [options]="signaturePadOptions_tecnico" (onBeginEvent)="drawStart('tecnico')" (onEndEvent)="drawComplete('tecnico')" #signaturePadTecnico></signature-pad>
+                <button style="margin-bottom:10px;" class="btn btn--secondary inline-block" (click)="clearPad('tecnico')">Pulisci</button>
+                <button class="btn btn--secondary inline-block" (click)="savePad('tecnico')">Applica firma</button>
+            </div>
+            <div class="signaturePad-small" *ngIf="signature_tecnico!=whiteImg" >
+                <div style="margin:6px">Firma inserita</div>
+               <img id="firma_del_tecnico" [src]="signature_tecnico" style="width:100%;padding:5px;padding-top:0px;"/>
+            </div>
+          </ion-row>
+      </ion-col>
+  </ion-row> 
+<!--
+       <div *ngIf="showSignature" style ="margin-bottom:30px;position: sticky" class="signatureDiv">
+            <button ion-button (click)="openFirma()">
+              Apri sezione firma
+            </button>
+        </div>
+--> 
+
+  <button style="width:100%" class="btn btn--primary button-login inline-block" (click)="chiedi_conferma()" style="margin-top: 5%;">Compila verbale</button>
+
+
+</ion-content>

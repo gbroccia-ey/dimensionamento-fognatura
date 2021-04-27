@@ -25,7 +25,7 @@
                    </ion-col>    
                    <ion-col col-3>
                         <div class="">
-                       <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico"></ion-input>
+                       <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.usoDomestico"></ion-input>
                         </div>
                    </ion-col>
                    <ion-col col-3>
@@ -42,7 +42,7 @@
                     </ion-col>    
                     <ion-col col-3>
                             <div class="">
-                            <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri"></ion-input>
+                            <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.alberghieri"></ion-input>
                             </div>
                     </ion-col>
                     <ion-col col-3>
@@ -59,7 +59,7 @@
                     </ion-col>    
                     <ion-col col-3>
                             <div class="">
-                            <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali"></ion-input>
+                            <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.ospedali"></ion-input>
                             </div>
                     </ion-col>
                     <ion-col col-3>
@@ -76,7 +76,7 @@
                         </ion-col>    
                         <ion-col col-3>
                                 <div class="">
-                                <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali"></ion-input>
+                                <ion-input type="number" [placeholder]="selectLabel"  (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.artigianali"></ion-input>
                                 </div>
                         </ion-col>
                         <ion-col col-3>
@@ -93,7 +93,7 @@
                         </ion-col>    
                         <ion-col col-3>
                                 <div class="">
-                                <ion-input type="number" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali"></ion-input>
+                                <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueNere()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueNere.commerciali"></ion-input>
                                 </div>
                         </ion-col>
                         <ion-col col-3>
@@ -184,7 +184,7 @@
                 </ion-col>    
                 <ion-col col-2>
                     <div class="">
-                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supImpermeabili"></ion-input>
+                        <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supImpermeabili"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -206,7 +206,7 @@
                 </ion-col>    
                 <ion-col col-2>
                     <div class="">
-                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supSemipermeabili"></ion-input>
+                        <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.supSemipermeabili"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -233,7 +233,7 @@
                 </ion-col>    
                 <ion-col col-2>
                     <div class="">
-                        <ion-input type="number" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.portateLimitate"></ion-input>
+                        <ion-input type="number" [placeholder]="selectLabel" (ionChange)="updateAcqueBianche()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.AcqueBianche.portateLimitate"></ion-input>
                     </div>
                 </ion-col>
                 <ion-col col-2>
@@ -322,7 +322,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="" >
-                                <ion-input type="number" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.lunghezza"></ion-input>
+                                <ion-input [placeholder]="selectLabel" type="number" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.lunghezza"></ion-input>
                         </div>
                 </ion-col>
             </ion-row>
@@ -334,7 +334,7 @@
                 </ion-col>
                 <ion-col col-3 > 
                         <div class="" >
-                                <ion-input type="number" min="0.1" step="0.1" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.dislivello"></ion-input>
+                                <ion-input [placeholder]="selectLabel" type="number" min="0.1" step="0.1" (ionChange)="updateVincoli()" [(ngModel)]="ads.DimensionamentoAllacciFognatura.Vincoli.dislivello"></ion-input>
                         </div>
                 </ion-col>
             </ion-row>
@@ -438,7 +438,8 @@
                                 interface="action-sheet" 
                                 style="max-width: 100% !important;" 
                                 [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente"
-                                (ionChange)="updateAllacciamento(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente)">
+                                (ionChange)="updateAllacciamento(ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente)"
+                                (ionCancel)="cancelAlloggiamentoEsistente()">
                             <ion-option *ngFor="let item of allacciArray" [value]="item">{{item.nome}}</ion-option>
                         </ion-select>
                 </ion-col>
@@ -558,7 +559,8 @@
                                 interface="action-sheet" 
                                 style="max-width: 100% !important;" 
                                 [(ngModel)]="ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6"
-                                (ionChange)="updateAllacciamento(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6)">
+                                (ionChange)="updateAllacciamento(ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6)"
+                                (ionCancel)="cancelAlloggiamentoNuovo()">
                             <ion-option *ngFor="let item of allacciNuoviArray" [value]="item">{{item.nome}}</ion-option>
                         </ion-select>
                 </ion-col>

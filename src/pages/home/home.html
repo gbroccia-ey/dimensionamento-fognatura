@@ -73,7 +73,9 @@
 <ion-row>
   <ion-col col-12>
     <button ion-button color="warning"  (click)="resetPreventivatoreParams()" >Reset Valori</button>
+    <button ion-button color="primary"  *ngIf="testDatiTecniciEnabled"  (click)="openDatiTecnici()" >Dati Tecnici</button>
     <button ion-button color="primary"  *ngIf="testPreventivatoreEnabled" [disabled]="gotMissingParams()" (click)="openPreventivatore()" >Preventivatore</button>
+    <button ion-button color="primary"  *ngIf="testPreventivatoreEnabled"  (click)="openPreventivatoreFast()" >Preventivatore (fast)</button>
     <button ion-button color="primary"  *ngIf="testVerbaleEnabled"  (click)="openVerbale()" [disabled]="gotMissingParams()" >Verbale Sopralluogo</button>
     <button ion-button color="primary"  *ngIf="testVerbaleEnabled"  (click)="openVerbaleFast()" >Verbale (fast)</button>
     

@@ -1,0 +1,59 @@
+<!--
+  Generated template for the StampaModulo page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<div class="containerPrincipal bodyBackground" style ="height: 100%;">
+  <ion-content padding class="autoScrollY backgroundTrasparent" scrollbar-y="true" scroll="true" style="background: grey;">
+    
+    <button class="shadow btnZoom" (click)="zoomIn()" style="right:100px">+</button>
+    <button class="shadow btnZoom" (click)="zoomOut()" style="right:40px">-</button>
+
+  <!--    <div class="containerCenteredTop"> -->
+      <div class="header shadow">
+  {{title}} 
+    <button navPop  style="position: absolute;
+    top: 20px;left:16px;" (click)="dismiss()">
+       <ion-icon name="close"> </ion-icon>
+    </button>
+      </div>
+
+      <ion-grid id="stimaManualeGrid" class="gridClass">
+        <ion-row>
+          <ion-col>
+            <pdf-viewer [src]="pdfSrc" [show-all]="true" [render-text]="true" [original-size]="false" [zoom]="zoom" style="display: block; "></pdf-viewer>
+          </ion-col>
+        </ion-row>      
+        
+
+      </ion-grid>
+      <div *ngIf="showSignature" style ="margin-bottom:30px;">
+        <p class="containerCenteredTitleNoPadLeftLabel fontBaseBold textAlignCenter" style="font-size:20px">Prego {{whoNeedToSignText}}, firma qui</p>
+        <ion-row [ngClass]="{'drawing-active': isDrawing}" style="padding-left:48px">
+          <div style="width:100%">
+            <signature-pad [options]="signaturePadOptions" (onBeginEvent)="drawStart()" (onEndEvent)="drawComplete()"></signature-pad>
+          </div>
+          <div style="width:40%">
+            <div>
+              <button ion-button class="h10vhImp w20vw" type="submit" color="danger" (click)="clearPad()">Pulisci</button>
+              <button ion-button class="h10vhImp w20vw" type="submit" color="secondary" (click)="savePad()" [disabled]="disabledSave">Applica firma</button>
+            </div>
+          </div>
+        </ion-row>
+      </div>
+  <!--  </div> -->
+
+
+
+    <div class="bottom_div">
+
+            <button ion-button [disabled]="signatureOperator==''" class="bottom_button h10vhImp marginTop0 w100 "  type="submit" (click)="saveAndPrint()">
+              <div>
+                <p class="padd5 textWhiteSpaceNormal fsize12" style="margin:0">Salva e invia a backend</p>
+              </div>
+            </button>
+
+    </div>
+  </ion-content>
+</div>

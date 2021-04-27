@@ -1,0 +1,172 @@
+<!--
+  Generated template for the FotoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>foto</ion-title>
+    </ion-navbar>
+
+</ion-header>
+<div  *ngIf="showTag">
+<div class="tagLabel" >tag</div>
+ <ion-fab  right edge style="top:25px">
+    <button id="fabTag" ion-fab><ion-icon name="arrow-dropdown"></ion-icon></button>
+    <ion-fab-list style="right:0px">
+      <div>
+      <button ion-fab *ngFor="let item of listTag" class="tag" (click)="setTag(item)" [style.width.px]="item.length*tagFontPx"
+    >{{item}}</button>
+      </div>
+    </ion-fab-list>
+  </ion-fab>
+</div>
+<ion-fab right bottom style="right:32px; position:fixed;z-index:11111111;">
+
+         <!-- <button ion-fab (click) ="processForm()"> Salva..</button>   -->
+        <button ion-fab (click)="clickFab()" *ngIf="showBtn==true"><ion-icon name="add"></ion-icon></button>         
+        <ion-fab-list side="top" style="right: -8px;">
+          <div class="containerFab">
+
+        <div style="margin-top:20px;">
+
+            <div >
+            <ion-item *ngIf="paramsFoto[0].show=='true'" class="checkBoxItem">
+              <ion-label>{{paramsFoto[0].displayName}}</ion-label>
+              <ion-radio value="item" (ionSelect)="setChecked(0)" [checked]="getChecked(0)" [disabled]="getDisabled(0)"></ion-radio>
+            </ion-item>
+            <ion-item *ngIf="paramsFoto[1].show=='true'" class="checkBoxItem">
+              <ion-label>{{paramsFoto[1].displayName}}</ion-label>
+              <ion-radio value="item" (ionSelect)="setChecked(1)" [checked]="getChecked(1)" [disabled]="getDisabled(1)"></ion-radio>
+            </ion-item>
+            <ion-item *ngIf="paramsFoto[3].show=='true'" class="checkBoxItem">
+              <ion-label>{{paramsFoto[3].displayName}}</ion-label>
+              <ion-radio value="item" (ionSelect)="setChecked(3)" [checked]="getChecked(3)" [disabled]="getDisabled(3)"></ion-radio>
+            </ion-item>
+            <ion-item *ngIf="paramsFoto[4].show=='true'" class="checkBoxItem">
+              <ion-label>{{paramsFoto[4].displayName}}<ion-icon name="arrow-dropdown"></ion-icon></ion-label>
+              <ion-radio value="item" (ionSelect)="setChecked(4)" [checked]="getChecked(4)" [disabled]="getDisabled(4)"></ion-radio>
+            </ion-item>
+            <ion-item *ngIf="paramsFoto[2].show=='true'" class="checkBoxItem">
+              <ion-label>{{paramsFoto[2].displayName}}<ion-icon name="arrow-dropdown"></ion-icon></ion-label>
+              <ion-radio value="item" (ionSelect)="setChecked(2)" [checked]="getChecked(2)" [disabled]="getDisabled(2)"></ion-radio>
+            </ion-item>
+            </div>
+
+              <div *ngIf="listTag && checkedIdx == 2">
+                <ion-item  class="checkBoxItemTag">
+                  <ion-label>Nessun tag</ion-label>
+                  <ion-radio value="nessuno" (ionSelect)="setCheckedTag(0)" [checked]="getCheckedTag(0)" ></ion-radio>
+                </ion-item> 
+                <div *ngFor="let tag of listTag;let a=index">
+                  <ion-item class="checkBoxItemTag">
+                    <ion-label>{{tag}}</ion-label>
+                    <ion-radio value="tag" (ionSelect)="setCheckedTag(a+1)" [checked]="getCheckedTag(a+1)" ></ion-radio>
+                </ion-item>
+              </div>
+            </div>
+
+            </div>
+            <div class="btnContainer">
+              <button ion-button icon-camera style="width:100%;border-radius:15px" class="shadow" (click)="addFoto('camera')">
+              <ion-icon name="camera" style="padding:5px"></ion-icon>
+              Camera
+            </button>
+            <button ion-button icon-camera style="width:100%;border-radius:15px" class="shadow" (click)="addFoto('gallery')">
+              <ion-icon name="md-photos" style="padding:5px"></ion-icon>
+              Galleria
+            </button>
+            </div>
+
+          </div>
+        </ion-fab-list>        
+     </ion-fab>
+
+<ion-content id="allPageFoto" padding>
+    <div *ngIf="showBack" class="backFab" >
+    </div>
+
+<ion-item  class="item-carousel">
+  <div class="labelCarousel">
+  FASCICOLO TECNICO (PLANIMETRIA)</div>
+<ion-slides  class="slides"  spaceBetween="3" slidesPerView="2" #slide1>
+  <div *ngFor="let item of fotoFT" class="containerCarousel">
+      <button *ngIf="paramsFoto[0].show=='true'" class="btn-menu" ion-button icon-only (click)="presentPopover(item,$event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    <ion-slide  class="slide" (click)="openImg(item)">
+      <img class="imgCarousel" src="{{item.thumb}}">
+    </ion-slide>
+ </div>
+</ion-slides>
+</ion-item>
+
+
+<ion-item  class="item-carousel">
+   <div class="labelCarousel" >
+ FASCICOLO TECNICO (ALTRE FOTO)</div>
+<ion-slides  class="slides"  spaceBetween="3" slidesPerView="2" #slide1>
+  <div *ngFor="let item of fotoFTA" class="containerCarousel">
+      <button *ngIf="paramsFoto[1].show=='true'" class="btn-menu" ion-button icon-only (click)="presentPopover(item,$event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+     
+  <ion-slide class="slide" (click)="openImg(item)">
+    <img class="imgCarousel" src="{{useThumbs? item.thumb : item.src}}">
+  </ion-slide>
+ </div>
+</ion-slides>
+</ion-item>
+
+
+<ion-item  class="item-carousel">
+   <div class="labelCarousel">
+ALTRE PREVENTIVAZIONI</div>
+<ion-slides  class="slides"  spaceBetween="3" slidesPerView="2" #slide1>
+  <div *ngFor="let item of fotoAltre" class="containerCarousel">
+      <button *ngIf="paramsFoto[2].show=='true'" class="btn-menu" ion-button icon-only (click)="presentPopover(item,$event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+       <div *ngIf="item.tagFt" class="tag tagOver">{{item.tagFt}}</div>
+  <ion-slide  class="slide" (click)="openImg(item)">
+    <img class="imgCarousel" src="{{useThumbs? item.thumb : item.src}}">
+  </ion-slide>
+ </div>
+</ion-slides>
+</ion-item>
+
+<ion-item  class="item-carousel">
+   <div class="labelCarousel">
+VERBALE SOPRALLUOGO (FOTO AGGIUNTIVE)</div>
+<ion-slides  class="slides"  spaceBetween="3" slidesPerView="2" #slide1>
+  <div *ngFor="let item of fotoSopralluogo">
+      <button *ngIf= "paramsFoto[3].show=='true'" class="btn-menu" ion-button icon-only (click)="presentPopover(item,$event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+  <ion-slide  class="slide" (click)="openImg(item)">
+    <img class="imgCarousel" src="{{useThumbs? item.thumb : item.src}}">
+  </ion-slide>
+ </div>
+</ion-slides>
+</ion-item>
+
+<ion-item  class="item-carousel">
+  <div class="labelCarousel">
+VERBALE SOPRALLUOGO (SCHEMA OPERE)</div>
+<ion-slides  class="slides"  spaceBetween="3" slidesPerView="2" #slide1>
+ <div *ngFor="let item of fotoSopralluogoDT">
+     <button *ngIf= "paramsFoto[4].show=='true'" class="btn-menu" ion-button icon-only (click)="presentPopover(item,$event)">
+       <ion-icon name="more"></ion-icon>
+     </button>
+ <ion-slide  class="slide" (click)="openImg(item)">
+   <img class="imgCarousel" src="{{useThumbs? item.thumb : item.src}}">
+ </ion-slide>
+</div>
+</ion-slides>
+</ion-item>
+
+</ion-content>
+
+

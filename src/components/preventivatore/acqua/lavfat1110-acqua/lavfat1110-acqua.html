@@ -39,7 +39,7 @@
         <ion-row>
             <ion-col col-12>
               <button class="btn_preventivatore" ion-button color="danger" (click)="reset()">Reset</button> 
-              <button class="btn_preventivatore" ion-button (click)="goToSlide(1)">Avanti</button> 
+              <button class="btn_preventivatore" ion-button (click)="goToSlide(1)" [disabled]="!preventivo.ClasseContatore">Avanti</button> 
             </ion-col>
         </ion-row>
 

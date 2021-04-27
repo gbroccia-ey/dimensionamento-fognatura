@@ -53,13 +53,13 @@ export class ParametriAcqueNere{
     static dividers = [1.0,5.0,30.0,250.0,100.0];   
 
     constructor(
-        public usoDomestico: number,
-        public alberghieri: number,
-        public ospedali: number,
-        public artigianali: number,
-        public commerciali: number,
-        public sommaUIeq: number,
-        public portata: number
+        public usoDomestico?: number,
+        public alberghieri?: number,
+        public ospedali?: number,
+        public artigianali?: number,
+        public commerciali?: number,
+        public sommaUIeq?: number,
+        public portata?: number
       ){ }
 
     sum(){
@@ -72,12 +72,16 @@ export class ParametriAcqueNere{
 
 
     static sumEq(obj:ParametriAcqueNere){
-        if (obj)
-            return  obj.usoDomestico/ParametriAcqueNere.dividers[0]+
-                obj.alberghieri/ParametriAcqueNere.dividers[1]+
-                obj.ospedali/ParametriAcqueNere.dividers[2]+
-                obj.artigianali/ParametriAcqueNere.dividers[3]+
-                obj.commerciali/ParametriAcqueNere.dividers[4] 
+        let val = 0.0;
+        if (obj){
+            if (obj.usoDomestico) val+=obj.usoDomestico/ParametriAcqueNere.dividers[0];
+            if (obj.alberghieri) val+=obj.usoDomestico/ParametriAcqueNere.dividers[1];
+            if (obj.ospedali) val+=obj.usoDomestico/ParametriAcqueNere.dividers[2];
+            if (obj.artigianali) val+=obj.usoDomestico/ParametriAcqueNere.dividers[3];
+            if (obj.commerciali) val+=obj.usoDomestico/ParametriAcqueNere.dividers[4];
+            
+        }
+        return  val
     
     }
 }
@@ -87,25 +91,25 @@ export class ParametriAcqueBianche{
     static uiEqFisseAcqueBianche = 2.0;   // UIeq fisse in presenza di ACQUE BIANCHE
 
     constructor(
-        public uiEqFisse: number,
-        public supImpermeabili: number,
-        public portataImpermeabili: number,
-        public supSemipermeabili: number,
-        public portataSemipermeabili: number,
-        public portateLimitate: number,
-        public sommaUIeq: number,
-        public portata: number
+        public uiEqFisse?: number,
+        public supImpermeabili?: number,
+        public portataImpermeabili?: number,
+        public supSemipermeabili?: number,
+        public portataSemipermeabili?: number,
+        public portateLimitate?: number,
+        public sommaUIeq?: number,
+        public portata?: number
       ){ }
 }
 
 export class ParametriVincoli{
     constructor(
-        public portataMista: number,
-        public totaleUIeq: number,
-        public lunghezza: number,
-        public dislivello: number,
-        public pendenza: number,
-        public diamIntMinimo: number
+        public portataMista?: number,
+        public totaleUIeq?: number,
+        public lunghezza?: number,
+        public dislivello?: number,
+        public pendenza?: number,
+        public diamIntMinimo?: number
       ){ }
 }
 

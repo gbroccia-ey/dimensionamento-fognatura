@@ -1,6 +1,7 @@
 {
   "name": "ioniccode",
   "integrations": {
+    "cordova": {}
   },
   "type": "ionic-angular"
 }

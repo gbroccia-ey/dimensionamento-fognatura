@@ -63,7 +63,7 @@ import { Params } from '../../../config/params';
                   <ion-input  type="number" [(ngModel)]="itemQuota.num" disabled="{{isDisabled(itemQuota)}}" style="float:left"></ion-input>    
                 </ion-item>
                 <ion-label col-2 *ngIf="itemQuota.num > 0 && !itemQuota.selectValue" class="labelQuote">
-                &euro; {{itemQuota.num * itemQuota.value}}
+                &euro; {{itemQuota.num * itemQuota.value | number: "1.1-2"}}
                 </ion-label>
                 <ion-label col-2 *ngIf="itemQuota.selectValue" class="labelQuote">
                 &euro; {{itemQuota.selOption?.value}}

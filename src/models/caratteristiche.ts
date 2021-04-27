@@ -27,6 +27,8 @@ export class Caratteristiche {
 
     PotenzaRichiesta;
 
+    PotenzaAttuale; //  TODO: agganciare in SAP
+
     TipoCessione;
 
     ServiziAusiliari;
@@ -109,6 +111,12 @@ export class Caratteristiche {
         if(caratteristiche.PotenzaRichiesta){
             c.PotenzaRichiesta = caratteristiche.PotenzaRichiesta.trim().replace(",",".");
         }
+        
+        // TODO : da confermare
+        if(caratteristiche.PotenzaAttuale){
+            c.PotenzaAttuale = caratteristiche.PotenzaAttuale.trim().replace(",",".");
+        }
+        
         c.TipoCessione = caratteristiche.TipoCessione;
         c.ServiziAusiliari = caratteristiche.ServiziAusiliari;
 
@@ -175,6 +183,7 @@ export class Caratteristiche {
         obj["NumeroSezioni"] = caratteristiche.NumeroSezioni;
         obj["PotenzaImmissioneRichiesta"] = caratteristiche.PotenzaImmissioneRichiesta;
         obj["PotenzaNominaleRichiesta"] = caratteristiche.PotenzaNominaleRichiesta;
+        obj["PotenzaAttuale"] = caratteristiche.PotenzaAttuale; // TODO : da confermare
         obj["PotenzaRichiesta"] = caratteristiche.PotenzaRichiesta;
         obj["TipoCessione"] = caratteristiche.TipoCessione;
         obj["ServiziAusiliari"] = caratteristiche.ServiziAusiliari;

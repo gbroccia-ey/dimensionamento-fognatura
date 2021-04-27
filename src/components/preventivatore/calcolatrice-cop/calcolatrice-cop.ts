@@ -260,10 +260,16 @@ export class ModalCalc implements OnInit{
         this.copInfo.ComunaleValore = val;
         break;
       case "statale":
+        if(!this.statale_valore) {
+          this.statale_valore = "0";
+        }
         this.copInfo.Statale = true;
         this.totale = parseFloat(this.statale_valore.replace(",","."));
         break;
       case "provinciale":
+        if(!this.provinciale_valore) {
+          this.provinciale_valore = "0";
+        }
         this.copInfo.Provinciale = true;
         this.totale = parseFloat(this.provinciale_valore.replace(",","."));
         break;

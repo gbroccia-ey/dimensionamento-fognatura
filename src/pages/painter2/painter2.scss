@@ -1,0 +1,439 @@
+page-painter2 {
+
+
+    .btnLine{
+        width: 23%;
+        float: left;
+        background-color: unset;
+        margin-top: 30px;
+    }
+
+    .btnLineSelected{
+        border: black 1px solid;
+    }
+
+    .spessoreContainer{
+       width: 48px;
+        height: 72px;
+        float: left;
+        text-align: center;
+        margin-left: 20px;
+    }
+
+    .spessoreContainerSelected{
+        border: black 1px solid;
+    }
+
+    .spessoreDiv {
+        height: 80%;
+        width: 100%;
+    }
+
+    .colorContainerSelected{
+        border: black 1px solid;
+    }
+
+    .colorContainer {
+        height: 28px;
+        width: 17%;
+        float: left;
+        margin: 3%;
+        padding: 1%;
+    }
+
+    .colorDiv{
+        height: 100%;
+        width: 100%;
+        padding: 20%;
+    }
+
+    .headerElement{
+        font-size: x-large;
+        text-align: center;
+        font-weight: 800;
+        width: 100%;
+    }
+    .containerElements{
+        background: linear-gradient(to left, #fad961 0%, #ffa26f 100%) !important;
+        width: 230px;
+    /* position: absolute; */
+        float: left;
+        min-width: 130px;
+        margin-left: 20px;
+        margin-top: 1px;
+        margin-bottom: 20px;
+        min-height: 135px;
+    }
+
+    .svg_select_points_b, .svg_select_points_r, .svg_select_points_t   {
+        display: none;
+    }
+
+    .svg_select_points_l{
+        //fill:grey !important;
+        cx:-40;
+        fill:url(#patternDelete) !important;
+        stroke-width: 1;
+        stroke: lightgray;
+    }
+
+    g.selected{
+        visibility: visible !important;
+    }
+
+    g{
+        visibility: hidden;
+    }
+
+
+    .svg_select_points {
+        fill: red;
+        r: 7;
+    }
+
+    .svg_select_points_rot {
+        stroke-width: 1;
+        stroke: black;
+        fill: #a7fb00;
+        r: 10;
+        cy: -40;
+    }
+
+    .textbox{
+        border: solid 1px grey;
+        margin: 2px;
+    }   
+
+    .textBoxInternal{
+        position:relative;
+        top:-20px;
+    }
+
+        .hide140{
+            display:initial;
+        }
+
+        .show140{
+            display:none;
+        }
+    
+#svg_canvas{
+    border: solid 1px black;
+}
+
+    
+    @media (max-width:900px) {
+        .hide140{
+            display:none !important;
+        }
+
+        .show140{
+            display:initial !important;
+        }
+    }
+
+    #btn-colorpicker_show:disabled {
+        background: unset;
+    }
+
+    .hex-text{
+        display:none !important;
+    }
+
+    .undo{
+          background-image:url("../assets/icon/Undo.png");
+           background-color: #ebebeb;
+            width: calc(50% - 6px);
+            float: left;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-x: 2vw;
+            height: 5vw;
+            margin: 3px;
+           box-shadow : 0px 4px 2px -3px #666666;
+    }
+
+    .redo{
+        background-image:url("../assets/icon/Redo.png");
+        background-color: #ebebeb;
+                    width: calc(50% - 6px);
+            float: left;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position-x: 2vw;
+            height: 5vw;
+            margin: 3px;
+              box-shadow : 0px 4px 2px -3px #666666;
+    }
+
+    .modal-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+    
+
+    .hidden{
+    display:none;
+    }
+
+.btn-submenu{
+    width:33%;
+    float:left;
+    background: transparent; 
+}
+
+.btn-colorpicker{
+    width: 24px;
+    float: left;
+    left: 8px;
+    border-radius: 71px;
+    height: 24px;
+    position: relative;
+    top: 13px;
+    border: none;
+}
+
+.rgba-text{
+    display: none;
+}
+
+.type-policy{
+    display: none;
+}
+
+.alpha{
+    display: none;
+}
+
+.hex-text{
+    display: none;
+}
+
+.hue{
+    top: 10px;
+    position: relative;
+}
+
+.row-menu{
+    width:100%;   
+    min-height: 5.4rem;
+    padding: 8px;
+    clear:both;
+}
+
+.row-menu_half{
+    width:50%;   
+    min-height: 6.4rem;
+    padding: 8px;
+    float:left;
+}
+
+
+#closeModal{
+    top: 5px;
+    left: 4px;  
+    font-size: large;
+    position: fixed;
+    background: unset;
+}
+
+#closeModalDiv{
+    position: absolute;
+    border-radius: 50px;
+    background-color: #cccccc;
+    width: 72px;
+    height: 66px;
+    top: -30px;
+    left: -30px;
+}
+
+.icon-menu{
+    width:25%;
+    position: relative;
+    padding: 8px;
+    float:left;
+}
+
+ .ion-ios-play-outline{
+     font-size:3.8rem !important;
+ }
+
+ .text-menu{
+    position: relative;
+    top: 15px;
+    left:10px;
+ }
+
+ .range-menu{
+    width: 67%;
+    left: 10%;
+    float: left;
+    position: relative;
+    top: -5px;
+ }
+
+.scrollStyle::-webkit-scrollbar {
+  width: 15px;
+  height: 15px;
+}
+ 
+.scrollStyle::-webkit-scrollbar-thumb {
+  background: #666;
+}
+
+.scrollStyle::-webkit-scrollbar-track {
+  background: #ddd;
+}
+
+.scrollStyle::-webkit-scrollbar-button {
+  background: #666;
+  height: 15px;
+   width: 15px;
+  border-radius: 50%;
+}
+
+.scroll {
+width: 20px;
+    height: 200px;
+    overflow: auto;
+    float: left;
+    margin: 0 10px;
+    left: 22%;
+    position: relative;
+}
+
+.content {
+  height: 500px;
+}
+
+.colDiv{
+  width:30px;
+  height:1.81rem;
+  position:relative;
+}
+
+.colDiv:hover {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform:translateZ(0) scale(2.20); /* Safari and Chrome */
+    -moz-transform:scale(2.20); /* Firefox */
+    -ms-transform:scale(2.20); /* IE 9 */
+    -o-transform:translatZ(0) scale(2.20); /* Opera */
+    transform:translatZ(0) scale(2.20);
+    z-index:111;
+    border: rgba(164, 158, 158, 0.43);
+    border-style: solid;
+    border-width: 1px;
+}
+
+
+#colorPicker{
+    position: absolute;
+    margin-top: 10px;
+    left: calc(20% + 26px);
+    border: rgba(164, 158, 158, 0.43);
+    border-style: solid;
+    border-width: 1px;
+}
+
+.canvasDiv{
+    left:274px; 
+    width:74vw; 
+    height:calc(100vh - 25px); 
+    min-height:700px;
+    float:left;
+     position:absolute; 
+     margin-top:24px;
+     overflow:auto;
+}
+
+
+@media (max-width: 650px) {
+  #colorPicker{
+    left: 150px;
+    border: rgba(164, 158, 158, 0.43);
+    border-style: solid;
+    border-width: 1px;
+    }
+
+    .canvasDiv{
+    left:150px; 
+    width:calc(100% - 134px); 
+    height:100%;
+    }
+
+}
+
+
+ion-icon {
+    &[class*="paint-"] {
+        // Instead of using the font-based icons
+        // We're applying SVG masks
+        mask-size: contain;
+        mask-position: 50% 50%;
+        mask-repeat: no-repeat;
+        background: currentColor;
+    }
+    // custom icons
+    &[class*="paint-freeline"] {
+        mask-image: url(../assets/icon/freehand.svg);
+            width: 1em;
+        height: 1em;
+    }
+    &[class*="paint-line"] {
+        mask-image: url(../assets/icon/line.svg);
+            width: 1em;
+        height: 1em;
+    }
+    &[class*="paint-dottedline"] {
+        mask-image: url(../assets/icon/dotted.svg);
+            width: 1em;
+        height: 1em;
+    }
+    &[class*="paint-multidottedline"] {
+        mask-image: url(../assets/icon/multidotted.svg);
+            width: 1em;
+        height: 1em;
+    }
+}
+
+}
+
+
+.divOther{
+    width:50%;
+    float:left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (min-width: 500px) {
+    .divOther{
+        width:25%;
+        float:left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+@media (min-width: 650px) {
+    .divOther{
+        width:20%;
+        float:left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.divOtherText{
+    font-size: x-small;
+    width: 120%;
+    position: absolute;
+}

@@ -1,0 +1,195 @@
+<!--
+  Generated template for the PainterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-content style="width: 100%; height: 100%;overflow: visible;-webkit-transform: translateZ(0);transform: translateZ(0);" >
+  <div id="closeModalDiv">
+   <button  id="closeModal" (click)="onExit()" >
+       <ion-icon name="close">  &nbsp; </ion-icon>
+    </button>
+    </div>
+      <div style="    position: absolute;
+  
+    min-width: 170px;
+    width: 252px;
+    overflow: auto;
+    left: 0px;
+    margin-top:44px;
+    min-height: 700px;
+">
+
+ <div class="containerElements">
+      <div class="spessore" *ngIf="showSpessore">
+        <div class="headerElement">Spessore</div>
+          <div style="width:100%; height: 50px;clear:both;">
+            <div class="spessoreContainer" style="font-size:1em"><div class="spessoreDiv" (click)="setSpessore(1)" >
+              <i class="fa fa-circle" aria-hidden="true"  style="margin-top: 48%" [ngStyle]="{'color': color}"></i>
+              </div></div>
+              <div class="spessoreContainer" style="font-size:1.3em"><div class="spessoreDiv" (click)="setSpessore(3)" >
+                <i class="fa fa-circle" aria-hidden="true" style="margin-top: 40%" [ngStyle]="{'color': color}"></i>
+                </div></div>
+              <div class="spessoreContainer" style="font-size:1.6em"><div class="spessoreDiv" (click)="setSpessore(5)" >
+                <i class="fa fa-circle" aria-hidden="true" style="margin-top: 30%"  [ngStyle]="{'color': color}"></i>
+                </div></div>
+          </div>
+          <div style="width:100%; height: 50px;clear:both;">
+            <div class="spessoreContainer" style="font-size:1.9em"><div class="spessoreDiv" (click)="setSpessore(8)" >
+              <i class="fa fa-circle" aria-hidden="true" style="margin-top: 40%" [ngStyle]="{'color': color}"></i>
+              </div></div>
+            <div class="spessoreContainer" style="font-size:2.2em"><div class="spessoreDiv" (click)="setSpessore(11)" >
+              <i class="fa fa-circle" aria-hidden="true" style="margin-top: 30%"  [ngStyle]="{'color': color}"></i>
+              </div></div>
+            <div class="spessoreContainer" style="font-size:2.5em"><div class="spessoreDiv" (click)="setSpessore(13)" >
+              <i class="fa fa-circle" aria-hidden="true" style="margin-top: 20%"  [ngStyle]="{'color': color}"></i>
+              </div>
+            </div>
+          </div> 
+      </div>
+    <div class="colore row" *ngIf="showColore">
+       <div class="headerElement">Colore</div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#000000')" style="background-color:#000000"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#C0C0C0')" style="background-color: #C0C0C0"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#FFFFFF')" style="background-color: #FFFFFF"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#800000')" style="background-color: #800000"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#FF0000')" style="background-color: #FF0000"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#008000')" style="background-color: #008000"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#00FF00')" style="background-color: #00FF00"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#ff9800')" style="background-color: #ff9800"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#FFFF00')" style="background-color: #FFFF00"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#0000FF')" style="background-color: #0000FF"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#ec0efc')" style="background-color: #ec0efc"></div></div>
+      <div class="colorContainer"><div class="colorDiv" (click)="setColor('#00FFFF')" style="background-color: #00FFFF"></div></div>
+    </div>
+    <div class="form row" *ngIf="showForme">
+       <div class="headerElement">Forme</div>
+       <i class="fa fa-circle fa-2x icon-menu" aria-hidden="true"  (click)="onCircle(true)"  [ngStyle]="{'color': color}"></i>
+          <i class="fa fa-circle-thin fa-2x icon-menu" aria-hidden="true"  (click)="onCircle(false)"  [ngStyle]="{'color': color}"></i>
+          <i class="fa fa-square fa-2x icon-menu" aria-hidden="true"  (click)="onRect(true)" [ngStyle]="{'color': color}"></i>
+          <i class="fa fa-square-o fa-2x icon-menu" aria-hidden="true" (click)="onRect(false)" [ngStyle]="{'color': color}"></i>
+          <i class="fa fa-play fa-2x icon-menu" aria-hidden="true"  (click)="onTriangle(true)" [ngStyle]="{'color': color}"></i>
+
+          <button ion-item (click)="onTriangle(false)" class="btn-submenu" style=" top: -7px;padding-left: 6px;" >
+            <ion-icon name="ios-play-outline" item-start  [ngStyle]="{'color': color}" ></ion-icon>
+          </button>
+          <div (click)="otherForm(true)" style=" float: left; padding-top: 10px;margin-top: 4px;">simboli</div>
+     
+    </div>
+    <div class="linee" *ngIf="showLinee">
+         <div class="headerElement">Linee</div>
+          <button ion-item (click)="setTypeLine(0);onDrawing();" class="btnLine"  >
+            <ion-icon name="paint-freeline" item-start  [ngStyle]="{'color': color}" ></ion-icon>
+          </button>
+          <button ion-item (click)="setTypeLine(1);onLine();" class="btnLine"  >
+            <ion-icon name="paint-line" item-start  [ngStyle]="{'color': color}" ></ion-icon>
+          </button>    
+          <button ion-item (click)="setTypeLine(2);onDashLine();" class="btnLine" >
+            <ion-icon name="paint-dottedline" item-start  [ngStyle]="{'color': color}" ></ion-icon>
+          </button>
+          <button ion-item (click)="setTypeLine(3);onDashLineMultiple()" class="btnLine"  >
+            <ion-icon name="paint-multidottedline" item-start  [ngStyle]="{'color': color}" ></ion-icon>
+          </button>
+    </div>
+  </div>
+
+
+    <ion-card style="width:230px; float:left;min-width:130px;margin-left:20px;margin-top:1px;"> 
+
+
+  <ion-list style="border-top-style: outset;">
+     
+
+    <div style="float:left;background: linear-gradient(to left, #fad961 0%, #ffa26f 100%) !important;">
+      <div class="hide140">     
+         <button ion-button round (click)="undo()"  style="margin-left:16px"><ion-icon name="ios-undo" style="font-size:x-large"></ion-icon></button>
+         <button ion-button round (click)="redo()"  style="float:right;margin-right:16px"><ion-icon name="ios-redo" style="font-size:x-large"></ion-icon></button>
+      </div>
+
+      <div class="show140">     
+          <div class="undo" (click)="undo()" ></div>
+          <div class="redo" (click)="redo()" ></div>
+      </div> 
+      <div>
+        <div class="row-menu_half" (click)="onShowColore()">  
+            <i class="fa fa-square fa-2x icon-menu" aria-hidden="true"  [ngStyle]="{'color': color}"></i>
+          <div class="text-menu" >Colori</div>
+      </div>
+ 
+       <div class="row-menu_half" (click)="onShowSpessore()">
+        <i class="fa fa-circle icon-menu" aria-hidden="true"  [ngStyle]="{'color': color, 'font-size':fontSizeIcon}"></i>
+        <div class="text-menu"  >Spessore</div>
+      </div>
+      </div>
+      <div>
+        <div class="row-menu_half" (click)="onShowForme()" >
+            <i class="fa fa-play fa-2x icon-menu" aria-hidden="true"  [ngStyle]="{'color': color}"></i>
+            <div class="text-menu" >Forme</div>
+        </div>
+
+      <div class="row-menu_half"   (click)="removeSelectionLine();onShowLinee();" >
+            <div  *ngIf="borderFDraw!='hidden'" style="color: rgb(0, 0, 0);
+    border-style: dotted;
+    height: 34px;
+    width: 40px;
+    float: left;
+    margin-top: 7px;
+    padding: 4px;
+    padding: 8px;
+    ">
+            <ion-icon *ngIf="borderFDraw!='hidden' && typeLine == 0" name="paint-freeline" item-start  [ngStyle]="{'color': color,'border-style':borderFDraw}" ></ion-icon>
+            <ion-icon *ngIf="borderFDraw!='hidden' && typeLine == 1" name="paint-line" item-start  [ngStyle]="{'color': color,'border-style':borderFDraw}" ></ion-icon>
+            <ion-icon *ngIf="borderFDraw!='hidden' && typeLine == 2" name="paint-dottedline" item-start  [ngStyle]="{'color': color,'border-style':borderFDraw}" ></ion-icon>
+            <ion-icon *ngIf="borderFDraw!='hidden' && typeLine == 3" name="paint-multidottedline" item-start  [ngStyle]="{'color': color,'border-style':borderFDraw}" ></ion-icon>
+            </div>
+
+            <i *ngIf="borderFDraw=='hidden'" class="fa fa-paint-brush fa-2x icon-menu" aria-hidden="true" [ngStyle]="{'color': color,'border-style':borderFDraw}"></i>
+            <div class="text-menu">Linee</div>
+        </div>
+      </div>
+
+     <div class="row-menu android-scroll-bar" >
+          <ion-item style="    width: calc(100% - 35px);
+    float: left;
+    padding-left: 0px;">
+              <ion-textarea placeholder="Text" rows="3" [(ngModel)]="textBox"></ion-textarea>
+          </ion-item>
+          <i class="fa fa-text-height fa-2x" aria-hidden="true" (click)="onTextBox()" style="position: relative;top: 10px;float:left;"  [ngStyle]="{'color': color}"></i>
+      </div>  
+
+      <div class="row-menu" (click)="onLoadBackground(true)">
+          <i class="fa fa-picture-o fa-2x icon-menu" aria-hidden="true"></i>
+        <div class="text-menu">Galleria</div>
+      </div>
+      <div class="row-menu" (click)="onLoadBackground(false)">
+          <i class="fa fa-camera fa-2x icon-menu" aria-hidden="true"></i>
+        <div class="text-menu">Camera</div>
+      </div>
+      <div class="row-menu" (click)="onSave()">
+        <i class="fa fa-external-link fa-2x icon-menu" aria-hidden="true"></i>
+        <div class="text-menu">Salva</div>
+       </div>
+        <div class="row-menu" (click)="onSaveExit()">
+          <i class="fa fa-external-link fa-2x icon-menu" aria-hidden="true"></i>
+          <div class="text-menu">Salva e esci</div>
+      </div>
+  
+  </div>
+
+  </ion-list>
+</ion-card>
+
+</div>
+
+ <div id="canvasFather" class="scrollStyle canvasDiv">
+    <div  id="svg_canvas">
+    <svg id="drawing" (click)="removeSelection()">
+      <defs>
+        </defs>
+    </svg>
+</div>
+
+ </div> 
+<div id="canvasContainer"></div>
+</ion-content>

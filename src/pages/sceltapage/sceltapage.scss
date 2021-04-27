@@ -1,0 +1,51 @@
+page-sceltapage {
+
+    .titleSection{
+        font-size:large;
+    }
+
+    .btn-half{
+        background-color:$blu-hera;
+        width: 50%;
+        float: left;
+        margin: 5px;
+    }
+
+    .rowSignature{
+        box-shadow: rgb(136, 136, 136) 2px 3px 3px;
+        padding-left: 32px;
+        padding-right:32px;
+    }
+
+    .divItem{
+        height:70px;
+    }
+
+    .row{    
+        border-style: solid;
+        border-width: 1px;
+        border-color: #d7d4ce;
+        overflow: hidden !important;
+        }
+
+    .col{
+         border-style: none;
+    }
+
+    .signaturePad-big{
+        width:100%;
+    }
+
+    .signaturePad-small{
+        width:100%;
+        height:202px;
+        border: #d7d4ce solid 1px;
+        overflow:hidden;
+    }
+
+    canvas{
+        border: #d7d4ce solid 1px;
+    }
+
+}
+

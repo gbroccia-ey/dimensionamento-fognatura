@@ -1,0 +1,129 @@
+page-form1 {
+
+
+
+    .selectMultiple{
+        width:80%;
+        max-width: 80%;
+    }
+
+    .select-text{
+        white-space: unset;
+    }
+ 
+    .glass {
+        filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+        -webkit-filter: url(#blur-filter);
+        filter: url(#blur-filter);
+        -webkit-filter: blur(3px);
+        filter: blur(3px);
+    }
+
+
+    .btn-fab{
+        height: 45px;
+        margin: 10px;
+        border-radius: 10px;
+        width: 150px;
+    }
+}
+
+.col {
+    border: solid 1px grey;
+    border-bottom-style: none;
+    border-right-style: none;
+}
+
+.col:last-child {
+    border-right: solid 1px grey;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px grey;
+}
+
+
+.wrapping-list .item-content, .wrapping-list .item {
+    overflow: initial;
+    white-space: initial;
+}
+
+.alert-radio-label {
+    white-space: normal!important;
+}
+
+.text_box {
+    width: 100% !important;
+    border: none !important;
+}
+
+.contenitore_aggiuntivo {
+    border: solid 1px #dedede;
+    margin-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;    
+    text-align: -webkit-center;
+}
+
+.contenitore_aggiuntivo_descr {
+    border: solid 1px #dedede;
+    border-style:dashed;    
+}
+
+.closeButton{
+    border-radius:20px;
+    width:30px;
+    height:30px;
+    left: calc(95% - 15px);
+        left: calc(95% - 20px);
+    z-index: 11;
+}
+
+.paintImg{
+        border: rgba(164, 158, 158, 0.43);
+    border-style: solid;
+    border-width: 1px;
+    left:5%;
+    width: 90%;
+    position:relative;
+    top:-20px;
+}
+
+.myCustomSelect{
+  max-width: 100% !important;
+}
+
+.alert-wrapper{
+  max-width: 90% !important;
+}
+
+ion-fab {
+    button {
+        box-shadow: 0 4px 10px #6b6b6b;
+    }
+
+    ion-fab-list button[ion-fab] {
+        text-align: center;
+        overflow: visible;
+
+        div.label {
+          position: absolute;
+          right: 48px;
+          background: rgba(248, 248, 248, 1);
+          height: 24px;
+          line-height: 16px;
+          padding-left: 8px;
+          padding-right: 8px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+          margin-top: 8px;
+          border-radius: 5px;
+          box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .button-inner {
+        overflow: visible;
+    }
+}
+

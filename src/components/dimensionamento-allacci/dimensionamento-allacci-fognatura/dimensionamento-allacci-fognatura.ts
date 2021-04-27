@@ -321,7 +321,7 @@ precision:string = "1.1-2";
 
 allacciEsempioArray = [];
 allacciNuoviArray = [];
-
+selectLabel:string = "Seleziona valore";
 
 constructor(private adsService: AdsService) {
   this.saveAction = new EventEmitter<string>();
@@ -360,7 +360,7 @@ ngOnInit() {
      
       this.ads.DimensionamentoAllacciFognatura = new DimensionamentoAllacciFognatura(
         AllacciamentoNuovo1,AllacciamentoNuovo2,AllacciamentoNuovo3,AllacciamentoNuovo4,AllacciamentoNuovo5,AllacciamentoNuovo6,AllacciamentoEsistente,{},
-        new ParametriAcqueNere(0,0,0,0,0,0,0),new ParametriAcqueBianche(0,0,0,0,0,0,0,0), new ParametriVincoli(0,0,1.0,1.0,0,0),
+        new ParametriAcqueNere(),new ParametriAcqueBianche(), new ParametriVincoli(),
         );  
         
     }
@@ -390,9 +390,10 @@ ngOnInit() {
   updateAcqueBianche(){
     if (this.ads.DimensionamentoAllacciFognatura){
       let ab = this.ads.DimensionamentoAllacciFognatura.AcqueBianche;
-      ab.portataImpermeabili = ((Number(ab.supImpermeabili)*this.tableParams.affluxCoef[0])*this.tableParams.maxRainIntensity)/3600.0;
-      ab.portataSemipermeabili = ((Number(ab.supSemipermeabili)*this.tableParams.affluxCoef[1])*this.tableParams.maxRainIntensity)/3600.0;
-      ab.portata = ab.portataImpermeabili + ab.portataSemipermeabili + Number(ab.portateLimitate);
+      ab.portataImpermeabili = ab.supImpermeabili ? ((Number(ab.supImpermeabili)*this.tableParams.affluxCoef[0])*this.tableParams.maxRainIntensity)/3600.0 : 0;
+      ab.portataSemipermeabili = ab.supSemipermeabili? ((Number(ab.supSemipermeabili)*this.tableParams.affluxCoef[1])*this.tableParams.maxRainIntensity)/3600.0 : 0;
+      ab.portata = ab.portataImpermeabili + ab.portataSemipermeabili;
+      ab.portata +=  ab.portateLimitate? Number(ab.portateLimitate) : 0;
       
       ab.uiEqFisse = (ab.portata > 0)? this.tableParams.uiEqFisseAcqueBianche:0;
       ab.sommaUIeq = ab.uiEqFisse;
@@ -644,6 +645,14 @@ Do While Precisione <> 0
 
   }
   
+  cancelAlloggiamentoEsistente(){
+    this.ads.DimensionamentoAllacciFognatura.AllacciamentoEsistente = "";
+  }
+
+  cancelAlloggiamentoNuovo(){
+    this.ads.DimensionamentoAllacciFognatura.AllacciamentoNuovo6 = "";
+  }
+
   setColorForMessage(msg){
     switch(msg){
       case DIMFOGNA_MSG.DN_INSUFF:
@@ -686,18 +695,19 @@ Do While Precisione <> 0
 
   
   onSubmit() {
-    if (+this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista > 0){
-        this.ads.DimensionamentoSaved = true;
+    if (!this.ads.DimensionamentoAllacciFognatura.Vincoli.lunghezza || !this.ads.DimensionamentoAllacciFognatura.Vincoli.dislivello){
+      alert("Attenzione: lunghezza o dislivello nulli! ");
+    }
+    else if (!this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista || this.ads.DimensionamentoAllacciFognatura.Vincoli.portataMista <= 0){
+      alert("Attenzione: Portata complessiva di calcolo nulla! ");
+    }
+    else {
+      this.ads.DimensionamentoSaved = true;
         this.saveAction.emit("save");
     
         this.adsService.updateAds(this.ads, { 
           DimensionamentoSaved: this.ads.DimensionamentoSaved, 
         }, () => {}, () => {});
-        
-      
-    }
-    else {
-      alert("Attenzione: Portata complessiva di calcolo nulla! ");
     }
   
   }

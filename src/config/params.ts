@@ -500,6 +500,10 @@ export class Params {
             label: "VAR. PORT/ POT/ AUM. (R.A.)"
         },
         {
+            codAttivita: "WF1100IS",
+            label: "VAR. PORT/ POT/ AUM. (IST)"
+        },
+        {
             codAttivita: "WF1110LB",
             label: "SOST.CONT. DIM. (LAV. BASE)"
         },
@@ -3143,6 +3147,10 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1010_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3175,6 +3183,10 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1040_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3199,11 +3211,21 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1050_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
                         {label: 'Suppl.prescrizioni SABAP (sovrintendenza) ', value: 1500,  singleValue:'true', placeholder:"supplemento", id:"quota2"},
                 ]},
+                {   label: 'Scavo agguntivo',
+                        value:  [
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
+                            {label: 'Per ogni mt di scavo oltre i 6 scavo escluso', value: 121, placeholder:"mt",id:"quota4"},
+                        ],
+                    }, 
             ]  
         },
         //----------------------------------------------------------------------------------------
@@ -3239,6 +3261,18 @@ export class Params {
                        value:  [
                         {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
                 ]},
+                {label: 'Scavo localizzato (a corpo)',
+                       value:  [
+                        {label: 'Scavo localizzato ',            value: 610, singleValue:'true', placeholder:"",id:"quota51"},
+                ]},
+                {   label: 'Nuova Derivazione (a corpo)',
+                        value:  [                            
+
+                            {label: 'NDER <= DN 50 ',    value: 1837,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER DN 80 ',       value: 2232,  singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER DN 100 ',      value: 2398,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                        ],
+                },  
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3261,6 +3295,23 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
+                {label: 'Scavo localizzato (a corpo)',
+                       value:  [
+                        {label: 'Scavo localizzato ',            value: 610, singleValue:'true', placeholder:"",id:"quota51"},
+                ]},
+                {   label: 'Nuova Derivazione (a corpo)',
+                        value:  [                            
+
+                            {label: 'NDER <= DN 50 ',    value: 1837,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER DN 80 ',       value: 2232,  singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER DN 100 ',      value: 2398,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                        ],
+                },  
+                
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3285,6 +3336,19 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1130_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
+                {   label: 'Nuova Derivazione (a corpo)',
+                        value:  [                            
+
+                            {label: 'NDER <= DN 50 ',    value: 1837,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER DN 80 ',       value: 2232,  singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER DN 100 ',      value: 2398,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                        ],
+                },  
+                
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3308,6 +3372,10 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1140_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3331,6 +3399,18 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1181_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
+                {   label: 'Nuova Derivazione (a corpo)',
+                        value:  [                            
+
+                            {label: 'NDER <= DN 50 ',    value: 1837,  singleValue:'true', placeholder:"supplemento", id:"quota20"},
+                            {label: 'NDER DN 80 ',       value: 2232,  singleValue:'true', placeholder:"supplemento", id:"quota21"},
+                            {label: 'NDER DN 100 ',      value: 2398,  singleValue:'true', placeholder:"supplemento", id:"quota22"},
+                        ],
+                },  
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Suppl.lavorazioni siti inquinati ', value: 1000,  singleValue:'true', placeholder:"supplemento", id:"quota1"},
@@ -3412,6 +3492,21 @@ export class Params {
                         {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
                         {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
+                {label: 'Quota base fino a 4 utenze',
+                    value:  [
+                        {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
+                ]},
+                {label: 'Quota per aggiunta scavo',
+                    value:  [
+                        {label: 'Quota per aggiunta scavo',   value: 249.53,  singleValue:'true', id:"quota4"}                       
+                ]},
+                {label: 'Tipo Scavo',
+                    value:  [
+                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        
+                ]},
             ] 
           },
         //----------------------------------------------------------------------------------------
@@ -3442,24 +3537,47 @@ export class Params {
                         {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
                         {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
+                {label: 'Quota base fino a 4 utenze',
+                    value:  [
+                        {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
+                ]},
+                {label: 'Tipo Scavo',
+                    value:  [
+                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        
+                ]},
             ] 
           },
         //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1050_ACQUA_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
-                  { classeContatore: "DN15",  prezzo: 2121 },
-                  { classeContatore: "DN20",  prezzo: 2121 },
-                  { classeContatore: "DN32",  prezzo: 2121 },
-                  { classeContatore: "DN40",  prezzo: 2121 },
-                  { classeContatore: "DN50",  prezzo: 2121 },
-                  { classeContatore: "DN80",  prezzo: 2121 },
+                  { classeContatore: "DN15",  prezzo: 1928 },
+                  { classeContatore: "DN20",  prezzo: 1928 },
+                  { classeContatore: "DN32",  prezzo: 1928 },
+                  { classeContatore: "DN40",  prezzo: 1928 },
+                  { classeContatore: "DN50",  prezzo: 1928 },
+                  { classeContatore: "DN80",  prezzo: 1928 },
                   { classeContatore: "DN100", prezzo: 2620.06 }
             ]}
         ]},
         {
             key: 'QUOTE_LAVFAT1050_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Quota base fino a 4 utenze',
+                    value:  [
+                        {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
+                ]},
+                {label: 'Tipo Scavo',
+                    value:  [
+                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        
+                ]},
+            ] 
         },
         //----------------------------------------------------------------------------------------
         
@@ -3468,7 +3586,19 @@ export class Params {
         ]},
         {
             key: 'QUOTE_LAVFAT1070_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Quota base fino a 4 utenze',
+                    value:  [
+                        {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
+                ]},
+                {label: 'Tipo Scavo',
+                    value:  [
+                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        
+                ]},
+            ]  
         },
         //----------------------------------------------------------------------------------------
         
@@ -3520,7 +3650,21 @@ export class Params {
         ]},     
         {       
             key: 'QUOTE_LAVFAT1130_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Contatore aggiuntivo fino a 30 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo', value: 260.87,   placeholder:"numero", id:"quota1"},
+                ]},
+                {label: 'Contatore aggiuntivo fino a 40 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo', value: 680.54,   placeholder:"numero", id:"quota2"},
+                        
+                ]},
+                {label: 'Contatore aggiuntivo oltre 40 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo',  value: 1111.54,  placeholder:"numero", id:"quota3"},
+                ]},
+            ] 
         },
         //----------------------------------------------------------------------------------------
 
@@ -3543,6 +3687,22 @@ export class Params {
                         {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
                         {label: 'Quota agg. per ogni mt oltre i 20 asfalto', value: 152.38,  placeholder:"lungh. eccedente (m)", id:"quota2"},             
                 ]},
+                {label: 'Quota base fino a 4 utenze',
+                    value:  [
+                        {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
+                ]},
+                {label: 'Quota per aggiunta scavo',
+                    value:  [
+                        {label: 'Quota per aggiunta scavo',   value: 249.53,  singleValue:'true', id:"quota4"}                       
+                ]},
+                {label: 'Tipo Scavo',
+                    value:  [
+                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        
+                ]},
+            
             ] 
         },
         //----------------------------------------------------------------------------------------
@@ -3560,7 +3720,21 @@ export class Params {
         ]},   
         {       
             key: 'QUOTE_LAVFAT1181_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Contatore aggiuntivo fino a 30 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo', value: 260.87,   placeholder:"numero", id:"quota1"},
+                ]},
+                {label: 'Contatore aggiuntivo fino a 40 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo', value: 680.54,   placeholder:"numero", id:"quota2"},
+                        
+                ]},
+                {label: 'Contatore aggiuntivo oltre 40 mm',
+                    value:  [
+                        {label: 'Contatore aggiuntivo',  value: 1111.54,  placeholder:"numero", id:"quota3"},
+                ]},
+            ] 
         },
         /**************************     PADOVA GAS  ***************************************/
         // Vengono utilizzati i valori globali
@@ -3585,6 +3759,36 @@ export class Params {
                 ] },
 
         ]},
+        {
+            key: 'QUOTE_LAVFAT1010_GAS_AAA',
+            value:[
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G4',
+                       value:  [
+                        {label: 'Eccedenza' , value: 32.34, placeholder:"metri",id:"quota1"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G6',
+                       value:  [
+                        {label: 'Eccedenza ', value: 38.80, placeholder:"metri",id:"quota2"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G10',
+                       value:  [
+                        {label: 'Eccedenza ', value: 45.26, placeholder:"metri",id:"quota3"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G16',
+                       value:  [
+                        {label: 'Eccedenza ', value: 51.74, placeholder:"metri",id:"quota4"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G25',
+                       value:  [
+                        {label: 'Eccedenza ', value: 58.20, placeholder:"metri",id:"quota5"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G40 e oltre',
+                       value:  [
+                        {label: 'Eccedenza ', value: 64.66, placeholder:"metri",id:"quota6"},
+                      ]},
+              ] 
+        },
+
         { key: "LAVFAT1040_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
                 { classeContatore: "G4",        descrizione: "G4",                  prezzo: 387.98 },
@@ -3602,6 +3806,35 @@ export class Params {
                 ] },
 
         ]},
+        {
+            key: 'QUOTE_LAVFAT1040_GAS_AAA',
+            value:[
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G4',
+                       value:  [
+                        {label: 'Eccedenza' , value: 32.34, placeholder:"metri",id:"quota1"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G6',
+                       value:  [
+                        {label: 'Eccedenza ', value: 38.80, placeholder:"metri",id:"quota2"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G10',
+                       value:  [
+                        {label: 'Eccedenza ', value: 45.26, placeholder:"metri",id:"quota3"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G16',
+                       value:  [
+                        {label: 'Eccedenza ', value: 51.74, placeholder:"metri",id:"quota4"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G25',
+                       value:  [
+                        {label: 'Eccedenza ', value: 58.20, placeholder:"metri",id:"quota5"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G40 e oltre',
+                       value:  [
+                        {label: 'Eccedenza ', value: 64.66, placeholder:"metri",id:"quota6"},
+                      ]},
+              ] 
+        },
         { key: "LAVFAT1140_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
                 { classeContatore: "G4",   prezzo: 323.32 },
@@ -3613,6 +3846,35 @@ export class Params {
                 ] },
 
         ]},
+        {
+            key: 'QUOTE_LAVFAT1140_GAS_AAA',
+            value:[
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G4',
+                       value:  [
+                        {label: 'Eccedenza' , value: 32.34, placeholder:"metri",id:"quota1"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G6',
+                       value:  [
+                        {label: 'Eccedenza ', value: 38.80, placeholder:"metri",id:"quota2"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G10',
+                       value:  [
+                        {label: 'Eccedenza ', value: 45.26, placeholder:"metri",id:"quota3"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G16',
+                       value:  [
+                        {label: 'Eccedenza ', value: 51.74, placeholder:"metri",id:"quota4"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G25',
+                       value:  [
+                        {label: 'Eccedenza ', value: 58.20, placeholder:"metri",id:"quota5"},
+                      ]},
+                      {label: 'Eccedenza estensione alloggiamento oltre 10m dall\'asse strada per G40 e oltre',
+                       value:  [
+                        {label: 'Eccedenza ', value: 64.66, placeholder:"metri",id:"quota6"},
+                      ]},
+              ] 
+        },
                   
     ])
 
@@ -5226,6 +5488,13 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
             { tipoInterruzione: "SCAVO", quotaFissa: 1555, label:"S" }
         ]},
 
+        { key: "CIF_AAA", value: [
+            { tipoInterruzione: "AUTOSCALA", quotaFissa: 805,label:"A" },
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" },
+            { tipoInterruzione: "BYPASS", quotaFissa: 805, label:"Y" },
+            { tipoInterruzione: "SCAVO", quotaFissa: 805, label:"S" }
+        ]},
+
          { key: "LAVFAT1040_EE", value: [
             { descrizione: "Connessioni permanenti ordinarie in BT - Nuovo allacciamento", 
                 quotaFissa: 188.95, quotaOneriAmm: 25.51, quota200_700:94.71, quota700_1200: 188.95, 
@@ -5830,12 +6099,18 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1610_GAS_AAA", value: [
-            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+            { tipoInterruzione: "AUTOSCALA", quotaFissa: 805,label:"A" },
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" },
+            { tipoInterruzione: "BYPASS", quotaFissa: 805, label:"Y" },
+            { tipoInterruzione: "SCAVO", quotaFissa: 805, label:"S" }
         ]},
         
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1630_GAS_AAA", value: [
-            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" }
+            { tipoInterruzione: "AUTOSCALA", quotaFissa: 805,label:"A" },
+            { tipoInterruzione: "BASE", quotaFissa: 805,label:"B" },
+            { tipoInterruzione: "BYPASS", quotaFissa: 805, label:"Y" },
+            { tipoInterruzione: "SCAVO", quotaFissa: 805, label:"S" }
         ]},
 
         

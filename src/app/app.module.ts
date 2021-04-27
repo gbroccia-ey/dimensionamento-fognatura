@@ -81,6 +81,8 @@ import { NoteVerbalePage } from '../pages/note-verbale/note-verbale';
 import { ModalenotePage } from '../pages/modalenote/modalenote';
 import { PreviewPdfTwoSignatures } from '../pages/preview-pdf-two-signature/preview-pdf-two-signature';
 import { ModalefirmaPage } from '../pages/modalefirma/modalefirma';
+import { ConfermaFormPage } from '../pages/conferma-form/conferma-form';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 
@@ -99,6 +101,7 @@ import { ModalefirmaPage } from '../pages/modalefirma/modalefirma';
     FotoPage,
     NoteVerbalePage,
     SceltapagePage,
+    ConfermaFormPage,
 
     DimensionamentoAllacciFognaturaComponent,
     RemoveCommaPipe,
@@ -174,7 +177,8 @@ import { ModalefirmaPage } from '../pages/modalefirma/modalefirma';
     DimensionamentoAllacciPage,
     PreviewPdfNoSignatures,
     PreviewPdfTwoSignatures,
-    
+    ConfermaFormPage,
+
     CerCalc,
     CvvCalc,
     ModalCalc,
@@ -201,8 +205,9 @@ import { ModalefirmaPage } from '../pages/modalefirma/modalefirma';
     
     AdsSync,
     { provide: ErrorHandler, useClass: IonicErrorHandler},
-
-  ]
+    
+  ],
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule {}
 

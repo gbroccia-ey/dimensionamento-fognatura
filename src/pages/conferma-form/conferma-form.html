@@ -1,0 +1,2446 @@
+
+<ion-header>
+
+    <ion-navbar>
+      <ion-title>Avvisi</ion-title>
+  
+      <ion-buttons start>
+              <button ion-button class="btn_closeModal" (click)="dismiss()">
+                <span ion-text color="primary" showWhen="ios">Annulla</span>
+                <ion-icon name="md-close" hideWhen="ios"></ion-icon>
+              </button>
+            </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content padding>
+  
+  <!--    ACQUA[FOGNATURA] : WF1040/WF1040F      -->
+  <div *ngIf="( ads.CodiceAttivita === 'WF1040F' || ads.CodiceAttivita === 'WF1010') && DettaglioMerceologico[ads.DettaglioMerceologico] === 'FOGNATURA'">
+       <ion-grid> 
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-5>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+                </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+            
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Allaccio</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoAllaccio"  disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of LAVFAT1040_tipo_allaccio" value="{{item.key}}">{{ item.key }} - {{item.value}}</ion-option>
+                      </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoAllaccio)"></ion-checkbox>
+                      
+                  </ion-col>
+              
+              </ion-row>
+                    <ion-row>
+                        <ion-col col-5>
+                            <ion-label>Tipo Lavoro</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                                <ion-option *ngFor="let item of WF1010_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                              </ion-select>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro,ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                            
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                          <ion-col col-5>
+                              <ion-label>Definizione Complesso</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                                  <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              
+                          </ion-col>
+                      </ion-row>
+  
+                      <ion-row>
+                          <ion-col col-5>
+                              <ion-label>Destinazione uso</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                                  <ion-option *ngFor="let item of WF1010_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                              
+                          </ion-col>
+                    </ion-row>
+
+                    <ion-row *ngIf="ads.CodiceAttivita === 'WF1040F'">
+                        <ion-col col-5>
+                            <ion-label>Diametro (metri)</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-select [(ngModel)]="ads.Caratteristiche.Diametro" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                                <ion-option *ngFor="let item of LAVFAT1040_diametro_fognatura" value="{{item.key}}">{{ item.value }}</ion-option>
+                            </ion-select>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.Diametro)"></ion-checkbox>    
+                        </ion-col>
+                    </ion-row>
+    
+                    <ion-row *ngIf="ads.CodiceAttivita === 'WF1040F'">
+                        <ion-col col-5>
+                            <ion-label>Profondità (metri)</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-input type="number" [(ngModel)]="ads.Caratteristiche.Profondita" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}"></ion-input>                
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.Profondita)"></ion-checkbox>      
+                        </ion-col>
+                    </ion-row>
+
+  
+                        <!--<ion-row>
+                            <ion-col col-5>
+                                <ion-label>Tipo fornitura</ion-label>
+                            </ion-col>
+                            <ion-col col-6 disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}" style="    padding: 18px;">
+                                FOGNATURA
+                            </ion-col>
+                             <ion-col col-1>
+                             </ion-col>
+                          </ion-row> -->
+        </ion-grid>
+       
+  
+    </div>
+
+  <!--    GAS : WF1140/WF1010/WF1040 (PN1)      -->
+  <div *ngIf="(ads.CodiceAttivita === 'WF1140' ||
+                 ads.CodiceAttivita === 'WF1010' || 
+                 ads.CodiceAttivita === 'WF1040') && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  
+      <ion-grid>  
+        <ion-row *ngIf="canChangeCodiceAttivita">
+          <ion-col col-5>
+              <ion-label>Codice Attività</ion-label>
+          </ion-col>
+          <ion-col col-6>
+               <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                  <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+              </ion-select>
+          </ion-col>  
+          <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+          </ion-col>
+          
+        </ion-row>
+  
+        <ion-row>
+          <ion-col col-5>
+              <ion-label>Numero Attacchi</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroAttacchi" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}"></ion-input>                
+          </ion-col>
+          <ion-col col-1>
+              <ion-checkbox [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroAttacchi)"></ion-checkbox>                
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Portata Contatore (m3/h)</ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" (ionChange)="calcolaClasseContatore()" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}"></ion-input>             
+            </ion-col>
+            <ion-col col-3>
+              <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox>             
+            </ion-col>
+        </ion-row>
+  
+        
+        <ion-row>
+          <ion-col col-5>
+              <ion-label>Classe Contatore Cee</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="text" disabled="true" [(ngModel)]="ads.Caratteristiche.ClasseContatoreCee"></ion-input>           
+          </ion-col>
+          <ion-col col-1>
+  
+          </ion-col>
+        </ion-row>
+      
+        <ion-row>
+          <ion-col col-5>
+                <ion-label>Tipo Lavoro</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                  <ion-option *ngFor="let item of WF1140_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+              </ion-select>
+          </ion-col>
+          <ion-col col-1>
+              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+        <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+          <ion-col col-5>
+              <ion-label>Definizione Complesso</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                  <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                </ion-select>
+          </ion-col>
+          <ion-col col-1>
+              
+          </ion-col>
+      </ion-row>
+  
+        <ion-row>
+          <ion-col col-5>
+              <ion-label>Destinazione uso</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                  <ion-option *ngFor="let item of WF1140_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+          </ion-col>
+          <ion-col col-1>
+              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>          
+          </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo fornitura</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.TipoFornitura" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}">
+                    <ion-option *ngFor="let item of WF1140_tipo_fornitura" value="{{item.key}}">{{ item.value }}</ion-option>
+                  </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.TipoFornitura)"></ion-checkbox>            
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-5>
+                <ion-label>Pressione fornitura (mbar)</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PressioneFornitura" disabled="{{CodiceAttivitaRow['checkBoxList'][6]}}"></ion-input>             
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][6]" [disabled]="!ads.Caratteristiche.PressioneFornitura"></ion-checkbox>  
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col col-5>
+                <ion-label>Installazione/Modifica Gruppo di riduzione</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.GRUPresente" disabled="{{CodiceAttivitaRow['checkBoxList'][7]}}">
+                    <ion-option *ngFor="let item of WF1140_gruppo_riduzione" value="{{item.key}}">{{ item.value }}</ion-option>
+                  </ion-select>
+             </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][7]" [disabled]="!ads.Caratteristiche.GRUPresente"></ion-checkbox>  
+            </ion-col>
+          </ion-row>
+
+  
+      </ion-grid>
+    </div>
+    
+  <!--    GAS : WF1100LB/WF1100RA/WF1110LB (PM1)      -->
+    <div *ngIf="(ads.CodiceAttivita === 'WF1100LB' || 
+                 ads.CodiceAttivita === 'WF1100RA' ||
+                 ads.CodiceAttivita === 'WF1100IS' ||
+                 ads.CodiceAttivita === 'WF1110LB'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  
+      <ion-grid>
+        <ion-row *ngIf="canChangeCodiceAttivita">
+          <ion-col col-5>
+              <ion-label>Codice Attività</ion-label>
+          </ion-col>
+          <ion-col col-6>
+               <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                  <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }}  - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+              </ion-select>
+          </ion-col>
+          <ion-col col-1>
+               <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col col-5>
+              <ion-label>Portata Contatore (m3/h)</ion-label>
+          </ion-col>
+          <ion-col col-3>
+              <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" 
+                          (ionChange)="calcolaClasseContatore()" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}"></ion-input>             
+          </ion-col>
+          <ion-col col-3>
+              <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+            </ion-col>
+          <ion-col col-1>
+              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox>             
+          </ion-col>
+        </ion-row>
+  
+        
+        <ion-row>
+          <ion-col col-5>
+              <ion-label>Classe Contatore Cee</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-input type="text" disabled="true" [(ngModel)]="ads.Caratteristiche.ClasseContatoreCee" ></ion-input>             
+          </ion-col>
+          <ion-col col-1>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo Lavoro</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                    <ion-option *ngFor="let item of WF1100IS_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                  </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+              <ion-col col-5>
+                  <ion-label>Definizione Complesso</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro"  disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                      <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  
+              </ion-col>
+          </ion-row>
+          <ion-row  [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+              <ion-col col-5>
+                  <ion-label>Tipologia intervento</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                      <ion-option *ngFor="let item of WF1100IS_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipologiaIntervento)"></ion-checkbox>                
+              </ion-col>
+            </ion-row>
+  
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Destinazione uso</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                        <ion-option *ngFor="let item of WF1100IS_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>                  
+                </ion-col>
+              </ion-row>
+
+              <ion-row>
+                <ion-col col-5>
+                    <ion-label>Pressione fornitura (mbar)</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PressioneFornitura" [disabled]="CodiceAttivitaRow['checkBoxList'][5]" ></ion-input>             
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!ads.Caratteristiche.PressioneFornitura"></ion-checkbox>  
+                </ion-col>
+              </ion-row>
+  
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Installazione/Modifica Gruppo di riduzione</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.GRUPresente" disabled="{{CodiceAttivitaRow['checkBoxList'][6]}}">
+                        <ion-option *ngFor="let item of WF1100IS_gruppo_riduzione" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][6]" [disabled]="!ads.Caratteristiche.GRUPresente"></ion-checkbox>  
+                </ion-col>
+            </ion-row>
+      </ion-grid>
+    </div>
+  
+  <!--    GAS : WF1610/WI1630 (PM1)     -->
+    <div *ngIf="(ads.CodiceAttivita === 'WF1610' ||
+                 ads.CodiceAttivita === 'WI1630' 
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  
+      <ion-grid>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo Lavoro</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                    <ion-option *ngFor="let item of WF1610_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                  </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>              
+            </ion-col>
+          </ion-row>
+          <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+              <ion-col col-5>
+                  <ion-label>Definizione Complesso</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                      <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  
+              </ion-col>
+          </ion-row>
+  
+          <ion-row>
+              <ion-col col-5>
+                  <ion-label>Tipo Taglio</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.TipoTaglio" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                      <ion-option *ngFor="let item of WF1610_tipo_taglio" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoTaglio)"></ion-checkbox>                
+              </ion-col>
+            </ion-row>
+  
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Destinazione uso</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                        <ion-option *ngFor="let item of WF1610_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>                  
+                </ion-col>
+              </ion-row>
+  
+              <!--
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Classe Contatore Cee</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-input type="text" disabled="true" [(ngModel)]="ads.Caratteristiche.ClasseContatoreCee"></ion-input>                     
+                  </ion-col>
+                  <ion-col col-1>
+                  </ion-col>
+                </ion-row>
+              -->
+
+  
+      </ion-grid>
+  
+  
+  
+    </div>
+  
+  <!--    GAS : WF1130A/WI1130I/WI1181A/WI1181I (PM1)   -->
+  <div *ngIf="(((ads.CodiceAttivita === 'WF1130A' || ads.CodiceAttivita === 'WF1130I') && ads.CodiceSocieta !== 'AAA') ||
+                 ads.CodiceAttivita === 'WF1181A' ||
+                 ads.CodiceAttivita === 'WF1181I'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  
+  
+          <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+              <ion-col col-5>
+                  <ion-label>Codice Attività</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                      <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }}  - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+              </ion-col>
+            </ion-row>
+  
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Tipo Lavoro</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                        <ion-option *ngFor="let item of WF1610_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row  [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+                  <ion-col col-5>
+                      <ion-label>Tipologia intervento</ion-label>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="ads.CodiceAttivita === 'WF1181I' || ads.CodiceAttivita === 'WF1181A'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                          <ion-option *ngFor="let item of WF1181I_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="ads.CodiceAttivita !== 'WF1181I' && ads.CodiceAttivita !== 'WF1181A'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                          <ion-option *ngFor="let item of WF1130A_ACQUA_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipologiaIntervento)"></ion-checkbox>                  
+                  </ion-col>
+                </ion-row>
+  
+                <ion-row>
+                    <ion-col col-5>
+                        <ion-label>Destinazione uso</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                            <ion-option *ngFor="let item of WF1610_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                          </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                    </ion-col>
+                  </ion-row>
+
+          </ion-grid>         
+       
+    </div>
+    
+
+  <!--    ACQUA[NO-FOGNATURA] : WF1070  (PR1)    -->
+  <div *ngIf="( ads.CodiceAttivita === 'WF1070') && DettaglioMerceologico[ads.DettaglioMerceologico] === 'FOGNATURA'">
+       <ion-grid>
+  
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Tipo Lavoro</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                        <ion-option *ngFor="let item of WF1170_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select> 
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>                
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+           <!-- <ion-row>
+                <ion-col col-5>
+                <ion-label>Tipo fornitura</ion-label>
+            </ion-col>
+            <ion-col col-6>
+               <div class="disabled" style="margin: 12px; opacity: 0.4;">
+                   {{tipoFornitura}}
+               </div>
+                </ion-col>
+            <ion-col col-1>
+            </ion-col>
+          </ion-row> -->
+  
+        </ion-grid>
+    </div>
+  
+  
+  <!--      GAS : WF1170/WF1070 (PR1)     -->
+  <div *ngIf="(ads.CodiceAttivita === 'WF1170' ||
+                 ads.CodiceAttivita === 'WF1070' 
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  
+        <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+              <ion-col col-5>
+                  <ion-label>Codice Attività</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                   <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                      <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                   <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Tipo Lavoro</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                        <ion-option *ngFor="let item of WF1170_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>                
+                </ion-col>
+              </ion-row>
+              <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+        </ion-grid>
+  
+       
+    </div>
+  
+  <!--      ACQUA[NO-FOGNATURA] : WF1010/WF1040F      
+            ACQUA[TUTTI]        : WF1040A/WF1050/WF1140
+    -->
+  <div *ngIf="(ads.CodiceAttivita === 'WF1010' && DettaglioMerceologico[ads.DettaglioMerceologico] !== 'FOGNATURA'  ||
+                 ads.CodiceAttivita === 'WF1040A' ||
+                 (ads.CodiceAttivita === 'WF1040F' && DettaglioMerceologico[ads.DettaglioMerceologico] !== 'FOGNATURA' ) ||
+                 ads.CodiceAttivita === 'WF1050' ||
+                 ads.CodiceAttivita === 'WF1140'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
+  
+        <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-5>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row *ngIf="ads.CodiceAttivita != 'WF1040F' && !(ads.CodiceAttivita == 'WF1010' && ads.TipoFornitura == '3')">
+                  <ion-col col-5>
+                      <ion-label>Numero Attacchi</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroAttacchi" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}"></ion-input>
+                      
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroAttacchi)"></ion-checkbox>
+                      
+                  </ion-col>
+                </ion-row>
+  
+                <ion-row *ngIf="ads.CodiceAttivita != 'WF1040F' && !(ads.CodiceAttivita == 'WF1010' && ads.TipoFornitura == '3')">
+                    <ion-col col-5>
+                        <ion-label>Portata Contatore (m3/h)</ion-label>
+                    </ion-col>
+                    <ion-col col-3>
+                        <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" (ionChange)="calcolaClasseContatore()" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}"></ion-input> 
+                        
+                    </ion-col>
+                    <ion-col col-3>
+                      <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+                    </ion-col>
+  
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox> 
+                        
+                    </ion-col>
+                  </ion-row>
+               
+                  <ion-row *ngIf="ads.CodiceAttivita != 'WF1040F' && !(ads.CodiceAttivita == 'WF1010' && ads.TipoFornitura == '3')">
+                      <ion-col col-5>
+                          <ion-label>Classe Contatore Cee</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-input type="text" disabled="true" [(ngModel)]="ads.Caratteristiche.ClasseContatoreCee"></ion-input> 
+                          
+                      </ion-col>
+                      <ion-col col-1>
+                          
+                      </ion-col>
+                    </ion-row>
+                  
+                    <ion-row>
+                        <ion-col col-5>
+                            <ion-label>Tipo Lavoro</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                                <ion-option *ngFor="let item of WF1010_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                              </ion-select>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                            
+                        </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                          <ion-col col-5>
+                              <ion-label>Definizione Complesso</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                                  <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              
+                          </ion-col>
+                      </ion-row>
+  
+                      <ion-row>
+                          <ion-col col-5>
+                              <ion-label>Destinazione uso</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                                  <ion-option *ngFor="let item of WF1010_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                              
+                          </ion-col>
+                        </ion-row>
+  
+                        <ion-row>
+                            <ion-col col-5>
+                                <ion-label>Tipo fornitura</ion-label>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-select [(ngModel)]="ads.TipoFornitura" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                                    <ion-option *ngFor="let item of WF1010_tipo_fornitura" value="{{item.key}}">{{ item.value }}</ion-option>
+                                  </ion-select>
+                            </ion-col>
+                            <ion-col col-1>
+                                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.TipoFornitura)"></ion-checkbox>
+                                
+                            </ion-col>
+                        </ion-row>
+
+                        <ion-row *ngIf="ads.CodiceAttivita === 'WF1040F'">
+                            <ion-col col-5>
+                                <ion-label>Diametro (metri)</ion-label>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-select [(ngModel)]="ads.Caratteristiche.Diametro" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                                    <ion-option *ngFor="let item of LAVFAT1040_diametro_fognatura" value="{{item.key}}">{{ item.value }}</ion-option>
+                                </ion-select>
+                            </ion-col>
+                            <ion-col col-1>
+                                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.Diametro)"></ion-checkbox>    
+                            </ion-col>
+                        </ion-row>
+        
+                        <ion-row *ngIf="ads.CodiceAttivita === 'WF1040F'">
+                            <ion-col col-5>
+                                <ion-label>Profondità (metri)</ion-label>
+                            </ion-col>
+                            <ion-col col-6>
+                                <ion-input type="number" [(ngModel)]="ads.Caratteristiche.Profondita" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}"></ion-input>                
+                            </ion-col>
+                            <ion-col col-1>
+                                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.Profondita)"></ion-checkbox>      
+                            </ion-col>
+                        </ion-row>
+
+                                    
+                        <ion-row *ngIf="ads.CodiceAttivita === 'WF1040F'">
+                                <ion-col col-5>
+                                    <ion-label>Tipo Allaccio</ion-label>
+                                </ion-col>
+                                <ion-col col-6>
+                                    <ion-select [(ngModel)]="ads.Caratteristiche.TipoAllaccio"  disabled="{{CodiceAttivitaRow['checkBoxList'][6]}}">
+                                        <ion-option *ngFor="let item of LAVFAT1040_tipo_allaccio" value="{{item.key}}">{{ item.key }} - {{item.value}}</ion-option>
+                                    </ion-select>
+                                </ion-col>
+                                <ion-col col-1>
+                                    <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][6]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoAllaccio)"></ion-checkbox>
+                                    
+                                </ion-col>
+                            
+                        </ion-row>
+  
+  
+        </ion-grid>
+       
+  
+    </div>
+
+  <!--      ACQUA[TUTTI]        : WF1100LB/WF1100RA/WF1110LB    -->
+    <div *ngIf="(ads.CodiceAttivita === 'WF1100LB' ||
+                 ads.CodiceAttivita === 'WF1100RA' ||
+                 ads.CodiceAttivita === 'WF1110LB'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
+  
+        <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-5>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                     <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+               
+                </ion-col>
+                <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of WF1100LB_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]"  [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+                <ion-row>
+                    <ion-col col-5>
+                        <ion-label>Portata Contatore (m3/h)</ion-label>
+                    </ion-col>
+                    <ion-col col-3>
+                        <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatore" (ionChange)="calcolaClasseContatore()" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}"></ion-input> 
+                        
+                    </ion-col>
+                    <ion-col col-3>
+                      <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox> 
+                        
+                    </ion-col>
+                  </ion-row>
+  
+                  
+                  <ion-row>
+                      <ion-col col-5>
+                          <ion-label>Classe Contatore Cee</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-input type="text" disabled="true" [(ngModel)]="ads.Caratteristiche.ClasseContatoreCee"></ion-input> 
+                          
+                      </ion-col>
+                      <ion-col col-1>
+                          
+                      </ion-col>
+                    </ion-row>
+                  
+                    <ion-row >
+                        <ion-col col-5>
+                            <ion-label>Tipologia Intervento</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                                <ion-option *ngFor="let item of WF1100LB_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                              </ion-select>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipologiaIntervento)"></ion-checkbox>
+                            
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col col-5>
+                            <ion-label>Destinazione uso</ion-label>
+                        </ion-col>
+                        <ion-col col-6>
+                            <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                                <ion-option *ngFor="let item of WF1100LB_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                              </ion-select>
+                        </ion-col>
+                        <ion-col col-1>
+                            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                            
+                        </ion-col>
+                      </ion-row>
+  
+  
+        </ion-grid>
+  
+    </div>
+  
+  <!--      ACQUA[TUTTI]        : WF610    -->
+  <div *ngIf="(ads.CodiceAttivita === 'WF1610'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
+  
+        <ion-grid>
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro">
+                          <ion-option *ngFor="let item of WF1610_ACQUA_tipo_lavoro" value="{{item.key}}" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                      
+                  </ion-col>
+                </ion-row>                    
+                <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+                <ion-row>
+                    <ion-col col-5>
+                        <ion-label>Tipo Taglio</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-select [(ngModel)]="ads.Caratteristiche.TipoTaglio" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                            <ion-option *ngFor="let item of WF1610_ACQUA_tipo_taglio" value="{{item.key}}">{{ item.value }}</ion-option>
+                          </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoTaglio)"></ion-checkbox>
+                        
+                    </ion-col>
+                  </ion-row>
+        </ion-grid>         
+       
+    </div>
+  
+  <!--      ACQUA[TUTTI]        : WF1130A/WF1130I/WF1181A/WF1181I    -->
+  <div *ngIf="(ads.CodiceAttivita === 'WF1130A' ||
+                 ads.CodiceAttivita === 'WF1130I' ||
+                 ads.CodiceAttivita === 'WF1181A' ||
+                 ads.CodiceAttivita === 'WF1181I'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
+  
+        <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-5>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                     <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of WF1130A_ACQUA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                      
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+                <ion-row [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+                    <ion-col col-5>
+                        <ion-label>Tipologia intervento</ion-label>
+                    </ion-col>
+                    <ion-col col-6 *ngIf="ads.CodiceAttivita === 'WF1181I' || ads.CodiceAttivita === 'WF1181A'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                          <ion-option *ngFor="let item of WF1181I_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                   </ion-col>
+                    <ion-col col-6 *ngIf="ads.CodiceAttivita !== 'WF1181I' && ads.CodiceAttivita !== 'WF1181A'">
+                        <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                            <ion-option *ngFor="let item of WF1130A_ACQUA_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                          </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipologiaIntervento)"></ion-checkbox>
+                        
+                    </ion-col>
+                  </ion-row>
+  
+        </ion-grid>        
+  
+    </div>
+
+  <!--      ACQUA[NO-FOGNATURA] : WF1170/WF1070    --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1170' ||
+                 ads.CodiceAttivita === 'WF1070' 
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA' && DettaglioMerceologico[ads.DettaglioMerceologico] != 'FOGNATURA'">
+  
+        <ion-grid>
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-5>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                     <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of WF1170_ACQUA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                      
+                  </ion-col>
+                </ion-row>
+                <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+  
+        </ion-grid>
+  
+    </div>
+  
+  <!--      ENERGIA_ELETTRICA[1,2] : WF1040    --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1040' 
+                  && SettoreMerceologico[ads.SettoreMerceologico] === 'ENERGIA_ELETTRICA')
+                  && (ads.TipoPreventivo == 1 || ads.TipoPreventivo == 2)
+                  ">
+  
+        <ion-grid>
+          
+            <ion-row *ngIf="canChangeCodiceAttivita">
+                <ion-col col-6>
+                    <ion-label>Codice Attività</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()">
+                        <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                      </ion-select>
+                </ion-col>
+              </ion-row>
+        
+              <ion-row *ngIf="tipoFornituraEnabled">
+                  <ion-col col-5>
+                      <ion-label>Tipo fornitura</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.TipoFornitura" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                          <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_tipo_fornitura" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.TipoFornitura)"></ion-checkbox>
+                      
+                  </ion-col>
+                </ion-row>
+  
+                <ion-row *ngIf="numFasiEnabled">
+                    <ion-col col-5>
+                        <ion-label>Numero Fasi</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-select [(ngModel)]="ads.Caratteristiche.NumeroFasi" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                            <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_numero_fasi" value="{{item.key}}">{{ item.value }}</ion-option>
+                          </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroFasi)"></ion-checkbox>
+                        
+                    </ion-col>
+                </ion-row>
+  
+                <ion-row *ngIf="numAttacchiEnabled">
+                    <ion-col col-5>
+                        <ion-label>Numero Attacchi</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroAttacchi" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}"></ion-input> 
+                        
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroAttacchi)"></ion-checkbox>
+                        
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-5>
+                        <ion-label>Tipo Lavoro</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                            <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                            </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoLavoro)"></ion-checkbox>
+                        
+                    </ion-col>
+                </ion-row>
+
+                <ion-row>
+                    <ion-col col-5>
+                        <ion-label>Potenza contr. richiesta (Kw)</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-input type="number" (ionFocus)="showPotRicContInfo()" [(ngModel)]="ads.Caratteristiche.PotenzaContrRichiesta" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}" value="{{ads.Caratteristiche.PotenzaContrRichiesta}}"></ion-input> 
+                        
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PotenzaContrRichiesta)"></ion-checkbox>
+                        
+                    </ion-col>
+                </ion-row>
+
+                <ion-row *ngIf="destinazioneUsoEnabled">
+                    <ion-col col-5>
+                        <ion-label>Destinazione uso</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                        <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}">
+                            <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                            </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                        <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                        
+                    </ion-col>
+                </ion-row>
+  
+  
+        </ion-grid>             
+  
+    </div>
+  
+  <!--      ENERGIA_ELETTRICA[3,4,5] : WF1040    --> 
+  <div *ngIf="(ads.CodiceAttivita === 'WF1040' 
+                  && SettoreMerceologico[ads.SettoreMerceologico] === 'ENERGIA_ELETTRICA')
+                  && (ads.TipoPreventivo == 3 || ads.TipoPreventivo == 4 || ads.TipoPreventivo == 5)
+                  ">
+  
+    <ion-grid>
+  
+        <ion-row *ngIf="canChangeCodiceAttivita">
+          <ion-col col-6>
+              <ion-label>Codice Attività</ion-label>
+          </ion-col>
+          <ion-col col-6>
+              <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()">
+                  <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+              </ion-select>
+          </ion-col>
+        </ion-row>      
+  
+        <ion-row *ngIf="numFasiEnabled">
+            <ion-col col-5>
+                <ion-label>Numero Fasi</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.NumeroFasi" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                    <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_numero_fasi" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroFasi)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+  
+        <ion-row *ngIf="numAttacchiEnabled">
+            <ion-col col-5>
+                <ion-label>Numero Attacchi</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroAttacchi" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroAttacchi)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo Lavoro</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                    <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoLavoro)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Potenza contr. richiesta (Kw)</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PotenzaContrRichiesta" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}" value="{{ads.Caratteristiche.PotenzaContrRichiesta}}"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  (ionFocus)="showPotRicContInfo()" [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PotenzaContrRichiesta)"></ion-checkbox>      
+            </ion-col>
+        </ion-row>
+  
+        <ion-row *ngIf="destinazioneUsoEnabled">
+            <ion-col col-5>
+                <ion-label>Destinazione uso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                    <ion-option *ngFor="let item of WF1040_ENERGIA_ELETTRICA_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+  
+    </ion-grid>             
+  
+  </div>
+  
+  <!--      ENERGIA_ELETTRICA : WF1100    --> 
+  <div *ngIf="(ads.CodiceAttivita === 'WF1100'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ENERGIA_ELETTRICA'">
+  
+    <ion-grid>
+        <ion-row *ngIf="canChangeCodiceAttivita">
+            <ion-col col-6>
+                <ion-label>Codice Attività</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()">
+                    <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+            </ion-col>
+        </ion-row>
+        
+  
+        <ion-row *ngIf="numFasiEnabled">
+            <ion-col col-5>
+                <ion-label>Numero Fasi</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.NumeroFasi" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                    <ion-option *ngFor="let item of WF1100_ENERGIA_ELETTRICA_numero_fasi" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroFasi)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo Lavoro</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                    <ion-option *ngFor="let item of WF1100_ENERGIA_ELETTRICA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoLavoro)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Potenza attuale presente (kW)</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-input type="number"  [(ngModel)]="ads.Caratteristiche.PotenzaAttuale" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}" value="{{ads.Caratteristiche.PotenzaAttuale}}"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PotenzaAttuale)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Potenza contr. richiesta (kW)</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-input type="number" (ionFocus)="showPotRicContInfo()" [(ngModel)]="ads.Caratteristiche.PotenzaContrRichiesta" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}" value="{{ads.Caratteristiche.PotenzaContrRichiesta}}"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PotenzaContrRichiesta)"></ion-checkbox>
+                
+            </ion-col>
+        </ion-row>
+
+        </ion-grid>         
+  </div>
+ 
+    <!--      ENERGIA_ELETTRICA : WF1181/WF1190/WF1191/WF1610   --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1181' ||
+                  ads.CodiceAttivita === 'WF1190' || ads.CodiceAttivita === 'WF1191' ||
+                  ads.CodiceAttivita === 'WF1610'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ENERGIA_ELETTRICA'">
+  
+      <ion-grid>
+          <ion-row>
+              <ion-col col-5>
+                  <ion-label>Tipo Lavoro</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                      <ion-option *ngFor="let item of WF1181_ENERGIA_ELETTRICA_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                      </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipoLavoro)"></ion-checkbox>
+                  
+              </ion-col>
+          </ion-row>
+  
+        
+  
+      </ion-grid>
+     
+    </div>
+  
+    <!--      TLR : WF1010/WF1040/WF1140   --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1010' ||
+                  ads.CodiceAttivita === 'WF1040' ||
+                  ads.CodiceAttivita === 'WF1140' 
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'TLR'">
+  
+      <ion-grid>
+          <ion-row *ngIf="canChangeCodiceAttivita">
+              <ion-col col-5>
+                  <ion-label>Codice Attività</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                   <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                      <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-5>
+                  <ion-label>Numero Attacchi</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroAttacchi" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}"></ion-input>
+                  
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroAttacchi)"></ion-checkbox>
+                  
+              </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Portata Contatore (m3/h)</ion-label>
+                  </ion-col>
+                  <ion-col col-3>
+                      <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}"></ion-input> 
+                      
+                  </ion-col>
+                  <ion-col col-3>
+                      <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+                    </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox> 
+                      
+                  </ion-col>
+                  </ion-row>
+  
+                  <ion-row>
+                      <ion-col col-5>
+                          <ion-label>Tipo Lavoro</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                              <ion-option *ngFor="let item of WF1010_TLR_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                            </ion-select>
+                      </ion-col>
+                      <ion-col col-1>
+                          <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                          
+                      </ion-col>
+                      </ion-row>
+                      <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'">
+                          <ion-col col-5>
+                              <ion-label>Definizione Complesso</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                                  <ion-option *ngFor="let item of definizioneLavoroTLR" value="{{item}}">{{ item }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              
+                          </ion-col>
+                      </ion-row>
+  
+                      <ion-row>
+                          <ion-col col-5>
+                              <ion-label>Allacciamento Rete</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.AllacciamentoRete" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                                  <ion-option *ngFor="let item of WF1010_TLR_allacciamento_rete" value="{{item.key}}">{{ item.value }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.AllacciamentoRete)"></ion-checkbox>
+                              
+                          </ion-col>
+                          </ion-row>
+  
+                          <ion-row>
+                              <ion-col col-5>
+                                  <ion-label>Allacciamento Cond Mandata</ion-label>
+                              </ion-col>
+                              <ion-col col-6>
+                                  <ion-select [(ngModel)]="ads.Caratteristiche.AllacciamentoCondMandata" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}">
+                                      <ion-option *ngFor="let item of WF1010_TLR_allacciamento_cond_mandata" value="{{item.key}}">{{ item.value }}</ion-option>
+                                    </ion-select>
+                              </ion-col>
+                              <ion-col col-1>
+                                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.AllacciamentoCondMandata)"></ion-checkbox>
+                                  
+                              </ion-col>
+                              </ion-row>
+  
+                              <ion-row>
+                                  <ion-col col-5>
+                                      <ion-label>Temperatura cond rit</ion-label>
+                                  </ion-col>
+                                  <ion-col col-6>
+                                      <ion-select [(ngModel)]="ads.Caratteristiche.TemperaturaCondRit" disabled="{{CodiceAttivitaRow['checkBoxList'][6]}}">
+                                          <ion-option *ngFor="let item of WF1010_TLR_temperatura_cond_rit" value="{{item.key}}">{{ item.value }}</ion-option>
+                                        </ion-select>
+                                  </ion-col>
+                                  <ion-col col-1>
+                                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][6]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TemperaturaCondRit)"></ion-checkbox>
+                                      
+                                  </ion-col>
+                                  </ion-row>
+  
+                                  <ion-row>
+                                      <ion-col col-5>
+                                          <ion-label>Numero scambiatori</ion-label>
+                                      </ion-col>
+                                      <ion-col col-6>
+                                          <ion-select [(ngModel)]="ads.Caratteristiche.NumeroScambiatori" disabled="{{CodiceAttivitaRow['checkBoxList'][7]}}">
+                                              <ion-option name="1 N." value="1 N.">1 N.</ion-option>
+                                              <ion-option name="2 N." value="2 N.">2 N.</ion-option>
+                                              <ion-option name="3 N." value="3 N.">3 N.</ion-option>
+                                              <ion-option name="4 N." value="4 N.">4 N.</ion-option>
+                                              <ion-option name="5 N." value="5 N.">5 N.</ion-option>
+                                              <ion-option name="6 N." value="6 N.">6 N.</ion-option>
+                                              <ion-option name="7 N." value="7 N.">7 N.</ion-option>
+                                              <ion-option name="8 N." value="8 N.">8 N.</ion-option>
+                                              <ion-option name="9 N." value="9 N.">9 N.</ion-option>
+                                          </ion-select>
+                                      </ion-col>
+                                      <ion-col col-1>
+                                          <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][7]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.NumeroScambiatori)"></ion-checkbox>
+                                          
+                                      </ion-col>
+                                      </ion-row>
+  
+      </ion-grid>
+    </div>
+  
+    <!--      TLR : WF1100LB/WF1100LB   --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1100LB' ||
+                  ads.CodiceAttivita === 'WF1100LB'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'TLR'">
+  
+      <ion-grid>
+          <ion-row *ngIf="canChangeCodiceAttivita">
+              <ion-col col-5>
+                  <ion-label>Codice Attività</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                   <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                      <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                     <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+              </ion-col>
+          </ion-row>
+          <ion-row>
+              <ion-col col-5>
+                  <ion-label>Portata Contatore (m3/h)</ion-label>
+              </ion-col>
+              <ion-col col-3>
+                  <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}"></ion-input> 
+                  
+              </ion-col>
+              <ion-col col-3>
+                  <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+                </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox> 
+                  
+              </ion-col>
+              </ion-row>
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                          <ion-option *ngFor="let item of WF1100LB_TLR_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                      
+                  </ion-col>
+                  </ion-row>
+                  <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'">
+                      <ion-col col-5>
+                          <ion-label>Definizione Complesso</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                              <ion-option *ngFor="let item of definizioneLavoroTLR" value="{{item}}">{{ item }}</ion-option>
+                            </ion-select>
+                      </ion-col>
+                      <ion-col col-1>
+                          
+                      </ion-col>
+                  </ion-row>
+  
+                  <ion-row [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+                      <ion-col col-5>
+                          <ion-label>Tipologia intervento</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                              <ion-option *ngFor="let item of WF1100LB_TLR_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                            </ion-select>
+                      </ion-col>
+                      <ion-col col-1>
+                          <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" ></ion-checkbox>
+                          
+                      </ion-col>
+                      </ion-row>
+  
+  
+      </ion-grid>
+    </div>
+  
+    <!--      TLR : WF1181/WF1130   --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1181' ||
+                  ads.CodiceAttivita === 'WF1130'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'TLR'">
+  
+          
+          <ion-grid>
+                 <ion-row *ngIf="canChangeCodiceAttivita">
+                    <ion-col col-5>
+                        <ion-label>Codice Attività</ion-label>
+                    </ion-col>
+                    <ion-col col-6>
+                         <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                            <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                          </ion-select>
+                    </ion-col>
+                    <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+                    </ion-row>
+  
+                    <!--<ion-row>
+                        <ion-col col-5>
+                            <ion-label>Portata Contatore (m3/h)</ion-label>
+                        </ion-col>
+                        <ion-col col-3>
+                            <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore"></ion-input> 
+                            
+                        </ion-col>
+                        <ion-col col-3>
+                            <div style="margin:12px;opacity:0.4">{{ads.Caratteristiche.PortataContatoreUnitaMisura}}</div>
+                        </ion-col>
+                        <ion-col col-1>
+                             
+                        </ion-col>
+                      </ion-row> -->
+  
+                      <ion-row>
+                          <ion-col col-5>
+                              <ion-label>Tipo Lavoro</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                                  <ion-option *ngFor="let item of WF1181_TLR_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                                </ion-select>
+                          </ion-col>
+                          <ion-col col-1>
+                              <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                              
+                          </ion-col>
+                          </ion-row>
+                          <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+                              <ion-col col-5>
+                                  <ion-label>Definizione Complesso</ion-label>
+                              </ion-col>
+                              <ion-col col-6>
+                                  <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                                      <ion-option *ngFor="let item of definizioneLavoroTLR" value="{{item}}">{{ item }}</ion-option>
+                                    </ion-select>
+                              </ion-col>
+                              <ion-col col-1>
+                                  
+                              </ion-col>
+                          </ion-row>
+  
+                          <ion-row [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+                              <ion-col col-5>
+                                  <ion-label>Tipologia intervento</ion-label>
+                              </ion-col>
+                              <ion-col col-6>
+                                  <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                                      <ion-option *ngFor="let item of WF1181_TLR_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                                    </ion-select>
+                              </ion-col>
+                              <ion-col col-1>
+                                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" ></ion-checkbox>
+                                  
+                              </ion-col>
+                              </ion-row>
+  
+          </ion-grid>          
+     </div>
+  
+    <!--      TLR : WF1170/WF1070   --> 
+    <div *ngIf="(ads.CodiceAttivita === 'WF1170' ||
+                  ads.CodiceAttivita === 'WF1070'
+                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'TLR'">
+  
+      <ion-grid>
+          <ion-row *ngIf="canChangeCodiceAttivita">
+              <ion-col col-5>
+                  <ion-label>Codice Attività</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                   <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                  
+                      <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }} - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+                  </ion-col>
+          </ion-row>
+      
+          <ion-row>
+              <ion-col col-5>
+                  <ion-label>Portata Contatore (m3/h)</ion-label>
+              </ion-col>
+              <ion-col col-3>
+                  <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PortataContatore" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}"></ion-input> 
+                  
+              </ion-col>
+              <ion-col col-3>
+                  <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PortataContatoreUnitaMisura" disabled=true></ion-input>             
+                </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.PortataContatore)"></ion-checkbox> 
+                  
+              </ion-col>
+              </ion-row>
+  
+              <ion-row>
+                  <ion-col col-5>
+                      <ion-label>Tipo Lavoro</ion-label>
+                  </ion-col>
+                  <ion-col col-6>
+                      <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                          <ion-option *ngFor="let item of WF1170_TLR_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-1>
+                      <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                      
+                  </ion-col>
+                  </ion-row>
+                  <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'">
+                      <ion-col col-5>
+                          <ion-label>Definizione Complesso</ion-label>
+                      </ion-col>
+                      <ion-col col-6>
+                          <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                              <ion-option *ngFor="let item of definizioneLavoroTLR" value="{{item}}">{{ item }}</ion-option>
+                            </ion-select>
+                      </ion-col>
+                      <ion-col col-1>
+                          
+                      </ion-col>
+                  </ion-row>
+  
+      </ion-grid>           
+     
+    </div>  
+  
+    <!--      TUTTI : LAVFAT1150   --> 
+    <div *ngIf="ads.ProdServizio === 'LAVFAT1150'"> 
+      <ion-grid>
+          <ion-row>
+              <ion-col col-5>
+                    <ion-label>Tipo Lavoro</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                      <ion-option *ngFor="let item of LAVFAT1150_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                  <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+                  
+              </ion-col>
+              </ion-row>
+              <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+                  <ion-col col-5>
+                      <ion-label>Definizione Complesso</ion-label>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="SettoreMerceologico[ads.SettoreMerceologico] === 'TLR'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroTLR" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
+                      <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                          <ion-option *ngFor="let item of definizioneLavoroACQUA" value="{{item}}">{{ item }}</ion-option>
+                        </ion-select>
+                  </ion-col>
+                  <ion-col col-6 *ngIf="SettoreMerceologico[ads.SettoreMerceologico] === 'ENERGIA_ELETTRICA'">
+                    <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+                        <ion-option *ngFor="let item of definizioneLavoroEE" value="{{item}}">{{ item }}</ion-option>
+                      </ion-select>
+                </ion-col>
+                  <ion-col col-1>
+                      
+                  </ion-col>
+              </ion-row>
+  
+      </ion-grid>
+    </div>  
+  
+    <!--      TUTTI : LAVFAT1400  (in scrittura se EE) --> 
+    <div *ngIf="ads.ProdServizio === 'LAVFAT1400'"> 
+  
+      <ion-grid>
+            <ion-row>
+              <ion-col col-5>
+                  <ion-label>Tipo Lavoro</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{SettoreMerceologico[ads.SettoreMerceologico] !== 'ENERGIA_ELETTRICA'}}">
+                      <ion-option *ngFor="let item of LAVFAT1400_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+                      
+              </ion-col>
+            </ion-row>
+  
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Tipo fornitura</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.TipoFornitura" disabled="true">
+                        <ion-option *ngFor="let item of LAVFAT1400_tipo_fornitura" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Destinazione uso</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="true">
+                        <ion-option *ngFor="let item of LAVFAT1400_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Tipo fonte primaria</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.TipoFontePrimaria" disabled="true">
+                        <ion-option *ngFor="let item of LAVFAT1400_tipo_fonte_primaria" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>     
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Fonte primaria</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.FontePrimaria" disabled="true">
+                        <ion-option *ngFor="let item of LAVFAT1400_fonte_primaria" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>   
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Lotto</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-select [(ngModel)]="ads.Caratteristiche.Lotto" disabled="true">
+                        <ion-option *ngFor="let item of LAVFAT1400_lotto" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+                </ion-col>
+                <ion-col col-1>
+
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Numero impianti</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-input type="text" [(ngModel)]="ads.Caratteristiche.NumeroImpianti" disabled="true" ></ion-input> 
+                    
+                </ion-col>
+                <ion-col col-1>
+                            
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Numero sezioni</ion-label>
+                </ion-col>
+                <ion-col col-6>
+                    <ion-input type="text" [(ngModel)]="ads.Caratteristiche.NumeroSezioni" disabled="true" ></ion-input> 
+                    
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+            <ion-row>
+                <ion-col col-5>
+                    <ion-label>Potenza in imm richiesta</ion-label>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaImmissioneRichiesta"  disabled="true"></ion-input> 
+                    
+                </ion-col>
+                <ion-col col-3>
+                    <ion-label>kW</ion-label>
+                </ion-col>
+                <ion-col col-1>
+                    
+                </ion-col>
+            </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Potenza nom richiesta</ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaNominaleRichiesta" disabled="true"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-3>
+                <ion-label>kW</ion-label>
+            </ion-col>
+            <ion-col col-1>
+                
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Potenza richiesta</ion-label>
+            </ion-col>
+            <ion-col col-3>
+                <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="{{SettoreMerceologico[ads.SettoreMerceologico] !== 'ENERGIA_ELETTRICA'}}"></ion-input> 
+                
+            </ion-col>
+            <ion-col col-3>
+                <ion-label>kW</ion-label>
+            </ion-col>
+            <ion-col col-1>
+                
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo cessione</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoCessione" disabled="true">
+                    <ion-option *ngFor="let item of LAVFAT1400_tipo_cessione" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+            
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Servizi ausiliari</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.ServiziAusiliari" disabled="true">
+                    <ion-option *ngFor="let item of LAVFAT1400_servizi_ausiliari" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+
+
+    <!-- LAVFAT1130 LAVFAT1181 LAVFAT1631 GAS AAA -->
+    <div *ngIf="ads.CodiceSocieta === 'AAA' && 
+                SettoreMerceologico[ads.SettoreMerceologico] === 'GAS' &&
+                (ads.ProdServizio === 'LAVFAT1130' &&  (ads.CodiceAttivita === 'WF1130' || ads.CodiceAttivita === 'WF1130A'|| ads.CodiceAttivita === 'WF1130I')) || 
+                (ads.ProdServizio === 'LAVFAT1181' &&  (ads.CodiceAttivita === 'WF1181A'|| ads.CodiceAttivita === 'WF1181I')) || 
+                (ads.ProdServizio === 'LAVFAT1631' && ads.CodiceAttivita === 'LF1631')">
+        <ion-grid>
+        <ion-row *ngIf="canChangeCodiceAttivita">
+        <ion-col col-5>
+            <ion-label>Codice Attività</ion-label>
+        </ion-col>
+        <ion-col col-6>
+            <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+            
+                <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }}  - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+            </ion-select>
+        </ion-col>
+        <ion-col col-1>
+            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+        </ion-col>
+        </ion-row>
+
+        <ion-row>
+        <ion-col col-5>
+            <ion-label>Tipo Lavoro</ion-label>
+        </ion-col>
+        <ion-col col-6>
+            <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                <ion-option *ngFor="let item of WF1610_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+        </ion-col>
+        <ion-col col-1>
+            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+        </ion-col>
+        </ion-row>
+        <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+            <ion-col col-5>
+                <ion-label>Definizione Complesso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                    <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                
+            </ion-col>
+        </ion-row>
+
+        <ion-row  [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)">
+            <ion-col col-5>
+                <ion-label>Tipologia intervento</ion-label>
+            </ion-col>
+            
+            <ion-col col-6 >
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipologiaIntervento" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                    <ion-option *ngFor="let item of WF1130A_ACQUA_tipologia_intervento" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.TipologiaIntervento)"></ion-checkbox>                  
+            </ion-col>
+        </ion-row>
+
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Destinazione uso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
+                    <ion-option *ngFor="let item of WF1610_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+            </ion-col>
+            </ion-row>
+
+        
+        <!-- Only for LAVFAT1631 AND LF1631 -->
+        <ion-row *ngIf="ads.CodiceAttivita === 'LF1631'">
+            <ion-col col-5>
+                <ion-label>Tipo Uscita Presa Impulsiva</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.PresaImpulsiva" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                    <ion-option *ngFor="let item of LF1631_presa_impulsiva" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!ads.Caratteristiche.PresaImpulsiva"></ion-checkbox>  
+            </ion-col>
+        </ion-row>
+        <ion-row *ngIf="ads.CodiceAttivita === 'LF1631'">
+            <ion-col col-5>
+                <ion-label>Fornitura e installazione</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.FornituraInstallazione" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}">
+                    <ion-option *ngFor="let item of LF1631_fornitura_installazione" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!ads.Caratteristiche.PresaImpulsiva"></ion-checkbox>  
+            </ion-col>
+        </ion-row>
+        </ion-grid>         
+
+        </div>
+  
+    <!--      TUTTI : LAVFAT1430   --> 
+    <div *ngIf="ads.ProdServizio === 'LAVFAT1430'"> 
+      <ion-grid>
+        <ion-row>
+              <ion-col col-5>
+                  <ion-label>Tipo fornitura</ion-label>
+              </ion-col>
+              <ion-col col-6>
+                  <ion-select [(ngModel)]="ads.TipoFornitura" disabled="true">
+                      <ion-option *ngFor="let item of LAVFAT1430_tipo_fornitura" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+              </ion-col>
+              <ion-col col-1>
+  
+              </ion-col>
+        </ion-row>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Destinazione uso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="true">
+                    <ion-option *ngFor="let item of LAVFAT1430_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select> 
+                
+            </ion-col>
+            <ion-col col-1>
+            </ion-col>
+        </ion-row>
+  
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Tipo fonte primaria</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.TipoFontePrimaria" disabled="true">
+                    <ion-option *ngFor="let item of LAVFAT1430_tipo_fonte_primaria" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>  
+            </ion-col>
+            <ion-col col-1>
+            </ion-col>
+        </ion-row>
+  
+                      <ion-row>
+                          <ion-col col-5>
+                              <ion-label>Fonte primaria</ion-label>
+                          </ion-col>
+                          <ion-col col-6>
+                              <ion-select [(ngModel)]="ads.Caratteristiche.FontePrimaria" disabled="true">
+                                  <ion-option *ngFor="let item of LAVFAT1430_fonte_primaria" value="{{item.key}}">{{ item.value }}</ion-option>
+                              </ion-select>   
+                          </ion-col>
+                          <ion-col col-1>
+      
+                          </ion-col>
+                          </ion-row>
+  
+                          <ion-row>
+                              <ion-col col-5>
+                                  <ion-label>Potenza in imm richiesta</ion-label>
+                              </ion-col>
+  
+                              <ion-col col-3>
+                                  <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PotenzaImmissioneRichiesta" disabled="true"></ion-input> 
+                                  
+                              </ion-col>
+                              <ion-col col-3>
+                                      <ion-label>kW</ion-label>
+                              </ion-col>
+                              <ion-col col-1>
+                         
+                              </ion-col>
+                              </ion-row>
+  
+                              <ion-row>
+                                  <ion-col col-5>
+                                      <ion-label>Potenza nom richiesta</ion-label>
+                                  </ion-col>
+                                  <ion-col col-3>
+                                      <ion-input type="number" [(ngModel)]="ads.Caratteristiche.PotenzaNominaleRichiesta" disabled="true"></ion-input> 
+                                      
+                                  </ion-col>
+                                  <ion-col col-3>
+                                          <ion-label>kW</ion-label>             
+                                  </ion-col>
+                                  <ion-col col-1>
+                            
+                                  </ion-col>
+                                  </ion-row>
+  
+                                  <ion-row>
+                                      <ion-col col-5>
+                                          <ion-label>Tipo cessione</ion-label>
+                                      </ion-col>
+                                      <ion-col col-6>
+                                          <ion-select [(ngModel)]="ads.Caratteristiche.TipoCessione" disabled="true">
+                                                  <ion-option *ngFor="let item of LAVFAT1430_tipo_cessione" value="{{item.key}}">{{ item.value }}</ion-option>
+                                          </ion-select>
+                                          
+                                      </ion-col>
+                                      <ion-col col-1>
+                                          
+                                      </ion-col>
+                                      </ion-row>
+                                      <ion-row>
+                                          <ion-col col-5>
+                                              <ion-label>Servizi ausiliari</ion-label>
+                                          </ion-col>
+                                          <ion-col col-6>
+                                              <ion-select [(ngModel)]="ads.Caratteristiche.ServiziAusiliari" disabled="true}">
+                                                  <ion-option *ngFor="let item of LAVFAT1430_servizi_ausiliari" value="{{item.key}}">{{ item.value }}</ion-option>
+                                                </ion-select>
+                                          </ion-col>
+                                          <ion-col col-1>
+             
+                                          </ion-col>
+                                          </ion-row>
+  
+                                          <ion-row>
+                                              <ion-col col-5>
+                                                  <ion-label>Lotto</ion-label>
+                                              </ion-col>
+                                              <ion-col col-6>
+                                                  <ion-select [(ngModel)]="ads.Caratteristiche.Lotto" disabled="true">
+                                                      <ion-option *ngFor="let item of LAVFAT1430_lotto" value="{{item.key}}">{{ item.value }}</ion-option>
+                                                    </ion-select>
+                                              </ion-col>
+                                              <ion-col col-1>
+                  
+                                              </ion-col>
+                                              </ion-row>
+  
+                                              <ion-row>
+                                                  <ion-col col-5>
+                                                      <ion-label>Numero sezioni</ion-label>
+                                                  </ion-col>
+                                                  <ion-col col-6>
+                                                      <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroSezioni" disabled="true"></ion-input> 
+                                                      
+                                                  </ion-col>
+                                                  <ion-col col-1>
+                            
+                                                  </ion-col>
+                                              </ion-row>
+  
+                                              <ion-row>
+                                                  <ion-col col-5>
+                                                      <ion-label>Potenza richiesta</ion-label>
+                                                  </ion-col>
+                                                  <ion-col col-3>
+                                                      <ion-input type="text" (ionFocus)="showPotRicContInfo()" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="{{SettoreMerceologico[ads.SettoreMerceologico] !== 'ENERGIA_ELETTRICA'}}"></ion-input> 
+                                                      
+                                                  </ion-col>
+                                                  <ion-col col-3>
+                                                          <ion-label>kW</ion-label>             
+                                                  </ion-col>
+                                                  <ion-col col-1>
+                                       
+                                                  </ion-col>
+                                                  </ion-row>
+  
+                                                  <ion-row>
+                                                      <ion-col col-5>
+                                                          <ion-label>Numero impianti</ion-label>
+                                                      </ion-col>
+                                                      <ion-col col-6>
+                                                          <ion-input type="number" [(ngModel)]="ads.Caratteristiche.NumeroImpianti" disabled="true"></ion-input> 
+                                                          
+                                                      </ion-col>
+                                                      <ion-col col-1>
+                               
+                                                      </ion-col>
+                                                  </ion-row>
+  
+                                                  <ion-row>
+                                                          <ion-col col-5>
+                                                              <ion-label>Pot imm disp</ion-label>
+                                                          </ion-col>
+                                                          <ion-col col-3>
+                                                              <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaImmissioneDisponibile" disabled="true"></ion-input> 
+                                                              
+                                                          </ion-col>
+                                                          <ion-col col-3>
+                                                                  <ion-label>kW</ion-label>            
+                                                          </ion-col>
+                                                          <ion-col col-1>
+                                                              
+                                                          </ion-col>
+                                                      </ion-row>
+  
+                                                      <ion-row>
+                                                              <ion-col col-5>
+                                                                  <ion-label>Pot nom disp</ion-label>
+                                                              </ion-col>
+                                                              <ion-col col-3>
+                                                                  <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaNominaleDisponibile" disabled="true"></ion-input> 
+                                                                  
+                                                              </ion-col>
+                                                              <ion-col col-3>
+                                                                      <ion-label>kW</ion-label>           
+                                                              </ion-col>
+                                                              <ion-col col-1>
+  
+                                                                  
+                                                              </ion-col>
+                                                          </ion-row>
+  
+                                                          <ion-row>
+                                                                  <ion-col col-5>
+                                                                      <ion-label>Pot disp prel</ion-label>
+                                                                  </ion-col>
+                                                                  <ion-col col-3>
+                                                                      <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaDisponibilePrelievo" disabled="true"></ion-input> 
+                                                                      
+                                                                  </ion-col>
+                                                                  <ion-col col-3>
+                                                                          <ion-label>kW</ion-label>             
+                                                                  </ion-col>
+                                                                  <ion-col col-1>
+                                                                      
+                                                                  </ion-col>
+                                                              </ion-row>
+  
+                                                  
+  
+  
+      </ion-grid>
+    </div>
+   
+     
+  
+    <button [disabled]="!enableConfirmButton()" class="btn btn--primary button-login inline-block btn-avvisi" (click)="confermaForm()" >
+      Conferma
+    </button>
+  
+  
+  </ion-content>
+  

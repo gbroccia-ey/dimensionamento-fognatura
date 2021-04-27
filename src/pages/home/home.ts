@@ -6,7 +6,7 @@ import { NavController } from 'ionic-angular';
 import { DimensionamentoAllacciPage } from '../dimensionamento-allacci/dimensionamento-allacci';
 import { PreventivatorePage } from '../preventivatore/preventivatore';
 import { MapPage } from '../map/map';
-import { Ads,SettoreMerceologico,DettaglioMerceologico, CodSocieta } from '../../models/ads';
+import { Ads,SettoreMerceologico,DettaglioMerceologico, CodSocieta, Prestazione } from '../../models/ads';
 import { Caratteristiche } from '../../models/caratteristiche';
 import { Cliente } from '../../models/cliente';
 import { Indirizzo } from '../../models/indirizzo';
@@ -15,6 +15,8 @@ import { Form1Page } from '../form1/form1';
 import { Form2Page } from '../form2/form2';
 import { SceltapagePage } from '../sceltapage/sceltapage';
 import { VerbaleDiSopralluogo } from '../../models/verbale_di_sopralluogo';
+import { ConfermaFormPage } from '../conferma-form/conferma-form';
+import { ModalController } from 'ionic-angular';
 
 declare var esriCtrl;
 
@@ -24,9 +26,10 @@ declare var esriCtrl;
 })
 export class HomePage {
   ads:Ads;
-  testVerbaleEnabled:boolean = false;
+  testVerbaleEnabled:boolean = true;
   testMapEnabled:boolean = false;
-  testDimensionamentoEnabled:boolean = false;
+  testDatiTecniciEnabled:boolean = true;
+  testDimensionamentoEnabled:boolean = true;
   testPreventivatoreEnabled:boolean = true;
   
   PreventivableProducts = [
@@ -134,7 +137,9 @@ export class HomePage {
   copList;
 
 
-  constructor(public navCtrl: NavController,public http: Http) {
+  constructor(public navCtrl: NavController,
+    public modalCtrl: ModalController,
+    public http: Http) {
     this.selSocieta = this.Societa[0];
     esriCtrl.addEsri();
     var url = 'assets/cop.txt'; 
@@ -286,10 +291,10 @@ export class HomePage {
     
     
     this.ads.Caratteristiche = new Caratteristiche();
-    
+    this.ads.ChiaveTestoStd = "ZES0";
      
     
-    this.ads.SettoreMerceologico = this.selSettore.settore;
+    this.ads.SettoreMerceologico = 13 //this.selSettore.settore;
     this.ads.DettaglioMerceologico = this.selSettore.dettaglio;
     
     this.ads.ProdServizio=this.selProdotto.prodServizio;
@@ -327,6 +332,14 @@ export class HomePage {
     this.navCtrl.push(PreventivatorePage, {ads:this.ads});
   }
 
+  openPreventivatoreFast() {
+    this.populateAdsFast();
+    
+    this.navCtrl.push(PreventivatorePage, {ads:this.ads});
+  }
+
+
+
   openVerbale() {
     this.populateAdsPreventivatore();
     this.navCtrl.push(SceltapagePage,this.ads)
@@ -334,89 +347,91 @@ export class HomePage {
   }
 
 
-  populateVerbaleFast(){
-    this.ads = new Ads();
-    this.ads.CodiceAds = "TestCodeAds"
-    this.ads.CodiceOdl = "TestCodeOdl"
-    this.ads.SettoreMerceologico = 11; //SettoreMerceologico.ACQUA;
-    this.ads.DettaglioMerceologico = DettaglioMerceologico.FOGNATURA;
-    this.ads.Caratteristiche = new Caratteristiche();
-    this.ads.Cliente = new Cliente("cognome","nome","rag_soc","codCli","01234567","a@b.it",
-                  new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO"));
-    this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
-    this.ads._altro1 = JSON.stringify({
-      societa:7010
-    }); 
+  populateAdsFast(){
+    if(!this.ads){
+      this.ads = new Ads();
+      this.ads.CodiceAds = "TestCodeAds"
+      this.ads.CodiceOdl = "TestCodeOdl"
+      this.ads.SettoreMerceologico = 10; //GAS
+      //this.ads.DettaglioMerceologico = DettaglioMerceologico.FOGNATURA;
+      this.ads.Caratteristiche = new Caratteristiche();
+      this.ads.Cliente = new Cliente("cognome","nome","rag_soc","codCli","01234567","a@b.it",
+                    new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO"));
+      this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
+      this.ads._altro1 = JSON.stringify({
+        societa:7010 // AAA
+      }); 
+      
+      this.ads.Prestazione = Prestazione.PM1;
+      this.ads.ProdServizio="LAVFAT1100";
+      this.ads.CodiceAttivita="WF1100IS";
+  
+      this.ads._base64Img = [];
+  
+      this.ads.ChiaveTestoStd = "ZES0";
+      this.ads.ConfermaAvviso = false;
+      this.ads._bp="TestBP001";
+      this.ads.CodiceRintracciabilita = "TestCR001";
+      this.ads.Altro3 = "";
+      this.ads.Altro4 = "";
+  
+      if(!this.ads.VerbaleDiSopralluogo) {
+        this.ads.VerbaleDiSopralluogo = new VerbaleDiSopralluogo();
+        this.ads.VerbaleDiSopralluogo.App_Concordato_Ora_Inizio = this.ads.OraInizio;
+        //this.ads.VerbaleDiSopralluogo.App_Concordato_Data =  moment(this.ads.DataAppuntamento, "DD-MM-YYYY").format("YYYY-MM-DD");
+        this.ads.VerbaleDiSopralluogo.App_Concordato_Data =  "20201010";
+        this.ads.VerbaleDiSopralluogo.App_Concordato_Ora_Fine = "0000";
+        this.ads.VerbaleDiSopralluogo.App_Effettivo_Ora_Inizio = this.ads.App_Effettivo_Ora_Inizio || "";
+        this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Verificato = false;
+        this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza = false;
     
-
-    this.ads.ProdServizio="LAVFAT1040";
-    this.ads.CodiceAttivita="WF1040";
-
-    this.ads._base64Img = [];
-
-    this.ads.ChiaveTestoStd = "ZES0";
-    this.ads.ConfermaAvviso = true;
-    this.ads._bp="TestBP001";
-    this.ads.CodiceRintracciabilita = "TestCR001";
-    this.ads.Altro3 = "";
-    this.ads.Altro4 = "";
-
-    if(!this.ads.VerbaleDiSopralluogo) {
-      this.ads.VerbaleDiSopralluogo = new VerbaleDiSopralluogo();
-      this.ads.VerbaleDiSopralluogo.App_Concordato_Ora_Inizio = this.ads.OraInizio;
-      //this.ads.VerbaleDiSopralluogo.App_Concordato_Data =  moment(this.ads.DataAppuntamento, "DD-MM-YYYY").format("YYYY-MM-DD");
-      this.ads.VerbaleDiSopralluogo.App_Concordato_Data =  "20201010";
-      this.ads.VerbaleDiSopralluogo.App_Concordato_Ora_Fine = "0000";
-      this.ads.VerbaleDiSopralluogo.App_Effettivo_Ora_Inizio = this.ads.App_Effettivo_Ora_Inizio || "";
-      this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Verificato = false;
-      this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza = false;
-  
-      if(this.ads.ChiaveTestoStd === "ZAP3"){
-        this.ads.VerbaleDiSopralluogo.App_Anticipato_Data = "20201010";
-        this.ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Inizio = this.ads.Altro3;
-        this.ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Fine = this.ads.Altro4;
-      }
-   }
-  
-  
-     if(this.ads.Cliente.Email==undefined || this.ads.Cliente.Email==""){
-      this.ads.VerbaleDiSopralluogo.TipoVerbale = "cartaceo";
+        if(this.ads.ChiaveTestoStd === "ZAP3"){
+          this.ads.VerbaleDiSopralluogo.App_Anticipato_Data = "20201010";
+          this.ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Inizio = this.ads.Altro3;
+          this.ads.VerbaleDiSopralluogo.App_Anticipato_Ora_Fine = this.ads.Altro4;
+        }
      }
-     else this.ads.VerbaleDiSopralluogo.TipoVerbale = "digitale";
+    
+    
+       if(this.ads.Cliente.Email==undefined || this.ads.Cliente.Email==""){
+        this.ads.VerbaleDiSopralluogo.TipoVerbale = "cartaceo";
+       }
+       else this.ads.VerbaleDiSopralluogo.TipoVerbale = "digitale";
+    
+       if(this.ads.Prestazione){
+        switch(this.ads.Prestazione.toString())
+        {
+          case "PN1":
+            this.ads.VerbaleDiSopralluogo.PN1 = true;
+            break;
+          case "PM1":
+            this.ads.VerbaleDiSopralluogo.PM1 = true;
+            break;
+          case "PR1":
+            this.ads.VerbaleDiSopralluogo.PR1 = true; 
+            break;                          
+        }
+       }
+   
+       if(this.ads.VerbaleDiSopralluogo.App_Concordato_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Concordato_Data!=undefined&& this.ads.VerbaleDiSopralluogo.App_Concordato_Data.indexOf('T')>0)
+     this.ads.VerbaleDiSopralluogo.App_Concordato_Data = moment(this.ads.VerbaleDiSopralluogo.App_Concordato_Data).format("DD/MM/YYYY"); 
+   
+    if(this.ads.VerbaleDiSopralluogo.App_Anticipato_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Anticipato_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Anticipato_Data.indexOf('T')>0)
+      this.ads.VerbaleDiSopralluogo.App_Anticipato_Data = moment(this.ads.VerbaleDiSopralluogo.App_Anticipato_Data).format("DD/MM/YYYY"); 
+    
+    if(this.ads.VerbaleDiSopralluogo.App_Effettivo_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Effettivo_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Effettivo_Data.indexOf('T')>0)
+      this.ads.VerbaleDiSopralluogo.App_Effettivo_Data = moment(this.ads.VerbaleDiSopralluogo.App_Effettivo_Data).format("DD/MM/YYYY"); 
+    
+    if(this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data.indexOf('T')>0)
+      this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data = moment(this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data).format("DD/MM/YYYY");     
   
-     if(this.ads.Prestazione){
-      switch(this.ads.Prestazione.toString())
-      {
-        case "PN1":
-          this.ads.VerbaleDiSopralluogo.PN1 = true;
-          break;
-        case "PM1":
-          this.ads.VerbaleDiSopralluogo.PM1 = true;
-          break;
-        case "PR1":
-          this.ads.VerbaleDiSopralluogo.PR1 = true; 
-          break;                          
-      }
-     }
- 
-     if(this.ads.VerbaleDiSopralluogo.App_Concordato_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Concordato_Data!=undefined&& this.ads.VerbaleDiSopralluogo.App_Concordato_Data.indexOf('T')>0)
-   this.ads.VerbaleDiSopralluogo.App_Concordato_Data = moment(this.ads.VerbaleDiSopralluogo.App_Concordato_Data).format("DD/MM/YYYY"); 
- 
-  if(this.ads.VerbaleDiSopralluogo.App_Anticipato_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Anticipato_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Anticipato_Data.indexOf('T')>0)
-    this.ads.VerbaleDiSopralluogo.App_Anticipato_Data = moment(this.ads.VerbaleDiSopralluogo.App_Anticipato_Data).format("DD/MM/YYYY"); 
-  
-  if(this.ads.VerbaleDiSopralluogo.App_Effettivo_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Effettivo_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Effettivo_Data.indexOf('T')>0)
-    this.ads.VerbaleDiSopralluogo.App_Effettivo_Data = moment(this.ads.VerbaleDiSopralluogo.App_Effettivo_Data).format("DD/MM/YYYY"); 
-  
-  if(this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data!=""&&this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data!=undefined &&  this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data.indexOf('T')>0)
-    this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data = moment(this.ads.VerbaleDiSopralluogo.App_Verificata_Assenza_Data).format("DD/MM/YYYY");     
-
+    }
   }
 
 
 
   openVerbaleFast() {
-    this.populateVerbaleFast();
+    this.populateAdsFast();
 
     
     switch(this.ads.SettoreMerceologico)
@@ -437,8 +452,18 @@ export class HomePage {
 
   }
 
+ 
+  //------------------------------------------------------------
+  //               Dati Tecnici
+  //------------------------------------------------------------
   
-
+  openDatiTecnici(){
+    this.populateAdsFast();
+    this.ads.CodiceOdl = undefined
+    var modal = this.modalCtrl.create(ConfermaFormPage, { "ads": this.ads });
+    
+    modal.present();
+  }
 
 
 

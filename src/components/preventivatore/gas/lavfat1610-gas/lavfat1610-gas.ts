@@ -61,7 +61,7 @@ export class Lavfat1610GasComponent extends BasePreventivatoreComponent implemen
         this.preventivo.Totale = 0;
         this.preventivo.Cer = 0;
         this.preventivo.Cvv = 0;
-        this.list_cif = Params.getValoriWrapper("CIF");
+        this.list_cif = Params.getValoriWrapper("CIF", this.ads);
         this.preventivo.AltreSpese = 0;
       }
       

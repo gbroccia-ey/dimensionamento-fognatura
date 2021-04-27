@@ -102,7 +102,7 @@ export class Lavfat1040EeComponent extends BasePreventivatoreComponent implement
       this.preventivo.QuotaDistanzaCalcolata = 0;
     }
 
-    this.preventivo.QuotaDistanzaDaCabina = this.calcolaQuotaDistanzaDaCabina();
+    this.preventivo.QuotaDistanzaDaCabina = 0; //this.calcolaQuotaDistanzaDaCabina();
     this.preventivo.QuotaDistanzaDaCabina += this.preventivo.QuotaDistanzaCalcolata;
     
   }
@@ -114,23 +114,23 @@ export class Lavfat1040EeComponent extends BasePreventivatoreComponent implement
 
       if(n > 200 && n <= 700){
         unit = this.quota200_700;
-        tmp = this.preventivo.DistanzaDaCabina - 200;
+        tmp = n - 200;
       } else if(n > 700 && n <= 1200) {
         unit = this.quota700_1200;
-        tmp = this.preventivo.DistanzaDaCabina - 700;
+        tmp = n - 700;
       } else if(n > 1200) {
         unit = this.quota1200;
-        tmp = this.preventivo.DistanzaDaCabina - 1200;
+        tmp = n - 1200;
       }
 
       
-      tmp = Math.round(tmp / 50);
-      tmp = tmp * (unit / 2);
+      tmp = Math.round((tmp-1) / 100);
+      tmp = tmp * unit;
       return tmp;
   }
 
   calcolaQuotaDistanzaDaCabina(): number {
-    var listino: number = 92.75;
+    var listino: number = this.quota200_700;
 
     if(this.preventivo.DistanzaDaCabina <= 250) {
       return 0;
@@ -168,7 +168,7 @@ export class Lavfat1040EeComponent extends BasePreventivatoreComponent implement
          if(this.progr < 3) {
           //var distanzaXnumeroAttacchi =  this.preventivo.DistanzaDaCabina * this.preventivo.NumeroAttacchi;
           var distanzaCalcolataXattacchi = this.preventivo.QuotaDistanzaCalcolata * this.preventivo.NumeroAttacchi;
-          var distanzaDaCabina = this.preventivo.QuotaDistanzaDaCabina * this.preventivo.NumeroAttacchi;
+          var distanzaDaCabina = 0;// this.preventivo.QuotaDistanzaDaCabina * this.preventivo.NumeroAttacchi; 
           this.preventivo.Totale += Number(distanzaCalcolataXattacchi) + Number(distanzaDaCabina);
          }
 

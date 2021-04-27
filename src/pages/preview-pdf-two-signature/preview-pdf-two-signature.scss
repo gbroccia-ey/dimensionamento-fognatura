@@ -1,0 +1,432 @@
+page-preview-pdf-two-signature {
+
+
+svg{
+  background:white;
+      border-style: solid;
+    border-color: black;
+    border-width: 1px;
+}
+
+
+
+.page{
+  margin-bottom:5px;
+  background-color:grey !important;
+} 
+
+.btnZoom{
+    width: 50px;
+    height: 50px;
+    font-size: -webkit-xxx-large;
+    position: fixed;
+    bottom: 40px;
+    z-index: 1111;
+}
+
+.bottom_div{
+    bottom: 0;
+    width: 100%;
+    position: relative;
+    background-color: white;
+    left: 0;
+}
+
+.bottom_button{
+  width:100%;
+  margin:0;
+  padding:0;
+}
+
+.gridClass{
+      margin-top: 50px;
+          margin-bottom: 50px;
+}
+
+.row:last-child .col {
+    border-bottom: solid 1px black;
+}
+
+.col:last-child {
+    border-right: solid 1px black;
+}
+
+.col {
+    border: solid 1px black;
+    padding:0px;
+}
+
+.grid{
+  padding:opx;
+}
+
+.header{
+  padding: 16px;
+    text-align: center;
+    font-weight: 700;
+    font-size: large;
+    position: fixed;
+    background: white;
+    z-index: 1111;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.containerPDF{
+  margin-top:60px;
+  height: calc(100vh -120px);
+}
+  
+    .bottomIcon {
+        width: 20%;
+    }
+
+    .drawing-active {
+        
+    }
+    .title {
+        text-align: center;
+        font-weight: bold;
+        padding: 10px;
+    }
+    .buttonStyle {
+        display: inline-block;
+        float: left;
+        width: 25%;
+    }
+
+
+
+.colorWhite {
+  color: white;
+}
+
+.colorBlack {
+  color: black;
+}
+
+.colorLightGray {
+  color: #8c8c8c;
+}
+
+//PROPERTY STYLE
+.textAlignRight {
+  text-align: right;
+}
+.textAlignLeft {
+  text-align: left;
+}
+.textSplit {
+  word-break: break-all;
+}
+
+.textWhiteSpaceNormal {
+   white-space: normal ;
+}
+
+//COMMON FONT TYPOLOGY
+
+.fontBase{
+    font-family: "FontAwesome";
+}
+
+.fontBaseNormal{
+   @extend .fontBase;
+   font-weight: normal;
+}
+
+.fontBaseBold{
+  @extend .fontBase;
+  font-weight: bold;
+}
+
+.fontBaseBolder{
+  @extend .fontBase;
+  font-weight: bold;
+}
+
+.fontBaseLighter{
+  @extend .fontBase;
+  font-weight: lighter;
+}
+
+//font
+
+.fsize8 {
+  font-size: 8px;
+}
+
+.fsize10 {
+  font-size: 10px;
+}
+
+.fsize12 {
+  font-size: 12px;
+}
+
+.fsize13 {
+  font-size: 13px;
+}
+
+.fsize14 {
+  font-size: 14px;
+}
+
+.fsize15 {
+  font-size:15px;
+}
+
+.fsize16 {
+  font-size:16px;
+}
+
+.fsize17 {
+  font-size:17px;
+}
+
+.fsize18 {
+  font-size:18px;
+}
+
+.fsize19 {
+  font-size:19px;
+}
+
+.fsize20 {
+  font-size: 20px;
+}
+
+//LINE PROPERTIES
+
+
+.line3vh {
+	line-height: 3vh;
+}
+
+.line3-5vh {
+	line-height: 3.5vh;
+}
+
+
+.line4vh {
+	line-height: 4vh;
+}
+
+.line4-5vh {
+	line-height: 4vh;
+}
+
+.line5vh {
+	line-height: 5vh;
+}
+
+.line6vh {
+	line-height: 6vh;
+}
+
+.line6-5vh {
+  line-height: 6.5vh;
+}
+
+.line7vh {
+	line-height: 7vh;
+}
+
+.line7-5vh {
+	line-height: 7.5vh;
+}
+
+.line8vh {
+	line-height: 8vh;
+}
+
+.line8-5vh {
+	line-height: 8.5vh;
+}
+
+.line9vh {
+	line-height: 9vh;
+}
+
+.line9-5vh {
+	line-height: 9.5vh;
+}
+
+.line10vh {
+	line-height: 10vh;
+}
+
+
+.line12-5vh {
+    line-height: 12.5vh;
+}
+
+
+.line2-5 {
+	line-height: 2.5px;
+}
+
+.line2-5vh {
+	line-height: 2.5px;
+}
+
+
+.line5 {
+	line-height: 5px;
+}
+
+.line27 {
+	line-height: 27px;
+}
+
+.line30 {
+	line-height: 30px;
+}
+
+.line50 {
+	line-height: 50px;
+}
+
+.line55 {
+	line-height: 55px;
+}
+
+.line80 {
+	line-height: 80px;
+}
+
+//Container Principal page
+.containerPrincipal {
+  display: table;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+//Container elements on top position
+.containerTop {
+  display: table-header-group;
+}
+
+.containerListItem {
+  display: list-item;
+}
+
+//Container elements on flex position
+.containerFlex {
+  display: inline-flex;
+}
+
+//Container elements centered
+.containerCentered {
+  display: table-row;
+}
+
+//Container elements centered
+.containerCenteredCenter {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+//Container elements centered top
+.containerCenteredTop {
+  display: table-cell;
+  vertical-align: top;
+}
+
+//Container elementis centered bottom
+.containerCentraleBottom {
+  display: table-cell;
+  vertical-align: bottom;
+}
+
+//Container elemnts footer
+.containerBottom {
+  display: table-footer-group;
+  bottom:4vh;
+  position: absolute;
+  width:100%;
+  padding-left:2.5%;
+  padding-right:2.5%;
+}
+
+/*  generics class used for create margins for a specifics
+percentage of width
+@include containerCentratura(40vw);
+*/
+@mixin containerCentering($widthContainer) {
+
+  margin-left: (100vw-$widthContainer)/2;
+  margin-right: (100vw-$widthContainer)/2;
+  width: $widthContainer;
+  min-width:$widthContainer;
+}
+
+/*  generics class used for create margins for a specifics
+percentage of width
+@include containerCentratura(40%);
+*/
+@mixin containerCenteringPerc($widthContainer) {
+
+  margin-left: (100%-$widthContainer)/2;
+  margin-right: (100%-$widthContainer)/2;
+  width: $widthContainer;
+  min-width:$widthContainer;
+}
+
+.autoScrollY {
+  overflow-y:auto;
+}
+
+.absolute-center {
+
+  /* Internet Explorer 10 */
+  display:-ms-flexbox;
+  -ms-flex-pack:center;
+  -ms-flex-align:center;
+
+  /* Firefox */
+  display:-moz-box;
+  -moz-box-pack:center;
+  -moz-box-align:center;
+
+  /* Safari, Opera, and Chrome */
+  display:-webkit-box;
+  -webkit-box-pack:center;
+  -webkit-box-align:center;
+
+  /* W3C */
+  display:flex;
+  box-pack:center;
+  box-align:center;
+
+}
+
+//Centering grid
+
+/* Mixin */
+@mixin vertical-align($position: relative) {
+  position: $position;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+//row
+
+.rowCont {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+//Column
+.colCont {
+  display: inline-block;
+  white-space: normal;
+  vertical-align: middle;
+  @include vertical-align();
+}
+//CUSTOMS CONTAINER FOR THIS GRAPHICS
+}

@@ -56,10 +56,10 @@ export enum DettaglioMerceologico {
 }
 
 export enum Prestazione {
-    PM1,
-    PN1,
-    PR1,
-    E02
+    PM1 = "PM1",
+    PN1 = "PN1",
+    PR1 = "PR1",
+    E02 = "E02"
 }
 
 export class Ads {

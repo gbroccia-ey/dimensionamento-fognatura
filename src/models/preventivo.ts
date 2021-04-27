@@ -34,6 +34,9 @@ export class Preventivo {
     Cer: number;
     Cvv: number;
     Cif: number;
+    PotenzaAttuale: number;  // TODO : da confermare
+    DifferenzaPotenzaPrevista: number;  // TODO : da confermare
+    PotenzaContrPrevista:number;   // TODO : da confermare
     PotenzaPrevistaManuale: number;
     Progressivo:number;
     UiEqFogna: string;
