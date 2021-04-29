@@ -64,6 +64,7 @@ export class PreventivoPDF {
           
             if(value.dati.form.preventivo.ClasseContatore!=undefined) {
                 value.dati.form.preventivo._ClasseContatoreLabel = value.dati.form.preventivo.ClasseContatore;
+                if(value.dati.form.preventivo.ClasseContatore=='99') value.dati.form.preventivo._ClasseContatoreLabel = "Nessuna Quota Contatore";
                 if(value.dati.form.preventivo.ClasseContatore=='01') value.dati.form.preventivo._ClasseContatoreLabel = "Contatore Calibro DN 15";
                 if(value.dati.form.preventivo.ClasseContatore=='02') value.dati.form.preventivo._ClasseContatoreLabel = "Contatore Calibro DN 20";
                 if(value.dati.form.preventivo.ClasseContatore=='03') value.dati.form.preventivo._ClasseContatoreLabel = "Contatore Calibro DN 25";

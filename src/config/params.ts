@@ -3245,6 +3245,7 @@ export class Params {
           },
         //----------------------------------------------------------------------------------------
         { key: "LAVFAT1100_ACQUA_AAA", value: [
+            { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
             { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
             { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
             { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
@@ -3500,7 +3501,7 @@ export class Params {
                     value:  [
                         {label: 'Quota per aggiunta scavo',   value: 249.53,  singleValue:'true', id:"quota4"}                       
                 ]},
-                {label: 'Tipo Scavo',
+                {label: 'Tipo Ripristino',
                     value:  [
                         {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
                         {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
@@ -3541,7 +3542,7 @@ export class Params {
                     value:  [
                         {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
                 ]},
-                {label: 'Tipo Scavo',
+                {label: 'Tipo Ripristino',
                     value:  [
                         {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
                         {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
@@ -3570,7 +3571,7 @@ export class Params {
                     value:  [
                         {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
                 ]},
-                {label: 'Tipo Scavo',
+                {label: 'Tipo Ripristino',
                     value:  [
                         {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
                         {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
@@ -3591,7 +3592,7 @@ export class Params {
                     value:  [
                         {label: 'Quota base fino a 4 utenze',   value: 873,  singleValue:'true', id:"quota3"}                       
                 ]},
-                {label: 'Tipo Scavo',
+                {label: 'Tipo Ripristino',
                     value:  [
                         {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
                         {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
@@ -3603,36 +3604,47 @@ export class Params {
         //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1100_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
-            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 0 },
             
         ]},       
         {
             key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Quota Istruttoria',
+                        value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
+            ] 
         },
         //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1110_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
-            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 0 },
             
         ]},   
         {       
             key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
-            value:[] 
+            value:[
+                {label: 'Quota Istruttoria',
+                        value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
+            ]  
         },
         //----------------------------------------------------------------------------------------
 
@@ -3651,6 +3663,10 @@ export class Params {
         {       
             key: 'QUOTE_LAVFAT1130_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                        value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Contatore aggiuntivo fino a 30 mm',
                     value:  [
                         {label: 'Contatore aggiuntivo', value: 260.87,   placeholder:"numero", id:"quota1"},
@@ -3664,6 +3680,7 @@ export class Params {
                     value:  [
                         {label: 'Contatore aggiuntivo',  value: 1111.54,  placeholder:"numero", id:"quota3"},
                 ]},
+                
             ] 
         },
         //----------------------------------------------------------------------------------------
@@ -3682,6 +3699,10 @@ export class Params {
         {
             key: 'QUOTE_LAVFAT1140_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                        value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Supplementi',
                     value:  [
                         {label: 'Quota agg. per ogni utenza oltre le 5', value: 147.45,  placeholder:"n. utenze eccedenti", id:"quota1"},
@@ -3695,7 +3716,7 @@ export class Params {
                     value:  [
                         {label: 'Quota per aggiunta scavo',   value: 249.53,  singleValue:'true', id:"quota4"}                       
                 ]},
-                {label: 'Tipo Scavo',
+                {label: 'Tipo Ripristino',
                     value:  [
                         {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
                         {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
@@ -3708,7 +3729,7 @@ export class Params {
         //----------------------------------------------------------------------------------------
 
         { key: "LAVFAT1181_ACQUA_AAA", value: [
-            { tipoSpostamento: "1", quotaFissa: 38.52,  label: "Lavoro Interrato", quotaVariabile: [
+            { tipoSpostamento: "1", quotaFissa: 0,  label: "Lavoro Interrato", quotaVariabile: [
                 { classeContatore: "DN15",  prezzo: 873.35 },
                 { classeContatore: "DN20",  prezzo: 873.35 },
                 { classeContatore: "DN32",  prezzo: 873.35 },
@@ -3721,6 +3742,10 @@ export class Params {
         {       
             key: 'QUOTE_LAVFAT1181_ACQUA_AAA',
             value:[
+                {label: 'Quota Istruttoria',
+                        value:  [
+                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
+                ]},
                 {label: 'Contatore aggiuntivo fino a 30 mm',
                     value:  [
                         {label: 'Contatore aggiuntivo', value: 260.87,   placeholder:"numero", id:"quota1"},

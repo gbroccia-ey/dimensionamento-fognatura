@@ -294,7 +294,7 @@ export class HomePage {
     this.ads.ChiaveTestoStd = "ZES0";
      
     
-    this.ads.SettoreMerceologico = 13 //this.selSettore.settore;
+    this.ads.SettoreMerceologico = this.selSettore.settore;
     this.ads.DettaglioMerceologico = this.selSettore.dettaglio;
     
     this.ads.ProdServizio=this.selProdotto.prodServizio;

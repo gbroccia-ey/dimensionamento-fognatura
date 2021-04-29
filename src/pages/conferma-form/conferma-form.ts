@@ -682,7 +682,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_6", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -691,7 +691,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_7", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -700,7 +700,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_8", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -709,7 +709,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_9", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -718,7 +718,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_10", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -727,7 +727,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_14", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 3, checkBoxList: [false, false, false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 3, checkBoxList: [false, false, false] },
       {codice: "WF1100", canchange: false, prodServizio: "LAVFAT1100", checkCounter: wf1100_ee_checkCounter, checkBoxList: wf1100_ee_checkBoxList },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 3, checkBoxList: [false, false, false] },
       
@@ -736,7 +736,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_11", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 1, checkBoxList: [false] }
       
     ]);
@@ -744,7 +744,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_12", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 1, checkBoxList: [false] }
       
     ]); 
@@ -752,7 +752,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_13", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 1, checkBoxList: [false] }
       
     ]);
@@ -760,7 +760,7 @@ export class ConfermaFormPage {
     this.tabella_codici_attivita.addOrReplace("PM1_ENERGIA_ELETTRICA_15", [
       {codice: "WF1181", canchange: false, prodServizio: "LAVFAT1181", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1190", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
-      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1190", checkCounter: 1, checkBoxList: [false] },
+      {codice: "WF1191", canchange: false, prodServizio: "LAVFAT1191", checkCounter: 1, checkBoxList: [false] },
       {codice: "WF1610", canchange: false, prodServizio: "LAVFAT1610", checkCounter: 1, checkBoxList: [false] }
       
     ]);
@@ -880,7 +880,7 @@ export class ConfermaFormPage {
             key = prestazioneStr + "_FOGNATURA" ;
         }
 
-        if (this.ads.CodiceSocieta === CodSocieta.AAA && this.ads.SettoreMerceologico === SettoreMerceologico.GAS && this.ads.Prestazione == Prestazione.PM1) {
+        if (this.ads.CodiceSocieta === CodSocieta.AAA && this.ads.SettoreMerceologico === SettoreMerceologico.GAS && this.ads.Prestazione === Prestazione.PM1) {
             key = "PM1_GAS_AAA"
         }
       
@@ -911,7 +911,7 @@ export class ConfermaFormPage {
             }
           });
 
-            if(this.ads.DettaglioMerceologico === DettaglioMerceologico.FOGNATURA && this.ads.Prestazione.toString() == "PN1"){
+            if(this.ads.DettaglioMerceologico === DettaglioMerceologico.FOGNATURA && this.ads.Prestazione === "PN1"){
                 this.canChangeCodiceAttivita = true;
             }
             else if(this.ads.DettaglioMerceologico === DettaglioMerceologico.FOGNATURA){
@@ -926,8 +926,8 @@ export class ConfermaFormPage {
       // set default value for GRUPresente
       if((this.ads.SettoreMerceologico === SettoreMerceologico.GAS) && 
           this.ads.Prestazione && 
-          (this.ads.Prestazione.toString() == "PN1" || 
-            (this.ads.Prestazione.toString() == "PM1" && (this.ads.ProdServizio == "LAVFAT1100"|| this.ads.ProdServizio == "LAVFAT1110")) )){
+          (this.ads.Prestazione.toString() === Prestazione.PN1 || 
+            (this.ads.Prestazione.toString() == Prestazione.PM1 && (this.ads.ProdServizio == "LAVFAT1100"|| this.ads.ProdServizio == "LAVFAT1110")) )){
         this.ads.Caratteristiche.GRUPresente = 'NO';
       }
    
@@ -1326,7 +1326,7 @@ export class ConfermaFormPage {
     }
   }
   */
- 
+
   enableConfirmButton() {
     var found: boolean = true;
 

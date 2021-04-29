@@ -496,10 +496,12 @@
     </div>
   
   <!--    GAS : WF1130A/WI1130I/WI1181A/WI1181I (PM1)   -->
-  <div *ngIf="(((ads.CodiceAttivita === 'WF1130A' || ads.CodiceAttivita === 'WF1130I') && ads.CodiceSocieta !== 'AAA') ||
-                 ads.CodiceAttivita === 'WF1181A' ||
-                 ads.CodiceAttivita === 'WF1181I'
-                 ) && SettoreMerceologico[ads.SettoreMerceologico] === 'GAS'">
+  <div *ngIf="(((ads.CodiceAttivita === 'WF1130A' || 
+                    ads.CodiceAttivita === 'WF1130I' ||
+                    ads.CodiceAttivita === 'WF1181A' ||
+                    ads.CodiceAttivita === 'WF1181I')) && 
+                ads.CodiceSocieta !== 'AAA' && 
+                SettoreMerceologico[ads.SettoreMerceologico] === 'GAS')">
   
   
           <ion-grid>

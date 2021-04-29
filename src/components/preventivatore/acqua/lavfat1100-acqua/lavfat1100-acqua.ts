@@ -7,6 +7,7 @@ import { Preventivo } from '../../../../models/preventivo';
 import { Params } from '../../../../config/params';
 import { Slides } from 'ionic-angular';
 import { ViewChild } from '@angular/core';
+import { CodSocieta } from '../../../../models/ads';
 /**
  * Generated class for the Lavfat1100AcquaComponent component.
  *
@@ -80,7 +81,7 @@ export class Lavfat1100AcquaComponent extends BasePreventivatoreComponent implem
           this.preventivo.Istruttoria = true;
           this.preventivo.Rifacimento = false;
           this.preventivo.QuotaFissa = 0;
-          this.preventivo.QuotaIstruttoria = 25;
+          this.preventivo.QuotaIstruttoria = (this.ads.Societa === CodSocieta.AAA) ? 0 : 25;
           this.preventivo.QuotaContatore = 0;
           this.preventivo.Totale = Number(this.preventivo.QuotaIstruttoria);
         }
@@ -90,8 +91,8 @@ export class Lavfat1100AcquaComponent extends BasePreventivatoreComponent implem
           }
           this.preventivo.Istruttoria = false;
           var row = this.valori.find(x => x["classeContatore"] === this.preventivo.ClasseContatore);
-          this.preventivo.QuotaFissa = this.preventivo.Rifacimento ? row["quotaFissa"] : 0;
-          this.preventivo.QuotaContatore = row["quotaVariabile"];
+          this.preventivo.QuotaFissa = (row && this.preventivo.Rifacimento) ? row["quotaFissa"] : 0;
+          this.preventivo.QuotaContatore = (row) ? row["quotaVariabile"] : 0;
           this.preventivo.QuotaIstruttoria = 0;
           //this.preventivo.QuotaIstruttoria = row["quotaIstruttoria"];
           this.preventivo.Totale = Number(this.preventivo.QuotaFissa) + Number(this.preventivo.QuotaContatore);
