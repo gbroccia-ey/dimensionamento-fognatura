@@ -17,6 +17,7 @@ import { SceltapagePage } from '../sceltapage/sceltapage';
 import { VerbaleDiSopralluogo } from '../../models/verbale_di_sopralluogo';
 import { ConfermaFormPage } from '../conferma-form/conferma-form';
 import { ModalController } from 'ionic-angular';
+import { PermessiPage } from '../permessi/permessi';
 
 declare var esriCtrl;
 
@@ -31,6 +32,7 @@ export class HomePage {
   testDatiTecniciEnabled:boolean = true;
   testDimensionamentoEnabled:boolean = true;
   testPreventivatoreEnabled:boolean = true;
+  testPermessiEnabled: boolean = true;
   
   PreventivableProducts = [
     'LAVFAT1100_GAS',
@@ -352,7 +354,11 @@ export class HomePage {
       this.ads = new Ads();
       this.ads.CodiceAds = "TestCodeAds"
       this.ads.CodiceOdl = "TestCodeOdl"
-      this.ads.SettoreMerceologico = 10; //GAS
+      //this.ads.SettoreMerceologico = 11; //ACQUA
+      //this.ads.SettoreMerceologico = 10; //GAS
+      this.ads.SettoreMerceologico = 13; //EE
+      
+      
       //this.ads.DettaglioMerceologico = DettaglioMerceologico.FOGNATURA;
       this.ads.Caratteristiche = new Caratteristiche();
       this.ads.Cliente = new Cliente("cognome","nome","rag_soc","codCli","01234567","a@b.it",
@@ -360,11 +366,13 @@ export class HomePage {
       this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
       this.ads._altro1 = JSON.stringify({
         societa:7010 // AAA
+        //societa:5010 // HT
+        //societa:1900 // INRETE
       }); 
       
-      this.ads.Prestazione = Prestazione.PM1;
-      this.ads.ProdServizio="LAVFAT1100";
-      this.ads.CodiceAttivita="WF1100IS";
+      this.ads.Prestazione = Prestazione.PN1;
+      this.ads.ProdServizio="LAVFAT1400";
+      this.ads.CodiceAttivita="WF1400";
   
       this.ads._base64Img = [];
   
@@ -465,6 +473,14 @@ export class HomePage {
     modal.present();
   }
 
+  //------------------------------------------------------------
+  //               Scheda Permessi
+  //------------------------------------------------------------
+  
+  openPermessi() {
+    this.populateAdsFast();
+    this.navCtrl.push(PermessiPage, this.ads);
+  }
 
 
 

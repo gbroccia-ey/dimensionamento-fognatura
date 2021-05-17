@@ -24,6 +24,7 @@ import { AdsService } from '../services/ads-service';
 import { AdsSync } from '../services/ads-synchronizer';
 import { JSONStoreManager } from '../providers/jsonstore-manager/jsonstoremanager';
 import { FileBackupService } from '../services/file-backup-service';
+import { RemoteCallsManager } from '../providers/remotecalls-manager/remoteCallsManager';
 
 import { Lavfat1100GasComponent } from '../components/preventivatore/gas/lavfat1100-gas/lavfat1100-gas';
 import { Lavfat1110GasComponent } from '../components/preventivatore/gas/lavfat1110-gas/lavfat1110-gas';
@@ -65,6 +66,7 @@ import { ResourceTree} from '../components/resource-tree/resource-tree'
 
 
 import { HomePage } from '../pages/home/home';
+import { AdsdetailsPage } from '../pages/adsdetails/adsdetails';
 import { ModelDatiRetePdf } from '../models/ModelDatiRetePdf';
 import { ModelPermessi } from '../models/ModelPermessi';
 import { PreviewPdfNoSignatures } from '../pages/preview-pdf-no-signature/preview-pdf-no-signature';
@@ -75,6 +77,7 @@ import { SceltapagePage } from '../pages/sceltapage/sceltapage';
 import { Form1Page } from '../pages/form1/form1';
 import { Form2Page } from '../pages/form2/form2';
 import { ModalepdfPage } from '../pages/modalepdf/modalepdf';
+import { PermessiPage } from '../pages/permessi/permessi';
 import { PainterPage2 } from '../pages/painter2/painter2';
 import { FotoPage } from '../pages/foto/foto';
 import { NoteVerbalePage } from '../pages/note-verbale/note-verbale';
@@ -102,6 +105,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     NoteVerbalePage,
     SceltapagePage,
     ConfermaFormPage,
+    PermessiPage,
+    AdsdetailsPage,
 
     DimensionamentoAllacciFognaturaComponent,
     RemoveCommaPipe,
@@ -165,6 +170,8 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     Form1Page,
     Form2Page,
     SceltapagePage,
+    PermessiPage,
+    AdsdetailsPage,
 
     ModalepdfPage,
     ModalenotePage,
@@ -202,7 +209,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
     AdsService,
     JSONStoreManager,
     FileBackupService,
-    
+    RemoteCallsManager,
     AdsSync,
     { provide: ErrorHandler, useClass: IonicErrorHandler},
     

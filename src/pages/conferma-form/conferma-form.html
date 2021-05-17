@@ -976,7 +976,7 @@
   
     </div>
   
-  <!--      ACQUA[TUTTI]        : WF610    -->
+  <!--      ACQUA[TUTTI]        : WF1610    -->
   <div *ngIf="(ads.CodiceAttivita === 'WF1610'
                  ) && SettoreMerceologico[ads.SettoreMerceologico] === 'ACQUA'">
   
@@ -2055,7 +2055,7 @@
                 <ion-label>Potenza richiesta</ion-label>
             </ion-col>
             <ion-col col-3>
-                <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="{{SettoreMerceologico[ads.SettoreMerceologico] !== 'ENERGIA_ELETTRICA'}}"></ion-input> 
+                <ion-input type="text" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="true"></ion-input> 
                 
             </ion-col>
             <ion-col col-3>
@@ -2100,9 +2100,8 @@
     <!-- LAVFAT1130 LAVFAT1181 LAVFAT1631 GAS AAA -->
     <div *ngIf="ads.CodiceSocieta === 'AAA' && 
                 SettoreMerceologico[ads.SettoreMerceologico] === 'GAS' &&
-                (ads.ProdServizio === 'LAVFAT1130' &&  (ads.CodiceAttivita === 'WF1130' || ads.CodiceAttivita === 'WF1130A'|| ads.CodiceAttivita === 'WF1130I')) || 
-                (ads.ProdServizio === 'LAVFAT1181' &&  (ads.CodiceAttivita === 'WF1181A'|| ads.CodiceAttivita === 'WF1181I')) || 
-                (ads.ProdServizio === 'LAVFAT1631' && ads.CodiceAttivita === 'LF1631')">
+                ((ads.ProdServizio === 'LAVFAT1130' &&  (ads.CodiceAttivita === 'WF1130' || ads.CodiceAttivita === 'WF1130A'|| ads.CodiceAttivita === 'WF1130I')) || 
+                (ads.ProdServizio === 'LAVFAT1181' &&  (ads.CodiceAttivita === 'WF1181A'|| ads.CodiceAttivita === 'WF1181I')))">
         <ion-grid>
         <ion-row *ngIf="canChangeCodiceAttivita">
         <ion-col col-5>
@@ -2175,38 +2174,106 @@
             </ion-col>
             </ion-row>
 
+        </ion-grid>         
+
+        </div>
+  
+<!-- LAVFAT1130 LAVFAT1181 LAVFAT1631 GAS AAA -->
+    <div *ngIf="ads.CodiceSocieta === 'AAA' && 
+                SettoreMerceologico[ads.SettoreMerceologico] === 'GAS' &&
+                (ads.ProdServizio === 'LAVFAT1631' && ads.CodiceAttivita === 'LF1631')">
+        <ion-grid>
+        <ion-row *ngIf="canChangeCodiceAttivita">
+        <ion-col col-5>
+            <ion-label>Codice Attività</ion-label>
+        </ion-col>
+        <ion-col col-6>
+            <ion-select [(ngModel)]="ads.CodiceAttivita" (ionChange)="codiceAttivitaChanged()" disabled="{{CodiceAttivitaRow['checkBoxList'][0]}}">
+            
+                <ion-option *ngFor="let item of codici_attivita" value="{{item.codice}}">{{ item.codice }}  - {{getCodAttivitaDescr(item.codice)}}</ion-option>
+            </ion-select>
+        </ion-col>
+        <ion-col col-1>
+            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][0]"></ion-checkbox>
+        </ion-col>
+        </ion-row>
+
+        <ion-row>
+        <ion-col col-5>
+            <ion-label>Tipo Lavoro</ion-label>
+        </ion-col>
+        <ion-col col-6>
+            <ion-select [(ngModel)]="ads.Caratteristiche.TipoLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                <ion-option *ngFor="let item of WF1610_tipo_lavoro" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+        </ion-col>
+        <ion-col col-1>
+            <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][1]" [disabled]="!isCheckBoxDisabledTL(ads.Caratteristiche.TipoLavoro, ads.Caratteristiche.DefinizioneLavoro)"></ion-checkbox>
+        </ion-col>
+        </ion-row>
+        <ion-row *ngIf="attivaLavoroComplesso && ads.Caratteristiche.TipoLavoro == 'C'"  >
+            <ion-col col-5>
+                <ion-label>Definizione Complesso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DefinizioneLavoro" disabled="{{CodiceAttivitaRow['checkBoxList'][1]}}">
+                    <ion-option *ngFor="let item of definizioneLavoroGAS" value="{{item}}">{{ item }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                
+            </ion-col>
+        </ion-row>
+
         
-        <!-- Only for LAVFAT1631 AND LF1631 -->
-        <ion-row *ngIf="ads.CodiceAttivita === 'LF1631'">
+        <ion-row>
+            <ion-col col-5>
+                <ion-label>Destinazione uso</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.DestinazioneUso" disabled="{{CodiceAttivitaRow['checkBoxList'][2]}}">
+                    <ion-option *ngFor="let item of WF1610_destinazione_uso" value="{{item.key}}">{{ item.value }}</ion-option>
+                    </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][2]" [disabled]="!isCheckBoxDisabled(ads.Caratteristiche.DestinazioneUso)"></ion-checkbox>
+            </ion-col>
+            </ion-row>
+
+        
+        <ion-row >
             <ion-col col-5>
                 <ion-label>Tipo Uscita Presa Impulsiva</ion-label>
             </ion-col>
             <ion-col col-6>
-                <ion-select [(ngModel)]="ads.Caratteristiche.PresaImpulsiva" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                <ion-select [(ngModel)]="ads.Caratteristiche.PresaImpulsiva" disabled="{{CodiceAttivitaRow['checkBoxList'][3]}}">
                     <ion-option *ngFor="let item of LF1631_presa_impulsiva" value="{{item.key}}">{{ item.value }}</ion-option>
+                </ion-select>
+            </ion-col>
+            <ion-col col-1>
+                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][3]" [disabled]="!ads.Caratteristiche.PresaImpulsiva"></ion-checkbox>  
+            </ion-col>
+        </ion-row>
+        <ion-row >
+            <ion-col col-5>
+                <ion-label>Fornitura e installazione</ion-label>
+            </ion-col>
+            <ion-col col-6>
+                <ion-select [(ngModel)]="ads.Caratteristiche.FornituraInstallazione" disabled="{{CodiceAttivitaRow['checkBoxList'][4]}}">
+                    <ion-option *ngFor="let item of LF1631_fornitura_installazione" value="{{item.key}}">{{ item.value }}</ion-option>
                 </ion-select>
             </ion-col>
             <ion-col col-1>
                 <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][4]" [disabled]="!ads.Caratteristiche.PresaImpulsiva"></ion-checkbox>  
             </ion-col>
         </ion-row>
-        <ion-row *ngIf="ads.CodiceAttivita === 'LF1631'">
-            <ion-col col-5>
-                <ion-label>Fornitura e installazione</ion-label>
-            </ion-col>
-            <ion-col col-6>
-                <ion-select [(ngModel)]="ads.Caratteristiche.FornituraInstallazione" disabled="{{CodiceAttivitaRow['checkBoxList'][5]}}">
-                    <ion-option *ngFor="let item of LF1631_fornitura_installazione" value="{{item.key}}">{{ item.value }}</ion-option>
-                </ion-select>
-            </ion-col>
-            <ion-col col-1>
-                <ion-checkbox  [(ngModel)]="CodiceAttivitaRow['checkBoxList'][5]" [disabled]="!ads.Caratteristiche.PresaImpulsiva"></ion-checkbox>  
-            </ion-col>
-        </ion-row>
         </ion-grid>         
 
         </div>
   
+
+
+
     <!--      TUTTI : LAVFAT1430   --> 
     <div *ngIf="ads.ProdServizio === 'LAVFAT1430'"> 
       <ion-grid>
@@ -2358,7 +2425,7 @@
                                                       <ion-label>Potenza richiesta</ion-label>
                                                   </ion-col>
                                                   <ion-col col-3>
-                                                      <ion-input type="text" (ionFocus)="showPotRicContInfo()" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="{{SettoreMerceologico[ads.SettoreMerceologico] !== 'ENERGIA_ELETTRICA'}}"></ion-input> 
+                                                      <ion-input type="text" (ionFocus)="showPotRicContInfo()" [(ngModel)]="ads.Caratteristiche.PotenzaRichiesta" disabled="true"></ion-input> 
                                                       
                                                   </ion-col>
                                                   <ion-col col-3>

@@ -2,7 +2,7 @@ import { Ads, CodSocieta } from './ads';
 
 export enum EnteType {
     NO_ENTE = -1,
-    COMUNE = 0,
+    COMUNE = 1,
     ALTRO = 2
 }
 

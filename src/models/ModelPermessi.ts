@@ -275,6 +275,8 @@ export class ModelPermessi {
 
     getPage5(){
         // Page for foto particolari
+        if (this.fotoPart.length == 0) return [];   // Particolari non presenti
+
         var page = [
             {
                 "pageBreak": "before",
@@ -607,9 +609,9 @@ export class ModelPermessi {
         values.push('Tipo Manto: ' + this.manto.value)
         values.push('Tipo Scavo: ' + this.scavo.value)
         values.push('Numero Scavi: ' + form.numeroScavi)
-        values.push('Larghezza mt: ' + form.larghezza)
-        values.push('Lunghezza mt: ' + form.lunghezza)
-        values.push('Profondità mt: ' + form.profondita)
+        values.push('Larghezza m: ' + form.larghezza)
+        values.push('Lunghezza m: ' + form.lunghezza)
+        values.push('Profondità m: ' + form.profondita)
         values.push('Numero Giorni: ' + form.numeroGiorni)
 
         if (form.chilometrica1 != undefined) {
@@ -625,7 +627,7 @@ export class ModelPermessi {
             values.push('Superficie/Occupazione mq: ' + form.superficie)
         }
         if (form.larghezzaTot != undefined && form.larghezzaTot != '') {
-            values.push('Larghezza totale strada mq: ' + form.larghezzaTot)
+            values.push('Larghezza totale strada m: ' + form.larghezzaTot)
         }
 
         var page = [

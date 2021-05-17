@@ -335,12 +335,6 @@ export class NotaSopralluogo{
             value: ""
         },
         {
-            text : "Nel caso la quota di scorrimento della rete privata realizzata dal cliente al punto di conferimento sia inferiore alla quota di scorrimento della rete fognaria sarà cura e onere del cliente provvedere a un sistema di sollevamento dei reflui. ",
-            placeholders : [],
-            checked : false,
-            value: ""
-        },
-        {
             text : "Il cliente  si dichiara non più interessato al lavoro richiesto e di rinunciare  quindi espressamente a ricevere il relativo preventivo.  ",
             placeholders : [],
             checked : false,
@@ -353,10 +347,38 @@ export class NotaSopralluogo{
             value: ""
         },
         
+    ];
+
+    static _note_HERA_FOGNATURA: NoteItem[] = [
+        {
+            text : "Il cliente è stato informato che dovrà presentare una  nuova richiesta ad HERA SPA. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Il cliente è stato informato che la sua richiesta non è fattibile perché è in contrasto con norme e regolamenti vigenti.",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Sulla base di quanto emerso durante il sopralluogo la prestazione richiesta non risulta necessaria. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
+        {
+            text : "Nel caso la quota di scorrimento della rete privata realizzata dal cliente al punto di conferimento sia inferiore alla quota di scorrimento della rete fognaria sarà cura e onere del cliente provvedere a un sistema di sollevamento dei reflui. ",
+            placeholders : [],
+            checked : false,
+            value: ""
+        },
         
     ];
 
     static _note_HERATECH_ACQUA:  NoteItem[] = NotaSopralluogo._note_HERA_ACQUA;
+    static _note_HERATECH_FOGNATURA:  NoteItem[] = NotaSopralluogo._note_HERA_FOGNATURA;
 
 
     static getNotes(ads:Ads): NoteItem[]{

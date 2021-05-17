@@ -15,8 +15,12 @@ export class Permesso {
     chilometrica3: string;
     superficie: string;
     larghezzaTot: string;
-
-    setPermesso (form) {
+    fotoGis: any[] = [];
+    fotoLarg: any[] = [];
+    fotoCons: any[] = [];
+    fotoPart: any[] = [];
+    completed: boolean = false;
+    setFormValues (form) {
         this.ubicazioneScavo = form.ubicazioneScavo
         this.tipoManto = form.tipoManto
         this.tipoScavo = form.tipoScavo
@@ -33,5 +37,23 @@ export class Permesso {
             this.chilometrica2 = form.chilometrica2
             this.chilometrica3 = form.chilometrica3
         }
+    }
+    getFormValues () {
+        return {
+            ubicazioneScavo : this.ubicazioneScavo,
+            tipoManto : this.tipoManto,
+            tipoScavo : this.tipoScavo,
+            numeroScavi : this.numeroScavi,
+            larghezza : this.larghezza,
+            lunghezza : this.lunghezza,
+            profondita : this.profondita,
+            numeroGiorni : this.numeroGiorni,
+            superficie : this.superficie,
+            larghezzaTot : this.larghezzaTot,
+            chilometrica1 : this.chilometrica1,
+            chilometrica2 : this.chilometrica2,
+            chilometrica3 : this.chilometrica3,
+        }
+        
     }
 }

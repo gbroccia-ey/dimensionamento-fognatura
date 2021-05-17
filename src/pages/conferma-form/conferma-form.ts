@@ -818,7 +818,7 @@ export class ConfermaFormPage {
       {codice: "WF1181A", canchange: true, prodServizio: "LAVFAT1181", checkCounter: 4, checkBoxList: [false, false, false, false] },
       {codice: "WF1181I", canchange: true, prodServizio: "LAVFAT1181", checkCounter: 4, checkBoxList: [false, false, false, false] },
 
-      {codice: "LF1631", canchange:   true, prodServizio: "LAVFAT1631", checkCounter: 6, checkBoxList: [false, false,  false, false, false, false] },
+      {codice: "LF1631", canchange:   true, prodServizio: "LAVFAT1631", checkCounter: 5, checkBoxList: [false, false,  false, false, false] },
     ]);
 
     
@@ -874,6 +874,14 @@ export class ConfermaFormPage {
         } else {
           key = prestazioneStr + "_" + SettoreMerceologico[this.ads.SettoreMerceologico];
         }
+
+
+        if (this.ads.SettoreMerceologico === SettoreMerceologico.GAS &&  (this.ads.CodiceAttivita === "WF1010" ||this.ads.CodiceAttivita === "WF1040" ||this.ads.CodiceAttivita === "WF1140" ||
+                                                                              this.ads.CodiceAttivita === "WF1100LB" ||this.ads.CodiceAttivita === "WF1100RA" ||this.ads.CodiceAttivita === "WF1100IS" ||
+                                                                              this.ads.CodiceAttivita === "WF1110LB" )){
+            this.ads.Caratteristiche.PressioneFornitura=25;
+        }
+
 
 
         if((this.ads.CodiceAttivita === "WF1010" || this.ads.CodiceAttivita === "WF1040F" ||this.ads.CodiceAttivita === "WF1070") && this.ads.DettaglioMerceologico === DettaglioMerceologico.FOGNATURA) {

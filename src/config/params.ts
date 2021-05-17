@@ -74,7 +74,7 @@ export class Params {
 
  
     static manto = [
-        { key:"01",	value:"SENZA SCAVO (SENZA RILIEVO)"},
+        //{ key:"01",	value:"SENZA SCAVO (SENZA RILIEVO)"},
         { key:"02",	value:"TERRENO VEGETALE"},
         { key:"03",	value:"STABILIZZATO"},
         { key:"04",	value:"GHIAIATO"},
@@ -86,8 +86,8 @@ export class Params {
         { key:"10",	value:"ASFALTO+USURA STR. PROVINCIALE"},
         { key:"11",	value:"ASFALTO+USURA STR. STATALE"},
         { key:"12",	value:"ASFALTO+USURA AUT. PORT. RA"},
-        { key:"13",	value:"SENZA SCAVO (CON RILIEVO)"},
-        { key:"14",	value:"CON SCAVO (SENZA RILIEVO)"},
+        //{ key:"13",	value:"SENZA SCAVO (CON RILIEVO)"},
+        //{ key:"14",	value:"CON SCAVO (SENZA RILIEVO)"},
         { key:"15",	value:"SPINGITUBO"},
         { key:"16",	value:"SPINGITUBO+ASFALTO"},
     ]
@@ -3384,6 +3384,23 @@ export class Params {
                 ]},
             ]  
         },  
+
+
+        //---------------------------------------------------------------------------------------
+        { key: "LAVFAT1170_ACQUA_AAA", value: [
+            { quotaFissa: 146 }
+        ]},
+        {   
+            key: 'QUOTE_LAVFAT1170_ACQUA_AAA',
+            value:[
+                    {label: 'Quota per aggiunta scavo',
+                        value:  [
+                            {label: 'Quota per aggiunta scavo',   value: 672,  singleValue:'true', id:"quota4"}                       
+                    ]},
+              ] 
+          },
+        
+          
         //----------------------------------------------------------------------------------------
 
         { key: "LAVFAT1181_ACQUA_AAA", value: [
@@ -3726,6 +3743,17 @@ export class Params {
             
             ] 
         },
+
+        //----------------------------------------------------------------------------------------
+
+        { key: "LAVFAT1170_ACQUA_AAA", value: [
+            { quotaFissa: 567.11 }
+        ]},
+        {   
+            key: 'QUOTE_LAVFAT1170_ACQUA_AAA',
+            value:[] 
+          },
+
         //----------------------------------------------------------------------------------------
 
         { key: "LAVFAT1181_ACQUA_AAA", value: [
@@ -5902,6 +5930,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         {
             key: 'QUOTE_LAVFAT1110_GAS_AAA',
             value:[
+                    // AGGIUNGERE QUOTA ISTRUTTORIA
                     {   label: 'Supplementi',
                         value:  [                            
 
