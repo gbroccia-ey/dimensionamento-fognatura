@@ -2163,7 +2163,7 @@ export class ModelFT {
 								border: [false, false, false, false]
 							}, {
 								image: value.dati.form._LogoDx,
-								width: 100,
+								width: 125,
 								border: [false, false, false, false]
 							}
 						]]
@@ -2179,7 +2179,7 @@ export class ModelFT {
 								border: [false, false, false, false]
 							}, {
 								image: value.dati.form._LogoDx,
-								width: 100,
+								width: 125,
 								border: [false, false, false, false]
 							}
 						]]

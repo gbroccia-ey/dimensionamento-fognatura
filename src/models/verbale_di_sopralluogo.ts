@@ -1,4 +1,4 @@
-import { Ads } from './ads';
+import { Ads, DettaglioMerceologico, SettoreMerceologico } from './ads';
 import { EnteType } from './ente';
 import { NotaSopralluogo, NoteItem } from './nota_sopralluogo';
 
@@ -1375,11 +1375,17 @@ export class VerbaleDiSopralluogo {
     }
 
     static GetRetroImg(ads: Ads) {
-        return imgExample.getRetroImg(ads.NomeSettore,ads.CodiceSocieta);
+        if((ads.SettoreMerceologico == SettoreMerceologico.ACQUA) && (ads.DettaglioMerceologico == DettaglioMerceologico.FOGNATURA)){
+            return imgExample.getRetroImg("FOGNATURA",ads.CodiceSocieta);
+        }
+        else return imgExample.getRetroImg(ads.NomeSettore,ads.CodiceSocieta);
     }
 
     static GetAlloggiamentoImg(ads: Ads) {
-        return imgExample.getAlloggiamentoImg(ads.NomeSettore,ads.CodiceSocieta);
+        if((ads.SettoreMerceologico == SettoreMerceologico.ACQUA) && (ads.DettaglioMerceologico == DettaglioMerceologico.FOGNATURA)){
+            return imgExample.getAlloggiamentoImg("FOGNATURA",ads.CodiceSocieta);
+        }
+        else return imgExample.getAlloggiamentoImg(ads.NomeSettore,ads.CodiceSocieta);
     }
 
 }

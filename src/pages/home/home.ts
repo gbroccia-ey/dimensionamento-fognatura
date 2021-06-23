@@ -19,6 +19,11 @@ import { ConfermaFormPage } from '../conferma-form/conferma-form';
 import { ModalController } from 'ionic-angular';
 import { PermessiPage } from '../permessi/permessi';
 
+import { PdfManager, PdfResult } from '../../providers/pdfManager';
+import { PrinterSignatureBean } from '../../providers/PrinterSignature';
+import { PreviewPdfNoSignatures } from '../preview-pdf-no-signature/preview-pdf-no-signature';
+import { FascicoloTecnico } from '../../models/FascicoloTecnico';
+
 declare var esriCtrl;
 
 @Component({
@@ -33,6 +38,7 @@ export class HomePage {
   testDimensionamentoEnabled:boolean = true;
   testPreventivatoreEnabled:boolean = true;
   testPermessiEnabled: boolean = true;
+  testFascicoloEnabled:boolean = true;
   
   PreventivableProducts = [
     'LAVFAT1100_GAS',
@@ -137,10 +143,14 @@ export class HomePage {
   selComune;
   selProvincia;
   copList;
+  formFT: any;
+  nomePdf: string;
+  blobPDF: Blob;
 
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
+    public pdfManager: PdfManager,
     public http: Http) {
     this.selSocieta = this.Societa[0];
     esriCtrl.addEsri();
@@ -354,9 +364,9 @@ export class HomePage {
       this.ads = new Ads();
       this.ads.CodiceAds = "TestCodeAds"
       this.ads.CodiceOdl = "TestCodeOdl"
-      //this.ads.SettoreMerceologico = 11; //ACQUA
+      this.ads.SettoreMerceologico = 11; //ACQUA
       //this.ads.SettoreMerceologico = 10; //GAS
-      this.ads.SettoreMerceologico = 13; //EE
+      //this.ads.SettoreMerceologico = 13; //EE
       
       
       //this.ads.DettaglioMerceologico = DettaglioMerceologico.FOGNATURA;
@@ -365,11 +375,13 @@ export class HomePage {
                     new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO"));
       this.ads.Indirizzo = new Indirizzo("nomStrada","nomVia","00001","999","","Bologna","BO");
       this.ads._altro1 = JSON.stringify({
-        societa:7010 // AAA
+        //societa:7010 // AAA
         //societa:5010 // HT
-        //societa:1900 // INRETE
+        societa:1900 // INRETE
       }); 
+
       
+
       this.ads.Prestazione = Prestazione.PN1;
       this.ads.ProdServizio="LAVFAT1400";
       this.ads.CodiceAttivita="WF1400";
@@ -481,6 +493,115 @@ export class HomePage {
     this.populateAdsFast();
     this.navCtrl.push(PermessiPage, this.ads);
   }
+
+
+//------------------------------------------------------------
+  //               Fascicolo Tecnico
+  //------------------------------------------------------------
+  
+  openFascicolo(){
+    this.populateAdsFast();
+
+    var today = new Date();
+        var day = today.getDate();
+        var month = today.getMonth() + 1;
+
+        var sDay = ""+day;
+        var sMonth = ""+month;
+        if(day<10) sDay = "0"+day;
+        if(month<10) sMonth = "0"+month; 
+
+        var timeWrite = sDay + "/" + sMonth+ "/" + (today.getFullYear());
+
+
+         this.formFT = new FascicoloTecnico(
+			      // Tipo servizio
+            this.ads,
+            "this.ads.NoteProgettuali",
+            "this.ads.NoteEsecutive",
+            timeWrite
+
+    );
+    
+    this.Crea_pdf_internal();
+  }
+
+  Crea_pdf_internal(){
+    var nomePdfPartial = "Fascicolo tecnico";
+    var  model = "fascicoloTecnico";
+          
+  
+  
+        for(let key in this.formFT) {
+          if(this.formFT[key] == undefined || this.formFT[key] == null || this.formFT[key] =="")
+            this.formFT[key] = " ";
+      } 
+  
+      var today = new Date();
+      var timeWrite = (today.getDate()) + "-" + (today.getMonth() + 1) + "-" + (today.getFullYear());
+       var strDate = today.getDay()+""+today.getMonth()+""+today.getFullYear()+""+today.getHours()+""+today.getMinutes()+""+today.getSeconds();
+      //Object
+      this.nomePdf = model+"_"+this.ads.Id+"_"+strDate+".pdf";
+     
+      var item:
+        {      
+          data: { today: string },        
+          download: { needDownload: boolean, pdfName: string, ads: object },    
+          dati: {form: Object},
+          immagine: {  }
+        }
+        =
+        {
+          data: { today: timeWrite},       
+          download: {
+            needDownload: false,
+            pdfName: this.nomePdf,
+            ads: this.ads
+          },
+          dati: {form: this.formFT},
+          immagine: {  }  
+        };
+  
+  
+  
+  
+      var pdfCreatedSuccess = (result: PdfResult) => {
+        console.log('file creato');
+    
+      }
+  
+      
+  
+      this.pdfManager.pdfCreate(model, item).then(
+        url => {
+          var bean: PrinterSignatureBean = new PrinterSignatureBean();
+          bean.dataTemporaryUser = item;
+          //bean.url = url.url;
+          bean.url = url;
+          bean.showDelegateFlag = false;
+          bean.title = nomePdfPartial;
+          bean.postprocessTypology = model;
+          bean.pdfBean = item;
+          this.blobPDF = url.blob;
+          bean.succCallback = pdfCreatedSuccess;
+          bean.adsToReturn = this.ads;
+  
+          this.navCtrl.push(
+            PreviewPdfNoSignatures,
+            { bean: bean }
+          );
+  
+        }, (err) => {
+          alert(err);
+        }
+      );
+  
+    }
+
+
+
+
+
 
 
 

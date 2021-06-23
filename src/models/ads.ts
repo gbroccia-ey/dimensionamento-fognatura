@@ -9,6 +9,7 @@ import {CopInfo} from '../models/cop-info';
 import { VerbaleDiSopralluogo } from '../models/verbale_di_sopralluogo';
 import { DimensionamentoAllacciGas, DimensionamentoAllacciAcqua,DimensionamentoAllacciFognatura, DimensionamentoAllacciEE } from '../models/dimensionamento-allacci';
 import { DatiRete } from '../models/DatiRete'
+import { Permesso } from './Permesso';
 
 declare var imgExample: any;
 declare var fileUtil: any;
@@ -56,10 +57,10 @@ export enum DettaglioMerceologico {
 }
 
 export enum Prestazione {
-    PM1 = "PM1",
-    PN1 = "PN1",
-    PR1 = "PR1",
-    E02 = "E02"
+    PM1="PM1",
+    PN1="PN1",
+    PR1="PR1",
+    E02="E02"
 }
 
 export class Ads {
@@ -205,7 +206,7 @@ export class Ads {
     _preventivoInibito;
     _permessi;
     _dimensionamentoSaved;
-    _permessiSaved;
+    _permessiSaved : Permesso;
     _datiReteSaved;
 
     _tipoRichiesta;

@@ -51,7 +51,10 @@ export class Params {
     ];
     */
 
+    // ------------
     // PERMESSI
+    // ------------
+
     static ubicazione= [
         { key: "01", value: 'STRADA' },
         { key: "02", value: 'MARCIAPIEDI' },
@@ -92,7 +95,10 @@ export class Params {
         { key:"16",	value:"SPINGITUBO+ASFALTO"},
     ]
 
+    // ---------------
     // DATI RETE
+    // ---------------
+
     static valoriAccessibilita = ['Accessibile', 'Non accessibile', 'Parzialmente accessibile']
     static caratteristicheAlloggiamento = ['Esterno muratura', 'Esterno metallico', 'Esterno plastico', 'Interno muratura', 'Interno metallico', 'Interno plastico', 'Vano tecnico interno', 'Non presente', 'Pozzetto']
     static caratteristicaSportello = ['Metallico', 'Plastico', 'Non presente']
@@ -100,7 +106,9 @@ export class Params {
     static sezionamentoMorosita = ['Eseguibile', 'Non eseguibile']
     static flusso = ['Da dx a sx', 'Da sx a dx', 'Reversibile sx-dx']
     static posizione = ['Orizzontale', 'Orizzontale e verticale', 'Verticale']
-    static booln = ['si', 'no']
+    static booln = ['Si', 'No']
+    static tipoAlloggiamento = ['Singolo', 'Multiplo', 'Colonna montante', 'Moduli satellitari']
+    static servizio = ['Acqua', 'Gas', 'Elettrico BT', 'Elettrico MT', 'Elettrico AT', 'Fogne', 'Teleriscaldamento']
 
     static codAttivitaDescrizione = 
         [{
@@ -1852,7 +1860,7 @@ export class Params {
             label: "MANUTENZIONE PROGRAMMATA ORDINARIA"
         }
     ];
-
+    
     static getTitolo(prod_servizio){
         for(let item of this.prodServizioList){
             if(item.prodServizio==prod_servizio) return item.titolo;
@@ -2829,7 +2837,7 @@ export class Params {
                                 retValue = this.ValoriListinoGasMetanoPaviaDiUdine.get(key+'_AAA');
                                 break;
                             }
-                            case 'LISTINO ALL.GAS METANO POZZUOLO DEL FRIULI':{
+                            case 'LISTINO ALL.GAS ME POZZUOLO DEL FRIULI':{
                                 retValue = this.ValoriListinoGasMetanoPozzuoloDelFriuli.get(key+'_AAA');
                                 break;
                             }
@@ -2929,8 +2937,25 @@ export class Params {
             }    
         }
         
-        if(!retValue) return this.Valori.get(key);
-        else return retValue;
+        if(!retValue) {
+            retValue =  this.Valori.get(key);
+        }
+
+        // Reset checked values at reload (useful for QUOTE_*)
+        for(let val of retValue){
+            val.checked = undefined;
+            if (val.value !== undefined){
+                for (let val2 of val.value){
+                    val2.checked = undefined;
+                    val2.num = undefined;
+                }
+            }
+        }
+        
+        return retValue;
+
+
+
     }
 
     static ValoriBologna: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
@@ -3245,23 +3270,39 @@ export class Params {
           },
         //----------------------------------------------------------------------------------------
         { key: "LAVFAT1100_ACQUA_AAA", value: [
-            { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 326,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 804,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1542,    label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 1746,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
+            // { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 38.52,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 135.9,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 181.91,    label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 235.41,    label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 321.01,    label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 385.22,    label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 449.52,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
             
         ]},     
+        
         {
             key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
             value:[
+                {   label: 'Quota Scavo per calibro',
+                        value:  [                            
+                            {label: 'quota scavo per calibro DN 15',    value: 897.48,  singleValue:'true', placeholder:"supplemento", id:"quota101"},
+                            {label: 'quota scavo per calibro DN 20',    value: 800.1,   singleValue:'true', placeholder:"supplemento", id:"quota102"},
+                            {label: 'quota scavo per calibro DN 32',    value: 754.09,  singleValue:'true', placeholder:"supplemento", id:"quota103"},
+                            {label: 'quota scavo per calibro DN 40',    value: 700.59,  singleValue:'true', placeholder:"supplemento", id:"quota104"},
+                            {label: 'quota scavo per calibro DN 50',    value: 1741.99, singleValue:'true', placeholder:"supplemento", id:"quota105"},
+                            {label: 'quota scavo per calibro DN 80',    value: 3027.78, singleValue:'true', placeholder:"supplemento", id:"quota106"},
+                            {label: 'quota scavo per calibro DN 100',   value: 3168.48, singleValue:'true', placeholder:"supplemento", id:"quota107"}
+                        ],
+                }, 
+                
+                /*
                 {label: 'Quota Istruttoria',
                        value:  [
                         {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
                 ]},
+                */
+
                 {label: 'Scavo localizzato (a corpo)',
                        value:  [
                         {label: 'Scavo localizzato ',            value: 610, singleValue:'true', placeholder:"",id:"quota51"},
@@ -3283,23 +3324,39 @@ export class Params {
         },
         //----------------------------------------------------------------------------------------
         { key: "LAVFAT1110_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
-            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
-            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
-            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
-            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
-            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
-            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
-            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 0,     label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            { classeContatore: "01", quotaFissa: 38.52,   quotaVariabile: 38.52,    label: "Contatore Calibro DN 15",    quotaIstruttoria: 38.52 },
+            { classeContatore: "02", quotaFissa: 38.52,   quotaVariabile: 135.9,    label: "Contatore Calibro DN 20",    quotaIstruttoria: 38.52 },
+            { classeContatore: "04", quotaFissa: 38.52,   quotaVariabile: 181.91,   label: "Contatore Calibro DN 32",    quotaIstruttoria: 38.52 },
+            { classeContatore: "05", quotaFissa: 38.52,   quotaVariabile: 235.41,   label: "Contatore Calibro DN 40",    quotaIstruttoria: 38.52 },
+            { classeContatore: "06", quotaFissa: 38.52,   quotaVariabile: 321.01,   label: "Contatore Calibro DN 50",    quotaIstruttoria: 38.52 },                                                                       
+            { classeContatore: "08", quotaFissa: 38.52,   quotaVariabile: 385.22,   label: "Contatore Calibro DN 80",    quotaIstruttoria: 38.52 },
+            { classeContatore: "09", quotaFissa: 38.52,   quotaVariabile: 449.52,   label: "Contatore Calibro DN 100",   quotaIstruttoria: 38.52 },
+            { classeContatore: "10", quotaFissa: 38.52,   quotaVariabile: 513.62,   label: "Contatore Calibro > DN 100", quotaIstruttoria: 38.52 },
+            
             
         ]},   
         {
             key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
             value:[
+                {   label: 'Quota Scavo per calibro',
+                        value:  [                            
+                            {label: 'quota scavo per calibro DN 15',    value: 897.48,  singleValue:'true', placeholder:"supplemento", id:"quota101"},
+                            {label: 'quota scavo per calibro DN 20',    value: 800.1,   singleValue:'true', placeholder:"supplemento", id:"quota102"},
+                            {label: 'quota scavo per calibro DN 32',    value: 754.09,  singleValue:'true', placeholder:"supplemento", id:"quota103"},
+                            {label: 'quota scavo per calibro DN 40',    value: 700.59,  singleValue:'true', placeholder:"supplemento", id:"quota104"},
+                            {label: 'quota scavo per calibro DN 50',    value: 1741.99, singleValue:'true', placeholder:"supplemento", id:"quota105"},
+                            {label: 'quota scavo per calibro DN 80',    value: 3027.78, singleValue:'true', placeholder:"supplemento", id:"quota106"},
+                            {label: 'quota scavo per calibro DN 100',   value: 3168.48, singleValue:'true', placeholder:"supplemento", id:"quota107"},
+                            {label: 'quota scavo per calibro DN > 100', value: 4143.38, singleValue:'true', placeholder:"supplemento", id:"quota108"}
+                        ],
+                }, 
+                
+                /*
                 {label: 'Quota Istruttoria',
                        value:  [
                         {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
                 ]},
+                */
                 {label: 'Scavo localizzato (a corpo)',
                        value:  [
                         {label: 'Scavo localizzato ',            value: 610, singleValue:'true', placeholder:"",id:"quota51"},
@@ -3520,9 +3577,9 @@ export class Params {
                 ]},
                 {label: 'Tipo Ripristino',
                     value:  [
-                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
-                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
-                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        {label: 'Lastricato',   value: 150.57,  placeholder:"mq", id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  placeholder:"mq", id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  placeholder:"mq", id:"quota12"},
                         
                 ]},
             ] 
@@ -3561,9 +3618,9 @@ export class Params {
                 ]},
                 {label: 'Tipo Ripristino',
                     value:  [
-                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
-                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
-                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        {label: 'Lastricato',   value: 150.57,  placeholder:"mq", id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  placeholder:"mq", id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  placeholder:"mq", id:"quota12"},
                         
                 ]},
             ] 
@@ -3590,9 +3647,9 @@ export class Params {
                 ]},
                 {label: 'Tipo Ripristino',
                     value:  [
-                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
-                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
-                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        {label: 'Lastricato',   value: 150.57,  placeholder:"mq", id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  placeholder:"mq", id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  placeholder:"mq", id:"quota12"},
                         
                 ]},
             ] 
@@ -3611,9 +3668,9 @@ export class Params {
                 ]},
                 {label: 'Tipo Ripristino',
                     value:  [
-                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
-                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
-                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        {label: 'Lastricato',   value: 150.57,  placeholder:"mq", id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  placeholder:"mq", id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  placeholder:"mq", id:"quota12"},
                         
                 ]},
             ]  
@@ -3621,46 +3678,70 @@ export class Params {
         //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1100_ACQUA_AAA", value: [
-            { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
-            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 0 },
+            // { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 147.45,     label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 147.45,     label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 197.36,     label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 256.33,     label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 349.34,     label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 418.53,     label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 488.85,     label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 558.04,     label: "Contatore Calibro DN > 100", quotaIstruttoria: 0 },
             
-        ]},       
+        ]},     
+        
         {
             key: 'QUOTE_LAVFAT1100_ACQUA_AAA',
             value:[
-                {label: 'Quota Istruttoria',
-                        value:  [
-                        {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
-                ]},
+                {   label: 'Quota Scavo per calibro',
+                        value:  [                            
+                            {label: 'quota scavo per calibro DN 15',    value: 725.9,    singleValue:'true', placeholder:"supplemento", id:"quota101"},
+                            {label: 'quota scavo per calibro DN 20',    value: 725.9,    singleValue:'true', placeholder:"supplemento", id:"quota102"},
+                            {label: 'quota scavo per calibro DN 32',    value: 675.99,   singleValue:'true', placeholder:"supplemento", id:"quota103"},
+                            {label: 'quota scavo per calibro DN 40',    value: 617.02,   singleValue:'true', placeholder:"supplemento", id:"quota104"},
+                            {label: 'quota scavo per calibro DN 50',    value: 1023.07,  singleValue:'true', placeholder:"supplemento", id:"quota105"},
+                            {label: 'quota scavo per calibro DN 80',    value: 953.88,   singleValue:'true', placeholder:"supplemento", id:"quota106"},
+                            {label: 'quota scavo per calibro DN 100',   value: 1632.15,  singleValue:'true', placeholder:"supplemento", id:"quota107"},
+                            {label: 'quota scavo per calibro DN >100',  value: 1562.96,  singleValue:'true', placeholder:"supplemento", id:"quota108"}
+                        ],
+                }, 
             ] 
         },
         //----------------------------------------------------------------------------------------
         
         { key: "LAVFAT1110_ACQUA_AAA", value: [
-            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
-            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
-            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
-            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 873.35,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
-            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
-            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 1372.41, label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
-            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
-            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 2121,    label: "Contatore Calibro > DN 100", quotaIstruttoria: 0 },
+            // { classeContatore: "99", quotaFissa: 0,   quotaVariabile: 0,       label: "Nessun Calibro, inserire Quota Istruttoria",    quotaIstruttoria: 0 },
+            { classeContatore: "01", quotaFissa: 0,   quotaVariabile: 147.45,  label: "Contatore Calibro DN 15",    quotaIstruttoria: 0 },
+            { classeContatore: "02", quotaFissa: 0,   quotaVariabile: 147.45,  label: "Contatore Calibro DN 20",    quotaIstruttoria: 0 },
+            { classeContatore: "04", quotaFissa: 0,   quotaVariabile: 197.36,  label: "Contatore Calibro DN 32",    quotaIstruttoria: 0 },
+            { classeContatore: "05", quotaFissa: 0,   quotaVariabile: 256.33,  label: "Contatore Calibro DN 40",    quotaIstruttoria: 0 },
+            { classeContatore: "06", quotaFissa: 0,   quotaVariabile: 349.34,  label: "Contatore Calibro DN 50",    quotaIstruttoria: 0 },                                                                       
+            { classeContatore: "08", quotaFissa: 0,   quotaVariabile: 418.53,  label: "Contatore Calibro DN 80",    quotaIstruttoria: 0 },
+            { classeContatore: "09", quotaFissa: 0,   quotaVariabile: 488.85,  label: "Contatore Calibro DN 100",   quotaIstruttoria: 0 },
+            { classeContatore: "10", quotaFissa: 0,   quotaVariabile: 558.04,  label: "Contatore Calibro > DN 100", quotaIstruttoria: 0 },
             
         ]},   
         {       
             key: 'QUOTE_LAVFAT1110_ACQUA_AAA',
             value:[
+                {   label: 'Quota Scavo per calibro',
+                        value:  [                            
+                            {label: 'quota scavo per calibro DN 15',    value: 725.9,    singleValue:'true', placeholder:"supplemento", id:"quota101"},
+                            {label: 'quota scavo per calibro DN 20',    value: 725.9,    singleValue:'true', placeholder:"supplemento", id:"quota102"},
+                            {label: 'quota scavo per calibro DN 32',    value: 675.99,   singleValue:'true', placeholder:"supplemento", id:"quota103"},
+                            {label: 'quota scavo per calibro DN 40',    value: 617.02,   singleValue:'true', placeholder:"supplemento", id:"quota104"},
+                            {label: 'quota scavo per calibro DN 50',    value: 1023.07,  singleValue:'true', placeholder:"supplemento", id:"quota105"},
+                            {label: 'quota scavo per calibro DN 80',    value: 953.88,   singleValue:'true', placeholder:"supplemento", id:"quota106"},
+                            {label: 'quota scavo per calibro DN 100',   value: 1632.15,  singleValue:'true', placeholder:"supplemento", id:"quota107"},
+                            {label: 'quota scavo per calibro DN >100',  value: 1562.96,  singleValue:'true', placeholder:"supplemento", id:"quota108"}
+                        ],
+                }, 
+                /*
                 {label: 'Quota Istruttoria',
                         value:  [
                         {label: 'Quota Istruttoria',            value: 38.52, singleValue:'true', placeholder:"",id:"quota50"},
                 ]},
+                */
             ]  
         },
         //----------------------------------------------------------------------------------------
@@ -3735,9 +3816,9 @@ export class Params {
                 ]},
                 {label: 'Tipo Ripristino',
                     value:  [
-                        {label: 'Lastricato',   value: 150.57,  singleValue:'true', id:"quota10"},
-                        {label: 'Porfido',      value: 151.31,  singleValue:'true', id:"quota11"},
-                        {label: 'Bitume',       value: 173.37,  singleValue:'true', id:"quota12"},
+                        {label: 'Lastricato',   value: 150.57,  placeholder:"mq", id:"quota10"},
+                        {label: 'Porfido',      value: 151.31,  placeholder:"mq", id:"quota11"},
+                        {label: 'Bitume',       value: 173.37,  placeholder:"mq", id:"quota12"},
                         
                 ]},
             
@@ -4518,40 +4599,40 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
     static ValoriListinoGasMetanoPremariacco: Dictionary<string, Object[]> = new Dictionary<string, Object[]>().fromList([
         { key: "LAVFAT1010_GAS_AAA", value: [
             { quotaFissa: 0, quotaVariabile: [
-                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
-                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
-                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
-                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
-                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
-                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
-                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
-                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 634.33 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 634.33 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 634.33 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 634.33 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 634.33 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 634.33 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 634.33 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 634.33 },
                 ] },
 
         ]},
         { key: "LAVFAT1040_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
-                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 348.21 },
-                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 348.21 },
-                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 348.21 },
-                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 348.21 },
-                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 348.21 },
-                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 348.21 },
-                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 348.21 },
-                { classeContatore: "G100",      descrizione: "G100",                prezzo: 348.21 },
+                { classeContatore: "G4",        descrizione: "G4",                  prezzo: 634.33 },
+                { classeContatore: "G6",        descrizione: "G6",                  prezzo: 634.33 },
+                { classeContatore: "G10",       descrizione: "G10",                 prezzo: 634.33 },
+                { classeContatore: "G16",       descrizione: "G16",                 prezzo: 634.33 },
+                { classeContatore: "G25",       descrizione: "G25",                 prezzo: 634.33 },
+                { classeContatore: "G40",       descrizione: "G40",                 prezzo: 634.33 },
+                { classeContatore: "G65",       descrizione: "G65",                 prezzo: 634.33 },
+                { classeContatore: "G100",      descrizione: "G100",                prezzo: 634.33 },
                 ] },
 
         ]},
         { key: "LAVFAT1140_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
-                { classeContatore: "G4",   prezzo: 348.21 },
-                { classeContatore: "G6",   prezzo: 348.21 },
-                { classeContatore: "G10",  prezzo: 348.21 },
-                { classeContatore: "G16",  prezzo: 348.21 },
-                { classeContatore: "G25",  prezzo: 348.21 },
-                { classeContatore: "G40",  prezzo: 348.21 },
-                { classeContatore: "G65",  prezzo: 348.21 },
-                { classeContatore: "G100", prezzo: 348.21 },
+                { classeContatore: "G4",   prezzo: 634.33 },
+                { classeContatore: "G6",   prezzo: 634.33 },
+                { classeContatore: "G10",  prezzo: 634.33 },
+                { classeContatore: "G16",  prezzo: 634.33 },
+                { classeContatore: "G25",  prezzo: 634.33 },
+                { classeContatore: "G40",  prezzo: 634.33 },
+                { classeContatore: "G65",  prezzo: 634.33 },
+                { classeContatore: "G100", prezzo: 634.33 },
                 ] },
 
         ]},
@@ -4757,6 +4838,47 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                 ] },
 
         ]},
+
+        { key: "LAVFAT1070_GAS_AAA", value: [
+            { quotaFissa: 306.3 }
+        ]},
+        
+        {   
+            key: 'QUOTE_LAVFAT1070_GAS_AAA',
+            value:[
+                      {   
+                        label: 'Supplementi',
+                        value:  [                            
+
+                            {label: 'Supplemento Asfalto ', value: 45.6,  singleValue:'true', placeholder:"supplemento", id:"quota51"},
+                            {label: 'Supplemento Porfido ', value: 119.5, singleValue:'true', placeholder:"supplemento", id:"quota52"},
+                        ],
+                    },    
+              ] 
+        },
+
+        { key: "LAVFAT1130_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 1900 },
+                { classeContatore: "G6",   prezzo: 1900 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 1900 },
+                { classeContatore: "G65",  prezzo: 1900 },
+                { classeContatore: "G100", prezzo: 2210 },
+                { classeContatore: "G160", prezzo: 2210 },
+                { classeContatore: "G250", prezzo: 2210 },
+                { classeContatore: "G400", prezzo: 2210 },
+                { classeContatore: "G650", prezzo: 2210 },
+                { classeContatore: "G1000",prezzo: 2210 },
+                { classeContatore: "G1600",prezzo: 2210 },
+                { classeContatore: "G2500",prezzo: 2210 }
+
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 76, label: "Parte idraulica o aerea" }
+        ]},
+
         { key: "LAVFAT1140_GAS_AAA", value: [
             { quotaFissa:  0 , quotaVariabile: [
                 { classeContatore: "G4",   prezzo: 200.0 },
@@ -4770,6 +4892,37 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
                 ] },
 
         ]},
+
+        { key: "LAVFAT1170_GAS_AAA", value: [
+            { quotaFissa: 76 }
+        ]},
+        {   
+            key: 'QUOTE_LAVFAT1170_GAS_AAA',
+            value:[] 
+          },
+
+        { key: "LAVFAT1181_GAS_AAA", value: [
+            { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [
+                { classeContatore: "G4",   prezzo: 1900 },
+                { classeContatore: "G6",   prezzo: 1900 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 1900 },
+                { classeContatore: "G65",  prezzo: 1900 },
+                { classeContatore: "G100", prezzo: 2210 },
+                { classeContatore: "G160", prezzo: 2210 },
+                { classeContatore: "G250", prezzo: 2210 },
+                { classeContatore: "G400", prezzo: 2210 },
+                { classeContatore: "G650", prezzo: 2210 },
+                { classeContatore: "G1000",prezzo: 2210 },
+                { classeContatore: "G1600",prezzo: 2210 },
+                { classeContatore: "G2500",prezzo: 2210 }
+                
+            ]},
+            { tipoSpostamento: "2", quotaFissa: 76, label: "Parte idraulica o aerea" }
+        ]},
+
                   
     ])
     
@@ -5436,7 +5589,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         
 
         { key: "LAVFAT1040_GAS", value: [
-            { quotaFissa:  0 , quotaVariabile: [
+            { quotaFissa:  1500 , quotaVariabile: [
                 { classeContatore: "G4", prezzo: 380 },
                 { classeContatore: "G6", prezzo: 760 },
                 { classeContatore: "G10", prezzo: 970 },
@@ -5569,7 +5722,7 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         ]},
 
          { key: "LAVFAT1010_ACQUA", value: [
-            { quotaFissa: 38.52, quotaVariabile: [
+            { quotaFissa: 355, quotaVariabile: [
                   { classeContatore: "DN15",  prezzo: 320  },
                   { classeContatore: "DN20",  prezzo: 520  },
                   { classeContatore: "DN25",  prezzo: 820  },
@@ -5837,30 +5990,31 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         { key: "LAVFAT1100_GAS_AAA", 
      
           value: [
-                  { classeContatore: "G4",   quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G6",   quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G10",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G16",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G25",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G40",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G65",  quotaFissa: 0, quotaVariabile: 1900, quotaIstruttoria: 0 },
-                  { classeContatore: "G100", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G160", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G250", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G400", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G650", quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G1000",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G1600",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 },
-                  { classeContatore: "G2500",quotaFissa: 0, quotaVariabile: 2210, quotaIstruttoria: 0 }
+                  { classeContatore: "G4",   quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G6",   quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G10",  quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G16",  quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G25",  quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G40",  quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G65",  quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G100", quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G160", quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G250", quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G400", quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G650", quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G1000",quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G1600",quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 },
+                  { classeContatore: "G2500",quotaFissa: 0, quotaVariabile: 37, quotaIstruttoria: 0 }
         ]},  
         {
             key: 'QUOTE_LAVFAT1100_GAS_AAA',
             value:[
+                /*
                     {   label: 'Quota Istruttoria',
                         value:  [
                             {label: 'Quota Istruttoria',            value: 37, singleValue:'true', placeholder:"",id:"quota50"},
                     ]},
-         
+                */
                     {   label: 'Scavo agguntivo',
                         value:  [
                             {label: 'Per ogni mt di scavo oltre i 6 scavo incluso', value: 221, placeholder:"mt",id:"quota3"},
@@ -5910,27 +6064,33 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1110_GAS_AAA", 
             value: [
-                { classeContatore: "G4",   quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G6",   quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G10",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G16",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G25",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G40",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G65",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G100", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G160", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G250", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G400", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G650", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G1000",quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G1600",quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G2500",quotaFissa: 2210, quotaIstruttoria: 37 }
+                { classeContatore: "G4",   quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G6",   quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G10",  quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G16",  quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G25",  quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G40",  quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G65",  quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G100", quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G160", quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G250", quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G400", quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G650", quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G1000",quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G1600",quotaFissa: 37, quotaIstruttoria: 0 },
+                { classeContatore: "G2500",quotaFissa: 37, quotaIstruttoria: 0 }
                 
         ]},
+        
         {
             key: 'QUOTE_LAVFAT1110_GAS_AAA',
             value:[
-                    // AGGIUNGERE QUOTA ISTRUTTORIA
+                    /*
+                    {label: 'Quota Istruttoria',
+                       value:  [
+                        {label: 'Quota Istruttoria',            value: 37, singleValue:'true', placeholder:"",id:"quota50"},
+                    ]},
+                    */
                     {   label: 'Supplementi',
                         value:  [                            
 
@@ -5960,21 +6120,21 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1130_GAS_AAA", value: [
             { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [
-                { classeContatore: "G4",   quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G6",   quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G10",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G16",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G25",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G40",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G65",  quotaFissa: 1900, quotaIstruttoria: 37 },
-                { classeContatore: "G100", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G160", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G250", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G400", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G650", quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G1000",quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G1600",quotaFissa: 2210, quotaIstruttoria: 37 },
-                { classeContatore: "G2500",quotaFissa: 2210, quotaIstruttoria: 37 }
+                { classeContatore: "G4",   prezzo: 1900 },
+                { classeContatore: "G6",   prezzo: 1900 },
+                { classeContatore: "G10",  prezzo: 1900 },
+                { classeContatore: "G16",  prezzo: 1900 },
+                { classeContatore: "G25",  prezzo: 1900 },
+                { classeContatore: "G40",  prezzo: 1900 },
+                { classeContatore: "G65",  prezzo: 1900 },
+                { classeContatore: "G100", prezzo: 2210 },
+                { classeContatore: "G160", prezzo: 2210 },
+                { classeContatore: "G250", prezzo: 2210 },
+                { classeContatore: "G400", prezzo: 2210 },
+                { classeContatore: "G650", prezzo: 2210 },
+                { classeContatore: "G1000",prezzo: 2210 },
+                { classeContatore: "G1600",prezzo: 2210 },
+                { classeContatore: "G2500",prezzo: 2210 }
 
             ]},
             { tipoSpostamento: "2", quotaFissa: 144, label: "Parte idraulica o aerea" }
@@ -6066,18 +6226,19 @@ static ValoriListinoGasButtrio: Dictionary<string, Object[]> = new Dictionary<st
         
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1170_GAS_AAA", value: [
-            { quotaFissa: 0 }
+            { quotaFissa: 144 }
         ]},
+
         {   
             key: 'QUOTE_LAVFAT1170_GAS_AAA',
             value:[
-                      {label: 'Tipo Lavoro',
-                       value:  [
-                        {label: 'interrato',            value: 805, singleValue:'true', placeholder:"",id:"quota41"},
-                        {label: 'senza scavo(aereo)',   value: 144, singleValue:'true', placeholder:"",id:"quota42"},
-                      ]}
+                    {label: 'Quota per aggiunta scavo',
+                        value:  [
+                            {label: 'Quota per aggiunta scavo',   value: 661,  singleValue:'true', id:"quota4"}                       
+                    ]},
               ] 
           },
+        
         //---------------------------------------------------------------------------------------
         { key: "LAVFAT1181_GAS_AAA", value: [
             { tipoSpostamento: "1", quotaFissa: 805, label: "Lavoro Interrato", quotaVariabile: [

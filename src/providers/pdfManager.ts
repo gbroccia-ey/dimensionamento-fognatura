@@ -117,7 +117,7 @@ export class PdfManager {
                        });
                        break;
                    }
-                   case 'permessi':{
+                   case 'Permesso_Scheda':{
                         this.modelPermessi.getTesProvDomDefinition(value).then(dd => {
                             successCallback(dd);
                         }, err => {

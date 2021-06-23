@@ -1,5 +1,6 @@
 declare var WL;
 import * as moment from 'moment';
+import { Ads } from '../models/ads';
 
 
 export class Utils {
@@ -246,5 +247,43 @@ export class Utils {
     
         })
     }// Use it like : var newDataURI = await resizedataURL('yourDataURIHere', 50, 50);
+
+    static isBase64ZeroBytes (base64) {
+        const match = 'data:image/png;base64,'
+        var res = base64.substr(match.length)
+        return res === ',';
+    }
+
+    static isImgZeroBytes (img) {
+        const match = 'data:image/png;base64,'
+        var res = img.base64.substr(match.length)
+        return res === ',';
+    }
+
+    static b64toBlob(b64Data, contentType, sliceSize?) {
+        const binary_string =  window.atob(b64Data);
+      const len = binary_string.length;
+      const bytes = new Uint8Array(len);
+      for (let i = 0; i < len; i++) {
+        bytes[i] = binary_string.charCodeAt(i);
+      }
+      return bytes.buffer;
+    }
+
+
+
+    static checkImagesIntegrity (ads: Ads) {
+        return new Promise(function(resolve, reject) {
+            var foundCorrupted: boolean
+
+            ads.Base64Img.forEach((img, index) => {
+                if (Utils.isImgZeroBytes(img) === true) {
+                    foundCorrupted = true
+                    console.log('Found Broken Image at index' + index)
+                }
+            });
+            resolve(foundCorrupted)
+        })
+    }
 
 }

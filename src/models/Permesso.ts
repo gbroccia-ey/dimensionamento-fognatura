@@ -15,10 +15,10 @@ export class Permesso {
     chilometrica3: string;
     superficie: string;
     larghezzaTot: string;
-    fotoGis: any[] = [];
-    fotoLarg: any[] = [];
-    fotoCons: any[] = [];
-    fotoPart: any[] = [];
+    //fotoGis: any[] = [];
+    //fotoLarg: any[] = [];
+    //fotoCons: any[] = [];
+    //fotoPart: any[] = [];
     completed: boolean = false;
     setFormValues (form) {
         this.ubicazioneScavo = form.ubicazioneScavo

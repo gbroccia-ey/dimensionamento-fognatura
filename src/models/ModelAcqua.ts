@@ -543,6 +543,10 @@ export class ModelAcqua {
             }
         };               
 
+        var infoSchemi = "Si intendono dimensioni minime, al netto della coibentazione.";
+        infoSchemi += ((vs.AdeguamentoCaricoCliente === AdeguamentoCliente.DA_REALIZZARE) || (vs.AdeguamentoCaricoCliente === AdeguamentoCliente.NON_ADEGUATO))? 
+            "\n\nNel caso realizzazione e/o modifica alloggiamento vedere in allegato al presente Verbale il modulo “Indicazioni per la realizzazione alloggiamento contatori“":
+            "";
 
         var beforeImg = [                    
                             {
@@ -1089,10 +1093,7 @@ export class ModelAcqua {
                                                                 "border": [false,false,false,false],
                                                                 "colSpan": 5,
                                                                 "fontSize": 6,
-                                                                "text": "Si intendono dimensioni minime, al netto della coibentazione." +
-                                                                    ((vs.AdeguamentoCaricoCliente === AdeguamentoCliente.DA_REALIZZARE) || (vs.AdeguamentoCaricoCliente === AdeguamentoCliente.NON_ADEGUATO))? 
-                                                                        "\n\nNel caso realizzazione e/o modifica alloggiamento vedere in allegato al presente Verbale il modulo “Indicazioni per la realizzazione alloggiamento contatori“":
-                                                                        ""
+                                                                "text": infoSchemi
                                                             }
                                                         ]
                                                     ],

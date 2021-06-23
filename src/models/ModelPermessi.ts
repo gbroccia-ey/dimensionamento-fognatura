@@ -33,6 +33,7 @@ export class ModelPermessi {
     scavo;
     manto;
     ubicazione;
+    isComune;
 
     constructor() {
 
@@ -275,7 +276,7 @@ export class ModelPermessi {
 
     getPage5(){
         // Page for foto particolari
-        if (this.fotoPart.length == 0) return [];   // Particolari non presenti
+        if (this.isComune) return [];   // Particolari non presenti per comune
 
         var page = [
             {
@@ -615,13 +616,13 @@ export class ModelPermessi {
         values.push('Numero Giorni: ' + form.numeroGiorni)
 
         if (form.chilometrica1 != undefined) {
-            values.push('Chilometrica 1: ' + form.chilometrica1)
+            values.push('Chilometrica KM: ' + form.chilometrica1)
         }
         if (form.chilometrica2 != undefined && form.chilometrica2 != '') {
-            values.push('Chilometrica 1: ' + form.chilometrica2)
+            values.push('Attraversamento 2 KM: ' + form.chilometrica2)
         }
         if (form.chilometrica3 != undefined && form.chilometrica2 != '') {
-            values.push('Chilometrica 1: ' + form.chilometrica3)
+            values.push('Attraversamento 3 KM: ' + form.chilometrica3)
         }
         if (form.superficie != undefined && form.superficie != '') {
             values.push('Superficie/Occupazione mq: ' + form.superficie)
@@ -720,7 +721,7 @@ export class ModelPermessi {
                             "text": "Avviso"
                         },
                         {
-                            "text": value.download.ads.CodiceAds
+                            "text": ""+value.download.ads.CodiceAds
                         },
                         {
                             "border": [
@@ -862,7 +863,7 @@ export class ModelPermessi {
                             "text": "SOT"
                         },
                         {
-                            "text": value.download.ads.Societa
+                            "text": ""+value.download.ads.CodiceSot
                         }
                     ]
                 ],
@@ -1086,6 +1087,8 @@ export class ModelPermessi {
         this.fotoLarg = []
         this.fotoCons = []
         this.fotoPart = []
+
+        this.isComune = value.dati.form.isComune;
 
         this.ubicazione = Params.ubicazione.find(el => el.key === value.dati.form.permesso.ubicazioneScavo)
         this.manto = Params.manto.find(el => el.key === value.dati.form.permesso.tipoManto)

@@ -541,7 +541,8 @@ export class Form2Page {
 
       alert.present();  
     }
-    else if(this.ads.Prestazione !==  Prestazione.PR1 && !this.ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente && !this.ads.VerbaleDiSopralluogo.Pratica_Annullata) {
+    else if(this.ads.Prestazione !==  Prestazione.PR1 && this.ads.ProdServizio !==  "LAVFAT1191" && this.ads.ProdServizio !==  "LAVFAT1150" && 
+                !this.ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente && !this.ads.VerbaleDiSopralluogo.Pratica_Annullata) {
       let alert = this.alertCtrl.create({
         title: 'Attenzione!',
         subTitle: 'Selezionare il campo Stato Alloggiamento Misuratori per proseguire.',
@@ -550,7 +551,8 @@ export class Form2Page {
 
       alert.present();  
     }
-    else if((this.ads.Prestazione !==  Prestazione.PR1 && this.ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente === AdeguamentoCliente.NON_ADEGUATO) &&
+    else if((this.ads.Prestazione !==  Prestazione.PR1 && this.ads.ProdServizio !==  "LAVFAT1191" && this.ads.ProdServizio !==  "LAVFAT1150" && 
+              this.ads.VerbaleDiSopralluogo.AdeguamentoCaricoCliente === AdeguamentoCliente.NON_ADEGUATO) &&
              (this.ads.VerbaleDiSopralluogo.AdeguamentiNecessariCliente === undefined ||this.ads.VerbaleDiSopralluogo.AdeguamentiNecessariCliente.length === 0)) {
       let alert = this.alertCtrl.create({
         title: 'Attenzione!',

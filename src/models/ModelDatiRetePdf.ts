@@ -107,7 +107,7 @@ export class ModelDatiRetePdf {
                         fillColor:this.fillColor
                     }, 
                     {
-                        text:value.download.ads.CodiceAds
+                        text:""+value.download.ads.CodiceAds
                     }]
                     ]
             }
